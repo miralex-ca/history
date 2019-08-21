@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="themes">
+        <item>@string/set_theme_default_name</item>
+        <item>@string/set_theme_dark_name</item>
+        <item>@string/set_theme_smoky_name</item>
+        <item>@string/set_theme_red_name</item>
+        <item>@string/set_theme_white_name</item>
+        <item>@string/set_theme_ww_name</item>
+    </string-array>
+
+
+    <string-array name="themes_values">
+        <item>default</item>
+        <item>dark</item>
+        <item>smoky</item>
+        <item>red</item>
+        <item>white</item>
+        <item>westworld</item>
+    </string-array>
+
+    <string name="set_theme_default">default</string>
+
+    <string name="set_theme_default_name">Основная</string>
+    <string name="set_theme_dark_name">Черная</string>
+    <string name="set_theme_smoky_name">Темная</string>
+    <string name="set_theme_red_name">Красная</string>
+    <string name="set_theme_white_name">Белая</string>
+    <string name="set_theme_ww_name">Контрастная</string>
+
+
+    <string-array name="set_control_tests_list">
+        <item>@string/set_control_tests_one</item>
+        <item>@string/set_control_tests_two</item>
+        <item>@string/set_control_tests_three</item>
+    </string-array>
+
+    <string-array name="control_tests_list_values">
+        <item>1</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+
+
+    <string-array name="set_data_control_tests_list">
+        <item>@string/set_data_control_dates</item>
+        <item>@string/set_data_control_all</item>
+    </string-array>
+
+    <string-array name="data_control_tests_list_values">
+        <item>dates</item>
+        <item>all</item>
+    </string-array>
+
+
+    <string-array name="set_show_status_list">
+        <item>@string/set_show_status_one</item>
+        <item>@string/set_show_status_two</item>
+        <item>@string/set_show_status_three</item>
+    </string-array>
+
+    <string-array name="set_show_status_values">
+        <item>1</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+
+
+    <string-array name="set_detail_txt_list">
+        <item>@string/set_detail_txt_small</item>
+        <item>@string/set_detail_txt_medium</item>
+        <item>@string/set_detail_txt_large</item>
+    </string-array>
+
+    <string-array name="set_detail_txt_values">
+        <item>small</item>
+        <item>medium</item>
+        <item>large</item>
+    </string-array>
+
+
+    <string-array name="set_data_mode_list">
+        <item>@string/set_data_mode_easy</item>
+        <item>@string/set_data_mode_default</item>
+    </string-array>
+
+
+    <string-array name="set_data_mode_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+
+
+    <string-array name="modes">
+        <item>@string/set_mode_default_name</item>
+        <item>@string/set_mode_full_name</item>
+    </string-array>
+
+    <string-array name="modes_values">
+        <item>default</item>
+        <item>full</item>
+    </string-array>
+
+    <string name="set_mode_default">default</string>
+    <string name="set_mode_sum">Текущий: %s</string>
+
+    <string name="set_mode_default_name">Основной</string>
+    <string name="set_mode_full_name">Полная версия</string>
+
+
+
+</resources>

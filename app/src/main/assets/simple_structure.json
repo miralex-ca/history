@@ -1,0 +1,54 @@
+{
+  "sections":
+  [
+	{"tag": "dates", "title": "Хронология", "id": "0101",
+      "desc": "Даты основных событий",
+      "title_short": "Египет",
+      "desc_short": "Даты основных событий",
+      "image": "pyramid.jpg",
+
+      "categories":
+        [
+          {"parent": "root", "type": "simple", "id": "010101", "title": "Даты и события", "desc": "Основные события"}
+        ]
+	},
+
+    {"tag": "persons", "title": "Личности", "id": "0102",
+      "desc": "Личности",
+      "title_short": "Личности",
+      "desc_short": "Личности",
+      "image": "augustus.jpg",
+      "unlocked": "false",
+      "categories":
+      [
+        {"parent": "root", "type": "simple", "id": "010201", "title": "Личности"}
+      ]
+    },
+
+    {"tag": "religion", "title": "Религия", "id": "0103",
+      "desc": "Даты основных событий истории Древнего мира",
+      "title_short": "Религия",
+      "desc_short": "Даты основных событий",
+      "image": "ganesha_1.jpg",
+      "categories":
+      [
+        {"parent": "root", "type": "simple", "id": "010301", "title": "Религия"}
+      ]
+    },
+
+    {"tag": "terms", "title": "Термины", "id": "0104",
+      "desc": "Основные понятия, их значения и определения",
+      "title_short": "Термины",
+      "desc_short": "Основные понятия, значения",
+      "image": "olympia.jpg",
+      "categories":
+      [
+        {"parent": "root", "type": "simple", "id": "010401", "title": "Термины"}
+      ]
+    }
+
+  ]
+
+
+}
+

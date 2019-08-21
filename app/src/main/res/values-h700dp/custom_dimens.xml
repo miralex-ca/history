@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- dimens for phones 5 inch by height -->
+    <string name="dimen_size_h">h610dp</string>
+
+
+    <!-- exercise -->
+
+    <dimen name="_ex_card_top_wide">40dp</dimen>
+
+
+    <dimen name="_home_card_image_width">120dp</dimen>
+    <dimen name="_home_card_image_height">105dp</dimen>
+
+
+    <dimen name="_home_card_title_bottom">10dp</dimen>
+    <dimen name="_home_card_title_txt_size">20sp</dimen>
+    <dimen name="_home_card_desc_txt_size">13sp</dimen>
+
+
+    <dimen name="_detail_card_height">500dp</dimen>
+    <dimen name="_detail_appbar_height">260dp</dimen>
+
+
+    <dimen name="_detail_appbar_exp_text_size">26sp</dimen>
+    <dimen name="_detail_appbar_exp_text_bottom">32dp</dimen>
+    <dimen name="_design_fab_size_normal">44dp</dimen>
+    <dimen name="_detail_text_size" >14sp</dimen>
+
+
+    <integer name="detail_text_size_small" >14</integer>
+    <integer name="detail_text_size_medium" >16</integer>
+    <integer name="detail_text_size_large" >18</integer>
+
+
+    <dimen name="_cat_item_info_txt_size">14sp</dimen>
+
+
+    <dimen name="_flash_card_height">350dp</dimen>
+    <dimen name="_flash_text_box_height">120dp</dimen>
+    <dimen name="_flash_translate_box_height">170dp</dimen>
+    <dimen name="_flash_translate_box_mirror_height">100dp</dimen>
+    <dimen name="_flash_text_box_mirror_height">120dp</dimen>
+    <dimen name="_flash_text_wrap_mirror_height">0dp</dimen>
+
+
+    <dimen name="_ex_card_field_minheight">500dp</dimen>
+    <integer name="_ex_card_wrap">407</integer>
+    <integer name="_ex_card_wrap_high">447</integer>
+
+
+    <integer name="_ex_text_wrap">140</integer>
+    <integer name="_ex_text_wrap_high">170</integer>
+
+    <integer name="_ex_text_wrap_ex1">120</integer>
+    <integer name="_ex_text_wrap_ex1_high">160</integer>
+
+
+    <integer name="_ex_quest_short_txt_size_norm">24</integer>
+    <integer name="_ex_quest_short_txt_size_small">27</integer>
+
+
+    <integer name="_ex_quest_txt_size_norm">20</integer>
+    <integer name="_ex_quest_txt_size_medium">18</integer>
+    <integer name="_ex_quest_txt_size_small">16</integer>
+    <integer name="_ex_quest_txt_size_smallest">14</integer>
+
+
+    <dimen name="_ex_opt_short_txt_min_height">52dp</dimen>
+    <dimen name="_ex_opt_norm_txt_min_height">62dp</dimen>
+    <dimen name="_ex_opt_long_txt_min_height">75dp</dimen>
+
+    <dimen name="_ex_opt_short_txt_size_norm">21sp</dimen>
+    <integer name="_ex_opt_short_txt_size_small">20</integer>
+
+    <integer name="ex_opt_txt_length_long">50</integer>
+    <integer name="ex_opt_txt_length_longest">65</integer>
+
+    <integer name="_ex_opt_txt_size_norm">17</integer>
+    <integer name="_ex_opt_txt_size_small">16</integer>
+    <integer name="_ex_opt_txt_size_smallest">15</integer>
+
+    <integer name="ex_text_long_num">60</integer>
+
+    <integer name="_ex_text_long_num_sw600">100</integer>
+    <integer name="_ex_text_long_num_sw720">100</integer>
+
+
+    <style name="CatListTitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+    </style>
+
+    <style name="CatListDesc">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <dimen name="_cat_list_item_padding">10dp</dimen>
+
+
+    <dimen name="_section_list_txt_size">20sp</dimen>
+    <dimen name="_section_list_txt_left">14dp</dimen>
+    <dimen name="_section_list_img_left">4dp</dimen>
+
+
+    <dimen name="_section_title_txt_size">24sp</dimen>
+    <dimen name="_section_desc_txt_size">15sp</dimen>
+    <dimen name="_section_desc_txt_top">12dp</dimen>
+
+
+
+    <dimen name="_stats_diagram_ext_size">135dp</dimen>
+    <dimen name="_stats_diagram_int_size">106dp</dimen>
+
+    <dimen name="_cat_item_pic_size">48dp</dimen>
+
+
+
+
+
+
+
+
+
+
+</resources>

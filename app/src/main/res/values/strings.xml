@@ -1,0 +1,385 @@
+
+
+<resources>
+
+
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4215105690061587/7707206650</string>
+    <string name="admob_ap_id" translatable="false">ca-app-pub-4215105690061587~1169718468</string>
+
+
+    <string name="app_name">История России</string>
+
+    <string name="app_backup_activity">.BackupActivity</string>
+
+    <string name="app_name_spec"> </string>
+
+
+    <string name="app_data_file">data.json</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="contact_error">Сообщить об ошибке</string>
+    <string name="contact_feedback">Отправить отзыв</string>
+    <string name="contact_pro">PRO version</string>
+    <string name="contact_rate">Оценить приложение</string>
+    <string name="contact_website">Посетить веб-сайт</string>
+
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+
+    <string-array name="cat_titles">
+        <item>Хронология</item>
+        <item>Личности</item>
+        <item>Мифология, религия</item>
+        <item>Термины, определения</item>
+    </string-array>
+
+    <string-array name="cat_desc">
+        <item>Важнейшие даты древнего мира</item>
+        <item>Великие люди древнего мира</item>
+        <item>Мифы, возникновение религии</item>
+        <item>Термины, определения и их значение</item>
+    </string-array>
+
+
+    <item name="item_id" type="id" />
+    <item name="item_type" type="id" />
+
+    <item name="cat_id" type="id" />
+    <item name="data_count" type="id" />
+
+
+    <string name="nav_home_txt">Главная</string>
+    <string name="nav_starred_txt">Избранное</string>
+    <string name="nav_stats_txt">Статистика</string>
+    <string name="nav_settings_txt">Настройки</string>
+    <string name="nav_info_txt">Справка</string>
+    <string name="nav_contact_txt">Контакты/отзыв</string>
+
+    <string-array name="menu_titles">
+        <item>@string/title_home_txt</item>
+        <item>@string/title_starred_txt</item>
+        <item>@string/title_stats_txt</item>
+        <item>@string/title_settings_txt</item>
+        <item>@string/title_info_txt</item>
+        <item>@string/title_contact_txt</item>
+    </string-array>
+
+    <string name="title_home_txt">Главная</string>
+    <string name="title_starred_txt">Избранное</string>
+    <string name="title_stats_txt">Статистика</string>
+    <string name="title_settings_txt">Настройки</string>
+    <string name="title_info_txt">Справка</string>
+    <string name="title_contact_txt">Контакты/отзыв</string>
+
+
+    <string name="title_test_txt">Тест</string>
+    <string name="title_card_txt">Карточки</string>
+
+    <string name="title_starred_activity">Избранное</string>
+    <string name="title_errors_txt">Ошибки</string>
+    <string name="title_custom_txt">Список</string>
+
+
+    <string name="title_activity_cat">CatActivity</string>
+
+    <string name="section_tab1_title">Список</string>
+    <string name="section_tab2_title">Изучение</string>
+    <string name="title_activity_sample">SampleActivity</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+
+
+    <string name="voc_ex_link_card_title">Карточки</string>
+    <string name="voc_ex_link_first_title">Тест 1</string>
+    <string name="voc_ex_link_second_title">Тест 2</string>
+
+    <string name="starred_ex_link_title">Тест с избранными</string>
+
+    <string name="voc_ex_link_first_desc">Тест: Событие / Дата</string>
+    <string name="voc_ex_link_second_desc">Тест: Дата / Событие</string>
+
+    <string name="section_ex_link_title_1">Общий тест 1</string>
+    <string name="section_ex_link_title_2">Общий тест 2</string>
+    <string name="section_ex_link_title_3">Общий тест 3</string>
+
+
+    <string name="section_ex_link_desc_3">Тест на личности и термины</string>
+
+
+    <string name="voc_ex_link_third_title">Упражнение 3</string>
+    <string name="voc_ex_link_card_desc">Изучение отдельных записей</string>
+
+
+    <string name="voc_ex_link_third_desc">Тест с вариантами ответа</string>
+    <string name="title_activity_cards">CardsActivity</string>
+
+
+    <!-- flashcard -->
+    <string name="f_menu_show_translate">Показывать ответ</string>
+    <string name="f_menu_shuffle">Перемешать</string>
+    <string name="f_menu_reflect">Перевернуть</string>
+    <string name="f_menu_restart">Начать заново</string>
+    <string name="f_activity_title">Карточки</string>
+    <string name="f_counter_txt">%1$d / %2$d</string>
+    <string name="f_show_translate_txt">ПОКАЗАТЬ ОТВЕТ</string>
+    <string name="f_back_btn_txt">Назад</string>
+    <string name="f_next_btn_txt">Дальше</string>
+
+    <string name="ex_menu_buttons">Кнопки</string>
+
+
+    <string name="set_ex_buttons">Отображать кнопки</string>
+    <!-- helper -->
+    <string name="ex_text_foo">Текст</string>
+    <string name="image_desc">Image</string>
+    <string name="title_activity_exericse">ExericseActivity</string>
+
+
+    <!-- exercise -->
+
+    <string name="ex_menu_restart">Начать заново</string>
+    <string name="ex_counter_txt">%1$d / %2$d</string>
+    <string name="ex_option_foo">Вариант</string>
+    <string name="ex_txt_title">Упражнение</string>
+    <string name="ex_txt_correct">ПРАВИЛЬНО</string>
+    <string name="ex_txt_incorrect">НЕПРАВИЛЬНО</string>
+    <string name="ex_check_btn_txt">Проверить</string>
+    <string name="ex_show_result_btn_txt">Показать результат</string>
+    <string name="ex_restart_btn_txt">Начать заново</string>
+    <string name="ex_next_btn_txt">Дальше</string>
+    <string name="ex_result_txt_excellent">ОТЛИЧНО!</string>
+    <string name="ex_result_txt_verygood">ОЧЕНЬ ХОРОШО!</string>
+    <string name="ex_result_txt_good">ХОРОШО</string>
+    <string name="ex_result_txt_bad">ПЛОХО</string>
+    <string name="ex_result_txt_verybad">ОЧЕНЬ ПЛОХО!</string>
+    <string name="ex_result_txt">Правильно: %1$d из %2$d \n Результат:\u00A0\u00A0\u00A0 %3$d%%</string>
+
+    <string name="title_activity_user_list">UserListActivity</string>
+
+    <string name="starred_ex_notif">Упражнения станут доступны, когда в избранное будут добавлены новые записи.</string>
+    <string name="title_activity_cat_stats">CatStatsActivity</string>
+    <string name="title_activity_cat_data_stats">CatDataStatsActivity</string>
+    <string name="title_activity_custom_data_list">CustomDataListActivity</string>
+
+    <string name="starred_menu_info">Справка</string>
+    <string name="starred_words_info">В избранное можно добавить в списке раздела или темы (не более %1$d записей).</string>
+    <string name="starred_limit">Не добавлено. Достигнут лимит</string>
+    <string name="dialog_close_txt">Закрыть</string>
+    <string name="continue_txt">Продолжить</string>
+    <string name="menu_item_info">Справка</string>
+
+    <string name="starred_lessons_results">Показать результаты теста </string>
+    <string name="set_starred_result_summary">Отображение результатов</string>
+
+    <string name="set_starred_sort_title">Сортировка списка избранных</string>
+    <string name="set_starred_sort_sum">Текущая: %s</string>
+    <string name="set_starred_sort_title_dialog">Выберите сортировку</string>
+    <string name="set_starred_section">ИЗБРАННОЕ</string>
+
+
+    <string-array name="starred_list_sort">
+        <item>Новые в начале </item>
+        <item>Новые в конце</item>
+        <item>По порядку уроков</item>
+    </string-array>
+    <string-array name="starred_list_sort_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="set_starred_save_title">Сохранение результатов</string>
+    <string name="set_starred_save_sum">Текущее: %s</string>
+    <string name="set_starred_save_title_dialog">Сохранение</string>
+
+    <string-array name="starred_list_save">
+        <item>Последние результаты </item>
+        <item>Лучшие результаты</item>
+    </string-array>
+    <string-array name="starred_list_save_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+
+    <string name="set_control_title">Результат тестов раздела</string>
+    <string name="set_control_summary">Учет в статистике : %s</string>
+    <string name="set_control_dialog_title">Учитывать результаты</string>
+
+    <string name="set_control_tests_one">Если результат выше</string>
+    <string name="set_control_tests_two">Всегда</string>
+    <string name="set_control_tests_three">Никогда</string>
+
+
+    <string name="set_data_control_title">Выбор данных раздела</string>
+    <string name="set_data_control_summary">Учет в статистике: %s</string>
+    <string name="set_data_control_dialog_title">Учитывать в разделе</string>
+
+    <string name="set_data_control_dates">Только события</string>
+    <string name="set_data_control_all">События, личности, термины</string>
+
+
+    <string name="set_data_mode_title">Режим</string>
+    <string name="set_data_mode_summary">Текущий: %s</string>
+    <string name="set_data_mode_dialog_title">Выбрать режим</string>
+
+    <string name="set_data_mode_default">Стандартный</string>
+    <string name="set_data_mode_easy">Упрощенный (только основная информация)</string>
+
+    <string name="set_show_status">Cтатус изученности в списках</string>
+    <string name="set_show_status_summary">Отображение: %s</string>
+    <string name="set_show_status_dialog_title">Отображать статус</string>
+
+    <string name="set_show_status_one">Автоматически</string>
+    <string name="set_show_status_two">Всегда</string>
+    <string name="set_show_status_three">Скрывать в списках</string>
+
+    <string name="set_detail_txt">Размер шрифта в доп. информации</string>
+    <string name="set_detail_txt_summary">Текущий: %s</string>
+    <string name="set_detail_txt_dialog_title">Размер шрифта</string>
+
+    <string name="set_detail_txt_small">Мелкий</string>
+    <string name="set_detail_txt_medium">Средний</string>
+    <string name="set_detail_txt_large">Крупный</string>
+
+
+    <string name="stats_info_txt">Информация о статистике</string>
+    <string name="starred_lessons_remove">Обнулить результаты</string>
+
+    <string name="title_activity_reference">Используемые материалы</string>
+
+
+    <string name="app_market_link" translatable="false">com.online.languages.study.ruhistory</string>
+    <!-- string name="app_market_link">@string/app_market_link_pro</string -->
+
+    <string name="msg_sending_mail">Отправка сообщения &#8230;</string>
+    <string name="msg_no_mail_client">Почтовый клиент не установлен.</string>
+    <string name="msg_mail_subject">Отзыв по приложению История России</string>
+    <string name="msg_mail_subject_error">Сообщение об ошибке в приложении (ИР)</string>
+    <string name="msg_no_browser">Браузер не установлен.</string>
+    <string name="no_data_msg">Нет данных</string>
+    <string name="nav_header_txt">История России</string>
+    <string name="correct_errors">Работа над ошибками</string>
+    <string name="errors_box_title">Ошибки в тестах</string>
+
+
+    <string name="section_stats_info">Для того, чтобы раздел считался полностью изученным, недостаточно только выполнить тесты. Также необходимо, чтобы были изучены записи раздела, и это будет зависеть от их статуса изученности (см. Справку). Такая система позволяет точнее определить уровень знания материала.  \n\nОбщий результат раздела зависит от результата тестов, количества пройденных записей и количества изученных записей. Каждый из этих показателей может максимально добавить к результату следующее количество процентов: \n\n- Результат теста: +50% (если тесты выполнены на 100%) \n- Пройденный материал: +30% (если пройдены все записи)
+    \n- Изученный материал: +20% (если изучены все записи)\n</string>
+
+    <string name="progress_info">Здесь представлена статистика степени изученности записей в целом приложении, а также в каждом разделе. Результаты тестов раздела или темы не учитываются. Сепень изученности выражена процентной частью записей со статусом «пройдено» и «изучено».
+        \n\nСтатус записи соответствует оценке, которая присваивается записи при выполнении тестов. Оценка вычисляется по следующей системе: +1 балл при правильном ответе, -1 балл при неправильном ответе. Максимальная оценка – 4 балла. В соответствии с количеством баллов записи присваивается один из следующих статусов:
+        \n\n — Не пройдено (0 баллов)\n — Пройдено (1-2 балла)\n — Изучено (3-4 балла) </string>
+
+
+    <string name="easy_mode_dialog_title">Упрощенный режим</string>
+    <string name="easy_mode_info">\nНа данный момент активен Упрощенный режим, в котором представлены только основные исторические события, факты, личности, термины.
+    \n\nИзменить режим на стандартный можно в разделе:
+        \n\n
+        Настройки > Настройки данных > Режим.
+        \n
+    </string>
+
+    <string name="mode_info">\nВ приложении имеется два режима работы, Стандартный и Упрощенный, применить которые можно в Настройках. При активном Упрощенном режиме в темах отображаются только основные исторические события, факты, личности, термины.
+        \n\n
+     Активный режим может повлиять на статистику, поскольку она учитывает изученность только тех записей, которые присутствуют в данном режиме. Смена режима не влияет на результаты тестов, поиска, статистику ошибок, а также на избранные записи.\n</string>
+
+
+    <string name="get_premium_txt">Полная версия</string>
+    <string name="title_activity_get_premium">Полная версия</string>
+
+    <string name="get_premium_activity">Полная верся</string>
+    <string name="purchase_txt">Получите полную версию приложения без рекламы</string>
+    <string name="get_premium_thank">Спасибо!</string>
+    <string name="get_premium_continue">Продолжить</string>
+    <string name="get_premium_buy">Купить</string>
+    <string name="get_premium_buy_price">Купить за %s</string>
+    <string name="purchased_txt">Чтобы продолжить работу с приложением, нажмите «Продолжить»</string>
+    <string name="title_activity_section">SectionActivity</string>
+    <string name="title_activity_sub_section">SubSectionActivity</string>
+    <string name="title_activity_section_list">SectionListActivity</string>
+    <string name="title_activity_section_test">SectionTestActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_progress_stats">ProgressStatsActivity</string>
+
+
+    <string name="ex_save_stats">Сохранять статистику </string>
+
+    <string name="ex_opt_short">short</string>
+    <string name="ex_opt_long">long</string>
+    <string name="ex_opt_long_less">long_less</string>
+
+
+    <string name="stats_test_all_desc">Тест с записями из всех разделов</string>
+    <string name="stats_test_old_desc">Тест с пройденными записями</string>
+
+    <string name="ex_link_desc_pers_1">Тест: Описание / Личность</string>
+    <string name="ex_link_desc_pers_2">Тест: Личность / Описание</string>
+
+    <string name="ex_link_desc_term_1">Тест: Описание / Термин</string>
+    <string name="ex_link_desc_term_2">Тест: Термин / Описание</string>
+
+    <string name="ex_link_desc_star_1">Тест: Описание / Название</string>
+    <string name="ex_link_desc_star_2">Тест: Название / Описание</string>
+
+
+    <string name="cat_progress_txt">Средний результат \nтестов</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_map_list">MapListActivity</string>
+    <string name="maps_info">На этой странице представлен список карт по темам раздела.</string>
+
+    <string name="section_content_title">Содержание раздела</string>
+    <string name="section_content_title_short">Содержание</string>
+    <string name="persons_title">Личности</string>
+
+    <string name="dimen_size_h">default</string>
+    <string name="detail_img_info_txt">Изображение: %s</string>
+    <string name="title_activity_backup">BackupActivity</string>
+
+
+
+
+    <string name="backup_info"><![CDATA[
+<br/>
+Функции импорта и экспорта данных могут использоваться для сохранения резервных копий статистики изучения или для синхронизации статистики между разными устройствами. В статистику входят данные о статусе изученности отдельных записей, об ошибках, записей, добавленных в избранное, а также результаты выполнения тестов.
+<br/><br/>
+<b>Экспорт данных</b>
+<br/><br/>
+Экспорт позволяет сохранить файл со статистикой на устройство, после чего сохраненный файл можно переименовать (не меняя формата), переместить и хранить в любом удобном месте.
+<br/><br/>
+Статистика всегда сохраняется в файл с названием <strong> %s </strong>, по умолчанию в папке <b>Download</b>, однако путь к папке или расположение файла может изменяться в зависимости от устройства. Путь к сохраненному файлу отображается в оповещении сразу после экспорта.
+<br/><br/>
+<strong>Импорт данных</strong>
+<br/><br/>
+Импорт данных заключается в загрузке статистики обучения из файла, сохраненного на устройстве. Файл со статистикой выбирается сразу после нажатия на кнопку Выполнить импорт. При импорте данных старые данные о прогрессе изучения удаляются полностью.
+<br/><br/>
+Обратите внимание, что внесение изменений в содержание файла со статистикой может привести к потере данных как в самом файле, так и к потере данных в приложении при импорте такого файла.
+<br/><br/>
+Мы делаем все возможное для того, чтобы импорт данных был возможен и всегда проходил без трудностей на любом устройстве, однако мы не можем гарантировать его успешность во всех случаях. Мы рекомендуем выполнять импорт из файлов, которые были экспортированы в той же версии приложения. Кроме этого, при возникновении трудностей вы всегда можете связаться с нами через страницу Контакты.
+<br/><br/>
+
+    ]]></string>
+
+
+    <string name="backup_file_name">Backup_stats.rhdb</string>
+
+    <string name="info_txt">Справка</string>
+    <string name="title_activity_finder">FinderActivity</string>
+    <string name="fullversion_desc_txt">Ура! У вас установлена полная версия приложения.</string>
+    <string name="export_btn">Выполнить экспорт</string>
+    <string name="export_title">Экспорт</string>
+    <string name="export_desc">
+        <![CDATA[ Сохранение файла со статистикой изучения на устройство. Данные экспортируются в файл с названием <b> %s </b>. ]]>
+    </string>
+    <string name="import_title">Импорт</string>
+    <string name="import_desc">Загрузка статистики изучения из файла на устройстве. Текущая статистика будет удалена.</string>
+    <string name="import_btn">Выполнить импорт</string>
+    <string name="import_last_desc">Последний импорт</string>
+    <string name="import_last_info">Последний импорт:</string>
+
+
+</resources>
