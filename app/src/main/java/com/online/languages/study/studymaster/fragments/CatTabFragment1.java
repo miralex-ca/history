@@ -117,7 +117,6 @@ public class CatTabFragment1 extends Fragment {
 
     public void changeStarred(int position) {   /// check just one item
 
-
         String id = data.get(position).id;
         Boolean starred = dataManager.checkStarStatusById(id );
 
@@ -130,27 +129,15 @@ public class CatTabFragment1 extends Fragment {
         int vibLen = 30;
 
         if (status == 0) {
-            limitMessage();
+            Toast.makeText(getActivity(), R.string.starred_limit, Toast.LENGTH_SHORT).show();
             vibLen = 300;
         }
 
         checkStarred(position);
 
-
         assert v != null;
         v.vibrate(vibLen);
-
-
     }
-
-    public void limitMessage() {
-
-        Toast.makeText(getActivity(), R.string.starred_limit, Toast.LENGTH_SHORT).show();
-        // Snackbar.make(mask, R.string.starred_limit, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
-    }
-
-
-
 
 
 

@@ -71,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_TEST_TIME = "test_time";
 
 
-    //// words and phrases tables columns
+    //// dataItems and phrases tables columns
     private static final String KEY_USER_ITEM_ID = "user_item_id";
 
     private static final String KEY_ITEM_INFO = "item_info";

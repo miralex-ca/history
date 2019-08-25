@@ -26,14 +26,14 @@ public class Constants {
     public static final int STARRED_LIMIT = 30;
     public static final int LIMIT_STARRED_EX = 1;
 
-    public static final int RATE_INCLUDE = 4; // used for priority of unfamiliar words in tests
+    public static final int RATE_INCLUDE = 4; // used for priority of unfamiliar dataItems in tests
 
     public static final int QUEST_NUM = 60;  // limit for tests
     public static final int ALL_TEST_NUM = 100;  //  100 for prod
 
     public static final int REVISE_NUM = 30;
 
-    static final String EXTRA_KEY_WORDS = "words";
+    static final String EXTRA_KEY_WORDS = "dataItems";
     public static final String EXTRA_CAT_TAG = "cat_tag";
 
     public static final String EXTRA_SECTION_NUM = "section_num";

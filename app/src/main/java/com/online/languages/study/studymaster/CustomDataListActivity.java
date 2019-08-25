@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.CustomDataListAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
@@ -39,7 +41,7 @@ public class CustomDataListActivity extends AppCompatActivity {
     public String themeTitle;
 
 
-    ArrayList<DataItem> words;
+    ArrayList<DataItem> dataItems;
     CustomDataListAdapter adapter;
     RecyclerView recyclerView;
 
@@ -112,7 +114,7 @@ public class CustomDataListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_saved);
 
-        adapter = new CustomDataListAdapter(words, adapterListType);
+        adapter = new CustomDataListAdapter(dataItems, adapterListType);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -140,11 +142,36 @@ public class CustomDataListActivity extends AppCompatActivity {
             }
             @Override
             public void onLongClick(View view, int position) {
-
+                changeStarred(position);
             }
         }));
 
     }
+
+
+    public void changeStarred(int position){   /// check just one item
+
+        String id = dataItems.get(position).id;
+        Boolean starred = dataManager.checkStarStatusById(id );
+
+        int status = dataManager.dbHelper.setStarred(id, !starred); // id to id
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        int vibLen = 30;
+
+        if (status == 0) {
+            Toast.makeText(this, R.string.starred_limit, Toast.LENGTH_SHORT).show();
+            vibLen = 300;
+        }
+
+        checkStarred(position);
+
+        assert v != null;
+        v.vibrate(vibLen);
+    }
+
+
+
 
     private void setPageTitle(int listType) { // 0 - studied, 1 - familiar, 2 - unknown;
 
@@ -167,7 +194,7 @@ public class CustomDataListActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                manageListVew(words.size());
+                manageListVew(dataItems.size());
 
             }
         }, 100);
@@ -180,8 +207,8 @@ public class CustomDataListActivity extends AppCompatActivity {
 
         if (sectionId.equals("errors") ) {
             adapterListType = 0;
-            words = getIntent().getParcelableArrayListExtra("dataItems");
-            words = dataManager.checkDataItemsData(words);
+            dataItems = getIntent().getParcelableArrayListExtra("dataItems");
+            dataItems = dataManager.checkDataItemsData(dataItems);
 
         } else {
 
@@ -194,7 +221,7 @@ public class CustomDataListActivity extends AppCompatActivity {
                 }
             }
 
-            words = dataManager.getCatCustomList(navCategories, listType);
+            dataItems = dataManager.getCatCustomList(navCategories, listType);
 
         }
 
@@ -238,7 +265,7 @@ public class CustomDataListActivity extends AppCompatActivity {
         } else {
 
             if (sectionId.equals("errors") ) {
-                words = dataManager.checkDataItemsData(words);
+                dataItems = dataManager.checkDataItemsData(dataItems);
                 adapter.notifyDataSetChanged();
             } else {
                 updateContent();
@@ -252,9 +279,9 @@ public class CustomDataListActivity extends AppCompatActivity {
 
     private void updateContent() {
         getDataList(sectionId, listType);
-        adapter = new CustomDataListAdapter(words);
+        adapter = new CustomDataListAdapter(dataItems);
         recyclerView.setAdapter(adapter);
-        manageListVew(words.size());
+        manageListVew(dataItems.size());
 
     }
 
@@ -273,7 +300,7 @@ public class CustomDataListActivity extends AppCompatActivity {
 
     public void checkStarred(final int result){
 
-        words = dataManager.checkDataItemsData(words);
+        dataItems = dataManager.checkDataItemsData(dataItems);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -302,7 +329,7 @@ public class CustomDataListActivity extends AppCompatActivity {
     public void openExercise() {
 
         Intent i = new Intent(CustomDataListActivity.this, ExerciseActivity.class) ;
-        i.putParcelableArrayListExtra("dataItems", words);
+        i.putParcelableArrayListExtra("dataItems", dataItems);
         if (sectionId.equals(Constants.ERRORS_CAT_TAG)) {
             i.putExtra(Constants.EXTRA_CAT_TAG, Constants.ERRORS_CAT_TAG);
 

@@ -14,7 +14,6 @@
 
         <TextView
             android:text="@string/starred_confirm_desc"
-            android:textColor="#333"
             android:textSize="16sp"
             android:layout_marginBottom="12dp"
             android:layout_width="wrap_content"
