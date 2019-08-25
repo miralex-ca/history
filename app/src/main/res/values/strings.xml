@@ -381,5 +381,12 @@
     <string name="import_last_desc">Последний импорт</string>
     <string name="import_last_info">Последний импорт:</string>
 
+    <string name="cancel_txt">Отмена</string>
+    <string name="starred_confirm_title">Подтверждение удаления</string>
+    <string name="set_starred_confirm_summary">Подтверждать удаление из избранного</string>
+    <string name="starred_confirm_desc">Запись будет удалена из списка избранных. Продолжить?</string>
+    <string name="dont_ask_again">Больше не спрашивать</string>
+    <string name="confirmation_txt">Подтверждение</string>
+
 
 </resources>

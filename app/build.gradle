@@ -17,7 +17,6 @@ android {
             abortOnError false
         }
 
-
     }
 
     dataBinding {
@@ -31,7 +30,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 37
-        versionName '3.6.6'
+        versionName '3.6.7'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.config
