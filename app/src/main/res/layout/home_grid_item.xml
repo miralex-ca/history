@@ -72,7 +72,7 @@
 
                     style="@style/homeCardDescStyle"
 
-                    android:maxLines="2"
+                    android:maxLines="@integer/home_card_desc_maxlines"
                     android:textSize="@dimen/home_card_desc_txt_size"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

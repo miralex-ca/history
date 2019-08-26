@@ -1,49 +1,39 @@
 {
   "sections":
   [
-	{"tag": "dates", "title": "Хронология", "id": "0101",
+	{"tag": "cat1", "title": "Хронология", "id": "10010020",
       "desc": "Даты основных событий",
-      "title_short": "Египет",
+      "title_short": "Хронология",
       "desc_short": "Даты основных событий",
-      "image": "pyramid.jpg",
+      "image": "varyagi.jpg",
 
       "categories":
         [
-          {"parent": "root", "type": "simple", "id": "010101", "title": "Даты и события", "desc": "Основные события"}
+          {"parent": "root", "type": "simple", "id": "10010020", "title": "Даты и события", "desc": "Основные события"}
         ]
 	},
 
-    {"tag": "persons", "title": "Личности", "id": "0102",
-      "desc": "Личности",
+    {"tag": "cat2", "title": "Личности", "id": "10010200",
+      "desc": "Даты основных событий",
       "title_short": "Личности",
-      "desc_short": "Личности",
-      "image": "augustus.jpg",
-      "unlocked": "false",
-      "categories":
-      [
-        {"parent": "root", "type": "simple", "id": "010201", "title": "Личности"}
-      ]
-    },
-
-    {"tag": "religion", "title": "Религия", "id": "0103",
-      "desc": "Даты основных событий истории Древнего мира",
-      "title_short": "Религия",
       "desc_short": "Даты основных событий",
-      "image": "ganesha_1.jpg",
+      "image": "varyagi.jpg",
+
       "categories":
       [
-        {"parent": "root", "type": "simple", "id": "010301", "title": "Религия"}
+        {"parent": "root", "type": "simple", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "", "review": "false"}
       ]
     },
 
-    {"tag": "terms", "title": "Термины", "id": "0104",
-      "desc": "Основные понятия, их значения и определения",
-      "title_short": "Термины",
-      "desc_short": "Основные понятия, значения",
-      "image": "olympia.jpg",
+    {"tag": "cat3", "title": "Термины", "id": "10020300",
+      "desc": "Даты основных событий",
+      "title_short": "Личности",
+      "desc_short": "Даты основных событий",
+      "image": "varyagi.jpg",
+
       "categories":
       [
-        {"parent": "root", "type": "simple", "id": "010401", "title": "Термины"}
+        {"parent": "root", "type": "simple", "spec": "misc", "id": "10020300", "title": "Термины и понятия", "desc": "", "review": "false"}
       ]
     }
 

@@ -53,9 +53,14 @@ android {
             applicationId 'com.online.languages.study.ruhistory'
             resValue("string", "applicationId", applicationId)
 
-
             dimension "mode"
             signingConfig signingConfigs.config
+
+        }
+
+        simplified {
+            applicationId 'com.online.languages.study.simplified'
+            resValue("string", "applicationId", applicationId)
 
         }
     }

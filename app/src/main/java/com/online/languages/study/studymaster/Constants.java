@@ -45,6 +45,7 @@ public class Constants {
     public static final String CAT_SPEC_DEFAULT = "norm";
     public static final String CAT_SPEC_PERS = "pers";
     public static final String CAT_SPEC_TERM = "term";
+    public static final String CAT_SPEC_MISC = "misc";
 
     public static final String EXTRA_NAV_STRUCTURE = "nav_structure";
 
@@ -82,7 +83,7 @@ public class Constants {
 
     public static final String STATUS_SHOW_DEFAULT = "1";
 
-    public static final Boolean ONE_CAT = false;
+    public static final Boolean ONE_CAT = true;
 
 
     public static final String REVISE_CAT_TAG = "revise";

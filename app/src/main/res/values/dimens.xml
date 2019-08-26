@@ -28,12 +28,14 @@
     <!-- home grid activity -->
     <dimen name="home_card_image_width">@dimen/_home_card_image_width</dimen>
     <dimen name="home_card_image_height">@dimen/_home_card_image_height</dimen>
-    <dimen name="home_card_padding">@dimen/_home_card_padding</dimen>
-    <dimen name="home_card_title_txt_size">@dimen/_home_card_title_txt_size</dimen>
-    <dimen name="home_card_title_left">@dimen/_home_card_title_left</dimen>
     <dimen name="home_card_title_bottom">@dimen/_home_card_title_bottom</dimen>
-
+    <dimen name="home_card_title_txt_size">@dimen/_home_card_title_txt_size</dimen>
     <dimen name="home_card_desc_txt_size">@dimen/_home_card_desc_txt_size</dimen>
+
+    <integer name="home_card_desc_maxlines">@integer/_home_card_desc_maxlines</integer>
+
+    <dimen name="home_card_title_left">@dimen/_home_card_title_left</dimen>
+    <dimen name="home_card_padding">@dimen/_home_card_padding</dimen>
 
 
     <dimen name="main_card_top">@dimen/_main_card_top</dimen>

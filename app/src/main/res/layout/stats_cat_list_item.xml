@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:textColor="?attr/colorStatsSecondaryText"
 
-            android:textSize="10sp"
+            android:textSize="11sp"
 
             />
 

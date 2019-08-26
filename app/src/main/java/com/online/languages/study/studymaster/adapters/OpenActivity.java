@@ -22,14 +22,15 @@ public class OpenActivity  {
 
 
 
-    public void openCat(Intent intent, String cat_id, String title) {
-        intent = catIntent(intent, cat_id, title);
+    public void openCat(Intent intent, String cat_id, String title, String spec) {
+        intent = catIntent(intent, cat_id, title, spec);
         callActivity(intent);
     }
 
-    private Intent catIntent(Intent intent, String cat_id, String title) {
+    private Intent catIntent(Intent intent, String cat_id, String title, String spec) {
         intent.putExtra(Constants.EXTRA_CAT_ID, cat_id);
         intent.putExtra("cat_title", title);
+        intent.putExtra(Constants.EXTRA_CAT_SPEC, spec);
         return intent;
     }
 

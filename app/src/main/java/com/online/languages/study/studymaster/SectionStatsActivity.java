@@ -450,15 +450,14 @@ public class SectionStatsActivity extends AppCompatActivity {
 
             Intent i = new Intent(SectionStatsActivity.this, CustomDataListActivity.class);
 
-
             ///i.putParcelableArrayListExtra("dataItems", );
 
             i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
             i.putExtra(Constants.EXTRA_SECTION_ID, section.id);
             i.putExtra(Constants.EXTRA_DATA_TYPE, type);
+            i.putExtra(Constants.EXTRA_CAT_ID, section.categories.get(0).id);
 
-
-            startActivity(i);
+            startActivityForResult(i, 1);
             pageTransition();
 
 
@@ -491,7 +490,7 @@ public class SectionStatsActivity extends AppCompatActivity {
             Category cat = section.categories.get(0);
 
             Intent i = new Intent(SectionStatsActivity.this, CatActivity.class);
-            openActivity.openCat(i, cat.id, cat.title);
+            openActivity.openCat(i, cat.id, cat.title, cat.spec);
 
         } else {
 
@@ -510,7 +509,6 @@ public class SectionStatsActivity extends AppCompatActivity {
 
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
-
 
         // i.putExtra("show_ad", showAd);
 

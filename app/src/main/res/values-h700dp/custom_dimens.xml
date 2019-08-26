@@ -10,12 +10,18 @@
 
 
     <dimen name="_home_card_image_width">120dp</dimen>
-    <dimen name="_home_card_image_height">105dp</dimen>
-
-
-    <dimen name="_home_card_title_bottom">10dp</dimen>
+    <dimen name="_home_card_image_height">105dp</dimen> <!-- change for 4 items-->
+    <dimen name="_home_card_title_bottom">10dp</dimen> <!-- change for 4 items-->
     <dimen name="_home_card_title_txt_size">20sp</dimen>
     <dimen name="_home_card_desc_txt_size">13sp</dimen>
+
+
+    <dimen name="_home_card_image_width_4">120dp</dimen>
+    <dimen name="_home_card_image_height_4">128dp</dimen>
+    <dimen name="_home_card_title_bottom_4">16dp</dimen>
+    <dimen name="_home_card_title_txt_size_4">19sp</dimen>
+    <dimen name="_home_card_desc_txt_size_4">14sp</dimen>
+    <integer name="_home_card_desc_maxlines_4">3</integer>
 
 
     <dimen name="_detail_card_height">500dp</dimen>

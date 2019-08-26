@@ -25,6 +25,8 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
 
     ColorProgress colorProgress;
 
+    Boolean simplified = false;
+
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -48,6 +50,7 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         sections = _sections;
         context = _context;
         colorProgress = new ColorProgress(context);
+        simplified = Constants.ONE_CAT;
     }
 
     @Override
@@ -104,6 +107,10 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         }
 
         holder.desc.setText(Html.fromHtml(desc));
+        if (simplified) {
+            holder.desc.setText(section.desc_short);
+            holder.desc.setTextSize(12);
+        }
 
         // */
 

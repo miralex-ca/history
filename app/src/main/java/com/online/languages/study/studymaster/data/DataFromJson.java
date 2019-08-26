@@ -35,9 +35,12 @@ public class DataFromJson {
     public DataFromJson(Context _context) {
         context = _context;
         categoryFile = context.getString(R.string.app_data_file);
-        structureFile = "navstructure.json";
 
-        navStructureFile = "navstructure.json";
+        structureFile = context.getString(R.string.app_structure_file);
+        navStructureFile = context.getString(R.string.app_structure_file);
+
+        if (Constants.ONE_CAT) navStructureFile = "simple_structure.json";
+
         dataNode = "data";
 
     }

@@ -89,13 +89,19 @@ public class CatTabFragment2 extends Fragment {
 
         View topStatsCard = rootView.findViewById(R.id.topStatsCard);
         View minCardHeight = rootView.findViewById(R.id.cardMinHeight);
+        View divide = rootView.findViewById(R.id.carDivider);
+
 
         if (  getActivity().getResources().getBoolean(R.bool.small_height ))  {
             topStatsCard.setVisibility(View.GONE);
-            View divide = rootView.findViewById(R.id.carDivider);
             divide.setVisibility(View.GONE);
         } else {
             minCardHeight.setMinimumHeight(0);
+        }
+
+        if (Constants.ONE_CAT) {
+            topStatsCard.setVisibility(View.GONE);
+            divide.setVisibility(View.GONE);
         }
 
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
@@ -205,10 +211,12 @@ public class CatTabFragment2 extends Fragment {
             desc = getString(R.string.voc_ex_link_first_desc);
             if (spec.equals(Constants.CAT_SPEC_PERS)) desc = getString(R.string.ex_link_desc_pers_1);
             if (spec.equals(Constants.CAT_SPEC_TERM)) desc = getString(R.string.ex_link_desc_term_1);
+            if (spec.equals(Constants.CAT_SPEC_MISC)) desc = getString(R.string.ex_link_desc_misc_1);
         } else if (order == 2) {
             desc = getString(R.string.voc_ex_link_second_desc);
             if (spec.equals(Constants.CAT_SPEC_PERS)) desc = getString(R.string.ex_link_desc_pers_2);
             if (spec.equals(Constants.CAT_SPEC_TERM)) desc = getString(R.string.ex_link_desc_term_2);
+            if (spec.equals(Constants.CAT_SPEC_MISC)) desc = getString(R.string.ex_link_desc_misc_2);
         }
 
 

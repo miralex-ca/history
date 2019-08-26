@@ -494,7 +494,7 @@ public class MainActivity extends AppCompatActivity
         if (Constants.ONE_CAT) {
             NavCategory cat = navSection.navCategories.get(0);
             Intent i = new Intent(MainActivity.this, CatActivity.class);
-            openActivity.openCat(i, cat.id, cat.title);
+            openActivity.openCat(i, cat.id, cat.title, cat.spec);
 
         } else {
             Intent i = new Intent(MainActivity.this, SectionActivity.class);

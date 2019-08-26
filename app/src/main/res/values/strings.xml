@@ -15,6 +15,7 @@
 
 
     <string name="app_data_file">data.json</string>
+    <string name="app_structure_file">navstructure.json</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -323,6 +324,9 @@
     <string name="ex_link_desc_term_1">Тест: Описание / Термин</string>
     <string name="ex_link_desc_term_2">Тест: Термин / Описание</string>
 
+    <string name="ex_link_desc_misc_1">Тест: Описание / Название</string>
+    <string name="ex_link_desc_misc_2">Тест: Название / Описание</string>
+
     <string name="ex_link_desc_star_1">Тест: Описание / Название</string>
     <string name="ex_link_desc_star_2">Тест: Название / Описание</string>
 
@@ -379,7 +383,8 @@
     <string name="import_desc">Загрузка статистики изучения из файла на устройстве. Текущая статистика будет удалена.</string>
     <string name="import_btn">Выполнить импорт</string>
     <string name="import_last_desc">Последний импорт</string>
-    <string name="import_last_info">Последний импорт:</string>
+    <string name="import_last_info">"Последний импорт: "</string>
+
 
 
 </resources>
