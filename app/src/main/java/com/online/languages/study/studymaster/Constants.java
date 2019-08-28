@@ -1,10 +1,12 @@
 package com.online.languages.study.studymaster;
 
 
+import android.support.v4.content.ContextCompat;
+
 public class Constants {
 
-    public static final boolean PRO = true;  // TODO change in PRO
-    public static final boolean DEBUG = true;
+    public static final boolean PRO = false;  // TODO change in PRO
+    public static final boolean DEBUG = false;
     public static final boolean SCREEN_SHOW = false;
 
     public static final String SET_VERSION_TXT = "full_version"; /// check text in settings
@@ -83,7 +85,7 @@ public class Constants {
 
     public static final String STATUS_SHOW_DEFAULT = "1";
 
-    public static final Boolean ONE_CAT = true;
+    public static final Boolean ONE_CAT = BuildConfig.SIMPLIFIED;
 
 
     public static final String REVISE_CAT_TAG = "revise";

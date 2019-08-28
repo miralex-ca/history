@@ -22,24 +22,17 @@ public class DataFromJson {
 
     Context context;
     public ArrayList<DataItem> data = new ArrayList<>();
-    String categoryTag;
-    String categoryFile;
-    String structureFile;
 
-    String navStructureFile;
-    String dataNode;
+    private String categoryFile;
 
-
-    private SharedPreferences appSettings;
+    private String navStructureFile;
+    private String dataNode;
 
     public DataFromJson(Context _context) {
         context = _context;
         categoryFile = context.getString(R.string.app_data_file);
 
-        structureFile = context.getString(R.string.app_structure_file);
         navStructureFile = context.getString(R.string.app_structure_file);
-
-        if (Constants.ONE_CAT) navStructureFile = "simple_structure.json";
 
         dataNode = "data";
 
@@ -51,7 +44,7 @@ public class DataFromJson {
 
         try {
 
-            JSONArray sections = new JSONArray(loadJSONFromAsset(structureFile));
+            JSONArray sections = new JSONArray(loadJSONFromAsset(navStructureFile));
 
             for (int i = 0; i < sections.length(); i++) {
                 JSONObject sectionObject = sections.getJSONObject(i);

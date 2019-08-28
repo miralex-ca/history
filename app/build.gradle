@@ -30,13 +30,14 @@ android {
         applicationId "com.online.languages.study.studymaster2"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 37
-        versionName '3.6.6'
+        versionCode 38
+        versionName '4.0.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.config
 
         resValue("string", "applicationId", applicationId)
+        buildConfigField "boolean", "SIMPLIFIED", "false"
     }
     buildTypes {
         release {
@@ -61,6 +62,8 @@ android {
         simplified {
             applicationId 'com.online.languages.study.simplified'
             resValue("string", "applicationId", applicationId)
+
+            buildConfigField "boolean", "SIMPLIFIED", "true"
 
         }
     }

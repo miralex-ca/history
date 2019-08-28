@@ -182,6 +182,11 @@ public class MainActivity extends AppCompatActivity
                 changeVersion(true);
                 changeShowAd(false);
                 fullVersion = true;
+            } else {
+
+                changeVersion(false);
+                changeShowAd(true);
+                fullVersion = false;
             }
 
         } else {
