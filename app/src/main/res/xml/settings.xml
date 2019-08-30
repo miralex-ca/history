@@ -116,6 +116,12 @@
             android:title="@string/starred_lessons_results"
             android:defaultValue="true" />
 
+        <SwitchPreferenceCompat
+            android:key="set_starred_confirm"
+            android:title="@string/starred_confirm_title"
+            android:summary = "@string/set_starred_confirm_summary"
+            android:defaultValue="true" />
+
 
     </PreferenceCategory>
 

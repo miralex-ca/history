@@ -169,7 +169,7 @@ public class UserListActivity extends AppCompatActivity {
 
 
 
-        //Toast.makeText(this, "Len: "+ words.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Len: "+ dataItems.size(), Toast.LENGTH_SHORT).show();
 
         return words;
     }

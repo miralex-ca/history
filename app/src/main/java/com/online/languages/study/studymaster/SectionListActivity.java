@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.online.languages.study.studymaster.adapters.ContentAdapter;
@@ -128,12 +130,36 @@ public class SectionListActivity extends AppCompatActivity {
             }
             @Override
             public void onLongClick(View view, int position) {
-
+                changeStarred(position);
             }
         }));
 
-
     }
+
+
+    public void changeStarred(int position){   /// check just one item
+
+        String id = data.get(position).id;
+        Boolean starred = dataManager.checkStarStatusById(id );
+
+        int status = dataManager.dbHelper.setStarred(id, !starred); // id to id
+
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        int vibLen = 30;
+
+        if (status == 0) {
+            Toast.makeText(this, R.string.starred_limit, Toast.LENGTH_SHORT).show();
+            vibLen = 300;
+        }
+
+        checkStarred(position);
+
+
+        assert v != null;
+        v.vibrate(vibLen);
+    }
+
 
 
     private void openView(final View view) {

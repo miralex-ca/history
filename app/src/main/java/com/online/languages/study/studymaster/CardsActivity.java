@@ -121,7 +121,7 @@ public class CardsActivity extends AppCompatActivity {
         exButtonShow = appSettings.getBoolean("card_buttons_show", true);
 
 
-        // originWordsList = getIntent().getParcelableArrayListExtra("words");
+        // originWordsList = getIntent().getParcelableArrayListExtra("dataItems");
 
         String cat = "dates";
         DataManager dataManager = new DataManager(this);

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.online.languages.study.studymaster.R;
 
@@ -154,13 +155,13 @@ public class InfoDialog {
 
 
 
-
-
-
-
     private static int dpToPixels(Context context, float dipValue) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
+    }
+
+    public void toast(String text) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 
 

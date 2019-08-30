@@ -1,13 +1,16 @@
 package com.online.languages.study.studymaster.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -15,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.online.languages.study.studymaster.CatActivity;
@@ -83,20 +88,99 @@ public class UserListTabFragment1 extends Fragment {
 
                 // Toast.makeText(getActivity(), "Dialog OnClick", Toast.LENGTH_SHORT).show();
 
-
                 onItemClick(animObj, position);
-
 
             }
             @Override
             public void onLongClick(View view, int position) {
-
+                confirmChange(position);
             }
         }));
 
 
         return rootView;
     }
+
+
+    public void confirmChange(int position) {
+
+        boolean confirm = appSettings.getBoolean("set_starred_confirm", true);
+
+
+        if (confirm) {
+            openConfirmDialog(position);
+        } else {
+            changeStarred(position);
+        }
+
+        Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        int vibLen = 30;
+        assert v != null;
+        v.vibrate(vibLen);
+    }
+
+    public void openConfirmDialog(final int position) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View content = inflater.inflate(R.layout.dialog_confirm_remove, null);
+
+
+        CheckBox checkBox = (CheckBox) content.findViewById(R.id.checkbox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeConfirmStatus(!isChecked);
+            }
+        });
+
+
+        builder.setView(content);
+        builder.setTitle(R.string.confirmation_txt);
+
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.continue_txt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                changeStarred(position);
+
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel_txt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
+
+    }
+
+    private void changeConfirmStatus(Boolean checked) {
+        SharedPreferences.Editor editor = appSettings.edit();
+        editor.putBoolean("set_starred_confirm", checked);
+        editor.apply();
+
+    }
+
+    public void changeStarred(int position) {   /// check just one item
+
+        String id = data.get(position).id;
+
+        Boolean starred = dbHelper.checkStarred(id);
+
+        dbHelper.setStarred(id, !starred); // id to id
+
+        checkStarred();
+
+    }
+
+
 
 
     private void onItemClick(final View view, final int position) {

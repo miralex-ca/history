@@ -1,13 +1,16 @@
 package com.online.languages.study.studymaster.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
@@ -17,11 +20,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 
 import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
+import com.online.languages.study.studymaster.DBHelper;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.ContentAdapter;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
@@ -98,6 +104,8 @@ public class CatTabFragment1 extends Fragment {
             @Override
             public void onLongClick(View view, int position) {
 
+                changeStarred(position);
+
             }
         }));
 
@@ -105,9 +113,35 @@ public class CatTabFragment1 extends Fragment {
     }
 
 
+
+
+    public void changeStarred(int position) {   /// check just one item
+
+        String id = data.get(position).id;
+        Boolean starred = dataManager.checkStarStatusById(id );
+
+
+        int status = dataManager.dbHelper.setStarred(id, !starred); // id to id
+
+
+        Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
+        int vibLen = 30;
+
+        if (status == 0) {
+            Toast.makeText(getActivity(), R.string.starred_limit, Toast.LENGTH_SHORT).show();
+            vibLen = 300;
+        }
+
+        checkStarred(position);
+
+        assert v != null;
+        v.vibrate(vibLen);
+    }
+
+
+
     private ArrayList<DataItem> insertDivider(ArrayList<DataItem> data) {
-
-
 
         ArrayList<DataItem> list = new ArrayList<>();
 

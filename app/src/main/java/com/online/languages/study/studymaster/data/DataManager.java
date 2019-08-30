@@ -19,7 +19,7 @@ public class DataManager {
 
     private Context context;
 
-    private DBHelper dbHelper;
+    public DBHelper dbHelper;
 
 
     public DataManager(Context _context) {
@@ -40,6 +40,12 @@ public class DataManager {
     public ArrayList<DataItem> checkDataItemsData(ArrayList<DataItem> dataItems) {
         return dbHelper.checkStarredList(dataItems);
     }
+
+    public boolean checkStarStatusById(String id) {
+        return dbHelper.checkStarred(id);
+    }
+
+
 
     public DetailItem getDetailFromDB(String id) {
         return dbHelper.getDetailById(id);
