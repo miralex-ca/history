@@ -27,7 +27,7 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, desc;
-        ImageView image;
+        ImageView image, star;
 
         public MyViewHolder(View view) {
             super(view);
@@ -35,6 +35,7 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
             title = view.findViewById(R.id.title);
             desc = view.findViewById(R.id.desc);
             image = view.findViewById(R.id.image);
+            star = view.findViewById(R.id.listStarIcon);
         }
     }
 
@@ -69,6 +70,13 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
                 .fit()
                 .centerCrop()
                 .into(holder.image);
+
+
+        if (dataItem.starred == 1) {
+            holder.star.setVisibility(View.VISIBLE);
+        } else {
+            holder.star.setVisibility(View.INVISIBLE);
+        }
 
 
         if (theme.equals("westworld")) {

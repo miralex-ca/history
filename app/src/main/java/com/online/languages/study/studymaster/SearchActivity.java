@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -59,6 +60,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     int moreDataCoount = 0;
 
+    Boolean full_version;
 
 
     SearchView searchView;
@@ -83,6 +85,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
 
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
@@ -140,13 +144,14 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onLongClick(View view, int position) {
 
+               if (full_version) changeStarred(position);
+
             }
         }));
 
 
 
         NestedScrollView mNestedScrollView  = findViewById(R.id.scrollView);
-
 
 
         mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
@@ -162,6 +167,47 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     }
 
+    public void changeStarred(int position){   /// check just one item
+
+        String id = data.get(position).id;
+        Boolean starred = dbHelper.checkStarred(id );
+
+        int status = dbHelper.setStarred(id, !starred); // id to id
+
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        int vibLen = 30;
+
+        if (status == 0) {
+            Toast.makeText(this, R.string.starred_limit, Toast.LENGTH_SHORT).show();
+            vibLen = 300;
+        }
+
+        checkStarred(position);
+
+
+        assert v != null;
+        v.vibrate(vibLen);
+    }
+
+
+    public void checkStarred(final int result){   /// check just one item
+
+        data = dbHelper.checkStarredList(data);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyItemChanged(result);
+            }
+        }, 200);
+    }
+
+
+
+
+
+
 
     private void onItemClick(final View view, final int position) {
         new Handler().postDelayed(new Runnable() {
@@ -171,6 +217,25 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             }
         }, 50);
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+
+            if(resultCode == CatActivity.RESULT_OK){
+
+                int result=data.getIntExtra("result", -1);
+
+                checkStarred(result);
+            }
+        }
+    }
+
+
 
 
 
@@ -270,6 +335,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     public void results(String query) {
 
         data = dbHelper.searchData(navStructure.categories, query);
+        data = dbHelper.checkStarredList(data);
 
         int size = data.size();
 
