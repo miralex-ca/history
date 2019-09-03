@@ -204,7 +204,6 @@ public class CustomDataListActivity extends AppCompatActivity {
 
     private void getDataList(String sectionId, int listType) {
 
-
         if (sectionId.equals("errors") ) {
             adapterListType = 0;
             dataItems = getIntent().getParcelableArrayListExtra("dataItems");

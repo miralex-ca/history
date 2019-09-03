@@ -152,13 +152,10 @@ public class SectionStatsListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
 
-                int count  = (int) view.findViewById(R.id.sectionTitle).getTag(R.id.data_count);
+               // int count  = (int) view.findViewById(R.id.sectionTitle).getTag(R.id.data_count);
+               // if (count  == 0) displayEmtySection();
 
-                if (count  == 0) {
-                    displayEmtySection();
-                } else {
-                    onListItemClick(position);
-                }
+                onListItemClick(position);
 
 
             }
@@ -344,8 +341,7 @@ public class SectionStatsListActivity extends AppCompatActivity {
         }
 
 
-
-        Intent intent = new Intent(this, CustomDataListActivity.class);
+        Intent intent = new Intent(this, CustomDataActivity.class);
 
         intent.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
         intent.putExtra(Constants.EXTRA_DATA_TYPE, dataType);

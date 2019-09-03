@@ -88,17 +88,18 @@ public class CatActivity extends AppCompatActivity {
 
         getDataItems();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.section_tab1_title));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.section_tab2_title));
-        viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager = findViewById(R.id.container);
+
         adapter = new CatViewPagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
 
