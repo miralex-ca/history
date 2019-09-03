@@ -90,4 +90,15 @@ public class Constants {
 
     public static final String REVISE_CAT_TAG = "revise";
 
+
+
+
+    public enum Status {
+
+        STUDIED,
+        FAMILIAR,
+        UNKNOWN
+
+    }
+
 }

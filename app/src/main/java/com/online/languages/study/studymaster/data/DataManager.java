@@ -130,19 +130,23 @@ public class DataManager {
         ArrayList<DataItem> dataItems = getCatDBList(cat);
         ArrayList<DataItem> resultDataItems = new ArrayList<>();
 
+        ArrayList<DataItem> helperDataItems = new ArrayList<>();
+
         for (DataItem dataItem: dataItems) {
             if (type == 0) { // studied
                 if (dataItem.rate > 2) resultDataItems.add(dataItem);
             } else if (type == 1) { // familiar
-                if (dataItem.rate > 0) resultDataItems.add(dataItem);
+                if (dataItem.rate > 0 && dataItem.rate < 3) resultDataItems.add(dataItem);
+
+                if (dataItem.rate > 2) helperDataItems.add(dataItem);
+
             } else if (type == 2) { // unknown
                 if (dataItem.rate < 1) resultDataItems.add(dataItem);
             }
         }
 
-        if (type == 1) {
-            Collections.sort(resultDataItems, new ScoreCountComparator());
-        }
+        if (type == 1 ) resultDataItems.addAll(helperDataItems);
+
 
         return resultDataItems;
     }
