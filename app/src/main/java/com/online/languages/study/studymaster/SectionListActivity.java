@@ -54,6 +54,8 @@ public class SectionListActivity extends AppCompatActivity {
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
 
+    boolean fullVersion;
+
 
 
     @Override
@@ -77,6 +79,8 @@ public class SectionListActivity extends AppCompatActivity {
 
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new DataModeDialog(this);
+
+        fullVersion = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
 
         if(getResources().getBoolean(R.bool.portrait_only)){
@@ -130,7 +134,7 @@ public class SectionListActivity extends AppCompatActivity {
             }
             @Override
             public void onLongClick(View view, int position) {
-                changeStarred(position);
+                if (fullVersion || navSection.unlocked) changeStarred(position);
             }
         }));
 
