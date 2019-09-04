@@ -770,6 +770,36 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+
+    public ArrayList<DataItem> getTestDataByIds(ArrayList<DataItem> dataItems) {
+        ArrayList<DataItem> items = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        for (DataItem item: dataItems) {
+
+            Cursor cursor = db.query(TABLE_ITEMS_DATA,  null, KEY_ITEM_ID +" = ?",
+                    new String[] { item.id}, null, null, null);
+
+            try {
+                while (cursor.moveToNext()) {
+
+                    DataItem data = getSimpleItemFromCursor(cursor);
+                    data.testError = item.testError;
+                    items.add(data);
+                }
+
+            } finally {
+                cursor.close();
+            }
+
+        }
+
+
+        return items;
+    }
+
+
     public ArrayList<DataItem> getDataItemsByCatIds(ArrayList<String> catIds) {
 
         ArrayList<DataItem> items = new ArrayList<>();
@@ -821,6 +851,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return items;
     }
+
+
+
 
 
 
@@ -1182,9 +1215,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return detailItem;
     }
-
-
-
 
 
     public Map<String, String> checkCatProgressDB(ArrayList<String> catIds ) {

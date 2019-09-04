@@ -3,6 +3,7 @@ package com.online.languages.study.studymaster;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
@@ -42,6 +43,7 @@ import com.online.languages.study.studymaster.data.ExDataItem;
 import com.online.languages.study.studymaster.data.ExerciseController;
 import com.online.languages.study.studymaster.data.ExerciseData;
 import com.online.languages.study.studymaster.data.ExerciseDataCollect;
+import com.online.languages.study.studymaster.data.ExerciseTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,6 +81,8 @@ public class ExerciseActivity extends AppCompatActivity {
     Boolean phraseLayout;
 
     static int correctAnswers;
+    static ArrayList<DataItem> completed = new ArrayList<>();
+
     public static Boolean  exCheckedStatus;
     public static int exType = 1;
     public static int exTxtHeight = 120;
@@ -248,7 +252,7 @@ public class ExerciseActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             // Restore value of members from saved state
 
-            Boolean restaured = savedInstanceState.getBoolean("result_show");
+            boolean restaured = savedInstanceState.getBoolean("result_show");
 
 
             taskCheckedStatus  = savedInstanceState.getInt("checked_status");
@@ -257,6 +261,8 @@ public class ExerciseActivity extends AppCompatActivity {
                 restore = true;  // TODO restore
                 exerciseController = savedInstanceState.getParcelable("controller");
                 correctAnswers = savedInstanceState.getInt("correct");
+                completed = savedInstanceState.getParcelable("completed");
+
 
                 if (taskCheckedStatus > 0) restaureChecked(taskCheckedStatus);
             }
@@ -313,6 +319,37 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
 
+    public void openResult(View view) {
+
+        Intent intent = new Intent(ExerciseActivity.this, ExerciseResultActivity.class);
+
+
+        ArrayList<DataItem> results = new ArrayList<>();
+
+        for (ExerciseTask task: exerciseController.tasks) {
+
+            DataItem item = new DataItem();
+            item.id = task.savedInfo;
+            item.testError = -1;
+
+            for (DataItem dataItem: completed) {
+                if (task.savedInfo.equals(dataItem.id)) {
+                    item.testError = dataItem.testError;
+                }
+            }
+
+            results.add(item);
+
+        }
+
+
+        intent.putParcelableArrayListExtra("dataItems", results);
+
+             startActivityForResult(intent,1);
+
+             overridePendingTransition(R.anim.fade_in, 0);
+    }
+
 
 
 
@@ -351,6 +388,7 @@ public class ExerciseActivity extends AppCompatActivity {
             getTasks ();
 
             correctAnswers = 0;
+            completed = new ArrayList<>();
         }
 
         wordListLength = exerciseController.tasks.size();
@@ -686,6 +724,9 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         }, 220);
 
+
+        //Toast.makeText(context, "Saved: "+ completed.size() , Toast.LENGTH_SHORT).show();
+
     }
 
     //*/
@@ -699,7 +740,18 @@ public class ExerciseActivity extends AppCompatActivity {
         dbHelper.setTestResult(tag, ex_type, result, forceSave);
         dbHelper.updateCatResult(tag, Constants.CAT_TESTS_NUM); // TODO check test count for cat
 
-         //Toast.makeText(context, "Saved: "+ tag + "_"+ex_type , Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    public static void saveCompleted(String tag, int result) {
+
+        DataItem data = new DataItem();
+        data.id = tag;
+        data.testError = result;
+
+        completed.add(data);
+
     }
 
 
@@ -711,7 +763,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 Snackbar.LENGTH_LONG).setAction("Action", null);
         View snackbarView = mSnackbar.getView();
         snackbarView.setBackgroundColor(background);
-        TextView snackTextView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        TextView snackTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         snackTextView.setTextColor(textColor);
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {
@@ -879,6 +931,10 @@ public class ExerciseActivity extends AppCompatActivity {
 
         outState.putParcelableArrayList(Constants.EXTRA_KEY_WORDS, wordList);
         outState.putInt("correct", correctAnswers);
+
+        outState.putParcelableArrayList("completed", completed);
+
+
 
         outState.putBoolean("result_show", resultShow);
 

@@ -405,20 +405,13 @@ class ExercisePagerAdapter extends PagerAdapter {
             if (ExerciseActivity.exButtonShow) {
                 if (addToCorrect) {
                     ExerciseActivity.correctAnswers++;
-                    if ( saveStats && !savedInfo.equals("") )  {
-
-                        dbHelper.setWordResult(savedInfo);
-
-                    }
+                    if ( saveStats && !savedInfo.equals("") ) dbHelper.setWordResult(savedInfo);
+                    saveCompleted(savedInfo, 0);
                 }
             } else {
                 ExerciseActivity.correctAnswers++;
-                if ( saveStats && !savedInfo.equals("") )  {
-
-                    dbHelper.setWordResult(savedInfo);
-
-                }
-
+                if ( saveStats && !savedInfo.equals("") )  dbHelper.setWordResult(savedInfo);
+                saveCompleted(savedInfo, 0);
             }
             showCorrect(radioGroup);
 
@@ -434,20 +427,20 @@ class ExercisePagerAdapter extends PagerAdapter {
 
             if (ExerciseActivity.exButtonShow) {
                 if (addToCorrect) {
-                    if ( saveStats && !savedInfo.equals("") )  {
-                        dbHelper.setError(savedInfo);
-                        //Toast.makeText(context, "Error saved", Toast.LENGTH_SHORT).show();
-                    }
+                    if ( saveStats && !savedInfo.equals("") )  dbHelper.setError(savedInfo);
+                    saveCompleted(savedInfo, 1);
                 }
             } else {
-                if ( saveStats && !savedInfo.equals("") )  {
-                    dbHelper.setError(savedInfo);
-                    //Toast.makeText(context, "Error saved", Toast.LENGTH_SHORT).show();
-                }
+                if ( saveStats && !savedInfo.equals("") )  dbHelper.setError(savedInfo);
+                saveCompleted(savedInfo, 1);
             }
 
 
         }
+    }
+
+    private void saveCompleted(String id, int result) {
+        ExerciseActivity.saveCompleted(id, result);
     }
 
     private void showCorrect (View view) {

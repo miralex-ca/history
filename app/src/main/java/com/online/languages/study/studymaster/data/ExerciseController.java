@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ExerciseController implements Parcelable {
-    public int counter;
-    public int correctNum;
-    public int wrongNum;
-    public int listSize;
+    private int counter;
+    private int correctNum;
+    private int wrongNum;
+    private int listSize;
 
     public ArrayList<ExerciseTask> tasks = new ArrayList<>();
+    public ArrayList<DataItem> completed = new ArrayList<>();
+
 
 
 
@@ -49,6 +51,7 @@ public class ExerciseController implements Parcelable {
         this.listSize = parcel.readInt();
 
         parcel.readTypedList(tasks, ExerciseTask.CREATOR);
+        parcel.readTypedList(completed, DataItem.CREATOR);
 
     }
 
@@ -65,6 +68,7 @@ public class ExerciseController implements Parcelable {
         dest.writeInt(counter);
         dest.writeInt(listSize);
         dest.writeTypedList(tasks);
+        dest.writeTypedList(completed);
 
     }
 
