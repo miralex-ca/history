@@ -58,7 +58,6 @@
 
                 <LinearLayout
 
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -82,9 +81,6 @@
                             />
 
                     </LinearLayout>
-
-
-
 
 
                 </LinearLayout>
@@ -188,11 +184,12 @@
 
 
                     <TextView
+                        android:id="@+id/exResultDetail"
                         android:onClick="openResult"
                         android:layout_margin="15dp"
                         android:padding="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:text="Резульат ->"
+                        android:text="Результат ->"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 

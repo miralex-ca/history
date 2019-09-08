@@ -89,6 +89,7 @@ public class Constants {
 
 
     public static final String REVISE_CAT_TAG = "revise";
+    public static final int EXPAND_TIME = 920;
 
 
 

@@ -81,7 +81,7 @@ public class ExerciseActivity extends AppCompatActivity {
     Boolean phraseLayout;
 
     static int correctAnswers;
-    static ArrayList<DataItem> completed = new ArrayList<>();
+    static ArrayList<DataItem> completed;
 
     public static Boolean  exCheckedStatus;
     public static int exType = 1;
@@ -245,6 +245,7 @@ public class ExerciseActivity extends AppCompatActivity {
         originWordsList = getIntent().getParcelableArrayListExtra("dataItems");
 
         exerciseController = new ExerciseController();
+        completed = new ArrayList<>();
 
 
         restore = false;
@@ -254,15 +255,13 @@ public class ExerciseActivity extends AppCompatActivity {
 
             boolean restaured = savedInstanceState.getBoolean("result_show");
 
-
             taskCheckedStatus  = savedInstanceState.getInt("checked_status");
 
             if (!restaured) {
                 restore = true;  // TODO restore
                 exerciseController = savedInstanceState.getParcelable("controller");
                 correctAnswers = savedInstanceState.getInt("correct");
-                completed = savedInstanceState.getParcelable("completed");
-
+                completed = savedInstanceState.getParcelableArrayList("completed");
 
                 if (taskCheckedStatus > 0) restaureChecked(taskCheckedStatus);
             }
@@ -308,7 +307,6 @@ public class ExerciseActivity extends AppCompatActivity {
             checkButton.setEnabled(false);
             exCheckedStatus = true;
         } else if (type == 2) {
-
             btnResultBox.setVisibility(View.VISIBLE);
             btnGroupBox.setVisibility(View.GONE);
 
@@ -342,14 +340,10 @@ public class ExerciseActivity extends AppCompatActivity {
 
         }
 
-
         intent.putParcelableArrayListExtra("dataItems", results);
-
              startActivityForResult(intent,1);
-
-             overridePendingTransition(R.anim.fade_in, 0);
+             overridePendingTransition(R.anim.fade_in_2, 0);
     }
-
 
 
 
@@ -675,6 +669,12 @@ public class ExerciseActivity extends AppCompatActivity {
         final View exResTxt =  exResultBox.findViewById(R.id.exResultTxt);
         final View exRestartBtn = exResultBox.findViewById(R.id.exBtnRestart);
 
+
+        View exResultDetail = exResultBox.findViewById(R.id.exResultDetail);
+
+        if (correctAnswers == wordListLength) exResultDetail.setVisibility(View.INVISIBLE);
+        else exResultDetail.setVisibility(View.VISIBLE);
+
         exMarkTxtV.setAlpha(0.0f);
         exResTxt.setAlpha(0.0f);
         exRestartBtn.setAlpha(0.0f);
@@ -865,8 +865,6 @@ public class ExerciseActivity extends AppCompatActivity {
         }, delay);
 
 
-
-
     }
 
 
@@ -933,8 +931,6 @@ public class ExerciseActivity extends AppCompatActivity {
         outState.putInt("correct", correctAnswers);
 
         outState.putParcelableArrayList("completed", completed);
-
-
 
         outState.putBoolean("result_show", resultShow);
 

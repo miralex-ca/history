@@ -505,8 +505,13 @@
         <item name="colorPrimary">@color/colorPrimaryDialog</item>
         <item name="colorDialogBackground">@color/colorBaseBg</item>
 
+        <item name="colorCardDivider">@color/colorCardDivider</item>
+
         <item name="windowFixedWidthMajor">@dimen/detail_card_width_max</item> <!-- landscape-->
         <item name="windowFixedWidthMinor">@dimen/detail_card_width_min</item> <!-- portrait-->
+
+
+
     </style>
 
 
@@ -517,9 +522,42 @@
         <item name="colorPrimary">@color/colorPrimary</item>
 
         <item name="colorDialogBackground">@color/colorDialogBg</item>
+        <item name="colorCardDivider">@color/colorCardDivider</item>
 
         <item name="windowFixedWidthMajor">@dimen/detail_card_width_max</item> <!-- landscape-->
         <item name="windowFixedWidthMinor">@dimen/detail_card_width_min</item> <!-- portrait-->
+
+        <item name="colorVeryBadText">@color/colorVeryBadText</item>
+        <item name="colorBadText">@color/colorBadText</item>
+        <item name="colorGoodText">@color/colorGoodText</item>
+        <item name="colorVeryGoodText">@color/colorVeryGoodText</item>
+        <item name="colorGreatText">@color/colorGreatText</item>
+
+    </style>
+
+
+    <style name="DefaultTheme.UserDialog" parent="AppTheme.Dialog">
+
+        <item name="colorStarIcon">@color/colorStarIcon</item>
+
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+        <item name="colorMainText">@color/colorDetailMainText</item>
+        <item name="colorMainTextDisabled">@color/colorMainTextDisabled</item>
+
+        <item name="colorAccent">@color/colorStarButton</item>
+        <item name="colorStarButton">@color/colorStarButton</item>
+        <item name="colorStarButtonIcon">@color/colorStarButtonIcon</item>
+        <item name="starButtonIconInactive">@drawable/ic_star_dialog_inactive</item>
+        <item name="colorStarButtonIconInactive">@color/colorStarButtonInactive</item>
+
+
+        <item name="colorVeryBadText">@color/colorVeryBadText</item>
+        <item name="colorBadText">@color/colorBadText</item>
+        <item name="colorGoodText">@color/colorGoodText</item>
+        <item name="colorVeryGoodText">@color/colorVeryGoodText</item>
+        <item name="colorGreatText">@color/colorGreatText</item>
+
+
     </style>
 
 
@@ -551,21 +589,7 @@
 
 
 
-    <style name="DefaultTheme.UserDialog" parent="AppTheme.Dialog">
 
-        <item name="colorStarIcon">@color/colorStarIcon</item>
-
-        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
-        <item name="colorMainText">@color/colorDetailMainText</item>
-        <item name="colorMainTextDisabled">@color/colorMainTextDisabled</item>
-
-        <item name="colorAccent">@color/colorStarButton</item>
-        <item name="colorStarButton">@color/colorStarButton</item>
-        <item name="colorStarButtonIcon">@color/colorStarButtonIcon</item>
-        <item name="starButtonIconInactive">@drawable/ic_star_dialog_inactive</item>
-        <item name="colorStarButtonIconInactive">@color/colorStarButtonInactive</item>
-
-    </style>
 
 
     <style name="exItemIcon">
