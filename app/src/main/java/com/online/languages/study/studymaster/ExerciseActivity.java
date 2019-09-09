@@ -670,14 +670,17 @@ public class ExerciseActivity extends AppCompatActivity {
         final View exRestartBtn = exResultBox.findViewById(R.id.exBtnRestart);
 
 
-        View exResultDetail = exResultBox.findViewById(R.id.exResultDetail);
+        final View exResultDetail = exResultBox.findViewById(R.id.exResultDetail);
 
-        if (correctAnswers == wordListLength) exResultDetail.setVisibility(View.INVISIBLE);
-        else exResultDetail.setVisibility(View.VISIBLE);
+        final boolean showDetail = correctAnswers != wordListLength;
+
 
         exMarkTxtV.setAlpha(0.0f);
         exResTxt.setAlpha(0.0f);
+        exResultDetail.setAlpha(0.0f);
         exRestartBtn.setAlpha(0.0f);
+
+
 
         double res = ((double) correctAnswers) / wordListLength * 100;
 
@@ -715,6 +718,9 @@ public class ExerciseActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
                 exResTxt.animate().alpha(1.0f).setDuration(250).setInterpolator(new DecelerateInterpolator());
+
+               if (showDetail) exResultDetail.animate().alpha(.95f).setDuration(250).setInterpolator(new DecelerateInterpolator());
+
             }
         }, 160);
 
