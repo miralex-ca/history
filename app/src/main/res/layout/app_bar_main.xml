@@ -24,4 +24,20 @@
     <include layout="@layout/content_main" />
 
 
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        app:elevation="20dp"
+        android:layout_gravity="bottom"
+        android:background="?attr/colorCardWidgetBg"
+        app:itemBackground="?attr/colorCardWidgetBg"
+        android:foreground="?attr/selectableItemBackground"
+        app:itemIconTint="?attr/colorAccent"
+        app:itemTextColor="?attr/colorAccent"
+        app:menu="@menu/bottom_nav" />
+
+
 </android.support.design.widget.CoordinatorLayout>

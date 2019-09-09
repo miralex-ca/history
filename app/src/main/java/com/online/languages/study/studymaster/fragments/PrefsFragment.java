@@ -16,7 +16,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
+import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
 
 
@@ -33,8 +35,6 @@ public class PrefsFragment extends PreferenceFragmentCompat {
         //add xml
 
         addPreferencesFromResource(R.xml.settings);
-
-
 
 
         screen = getPreferenceScreen();
@@ -54,6 +54,7 @@ public class PrefsFragment extends PreferenceFragmentCompat {
         }
 
 
+
         final ListPreference list = (ListPreference) getPreferenceManager().findPreference("theme");
 
         //Toast.makeText(getActivity(), "Pref: "+ list, Toast.LENGTH_SHORT).show();
@@ -67,6 +68,21 @@ public class PrefsFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
+
+
+        final SwitchPreferenceCompat bottomNav = (SwitchPreferenceCompat) getPreferenceManager().findPreference("bottom_nav");
+
+
+        bottomNav.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            public void run() {
+                                ((MainActivity)getActivity()).bottomNavDisplay();
+                            }
+                        }, 200);
+                        return true;
+                    }
+                });
 
 
 

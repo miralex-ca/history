@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -74,6 +76,9 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
+
+    BottomNavigationView bottomNav;
+    Boolean bottomNavDisplay;
 
     Boolean shouldBack = false;
 
@@ -145,13 +150,9 @@ public class MainActivity extends AppCompatActivity
 
         if (multipane) {
 
-
-
             setContentView(R.layout.main_multipane);
 
-
         } else {
-
 
             if (Build.VERSION.SDK_INT >= 21) {
                 Window window = getWindow();
@@ -159,7 +160,6 @@ public class MainActivity extends AppCompatActivity
                 window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 window.setStatusBarColor(getResources().getColor(R.color.colorTransparent));
             }
-
 
             setContentView(R.layout.activity_main);
         }
@@ -235,6 +235,11 @@ public class MainActivity extends AppCompatActivity
             toggle.syncState();
             navigationView = findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
+
+            bottomNav = findViewById(R.id.navigation);
+            bottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+            bottomNavDisplay();
         }
 
 
@@ -275,7 +280,18 @@ public class MainActivity extends AppCompatActivity
 
         statsFragment.setArguments(bundle);
         homeFragment.setArguments(bundle);
+        
+    }
 
+    public void bottomNavDisplay() {
+
+        Boolean display = appSettings.getBoolean("bottom_nav", true);
+
+        if (bottomNav != null) {
+            bottomNavDisplay = display;
+            if (display)  bottomNav.setVisibility(View.VISIBLE);
+            else bottomNav.setVisibility(View.GONE);
+        }
 
     }
 
@@ -408,19 +424,38 @@ public class MainActivity extends AppCompatActivity
             listView.setAdapter(mMenuListAdapter);
 
         } else {
+
+
             int size = navigationView.getMenu().size();
             for (int i = 0; i < size; i++) {
                 navigationView.getMenu().getItem(i).setChecked(false);
             }
 
+
+            bottomNav.getMenu().setGroupCheckable(0, true, false);
+
+            for (int i = 0; i < bottomNav.getMenu().size(); i++) {
+                bottomNav.getMenu().getItem(i).setChecked(false);
+            }
+
+
+            bottomNav.getMenu().setGroupCheckable(0, true, true);
+
             if (activePosition != -1) {
-                navigationView.getMenu().getItem(menuItemsPosition[activePosition]).setChecked(true);
+
+                int pos = menuItemsPosition[activePosition];
+
+                navigationView.getMenu().getItem(pos).setChecked(true);
                 setToolbarTitle(activePosition);
+
+
+                if (activePosition < 3 ) {
+                  bottomNav.getMenu().getItem(activePosition).setChecked(true);
+                }
+
 
                 //// enable drawer indicator
                 shouldBack = false;
-                //
-
                 toggle.setDrawerIndicatorEnabled(true);
 
             } else {
@@ -439,8 +474,13 @@ public class MainActivity extends AppCompatActivity
                 findViewById(R.id.nav_footer).setVisibility(View.VISIBLE);
             }
 
+
         }
     }
+
+
+
+
 
 
     public void setToolbarTitle(int position) {
@@ -667,11 +707,32 @@ public class MainActivity extends AppCompatActivity
         }
 
         onMenuItemClicker(position);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            int id = item.getItemId();
+            int position = 0;
+
+            if (id == R.id.nav_starred) {
+                position  = 1;
+            } else if (id == R.id.nav_statistic) {
+                position  = 2;
+            }
+
+            onMenuItemClicker(position);
+
+            return true;
+        }
+    };
 
 
 

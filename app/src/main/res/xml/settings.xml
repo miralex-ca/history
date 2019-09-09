@@ -15,7 +15,6 @@
             android:defaultValue="@string/set_theme_default"
             android:dialogTitle="Тема приложения" />
 
-
         <ListPreference
             android:key="detail_txt_size"
             android:title="@string/set_detail_txt"
@@ -33,6 +32,13 @@
             android:entryValues="@array/set_show_status_values"
             android:defaultValue="1"
             android:dialogTitle="@string/set_show_status_dialog_title" />
+
+        <SwitchPreferenceCompat
+            android:key="bottom_nav"
+            android:title="Нижняя навигация"
+            android:summaryOff ="Не отображается"
+            android:summaryOn ="Отображается"
+            android:defaultValue="true" />
 
 
         <Preference
