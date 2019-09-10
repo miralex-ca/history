@@ -9,6 +9,9 @@
 
     <color name="colorAccent_dk">#fcfcfc</color>    <!-- used for star button -->
 
+    <color name="colorBtmNav_inactive_dark">#A1FCFCFC</color>
+
+
 
     <color name="colorExAccent_dk">#B0BEC5</color>
 
@@ -40,9 +43,11 @@
     <color name="colorCardBg_dark">#000</color>
     <color name="colorBaseBg_dark">#000</color>
     <color name="colorCardWidgetBg_dark">#151515</color>
+    <color name="colorBannerBg_dark">#222222</color>
+    <color name="colorBtmNavBg_dark">#222222</color>
+
     <color name="colorMainText_dark">#fff</color>
     <color name="colorSecondaryText_dark">#b4ffffff</color>
-
 
 
     <color name="colorDrawerMenuBg_dark">#222</color>
@@ -127,9 +132,13 @@
         <item name="colorCardBg">@color/colorCardBg_dark</item>
         <item name="colorCardWidgetBg">@color/colorCardWidgetBg_dark</item>
         <item name="colorMainText">@color/colorMainText_dark</item>
+        <item name="colorBannerBg">@color/colorBannerBg_dark</item>
+        <item name="colorBtmNavBg">@color/colorBtmNavBg_dark</item>
+
+        <item name="colorBtmNav_inactive">@color/colorBtmNav_inactive_dark</item>
+
 
         <item name="cardMargin">@dimen/card_margin_default_dark</item>
-
 
         <item name="colorErrors">@color/colorErrors_dark</item>
         <item name="colorUnknown">@color/colorUnknown_dark</item>
@@ -149,8 +158,6 @@
         <item name="deviderStyle">@style/deviderStyle_dark</item>
 
         <item name="colorDialogBg">@color/colorDialogBg</item>
-
-
 
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
 

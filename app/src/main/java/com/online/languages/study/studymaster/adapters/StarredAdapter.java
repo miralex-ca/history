@@ -36,11 +36,11 @@ public class StarredAdapter extends RecyclerView.Adapter<StarredAdapter.MyViewHo
         MyViewHolder(View view) {
             super(view);
 
-            txt = (TextView) itemView.findViewById(R.id.itemText);
-            translate = (TextView) itemView.findViewById(R.id.itemInfo);
+            txt = itemView.findViewById(R.id.itemText);
+            translate = itemView.findViewById(R.id.itemInfo);
             helperView =  itemView.findViewById(R.id.animObj);
-            catItemWrap = (RelativeLayout) itemView.findViewById(R.id.cat_item_wrap);
-            image = (ImageView) itemView.findViewById(R.id.itemImage);
+            catItemWrap = itemView.findViewById(R.id.cat_item_wrap);
+            image = itemView.findViewById(R.id.itemImage);
             starIcon = itemView.findViewById(R.id.voclistStar);
         }
     }

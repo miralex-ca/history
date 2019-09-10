@@ -78,7 +78,6 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
 
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         View item = inflater.inflate(R.layout.result_item, null);
 
         TextView txt = item.findViewById(R.id.content);

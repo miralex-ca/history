@@ -1,5 +1,6 @@
 package com.online.languages.study.studymaster.fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,8 @@ public class StarredFragment extends Fragment {
 
     ArrayList<DataItem> words;
 
+    LinearLayout previewList;
+
 
     public StarredFragment() {
         // Required empty public constructor
@@ -74,31 +78,42 @@ public class StarredFragment extends Fragment {
 
 
 
+        previewList = rootView.findViewById(R.id.starred_preview_list);
+
 
         words = updateTitle(words);
 
 
-
-
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_saved);
-
-        adapter = new StarredAdapter(getActivity(), words, "dates");
-
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(mLayoutManager);
-        // recyclerView.addItemDecoration( new DividerItemDecoration(getActivity()) );
-        recyclerView.setAdapter(adapter);
-
-        ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-
-        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
-
-
+        createPreviewList(words);
 
 
         return rootView;
     }
+
+
+
+
+    private void createPreviewList(ArrayList<DataItem> dataItems) {
+
+
+        previewList.removeAllViews();
+
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        for (DataItem dataItem: dataItems) {
+
+            View item = inflater.inflate(R.layout.starred_list_item, null);
+            TextView txt = item.findViewById(R.id.itemText);
+            TextView  desc = item.findViewById(R.id.itemInfo);
+            txt.setText( dataItem.item);
+            desc.setText( dataItem.info);
+
+            previewList.addView(item);
+        }
+
+
+    }
+
 
     private ArrayList<DataItem> updateTitle(ArrayList<DataItem> words) {
 
@@ -177,8 +192,7 @@ public class StarredFragment extends Fragment {
 
         words = updateTitle(words);
 
-        adapter = new StarredAdapter(getActivity(), words, "dates");
-         recyclerView.setAdapter(adapter);
+        createPreviewList(words);
 
     }
 

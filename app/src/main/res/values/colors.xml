@@ -6,6 +6,10 @@
     <color name="colorAccent">#1E88E5</color>
     <color name="colorButtonNormal">#e1e1e1</color>
 
+
+    <color name="colorBtmNav_active">#0A7BDD</color>
+    <color name="colorBtmNav_inactive">#3B95E6</color>
+
     <color name="colorDetailBar">@color/colorAccent</color>
     <color name="colorPrimaryDarkDetail">#26327c</color>
 

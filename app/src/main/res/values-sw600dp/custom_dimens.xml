@@ -2,6 +2,7 @@
 <resources>
 
 
+    <bool name="bottom_nav_default">false</bool>
 
     <dimen name="card_margin_default_dark">@dimen/card_margin_default</dimen>
     <dimen name="_card_wrap_padding">22dp</dimen>

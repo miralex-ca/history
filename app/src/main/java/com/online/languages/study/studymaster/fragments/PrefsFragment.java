@@ -2,6 +2,7 @@ package com.online.languages.study.studymaster.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -49,10 +50,11 @@ public class PrefsFragment extends PreferenceFragmentCompat {
 
         Preference versionItem = getPreferenceManager().findPreference("version");
 
-        if (full_version) {
-            versionItem.setVisible(false);
-        }
+        if (full_version)  versionItem.setVisible(false);
 
+
+        Preference btmNav = getPreferenceManager().findPreference("bottom_nav");
+        if (Build.VERSION.SDK_INT < 21) btmNav.setVisible(false);
 
 
         final ListPreference list = (ListPreference) getPreferenceManager().findPreference("theme");

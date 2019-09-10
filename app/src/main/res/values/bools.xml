@@ -6,8 +6,6 @@
     <bool name="wide_width">false</bool>
     <bool name="tablet">false</bool>
     <bool name="multipane">false</bool>
-
-
-
+    <bool name="bottom_nav_default">false</bool>
 
 </resources>

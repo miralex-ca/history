@@ -29,6 +29,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity
     ActionBarDrawerToggle toggle;
 
     BottomNavigationView bottomNav;
+    View bottomNavBox;
     Boolean bottomNavDisplay;
 
     Boolean shouldBack = false;
@@ -198,7 +200,7 @@ public class MainActivity extends AppCompatActivity
                 changeShowAd(false);
             } else {
                 changeVersion(false);
-                changeShowAd(false);
+                changeShowAd(true);
             }
         }
 
@@ -238,10 +240,10 @@ public class MainActivity extends AppCompatActivity
 
             bottomNav = findViewById(R.id.navigation);
             bottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+            bottomNavBox = findViewById(R.id.bottomNavBox);
 
-            bottomNavDisplay();
+            if (Build.VERSION.SDK_INT >= 21) bottomNavDisplay();
         }
-
 
         fragmentManager = getSupportFragmentManager();
         homeFragment = new HomeFragment();
@@ -280,17 +282,47 @@ public class MainActivity extends AppCompatActivity
 
         statsFragment.setArguments(bundle);
         homeFragment.setArguments(bundle);
-        
+
     }
 
     public void bottomNavDisplay() {
 
-        Boolean display = appSettings.getBoolean("bottom_nav", true);
+        Boolean display = appSettings.getBoolean("bottom_nav", getResources().getBoolean(R.bool.bottom_nav_default));
 
-        if (bottomNav != null) {
+        if (Build.VERSION.SDK_INT < 21) display = false;
+
+        if (bottomNavBox != null) {
             bottomNavDisplay = display;
-            if (display)  bottomNav.setVisibility(View.VISIBLE);
-            else bottomNav.setVisibility(View.GONE);
+            if (display)  {
+                bottomNavBox.setVisibility(View.VISIBLE);
+
+
+                if (navigationView != null) {
+                    navigationView.getMenu().setGroupVisible(R.id.grp1, false);
+                    final View wrap = findViewById(R.id.fragmentWrapper);
+
+                    bottomNavBox.getViewTreeObserver().addOnGlobalLayoutListener(
+                            new ViewTreeObserver.OnGlobalLayoutListener(){
+                                @Override
+                                public void onGlobalLayout() {
+                                    int mHeight = bottomNavBox.getHeight();
+                                    bottomNavBox.getViewTreeObserver().removeOnGlobalLayoutListener( this );
+                                    wrap.setPadding(0, 0, 0, (mHeight - 5));
+                                }
+
+                            });
+
+                }
+            }  else {
+                bottomNavBox.setVisibility(View.GONE);
+                if (navigationView != null) {
+                    navigationView.getMenu().setGroupVisible(R.id.grp1, true);
+                    View wrap = findViewById(R.id.fragmentWrapper);
+                    wrap.setPadding(0, 0, 0, 0);
+                }
+            }
+
+
         }
 
     }

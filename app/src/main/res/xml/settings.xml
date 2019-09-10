@@ -35,10 +35,11 @@
 
         <SwitchPreferenceCompat
             android:key="bottom_nav"
+            android:visibility="gone"
             android:title="Нижняя навигация"
             android:summaryOff ="Не отображается"
             android:summaryOn ="Отображается"
-            android:defaultValue="true" />
+            android:defaultValue="@bool/bottom_nav_default" />
 
 
         <Preference

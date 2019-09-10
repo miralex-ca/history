@@ -5,6 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cat_item_wrap"
 
+    android:focusable="false"
+    android:clickable="false"
+
+    android:descendantFocusability="blocksDescendants"
+
     android:paddingTop="5dp"
     android:paddingBottom="10dp"
     >
@@ -26,6 +31,10 @@
         android:layout_height="40dp" />
 
     <LinearLayout
+
+        android:focusable="false"
+        android:clickable="false"
+
         android:layout_marginLeft="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +45,10 @@
         >
 
         <TextView
+
+            android:focusable="false"
+            android:clickable="false"
+
             android:textSize="14sp"
             android:id="@+id/itemText"
             android:layout_height="wrap_content"
@@ -45,6 +58,10 @@
 
 
         <TextView
+
+            android:focusable="false"
+            android:clickable="false"
+
             android:textSize="12sp"
             android:id="@+id/itemInfo"
             android:layout_width="wrap_content"
@@ -62,12 +79,14 @@
     </LinearLayout>
 
     <ImageView
+
+
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/cat_item_star_right"
         app:srcCompat="@drawable/ic_star"
         android:id="@+id/voclistStar"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_width="20dp"
         android:layout_height="20dp" />
 

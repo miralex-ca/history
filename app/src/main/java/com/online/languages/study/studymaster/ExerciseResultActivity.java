@@ -109,11 +109,6 @@ public class ExerciseResultActivity extends AppCompatActivity {
 
 
 
-        if (cats.size() == 1) {
-
-        }
-
-
     }
 
 

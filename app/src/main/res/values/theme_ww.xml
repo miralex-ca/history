@@ -13,8 +13,15 @@
     <color name="colorBaseBg_ww">#010010</color>
     <color name="colorCardBg_ww">#010010</color>
     <color name="colorCardWidgetBg_ww">#14141e</color>
+    <color name="colorBannerBg_ww">#1B1B29</color>
+    <color name="colorBtmNavBg_ww">#1B1B29</color>
+
+
 
     <color name="colorAccent_ww">#00E5FF</color>
+    <color name="colorBtmNav_inactive_ww">#B700E5FF</color>
+
+
 
     <color name="colorMainText_ww">#90ffff</color>
     <color name="colorMainTextDisabled_ww">#7990ffff</color>
@@ -95,6 +102,12 @@
         <item name="colorBaseBg">@color/colorBaseBg_ww</item>
         <item name="colorCardBg">@color/colorCardBg_ww</item>
         <item name="colorCardWidgetBg">@color/colorCardWidgetBg_ww</item>
+
+        <item name="colorBannerBg">@color/colorBannerBg_ww</item>
+        <item name="colorBtmNavBg">@color/colorBtmNavBg_ww</item>
+
+        <item name="colorBtmNav_active">@color/colorAccent_ww</item>
+        <item name="colorBtmNav_inactive">@color/colorBtmNav_inactive_ww</item>
 
         <item name="cardMargin">@dimen/card_margin_default</item>
 

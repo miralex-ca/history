@@ -135,8 +135,6 @@
                         android:paddingTop="14dp"
                         android:paddingBottom="16dp"
 
-
-
                         android:paddingLeft="18dp"
                         android:paddingRight="18dp"
 
@@ -223,25 +221,45 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
-                    <RelativeLayout
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+
+
+                        android:id="@+id/starred_preview_list"
+
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:onClick="openStarred"
+
+
 
                             android:padding="@dimen/starred_preview_padding"
                             >
 
 
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/recycler_saved"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
 
-                            android:animateLayoutChanges="false"
 
-                            android:nestedScrollingEnabled="false"
-                            />
+                        </LinearLayout>
 
-                        </RelativeLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/recycler_saved"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:focusable="false"
+                        android:clickable="false"
+
+                        android:animateLayoutChanges="false"
+
+                        android:nestedScrollingEnabled="false"
+                        />
+
                 </LinearLayout>
 
             </LinearLayout>

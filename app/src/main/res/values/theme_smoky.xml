@@ -7,9 +7,13 @@
     <color name="colorBaseBg_smoky">#25303c</color>
     <color name="colorCardBg_smoky">#2f4153</color>
     <color name="colorCardWidgetBg_smoky">#2f4153</color>
+    <color name="colorBannerBg_smoky">#394E64</color>
+    <color name="colorBtmNavBg_smoky">#364B5F</color>
 
 
     <color name="colorAccent_smoky">#80D8FF</color>
+
+    <color name="colorBtmNav_inactive_smoky">#AB80D8FF</color>
 
 
     <color name="colorDrawerMenuBg_smoky">#2c3d4e</color>
@@ -68,6 +72,12 @@
         <item name="colorBaseBg">@color/colorBaseBg_smoky</item>
         <item name="colorCardBg">@color/colorCardBg_smoky</item>
         <item name="colorCardWidgetBg">@color/colorCardWidgetBg_smoky</item>
+
+        <item name="colorBannerBg">@color/colorBannerBg_smoky</item>
+        <item name="colorBtmNavBg">@color/colorBtmNavBg_smoky</item>
+
+        <item name="colorBtmNav_active">@color/colorAccent_smoky</item>
+        <item name="colorBtmNav_inactive">@color/colorBtmNav_inactive_smoky</item>
 
         <item name="cardMargin">@dimen/card_margin_default</item>
 

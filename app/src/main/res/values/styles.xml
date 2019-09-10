@@ -27,7 +27,6 @@
         <item name="colorNavBgCenter">@color/colorNavBgCenter</item>
         <item name="colorNavBgEnd">@color/colorNavBgEnd</item>
 
-
         <item name="navigationStyle">@style/Navigation</item>
         <item name="colorDrawerDivider">@color/colorDrawerDivider</item>
 
@@ -53,6 +52,12 @@
         <item name="colorMainText">@color/colorMainText</item>
         <item name="colorMainTextDisabled">@color/colorMainTextDisabled</item>
         <item name="colorSecondaryText">@color/colorSecondaryText</item>
+
+        <item name="colorBannerBg">?attr/colorCardWidgetBg</item>
+        <item name="colorBtmNavBg">?attr/colorCardWidgetBg</item>
+
+        <item name="colorBtmNav_active">?attr/colorAccent</item>
+        <item name="colorBtmNav_inactive">?attr/colorBtmNav_active</item>
 
         <item name="colorHomeSecondaryText">?attr/colorSecondaryText</item>
         <item name="colorCatSecondaryText">?attr/colorSecondaryText</item>
@@ -304,11 +309,14 @@
 
 
     <style name="DefaultTheme">
-
         <item name="PopupOverlayTheme">@style/PopupOverlayTheme</item>
         <item name="AppBarOverlayTheme">@style/AppBarOverlayTheme</item>
 
+        <item name="colorBtmNav_active">@color/colorBtmNav_active</item>
+        <item name="colorBtmNav_inactive">@color/colorBtmNav_inactive</item>
+
     </style>
+
 
 
     <style name="AppBarOverlayTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

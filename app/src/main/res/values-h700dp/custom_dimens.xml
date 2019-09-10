@@ -3,6 +3,7 @@
     <!-- dimens for phones 5 inch by height -->
     <string name="dimen_size_h">h610dp</string>
 
+    <bool name="bottom_nav_default">true</bool>
 
     <!-- exercise -->
 
