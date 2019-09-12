@@ -16,6 +16,15 @@
             android:dialogTitle="Тема приложения" />
 
         <ListPreference
+            android:key="btm_nav"
+            android:title="@string/set_btm_nav_title"
+            android:summary="@string/set_btm_nav_summary"
+            android:entries="@array/set_btm_nav_list"
+            android:entryValues="@array/set_btm_nav_values"
+            android:defaultValue="@string/set_btm_nav_value_default"
+            android:dialogTitle="@string/set_btm_nav_dialog_title" />
+
+        <ListPreference
             android:key="detail_txt_size"
             android:title="@string/set_detail_txt"
             android:summary="@string/set_detail_txt_summary"
@@ -32,14 +41,6 @@
             android:entryValues="@array/set_show_status_values"
             android:defaultValue="1"
             android:dialogTitle="@string/set_show_status_dialog_title" />
-
-        <SwitchPreferenceCompat
-            android:key="bottom_nav"
-            android:visibility="gone"
-            android:title="Нижняя навигация"
-            android:summaryOff ="Не отображается"
-            android:summaryOn ="Отображается"
-            android:defaultValue="@bool/bottom_nav_default" />
 
 
         <Preference

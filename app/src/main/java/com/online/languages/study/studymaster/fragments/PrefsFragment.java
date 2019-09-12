@@ -53,8 +53,23 @@ public class PrefsFragment extends PreferenceFragmentCompat {
         if (full_version)  versionItem.setVisible(false);
 
 
-        Preference btmNav = getPreferenceManager().findPreference("bottom_nav");
-        if (Build.VERSION.SDK_INT < 21) btmNav.setVisible(false);
+
+
+        final ListPreference btm = (ListPreference) getPreferenceManager().findPreference("btm_nav");
+        if (Build.VERSION.SDK_INT < 21) btm.setVisible(false);
+
+
+        btm.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                new android.os.Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        ((MainActivity)getActivity()).bottomNavDisplay();
+                    }
+                }, 200);
+                return true;
+            }
+        });
+
 
 
         final ListPreference list = (ListPreference) getPreferenceManager().findPreference("theme");
@@ -70,22 +85,6 @@ public class PrefsFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
-
-
-        final SwitchPreferenceCompat bottomNav = (SwitchPreferenceCompat) getPreferenceManager().findPreference("bottom_nav");
-
-
-        bottomNav.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        new android.os.Handler().postDelayed(new Runnable() {
-                            public void run() {
-                                ((MainActivity)getActivity()).bottomNavDisplay();
-                            }
-                        }, 200);
-                        return true;
-                    }
-                });
-
 
 
 

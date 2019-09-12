@@ -287,7 +287,9 @@ public class MainActivity extends AppCompatActivity
 
     public void bottomNavDisplay() {
 
-        Boolean display = appSettings.getBoolean("bottom_nav", getResources().getBoolean(R.bool.bottom_nav_default));
+        String btmSetting = appSettings.getString("btm_nav", getString(R.string.set_btm_nav_value_default));
+
+        Boolean display = btmSetting.equals(getResources().getString(R.string.set_btm_nav_value_1)) || btmSetting.equals(getString(R.string.set_btm_nav_value_2));
 
         if (Build.VERSION.SDK_INT < 21) display = false;
 
@@ -298,7 +300,11 @@ public class MainActivity extends AppCompatActivity
 
 
                 if (navigationView != null) {
-                    navigationView.getMenu().setGroupVisible(R.id.grp1, false);
+                   if (btmSetting.equals(getString(R.string.set_btm_nav_value_1))) {
+                       navigationView.getMenu().setGroupVisible(R.id.grp1, false);
+                   } else {
+                       navigationView.getMenu().setGroupVisible(R.id.grp1, true);
+                   }
                     final View wrap = findViewById(R.id.fragmentWrapper);
 
                     bottomNavBox.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -311,7 +317,6 @@ public class MainActivity extends AppCompatActivity
                                 }
 
                             });
-
                 }
             }  else {
                 bottomNavBox.setVisibility(View.GONE);
@@ -352,8 +357,6 @@ public class MainActivity extends AppCompatActivity
             if (result.isFailure()) {
                 //showRes("Feilure to connect Google service API");
                 Log.d("Inapp", "Feilure to connect Google service API");
-
-
             }
             else {
                 Log.d("Inapp", "Success inventory.");

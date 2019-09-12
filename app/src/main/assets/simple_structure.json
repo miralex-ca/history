@@ -17,7 +17,7 @@
       "desc": "Даты основных событий",
       "title_short": "Личности",
       "desc_short": "Даты основных событий",
-      "image": "varyagi.jpg",
+      "image": "aleksandr_nevskiy.jpg",
 
       "categories":
       [
@@ -25,15 +25,23 @@
       ]
     },
 
-    {"tag": "cat3", "title": "Термины", "id": "10020300",
+    {"tag": "cat3", "title": "Галерея", "id": "10020300",
       "desc": "Даты основных событий",
       "title_short": "Личности",
       "desc_short": "Даты основных событий",
-      "image": "varyagi.jpg",
+      "image": "moskva_kreml.jpg",
 
       "categories":
       [
-        {"parent": "root", "type": "simple", "spec": "misc", "id": "10020300", "title": "Термины и понятия", "desc": "", "review": "false"}
+
+        {"parent": "root", "type": "simple", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "", "review": "false"},
+
+        {"parent": "root", "type": "group", "id": "group_1_2", "spec": "maps", "title": "Карты", "desc": ""},
+
+        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10010510", "title": "Славянские племена", "desc": "Славяне и их соседи в VII-VIII вв."},
+        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10010520", "title": "Русь в XI в.", "desc": "Киевская Русь в 1015-1113 гг."},
+        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10010530", "title": "Русь в XII в.", "desc": "Княжества поздней Киевской Руси"},
+        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10020510", "title": "Русь в 1-й пол. XIII в.", "desc": "Карта Киевской Руси в 1237 г."}
       ]
     }
 

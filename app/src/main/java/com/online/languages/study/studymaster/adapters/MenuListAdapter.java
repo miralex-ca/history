@@ -92,7 +92,7 @@ public class MenuListAdapter extends BaseAdapter {
           //  view = lInflater.inflate(R.layout.null_item, null);
         }
 
-        if (position==4 || position==7) {
+        if (position==3 || position==7) {
             divider.setVisibility(View.VISIBLE);
         }
 

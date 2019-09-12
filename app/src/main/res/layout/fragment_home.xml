@@ -77,6 +77,7 @@
 
     <RelativeLayout
         android:id="@+id/adContainer"
+        android:visibility="gone"
         android:layout_alignParentTop="true"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"

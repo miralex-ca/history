@@ -209,12 +209,25 @@
 
 
     <string name="set_control_title">Результат тестов раздела</string>
-    <string name="set_control_summary">Учет в статистике : %s</string>
+    <string name="set_control_summary">Учет в статистике: %s</string>
     <string name="set_control_dialog_title">Учитывать результаты</string>
 
     <string name="set_control_tests_one">Если результат выше</string>
     <string name="set_control_tests_two">Всегда</string>
     <string name="set_control_tests_three">Никогда</string>
+
+    <string name="set_btm_nav_title">Нижняя панели навигации</string>
+    <string name="set_btm_nav_summary">%s</string>
+    <string name="set_btm_nav_dialog_title">Нижняя навигация</string>
+
+    <string name="set_btm_nav_1">Отображать, убрать пункты из меню</string>
+    <string name="set_btm_nav_2">Отображать, оставить пункты в меню</string>
+    <string name="set_btm_nav_3">Не отображать</string>
+
+    <string name="set_btm_nav_value_default">@string/set_btm_nav_value_3</string>
+    <string name="set_btm_nav_value_1">bottom</string>
+    <string name="set_btm_nav_value_2">bottom_menu</string>
+    <string name="set_btm_nav_value_3">never</string>
 
 
     <string name="set_data_control_title">Выбор данных раздела</string>
