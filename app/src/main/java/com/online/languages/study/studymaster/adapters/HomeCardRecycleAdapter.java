@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.online.languages.study.studymaster.R;
@@ -27,26 +29,29 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
     Context context;
     private Boolean showWorld;
     private String theme;
+    int type;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, desc;
         public ImageView icon;
+        public LinearLayout imageWrapper;
 
         MyViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
             desc = view.findViewById(R.id.desc);
             icon = view.findViewById(R.id.grid_image);
+            imageWrapper = view.findViewById(R.id.image_wrapper);
         }
     }
 
-    public HomeCardRecycleAdapter(Context _context, ArrayList<NavSection> _sections, String _theme) {
+    public HomeCardRecycleAdapter(Context _context, ArrayList<NavSection> _sections, String _theme, int _type) {
         context  = _context;
 
         SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(context);
         showWorld = appSettings.getBoolean("world_section", false);
-
+        type = _type;
         sections = checkSections(_sections);
         theme = _theme;
     }
@@ -57,7 +62,9 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
         View itemView;
 
         itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_grid_item, parent, false);
-
+        if (type == 2) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_card_item, parent, false);
+        }
 
         return new MyViewHolder(itemView);
     }
@@ -68,19 +75,61 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
 
         NavSection section = sections.get(position);
 
-
-
         holder.title.setText(section.title);
         holder.desc.setText(section.desc);
 
         Picasso.with( context )
-
-                //.load(R.drawable.f)
-                //.load(R.raw.e)
                 .load("file:///android_asset/pics/"+ section.image )
                 .fit()
                 .centerCrop()
                 .into(holder.icon);
+
+
+        if (type == 2) {
+            holder.imageWrapper.removeAllViews();
+
+            String[] imgArray = context.getResources().getStringArray(R.array.home_card_1);
+            if (position == 1) imgArray = context.getResources().getStringArray(R.array.home_card_2);
+            if (position == 2) imgArray = context.getResources().getStringArray(R.array.home_card_3);
+
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            int count = 5;
+
+            for (int i = 0; i < count; i++) {
+
+                View item = inflater.inflate(R.layout.home_card_image, holder.imageWrapper, false);
+
+                float weight = 1.0f / count;
+
+                LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        weight
+                );
+
+                item.setLayoutParams(param);
+
+
+
+                ImageView image = item.findViewById(R.id.image);
+
+                Picasso.with( context )
+                        .load("file:///android_asset/pics/"+ imgArray[i] )
+                        .transform(new RoundedCornersTransformation(16,0))
+                        .fit()
+                        .centerCrop()
+                        .into(image);
+
+                if (theme.equals("westworld"))  image.setColorFilter(Color.argb(255, 50, 240, 240), PorterDuff.Mode.MULTIPLY);
+
+                holder.imageWrapper.addView(item);
+            }
+
+
+
+        }
+
 
 
         if (theme.equals("westworld")) {

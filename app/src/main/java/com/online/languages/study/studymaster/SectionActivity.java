@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.online.languages.study.studymaster.adapters.CatsListAdapter;
 import com.online.languages.study.studymaster.adapters.InfoDialog;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.RoundedTransformation;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.NavCategory;
@@ -76,6 +77,7 @@ public class SectionActivity extends AppCompatActivity {
 
     Boolean easy_mode;
     InfoDialog dataModeDialog;
+    OpenActivity openActivity;
 
 
     @Override
@@ -93,6 +95,7 @@ public class SectionActivity extends AppCompatActivity {
 
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new InfoDialog(this);
+        openActivity = new OpenActivity(this);
 
         if(getResources().getBoolean(R.bool.portrait_only)){
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -231,36 +234,11 @@ public class SectionActivity extends AppCompatActivity {
             }
         }
 
-
-        Intent i;
-
-        if (viewCategory.type.equals("group")) {
-
-            i = new Intent(SectionActivity.this, SubSectionActivity.class);
-
-            if (viewCategory.spec.equals("maps")) i = new Intent(SectionActivity.this, MapListActivity.class);
-
-            i.putExtra(Constants.EXTRA_CAT_ID, viewCategory.id);
-            i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
-            i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
-
-        } else {
-
-            i = new Intent(SectionActivity.this, CatActivity.class);
-            i.putExtra(Constants.EXTRA_CAT_ID, viewCategory.id);
-            i.putExtra(Constants.EXTRA_CAT_SPEC, viewCategory.spec);
-            i.putExtra("cat_title", viewCategory.title);
-        }
-
-        // i.putExtra("show_ad", showAd);
-
-        startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.openFromViewCat(navStructure, tSectionID, viewCategory);
     }
 
 
     public void notifyLocked() {
-
         Snackbar.make(recyclerView, Html.fromHtml("<font color=\"#ffffff\">Доступно в полной версии</font>"), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
 
@@ -284,7 +262,6 @@ public class SectionActivity extends AppCompatActivity {
 
     public void openSectionTest(View view) {
 
-
         if (!full_version) {
             if (!navSection.unlocked) {
                 notifyLocked();
@@ -294,13 +271,8 @@ public class SectionActivity extends AppCompatActivity {
 
 
         Intent i = new Intent(SectionActivity.this, SectionTestActivity.class);
-
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
-
-
-        // i.putExtra("show_ad", showAd);
-
         startActivityForResult(i, 1);
         pageTransition();
     }

@@ -255,10 +255,6 @@ public class SectionStatsActivity extends AppCompatActivity {
         // resultInfoKnown.setTextColor(colorProgress.getColorFromAttr(section.knownResult));
         // resultInfoStudied.setTextColor(colorProgress.getColorFromAttr(section.studiedResult));
 
-
-
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Общий результат")
                 .setCancelable(true)
@@ -448,7 +444,7 @@ public class SectionStatsActivity extends AppCompatActivity {
 
         if (Constants.ONE_CAT) {
 
-            Intent i = new Intent(SectionStatsActivity.this, CustomDataListActivity.class);
+            Intent i = new Intent(SectionStatsActivity.this, CustomDataActivity.class);
 
             ///i.putParcelableArrayListExtra("dataItems", );
 
@@ -459,7 +455,6 @@ public class SectionStatsActivity extends AppCompatActivity {
 
             startActivityForResult(i, 1);
             pageTransition();
-
 
         } else {
 

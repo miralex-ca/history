@@ -2,6 +2,7 @@
 <resources>
 
 
+    <string name="dimen_size">default</string>
 
     <dimen name="_tab_width">0dp</dimen>
 
@@ -65,6 +66,8 @@
     <dimen name="_home_card_padding">2dp</dimen>
     <dimen name="_home_card_title_left">18dp</dimen>
 
+    <dimen name="_home_image_height">77dp</dimen>
+
 
     <dimen name="_cat_item_pic_size">45dp</dimen>
     <dimen name="_cat_item_pic_left">5dp</dimen>
@@ -105,8 +108,12 @@
 
 
     <dimen name="_detail_card_height">430dp</dimen>
+    <dimen name="_detail_image_height">400dp</dimen>
+    <dimen name="_detail_image_appbar_height">240dp</dimen>
 
     <dimen name="_detail_appbar_height">220dp</dimen>
+
+    <dimen name="detail_appbar_height_land">220dp</dimen>
 
     <dimen name="_detail_appbar_screem_height">110dp</dimen>
     <dimen name="_detail_appbar_exp_text_size">25sp</dimen>

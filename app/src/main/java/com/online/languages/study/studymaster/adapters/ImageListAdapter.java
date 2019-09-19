@@ -2,14 +2,9 @@ package com.online.languages.study.studymaster.adapters;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.PorterDuff;
-import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
+import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.ViewCategory;
 import com.squareup.picasso.Picasso;
 
@@ -27,10 +22,9 @@ import java.util.ArrayList;
 
 public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyViewHolder> {
 
-
     private Context context;
 
-    private ArrayList<ViewCategory> categoryArrayList;
+    private ArrayList<DataItem> imagesArrayList;
 
     private int color;
     private int type = 1;
@@ -65,9 +59,9 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
 
 
 
-    public ImageListAdapter(Context _context, ArrayList<ViewCategory> _cats, int _type, String _theme) {
+    public ImageListAdapter(Context _context, ArrayList<DataItem> _images, int _type, String _theme) {
         context = _context;
-        categoryArrayList = _cats;
+        imagesArrayList = _images;
         type = _type;
         theme = _theme;
     }
@@ -83,7 +77,9 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_map_item_card, parent, false);
         }
 
-
+        if (type == 3 ) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_img_item_pic, parent, false);
+        }
 
 
         return new MyViewHolder(itemView);
@@ -92,7 +88,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
     @Override
     public int getItemViewType(int position) {
         int type = 1;
-        if (categoryArrayList.get(position).type.equals("set")) type = 2;
+        if (imagesArrayList.get(position).type.equals("set")) type = 2;
         return type;
     }
 
@@ -101,45 +97,37 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
 
         if (position == 0 ) holder.setDivider.setVisibility(View.GONE);
 
-        ViewCategory category = categoryArrayList.get(position);
+        DataItem dataItem = imagesArrayList.get(position);
 
 
         holder.sectionItemBox.setTag(position);
         holder.taggedView.setTag(position);
 
 
-        String title = category.title;
+        String title = dataItem.item;
 
-        if (!category.desc.equals("")) {
-            holder.sectionDesc.setText(category.desc);
-            holder.sectionDesc.setVisibility(View.VISIBLE);
+        if (!dataItem.info.equals("")) {
+            holder.sectionDesc.setText(dataItem.info);
+            if (type != 3 ) holder.sectionDesc.setVisibility(View.VISIBLE);
         }
 
         holder.title.setText(title);
 
 
-        if (category.image.equals("")) category.image = "Slav2.png";
+        if (dataItem.image.equals("")) dataItem.image = "battle_ledovoe.jpg";
 
 
         holder.mapImage.setVisibility(View.VISIBLE);
 
 
 
-        if (type == 2 ) {
-            Picasso.with( context )
-                    .load("file:///android_asset/maps/"+ category.image )
+        Picasso.with( context )
+                    .load("file:///android_asset/pics/"+ dataItem.image )
                     .fit()
                     .centerCrop()
                     .into(holder.mapImage);
-        } else {
 
-            Picasso.with( context )
-                    .load("file:///android_asset/maps/"+ category.image )
-                    //.transform(new RoundedCornersTransformation(10,5))
-                    .fit()
-                    .centerCrop()
-                    .into(holder.mapImage);
-        }
+
 
         /// if (theme.equals("westworld")) holder.mapImage.setColorFilter(0xFFAEF7F7, PorterDuff.Mode.MULTIPLY);
 
@@ -155,7 +143,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return categoryArrayList.size();
+        return imagesArrayList.size();
     }
 
 

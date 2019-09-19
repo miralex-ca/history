@@ -67,8 +67,11 @@ public class UserStats {
         userStatsData.idsToCheck = new ArrayList<>();
 
         for (Section section: sections) {
-            userStatsData.idsToCheck.addAll(section.checkCatIds);
-            userStatsData.allUniqueIds.addAll(section.allCatIds);
+            if (! section.id.equals("galery")) {
+                userStatsData.idsToCheck.addAll(section.checkCatIds);
+                userStatsData.allUniqueIds.addAll(section.allCatIds);
+            }
+
         }
     }
 
@@ -87,6 +90,7 @@ public class UserStats {
             if (navSection.spec.equals("world")) {
                if (showWorld) userStatsData.sectionsDataList.add(new Section(navSection, context));
             } else {
+                if (!navSection.id.equals("galery")) // TODO check to change to spec
                 userStatsData.sectionsDataList.add(new Section(navSection, context));
             }
 

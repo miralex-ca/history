@@ -125,5 +125,31 @@
     <string name="set_mode_full_name">Полная версия</string>
 
 
+    <string-array name="home_card_1">
+        <item>varyagi.jpg</item>
+        <item>ivan_4_oprichniki.jpg</item>
+        <item>battle_athos.jpg</item>
+        <item>battle_borodino.jpg</item>
+        <item>alaska_purchase.jpg</item>
+
+    </string-array>
+
+    <string-array name="home_card_2">
+        <item>aleksandr_nevskiy.jpg</item>
+        <item>petr_1.jpg</item>
+        <item>ekaterina_2_3.jpg</item>
+        <item>aleksandr_1_2.jpg</item>
+        <item>nikolay_2_0.jpg</item>
+
+    </string-array>
+
+    <string-array name="home_card_3">
+        <item>hram.jpg</item>
+        <item>dogovor_1686.jpg</item>
+        <item>russia_gerb_2.jpg</item>
+        <item>jandarm.jpg</item>
+        <item>andrey_rublev.jpg</item>
+
+    </string-array>
 
 </resources>

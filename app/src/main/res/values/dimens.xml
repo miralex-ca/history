@@ -37,6 +37,8 @@
     <dimen name="home_card_title_left">@dimen/_home_card_title_left</dimen>
     <dimen name="home_card_padding">@dimen/_home_card_padding</dimen>
 
+    <dimen name="home_image_height">@dimen/_home_image_height</dimen>
+
 
     <dimen name="main_card_top">@dimen/_main_card_top</dimen>
 
@@ -98,8 +100,10 @@
 
 
     <dimen name="detail_card_height">@dimen/_detail_card_height</dimen>
+    <dimen name="detail_image_height">@dimen/_detail_image_height</dimen>
 
     <dimen name="detail_appbar_height">@dimen/_detail_appbar_height</dimen>
+    <dimen name="detail_image_appbar_height">@dimen/_detail_image_appbar_height</dimen>
 
     <dimen name="detail_appbar_screem_height">@dimen/_detail_appbar_screem_height</dimen>
 

@@ -128,6 +128,7 @@
         <item name="iconSchool">@drawable/ic_school_outline</item>
         <item name="iconList">@drawable/ic_view_list_outline</item>
         <item name="iconGrid">@drawable/ic_view_grid_outline</item>
+        <item name="iconGrid2">@drawable/ic_view_grid_2_outline</item>
         <item name="iconTest">@drawable/ic_ex_assignment_outline</item>
         <item name="iconCarousel">@drawable/ic_ex_carousel_outline</item>
 

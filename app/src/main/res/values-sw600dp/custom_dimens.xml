@@ -35,8 +35,7 @@
 
     <dimen name="_home_card_desc_txt_size">14sp</dimen>
 
-
-
+    <dimen name="_home_image_height">100dp</dimen>
 
 
     <style name="InfoDialog.Width">

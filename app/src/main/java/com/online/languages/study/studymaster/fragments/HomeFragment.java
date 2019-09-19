@@ -47,6 +47,8 @@ public class HomeFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
+    private RecyclerView recyclerViewCards;
+
     private HomeCardRecycleAdapter mAdapter;
 
     private boolean firstAdReceived = false;
@@ -55,16 +57,7 @@ public class HomeFragment extends Fragment {
 
     NavStructure navStructure;
 
-
-    IabHelper mHelper;
-
-    Boolean showAd;
-    AdView mAdView;
     SharedPreferences appSettings;
-    ImageView placeholder;
-    View adContainer;
-    View adSpace;
-    View adCard;
 
 
 
@@ -86,22 +79,23 @@ public class HomeFragment extends Fragment {
         getSectionsData();
 
         recyclerView = rootView.findViewById(R.id.recycler_view);
+        recyclerViewCards = rootView.findViewById(R.id.recycler_view_cards);
 
         String theme = appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
-        mAdapter = new HomeCardRecycleAdapter(getActivity(), navStructure.sections, theme);
 
-        placeholder = rootView.findViewById(R.id.placeholder);
-        adContainer = rootView.findViewById(R.id.adContainer);
-        adSpace = rootView.findViewById(R.id.adSpace);
-        adCard = rootView.findViewById(R.id.adCard);
+        if (Constants.ONE_CAT) {
+            recyclerView.setVisibility(View.GONE);
+            recyclerViewCards.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            recyclerViewCards.setVisibility(View.GONE);
+        }
 
+        mAdapter = new HomeCardRecycleAdapter(getActivity(), navStructure.sections, theme, 1);
 
-        int rowsNum = 1;
-
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), rowsNum, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        // recyclerView.addItemDecoration( new DividerItemDecoration(getActivity()) );
         recyclerView.setAdapter(mAdapter);
 
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
@@ -119,134 +113,26 @@ public class HomeFragment extends Fragment {
 
 
 
-        showAd =false;
+        RecyclerView.LayoutManager mLayoutManagerCards = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
+        recyclerViewCards.setLayoutManager(mLayoutManagerCards);
+        recyclerViewCards.setAdapter(mAdapter);
 
-        mAdView = rootView.findViewById(R.id.adView);
+        ViewCompat.setNestedScrollingEnabled(recyclerViewCards, false);
 
-
-        mAdView.setAdListener(new AdListener() {
+        recyclerViewCards.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerViewCards, new ClickListener() {
             @Override
-            public void onAdLoaded() {  // Code to be executed when an ad finishes loading.
+            public void onClick(View view, int position) {
+                onGridClick(view, position);
             }
-
             @Override
-            public void onAdFailedToLoad(int errorCode) {  // Code to be executed when an ad request fails.
-                showBanner();
+            public void onLongClick(View view, int position) {
+
             }
-        });
+        }));
 
 
-        checkAdShow();
-
-        Picasso.with(getActivity() )
-                .load("file:///android_asset/history.jpg")
-                .fit()
-                .centerCrop()
-                .into(placeholder);
         return rootView;
     }
-
-    private void checkAdShow() {
-        showAd = appSettings.getBoolean(Constants.SET_SHOW_AD, false);
-
-
-        SharedPreferences mLaunches = getActivity().getSharedPreferences(AppStart.APP_LAUNCHES, Context.MODE_PRIVATE);
-        int launchesNum = mLaunches.getInt(AppStart.LAUNCHES_NUM, 0);
-
-        if (launchesNum < 2) showBanner();
-        else  manageAd();
-
-
-    }
-
-    private void showAdCard() {
-
-        adContainer.setVisibility(View.VISIBLE);
-
-        adCard.getViewTreeObserver().addOnGlobalLayoutListener(
-                new ViewTreeObserver.OnGlobalLayoutListener(){
-                    @Override
-                    public void onGlobalLayout() {
-                        int mHeight = adCard.getHeight();
-                        adCard.getViewTreeObserver().removeOnGlobalLayoutListener( this );
-                        adSpace.setPadding(0, (mHeight-1), 0, 0);
-                    }
-
-                });
-
-    }
-
-    private void showBanner() {
-        showAdCard();
-        mAdView.setVisibility(View.GONE);
-        placeholder.setAlpha(0f);
-        placeholder.setVisibility(View.VISIBLE);
-        placeholder.animate().alpha(1.0f).setDuration(150);
-
-    }
-
-
-    public void manageAd() {
-
-        if (showAd) {
-
-            showAdCard();
-
-            String admob_ap_id = getResources().getString(R.string.admob_ap_id);
-            MobileAds.initialize(getActivity().getApplicationContext(), admob_ap_id);
-
-            final AdRequest adRequest;
-
-            if (Constants.DEBUG) {
-                adRequest = new AdRequest.Builder()
-                        .addTestDevice("721BA1B0D2D410F1335955C3EC0C8B71")
-                        .addTestDevice("725EEA094EAF285D1BD37D14A7F78C90")
-                        .addTestDevice("0B44FDBCD710428A565AA061F2BD1A98")
-                        .addTestDevice("88B83495F2CC0AF4C2C431655749C546")
-                        .build();
-            } else {
-                adRequest = new AdRequest.Builder().build();
-            }
-
-            mAdView.setVisibility(View.VISIBLE);
-            mAdView.loadAd(adRequest);
-
-        } else {
-            adSpace.setPadding(0, 0, 0, 0);
-            adContainer.setVisibility(View.GONE);
-            mAdView.setVisibility(View.GONE);
-        }
-    }
-
-
-    @Override
-    public void onResume() {
-
-        super.onResume();
-        if (mAdView != null) {
-            mAdView.resume();
-            if (!showAd) checkAdShow();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-
-        if (mAdView != null) {
-            mAdView.destroy();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onPause() {
-
-        if (mAdView != null) {
-            mAdView.pause();
-        }
-        super.onPause();
-    }
-
 
 
     private void getSectionsData() {
@@ -272,8 +158,6 @@ public class HomeFragment extends Fragment {
             }
         }, 80);
     }
-
-
 
     public interface ClickListener{
         void onClick(View view,int position);

@@ -346,11 +346,19 @@ public class ExerciseActivity extends AppCompatActivity {
     }
 
 
+    private void getDataItemsFromDB() {
+
+        String searchID = "";
+
+        DataManager dataManager = new DataManager(this);
+        ArrayList<DataItem> data = dataManager.getCatDBList(searchID);
+
+
+    }
+
 
 
     private void getTasks () {
-
-
         int limit = Constants.QUEST_NUM;
         if (topicTag.equals(Constants.ALL_CAT_TAG) || topicTag.contains(Constants.SECTION_TEST_PREFIX)) {
             limit = Constants.ALL_TEST_NUM;

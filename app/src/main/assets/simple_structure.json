@@ -2,7 +2,7 @@
   "sections":
   [
 	{"tag": "cat1", "title": "Хронология", "id": "10010020",
-      "desc": "Даты основных событий",
+      "desc": "Даты основных событий в истории России.",
       "title_short": "Хронология",
       "desc_short": "Даты основных событий",
       "image": "varyagi.jpg",
@@ -13,35 +13,58 @@
         ]
 	},
 
-    {"tag": "cat2", "title": "Личности", "id": "10010200",
-      "desc": "Даты основных событий",
+    {"tag": "cat2", "title": "Исторические личности", "id": "10010200",
+      "desc": "Государственные и политические деятели",
       "title_short": "Личности",
       "desc_short": "Даты основных событий",
       "image": "aleksandr_nevskiy.jpg",
-
       "categories":
       [
         {"parent": "root", "type": "simple", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "", "review": "false"}
       ]
     },
 
-    {"tag": "cat3", "title": "Галерея", "id": "10020300",
-      "desc": "Даты основных событий",
+    {"tag": "cat3", "title": "Галерея", "id": "galery",
+      "desc": "Артефакты, предметы быта, науки, искусства",
       "title_short": "Личности",
       "desc_short": "Даты основных событий",
       "image": "moskva_kreml.jpg",
-
+      "spec": "gallery",
       "categories":
       [
 
-        {"parent": "root", "type": "simple", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "", "review": "false"},
+        {"parent": "root", "type": "set", "id": "set_1_2", "title": "Раздел 1", "desc": ""},
+        {"parent": "root", "type": "page", "spec": "image_list", "id": "10020010", "title": "Борьба", "desc": "Славяне и их соседи в VII-VIII вв.", "image":  "battle_ledovoe.jpg"},
 
-        {"parent": "root", "type": "group", "id": "group_1_2", "spec": "maps", "title": "Карты", "desc": ""},
+        {"parent": "root", "type": "page", "spec": "image_list", "id": "10050010", "title": "1801-1825 гг.", "desc": "Царствование Александра I.", "image":  "aleksandr_1_2.jpg"},
 
-        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10010510", "title": "Славянские племена", "desc": "Славяне и их соседи в VII-VIII вв."},
-        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10010520", "title": "Русь в XI в.", "desc": "Киевская Русь в 1015-1113 гг."},
-        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10010530", "title": "Русь в XII в.", "desc": "Княжества поздней Киевской Руси"},
-        {"parent": "group_1_2", "type": "page", "spec": "map", "id": "10020510", "title": "Русь в 1-й пол. XIII в.", "desc": "Карта Киевской Руси в 1237 г."}
+        {"parent": "root", "type": "set", "id": "set_1_2", "title": "Раздел 2", "desc": ""},
+
+        {"parent": "root", "type": "page", "spec": "image_list", "id": "10040200", "title": "Личности", "desc": "Исторические личности XVIII века. А также просто текст чтобы строка была длинной", "image":  "petr_1.jpg"},
+        {"parent": "root", "type": "page", "spec": "image_list", "id": "10050010", "title": "1801-1825 гг.", "desc": "Царствование Александра I.", "image":  "aleksandr_1_2.jpg"},
+
+        {"parent": "root", "type": "page", "spec": "image_list", "id": "10040200", "title": "Личности", "desc": "Исторические личности XVIII века.", "image":  "petr_1.jpg"},
+
+        {"parent": "root", "type": "set", "id": "set_1_3", "title": "none", "desc": ""},
+
+        {"parent": "root", "type": "group", "spec": "group", "id": "group_1_1", "title": "Группа", "desc": "Описание группы", "image":  "battle_ledovoe.jpg"},
+
+        {"parent": "group_1_1", "type": "simple", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "Описание темы", "review": "false"},
+        {"parent": "group_1_1", "type": "simple", "spec": "misc", "id": "10010200", "title": "Исторические личности", "desc": "", "review": "Описание темы"},
+
+        {"parent": "root", "type": "group", "spec": "gallery", "id": "gallery_1_1", "title": "Галерея", "desc": "Описание галереи", "image":  "lubech.jpg"},
+        {"parent": "gallery_1_1", "type": "page", "spec": "image_list", "id": "10040200", "title": "Личности", "desc": "Исторические личности XVIII века.", "image":  "petr_1.jpg"},
+        {"parent": "root", "type": "simple", "spec": "item_list", "id": "10050010", "title": "1801-1825 гг.", "desc": "Царствование Александра I.", "image":  "aleksandr_1_2.jpg"},
+
+
+        {"parent": "root", "type": "group", "id": "group_1_5", "spec": "maps", "title": "Карты", "desc": "", "image":  "moskva_yaroslavl.jpg"},
+
+        {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10010510", "title": "Славянские племена", "desc": "Славяне и их соседи в VII-VIII вв."},
+        {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10010520", "title": "Русь в XI в.", "desc": "Киевская Русь в 1015-1113 гг."},
+        {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10010530", "title": "Русь в XII в.", "desc": "Княжества поздней Киевской Руси"},
+        {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10020510", "title": "Русь в 1-й пол. XIII в.", "desc": "Карта Киевской Руси в 1237 г."}
+
+
       ]
     }
 

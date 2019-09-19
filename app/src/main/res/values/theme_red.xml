@@ -26,6 +26,8 @@
     <color name="colorCatProgressGood_red">#5e7cd5fd</color>
     <color name="colorCatProgressBad_red">#74ff6d00</color>
     <color name="colorCatProgressLow_red">#a9ff8a80</color>
+    <dimen name="cardCornerDefault_red">6dp</dimen>
+
 
 
     <style name="RedTheme" parent="DefaultTheme">
@@ -54,7 +56,7 @@
         <item name="colorCatProgressGreat">@color/colorCatProgressGreat_red</item>
         <item name="colorCatProgressPerfect">@color/colorCatProgressPerfect_red</item>
 
-
+        <item name="cardCorner">@dimen/cardCornerDefault_red</item>
 
     </style>
 

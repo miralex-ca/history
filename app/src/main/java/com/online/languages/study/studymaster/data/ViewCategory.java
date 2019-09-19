@@ -14,6 +14,7 @@ public class ViewCategory {
     public String parent;
     public String spec;
     public String image;
+    public String tag;
 
     public Boolean unlocked;
 

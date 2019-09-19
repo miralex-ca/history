@@ -17,6 +17,11 @@ public class ImageMapsData {
     }
 
 
+    public ImageMapsData(DetailItem detailItem) {
+        prepareData();
+    }
+
+
     public ImageData getMapInfoById(String id) {
 
         ImageData imageData = new ImageData();

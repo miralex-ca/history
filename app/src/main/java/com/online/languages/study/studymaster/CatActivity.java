@@ -1,9 +1,11 @@
 package com.online.languages.study.studymaster;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,8 +14,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.online.languages.study.studymaster.adapters.CatViewPagerAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
@@ -47,6 +55,14 @@ public class CatActivity extends AppCompatActivity {
 
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
+
+
+    ImageView placeholder;
+    View adContainer;
+    View adCard;
+
+    Boolean showAd;
+    AdView mAdView;
 
 
 
@@ -121,6 +137,32 @@ public class CatActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+
+        placeholder = findViewById(R.id.placeholder);
+        adContainer = findViewById(R.id.adContainer);
+        adCard = findViewById(R.id.adCard);
+
+
+        showAd =false;
+
+        mAdView = findViewById(R.id.adView);
+
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {  // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {  // Code to be executed when an ad request fails.
+                showBanner();
+            }
+        });
+
+        checkAdShow();
+
+
 
     }
 
@@ -230,7 +272,6 @@ public class CatActivity extends AppCompatActivity {
 
         Intent i = new Intent(CatActivity.this, ExerciseActivity.class) ;
 
-
         if (pos == 0 )  {
             i = new Intent(CatActivity.this, CardsActivity.class);
 
@@ -240,14 +281,11 @@ public class CatActivity extends AppCompatActivity {
 
         i.putExtra(Constants.EXTRA_CAT_TAG, categoryID);
 
-
         if (pos == 0) {
             i.putParcelableArrayListExtra("dataItems", cardData);
         } else {
             i.putParcelableArrayListExtra("dataItems", exerciseData);
         }
-
-
 
         startActivityForResult(i,2);
         pageTransition();
@@ -260,4 +298,107 @@ public class CatActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
+
+
+
+    private void checkAdShow() {
+        showAd = appSettings.getBoolean(Constants.SET_SHOW_AD, false);
+
+        SharedPreferences mLaunches = getSharedPreferences(AppStart.APP_LAUNCHES, Context.MODE_PRIVATE);
+        int launchesNum = mLaunches.getInt(AppStart.LAUNCHES_NUM, 0);
+
+        if (launchesNum < 2) showBanner();
+        else  {
+
+            manageAd();
+        }
+
+    }
+
+
+    private void showAdCard() {
+        if (showAd) adContainer.setVisibility(View.VISIBLE);
+    }
+
+    private void showBanner() {
+        showAdCard();
+        mAdView.setVisibility(View.GONE);
+        placeholder.setAlpha(0f);
+        placeholder.setVisibility(View.VISIBLE);
+        placeholder.animate().alpha(1.0f).setDuration(150);
+
+    }
+
+    public void manageAd() {
+
+        if (showAd) {
+
+            showAdCard();
+
+            String admob_ap_id = getResources().getString(R.string.admob_ap_id);
+            MobileAds.initialize(getApplicationContext(), admob_ap_id);
+
+            final AdRequest adRequest;
+
+            if (Constants.DEBUG) {
+                adRequest = new AdRequest.Builder()
+                        .addTestDevice("721BA1B0D2D410F1335955C3EC0C8B71")
+                        .addTestDevice("725EEA094EAF285D1BD37D14A7F78C90")
+                        .addTestDevice("0B44FDBCD710428A565AA061F2BD1A98")
+                        .addTestDevice("88B83495F2CC0AF4C2C431655749C546")
+                        .build();
+            } else {
+                adRequest = new AdRequest.Builder().build();
+            }
+
+            mAdView.setVisibility(View.VISIBLE);
+
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mAdView.loadAd(adRequest);
+                }
+            }, 20);
+
+        } else {
+
+            adContainer.setVisibility(View.GONE);
+            mAdView.setVisibility(View.GONE);
+        }
+    }
+
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+            if (!showAd) checkAdShow();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+
+
+
+
 }

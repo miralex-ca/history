@@ -184,6 +184,7 @@
         <item name="iconSchool">@drawable/ic_school</item>
         <item name="iconList">@drawable/ic_view_list</item>
         <item name="iconGrid">@drawable/ic_view_grid</item>
+        <item name="iconGrid2">@drawable/ic_view_grid_2</item>
         <item name="iconTest">@drawable/ic_ex_assignment</item>
         <item name="iconCarousel">@drawable/ic_ex_carousel</item>
 
@@ -219,6 +220,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
 
 
@@ -580,12 +582,21 @@
     <color name="colorFinderPrimaryDark">#212121</color>
     <color name="colorFinderAccent">#757575</color>
 
+    <color name="colorFinderWindowBg">#ECECEC</color>
+    <color name="colorFinderText">#444</color>
+
 
     <style name="AppTheme.FinderDialog" parent="Theme.AppCompat.Light.DialogWhenLarge">
         <item name="colorPrimary">@color/colorFinderPrimary</item>
         <item name="colorPrimaryDark">@color/colorFinderPrimaryDark</item>
         <item name="colorAccent">@color/colorFinderAccent</item>
         <item name="mfp_toolbar_theme">@style/MFP_BaseToolbarTheme</item>
+
+        <item name="android:windowBackground">@color/colorFinderWindowBg</item>
+        <item name="android:textColor">@color/colorFinderText</item>
+
+        <!-- item name="android:textViewStyle">@style/FinderTextViewStyle</item -->
+        <item name="colorControlHighlight">#75B1B1B1</item>
 
         <item name="windowActionBar">false</item>
         <item name="android:windowActionBar">false</item>
@@ -594,9 +605,10 @@
 
     </style>
 
-
-
-
+    <style name="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorFinderText</item>
+    </style>
 
 
 

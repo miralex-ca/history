@@ -488,7 +488,6 @@ public class MainActivity extends AppCompatActivity
                   bottomNav.getMenu().getItem(activePosition).setChecked(true);
                 }
 
-
                 //// enable drawer indicator
                 shouldBack = false;
                 toggle.setDrawerIndicatorEnabled(true);
@@ -512,9 +511,6 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
-
-
-
 
 
 
@@ -572,6 +568,12 @@ public class MainActivity extends AppCompatActivity
         NavSection navSection = navStructure.sections.get(position);
 
         if (Constants.ONE_CAT) {
+
+            if (navSection.spec.equals("gallery")) {
+                openGallery(navSection);
+                return;
+            }
+
             NavCategory cat = navSection.navCategories.get(0);
             Intent i = new Intent(MainActivity.this, CatActivity.class);
             openActivity.openCat(i, cat.id, cat.title, cat.spec);
@@ -584,17 +586,25 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void openGallery(NavSection navSection) {
+        Intent i;
+        i = new Intent(MainActivity.this, GalleryActivity.class);
+
+        i.putExtra(Constants.EXTRA_CAT_ID, "root");
+        i.putExtra(Constants.EXTRA_SECTION_ID, navSection.id);
+        i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
+
+        startActivityForResult(i, 1);
+        pageTransition();
+
+    }
+
 
     public void openSectionStats(View view, int position) {
         Intent i = new Intent(MainActivity.this, SectionStatsActivity.class);
 
-
-
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, navStructure.sections.get(position).id);
-
-
-
         i.putExtra(Constants.EXTRA_SECTION_NUM, position);
         startActivity(i);
         pageTransition();
@@ -682,12 +692,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void displayEmtySection() {
-        Snackbar.make(toolbar, Html.fromHtml("<font color=\"#ffffff\">Нет записей</font>"), Snackbar.LENGTH_SHORT).show();
+        //Snackbar.make(toolbar, Html.fromHtml("<font color=\"#ffffff\">Нет записей</font>"), Snackbar.LENGTH_SHORT).show();
+        Toast.makeText(this, "Нет записей", Toast.LENGTH_SHORT).show();
     }
 
 
     private void openOldPage() {
-
 
         Intent i = new Intent(MainActivity.this, ExerciseActivity.class) ;
 

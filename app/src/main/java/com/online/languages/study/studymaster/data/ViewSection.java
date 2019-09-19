@@ -41,7 +41,6 @@ public class ViewSection {
         desc = navSection.desc;
         image = navSection.image;
 
-
         context = _context;
 
         dataManager = new DataManager(context);

@@ -49,6 +49,10 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+
+    <dimen name="_detail_image_height">500dp</dimen>
+    <dimen name="_detail_image_appbar_height">350dp</dimen>
+
     <dimen name="_detail_card_height">600dp</dimen>
     <dimen name="_detail_appbar_height">330dp</dimen>
 

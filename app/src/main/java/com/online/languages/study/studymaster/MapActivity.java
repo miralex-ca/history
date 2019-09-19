@@ -32,6 +32,8 @@ import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.adapters.TouchImageView;
 import com.online.languages.study.studymaster.data.Category;
 import com.online.languages.study.studymaster.data.DataItem;
+import com.online.languages.study.studymaster.data.DataManager;
+import com.online.languages.study.studymaster.data.DetailItem;
 import com.online.languages.study.studymaster.data.ImageData;
 import com.online.languages.study.studymaster.data.ImageMapsData;
 import com.squareup.picasso.Picasso;
@@ -47,6 +49,8 @@ public class MapActivity extends AppCompatActivity {
 
     ImageData mapData;
     ImageMapsData imageMapsData;
+
+    int picType = 0;
 
 
 
@@ -91,19 +95,63 @@ public class MapActivity extends AppCompatActivity {
 
         String mapId = getIntent().getStringExtra("page_id");
 
-        mapData = imageMapsData.getMapInfoById(mapId);
+        picType = getIntent().getIntExtra("pic", 0);
+
+
+        String folder = "maps/";
+        if (picType != 1) {
+            mapData = imageMapsData.getMapInfoById(mapId);
+        } else {
+            folder = "pics/";
+            mapData = getDataFromDetail(mapId);
+        }
+
+
+        float maxZoomRatio = 2.4f;
+        if (picType == 1) maxZoomRatio = 1.4f;
+
 
         setTitle(mapData.title);
 
         TouchImageView imageView = findViewById(R.id.frag_imageview);
-        imageView.setMaxZoomRatio(2.4f);
+        imageView.setMaxZoomRatio(maxZoomRatio);
 
 
         Picasso.with( this )
                 //.load(R.drawable.f)
                 //.load(R.raw.e)
-                .load("file:///android_asset/maps/"+ mapData.image)
+                .load("file:///android_asset/"+folder+ mapData.image)
                 .into(imageView);
+
+
+    }
+
+
+    private ImageData getDataFromDetail(String id) {
+
+        DetailItem detailItem;
+
+        DataManager dataManager = new DataManager(this);
+
+        detailItem = dataManager.getDetailFromDB(id);
+
+
+        return new ImageData(detailItem.title, "", detailItem.id, detailItem.image);
+    }
+
+
+
+    private void pageTransition() {
+        if (picType == 1) {
+            overridePendingTransition(R.anim.fade_in_img_back, R.anim.fade_out_img_back);
+
+        } else {
+
+            if ( !getResources().getBoolean(R.bool.wide_width)) {
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+
+        }
 
 
     }
@@ -113,9 +161,7 @@ public class MapActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        pageTransition();
     }
 
     @Override
@@ -124,9 +170,8 @@ public class MapActivity extends AppCompatActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                pageTransition();
+
                 return true;
 
             case R.id.pic_info:

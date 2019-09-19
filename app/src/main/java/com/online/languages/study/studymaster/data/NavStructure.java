@@ -52,12 +52,10 @@ public class NavStructure implements Parcelable {
 
             if (navSection.id.equals(section_id)) {
                 for (NavCategory category: navSection.navCategories) {
-
                     if (category.parent.equals(parent)) {
                         list.add(category);
                     }
                 }
-
                 break;
             }
         }

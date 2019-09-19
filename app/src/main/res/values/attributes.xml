@@ -181,6 +181,7 @@
     <attr name="iconSchool" format="reference" />
     <attr name="iconList" format="reference" />
     <attr name="iconGrid" format="reference" />
+    <attr name="iconGrid2" format="reference" />
     <attr name="iconTest" format="reference" />
     <attr name="iconCarousel" format="reference" />
 

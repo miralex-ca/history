@@ -6,6 +6,8 @@
 
     <!-- exercise -->
 
+    <dimen name="_detail_image_height">460dp</dimen>
+    <dimen name="_detail_image_appbar_height">280dp</dimen>
 
     <dimen name="_detail_card_height">470dp</dimen>
     <dimen name="_detail_appbar_height">250dp</dimen>
