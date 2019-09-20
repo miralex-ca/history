@@ -161,7 +161,6 @@ public class CatTabFragment1 extends Fragment {
 
         }
 
-
         return list;
     }
 
@@ -171,10 +170,9 @@ public class CatTabFragment1 extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 view.setVisibility(View.VISIBLE);
             }
-        }, 80);
+        }, 70);
     }
 
     private void onItemClick(final View view, final int position) {

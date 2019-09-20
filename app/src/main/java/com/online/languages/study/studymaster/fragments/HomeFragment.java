@@ -84,15 +84,17 @@ public class HomeFragment extends Fragment {
         String theme = appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
 
+        int recycleType = 1;
         if (Constants.ONE_CAT) {
             recyclerView.setVisibility(View.GONE);
             recyclerViewCards.setVisibility(View.VISIBLE);
+            recycleType = 2;
         } else {
             recyclerView.setVisibility(View.VISIBLE);
             recyclerViewCards.setVisibility(View.GONE);
         }
 
-        mAdapter = new HomeCardRecycleAdapter(getActivity(), navStructure.sections, theme, 1);
+        mAdapter = new HomeCardRecycleAdapter(getActivity(), navStructure.sections, theme, recycleType);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);

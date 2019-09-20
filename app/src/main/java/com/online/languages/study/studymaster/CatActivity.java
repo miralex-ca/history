@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -304,15 +305,25 @@ public class CatActivity extends AppCompatActivity {
     private void checkAdShow() {
         showAd = appSettings.getBoolean(Constants.SET_SHOW_AD, false);
 
+        if (Build.VERSION.SDK_INT < 21) showAd= false;
+
         SharedPreferences mLaunches = getSharedPreferences(AppStart.APP_LAUNCHES, Context.MODE_PRIVATE);
         int launchesNum = mLaunches.getInt(AppStart.LAUNCHES_NUM, 0);
 
-        if (launchesNum < 2) showBanner();
-        else  {
 
-            manageAd();
+        if (showAd) showAdCard();
+
+        if (launchesNum < 2) {
+            adContainer.setVisibility(View.GONE);
+        } else  {
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    manageAd();
+                }
+            }, 100);
         }
-
     }
 
 
@@ -352,14 +363,7 @@ public class CatActivity extends AppCompatActivity {
             }
 
             mAdView.setVisibility(View.VISIBLE);
-
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mAdView.loadAd(adRequest);
-                }
-            }, 20);
+            mAdView.loadAd(adRequest);
 
         } else {
 
