@@ -5,8 +5,8 @@ import android.support.v4.content.ContextCompat;
 
 public class Constants {
 
-    public static final boolean PRO = false;  // TODO change in PRO
-    public static final boolean DEBUG = false;  /// should be true to see ads in debug
+    public static final boolean PRO = true;  // TODO change in PRO
+    public static final boolean DEBUG = true;  /// should be true to see ads in debug
     public static final boolean SCREEN_SHOW = false;
 
     public static final String SET_VERSION_TXT = "full_version"; /// check text in settings
@@ -36,7 +36,6 @@ public class Constants {
 
     public static final int QUEST_NUM = 60;  // limit for tests
     public static final int ALL_TEST_NUM = 100;  //  100 for prod
-
     public static final int REVISE_NUM = 30;
 
     static final String EXTRA_KEY_WORDS = "dataItems";

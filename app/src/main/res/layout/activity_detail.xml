@@ -28,11 +28,9 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
 
-
             app:expandedTitleMarginStart="@dimen/md_keylines"
             app:expandedTitleMarginEnd="@dimen/detail_appbar_exp_text_right"
             app:expandedTitleMarginBottom="@dimen/detail_appbar_exp_text_bottom"
-
 
             app:expandedTitleTextAppearance="@style/ExpText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"

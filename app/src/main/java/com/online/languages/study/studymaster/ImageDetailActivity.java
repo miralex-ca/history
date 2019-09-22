@@ -66,6 +66,8 @@ public class ImageDetailActivity extends AppCompatActivity {
         if (appSettings.getBoolean(Constants.SET_VERSION_TXT, false)) starrable = true;
 
 
+        starrable = true;
+
         starStatusChanged= false;
 
         setContentView(R.layout.activity_image_detail);
@@ -92,7 +94,6 @@ public class ImageDetailActivity extends AppCompatActivity {
             detailItem  = new DetailItem(dataItem);
         }
 
-
         TextView imgTitle = findViewById(R.id.lbl_img_title);
         TextView infoT = findViewById(R.id.lbl_text);
 
@@ -108,25 +109,23 @@ public class ImageDetailActivity extends AppCompatActivity {
 
             coordiinator.getLayoutParams().height = convertDimen(380);
             coordiinator.setLayoutParams(coordiinator.getLayoutParams());
-
             appbar.getLayoutParams().height = convertDimen(130);
             appbar.setLayoutParams(appbar.getLayoutParams());
             screem.setVisibility(View.GONE);
-
         }
 
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.toolbar_layout);
 
-
         final FloatingActionButton fab = findViewById(R.id.fab);
-
 
         if (starrable) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                  //  fab.show();
+
+                    fab.show();
+
                 }
             }, 350);
         }

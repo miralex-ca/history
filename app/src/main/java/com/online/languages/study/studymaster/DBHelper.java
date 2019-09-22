@@ -2003,7 +2003,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TEST_TAG, testData.tag);
         values.put(KEY_TEST_PROGRESS, testData.progress);
-        values.put(KEY_TEST_TIME, testData.progress);
+        values.put(KEY_TEST_TIME, testData.testTime);
 
         db.insert(TABLE_TESTS_DATA, null, values);
     }

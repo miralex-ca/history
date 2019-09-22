@@ -592,7 +592,7 @@
         <item name="colorAccent">@color/colorFinderAccent</item>
         <item name="mfp_toolbar_theme">@style/MFP_BaseToolbarTheme</item>
 
-        <item name="android:windowBackground">@color/colorFinderWindowBg</item>
+        <!-- item name="android:windowBackground">@color/colorFinderWindowBg</item -->
         <item name="android:textColor">@color/colorFinderText</item>
 
         <!-- item name="android:textViewStyle">@style/FinderTextViewStyle</item -->

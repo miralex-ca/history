@@ -143,9 +143,7 @@
         android:layout_marginRight="@dimen/fab_margin_right"
 
 
-
-        app:layout_anchor="@id/app_bar"
-
+        app:layout_anchor="@id/screem_btm"
         app:layout_anchorGravity="bottom|end"
         app:fabSize="normal"
 

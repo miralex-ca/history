@@ -104,7 +104,6 @@ public class ScrollingActivity extends AppCompatActivity {
 
             ///Toast.makeText(this, "No image", Toast.LENGTH_SHORT).show();
 
-
             coordiinator.getLayoutParams().height = convertDimen(380);
             coordiinator.setLayoutParams(coordiinator.getLayoutParams());
 
@@ -113,6 +112,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
             screem.setVisibility(View.GONE);
             imgIfo.setVisibility(View.GONE);
+
 
         }
 
