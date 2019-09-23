@@ -170,7 +170,7 @@ public class MapListActivity extends AppCompatActivity {
         } else {
             cardsList.setVisibility(View.GONE);
             itemsList.setVisibility(View.VISIBLE);
-            changeLayoutBtn.setIcon(getDrawableIcon(R.attr.iconGrid));
+            changeLayoutBtn.setIcon(getDrawableIcon(R.attr.iconGrid2));
         }
 
     }

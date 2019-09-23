@@ -54,10 +54,25 @@
                 android:layout_alignBottom="@+id/image"
                 android:background="@drawable/screem_bottom"/>
 
+
+            <TextView
+                android:id="@+id/titleHelper"
+                tools:text="Text"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/md_keylines"
+                android:layout_marginBottom="20dp"
+                android:textSize="@dimen/detail_appbar_exp_text_size_small"
+                android:textColor="#F2FFFFFF"
+                android:visibility="gone"
+                android:maxLines="3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:paddingRight="14dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
 

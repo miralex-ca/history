@@ -3,6 +3,7 @@ package com.online.languages.study.studymaster;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -136,14 +137,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         itemPostion = getIntent().getIntExtra("position", 0);
 
-
-        if (detailItem.title.equals("")) {
-            collapsingToolbar.setTitle(" ");
-        } else {
-            collapsingToolbar.setTitle(detailItem.title);
-        }
-
-
+        manageTitle(collapsingToolbar, detailItem.title);
 
         infoT.setText(detailItem.desc);
 
@@ -183,6 +177,31 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void manageTitle(CollapsingToolbarLayout collapsingToolbar, String title) {
+
+        TextView textHelper = collapsingToolbar.findViewById(R.id.titleHelper);
+
+        if (title.equals("")) {
+            collapsingToolbar.setTitle(" ");
+        } else {
+            collapsingToolbar.setTitle(title);
+        }
+
+
+        if (title.length() > 20) collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpTextSmall);
+
+        if (title.length() > 25) {
+
+            collapsingToolbar.setExpandedTitleTextColor(ColorStateList.valueOf(getResources().getColor(R.color.transparent)));
+            textHelper.setText(title);
+            textHelper.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+
 
     private int getInfoTxtSize() {
 

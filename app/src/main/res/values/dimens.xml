@@ -108,11 +108,11 @@
     <dimen name="detail_appbar_screem_height">@dimen/_detail_appbar_screem_height</dimen>
 
     <dimen name="detail_appbar_exp_text_size">@dimen/_detail_appbar_exp_text_size</dimen>
+    <dimen name="detail_appbar_exp_text_size_small">@dimen/_detail_appbar_exp_text_size_small</dimen>
     <dimen name="detail_appbar_exp_text_bottom">@dimen/_detail_appbar_exp_text_bottom</dimen>
     <dimen name="detail_appbar_exp_text_right">@dimen/md_keylines</dimen>
 
     <dimen name="detail_text_size">@dimen/_detail_text_size</dimen>
-
 
 
 

@@ -30,6 +30,7 @@
 
 
     <dimen name="_detail_appbar_exp_text_size">26sp</dimen>
+    <dimen name="_detail_appbar_exp_text_size_small">22sp</dimen>
     <dimen name="_detail_appbar_exp_text_bottom">32dp</dimen>
     <dimen name="_design_fab_size_normal">44dp</dimen>
     <dimen name="_detail_text_size" >14sp</dimen>
@@ -120,14 +121,6 @@
     <dimen name="_stats_diagram_int_size">106dp</dimen>
 
     <dimen name="_cat_item_pic_size">48dp</dimen>
-
-
-
-
-
-
-
-
 
 
 </resources>
