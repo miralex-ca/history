@@ -117,6 +117,8 @@
 
     <dimen name="_detail_appbar_screem_height">110dp</dimen>
     <dimen name="_detail_appbar_exp_text_size">25sp</dimen>
+    <dimen name="_detail_appbar_exp_text_size_small">18sp</dimen>
+
     <dimen name="_detail_appbar_exp_text_bottom">25dp</dimen>
 
     <dimen name="_design_fab_size_normal">40dp</dimen>

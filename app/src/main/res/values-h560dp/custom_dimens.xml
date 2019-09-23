@@ -23,6 +23,7 @@
     <dimen name="detail_appbar_height_land">220dp</dimen>
 
     <dimen name="_detail_appbar_exp_text_size">25sp</dimen>
+    <dimen name="_detail_appbar_exp_text_size_small">21sp</dimen>
     <dimen name="_detail_appbar_exp_text_bottom">30dp</dimen>
     <dimen name="_design_fab_size_normal">43dp</dimen>
 

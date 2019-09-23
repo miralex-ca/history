@@ -480,6 +480,10 @@
         <item name="android:textSize">@dimen/detail_appbar_exp_text_size</item>
     </style>
 
+    <style name="ExpTextSmall" parent="ExpText">
+        <item name="android:textSize">@dimen/detail_appbar_exp_text_size_small</item>
+    </style>
+
 
     <style name="UserDialog">
 
