@@ -61,6 +61,7 @@
     <!-- standard colors for dark white interface -->
 
     <color name="colorStarIcon">#ffea00</color>
+    <color name="colorStarIconBord">#F8CF02</color>
 
     <color name="colorStarButton">#FFD600</color> <!-- changed in v21-->
     <color name="colorStarButtonIcon">#ffea00</color>

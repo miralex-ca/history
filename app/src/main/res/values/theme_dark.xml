@@ -29,7 +29,8 @@
     <color name="colorNavBgEnd_dark">#263238</color>
 
 
-    <color name="colorStarIcon_dark">#FFFF00</color> <!-- for stars in lists - - >
+    <color name="colorStarIcon_dark">#FFFF00</color>
+    <color name="colorStarIconBord_dark">#F8CF02</color> <!-- for stars in lists - - >
 
     <color name="colorStarButton_dark">#FFD600</color>  <!- - used for star button - - >
     <color name="colorStarButtonIcon_dark">#fff</color> <!- - used for active star color - - >
@@ -116,6 +117,7 @@
         <item name="colorAccent">@color/colorAccent_dk</item>
 
         <item name="colorStarIcon">@color/colorStarIcon_dark</item>
+        <item name="colorStarIconBord">@color/colorStarIconBord_dark</item>
 
         <item name="colorStarButton">@color/colorStarButton_dark</item>
 

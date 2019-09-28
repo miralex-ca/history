@@ -34,6 +34,7 @@
     <color name="colorDetail_smoky">#3e5061</color>
 
     <color name="colorStarIcon_smoky">#80D8FF</color> <!-- for stars in lists -->
+    <color name="colorStarIconBord_smoky">#03ACF8</color>
 
     <color name="colorStarButton_smoky">#51687c</color>  <!-- used for star button -->
     <color name="colorStarButtonIcon_smoky">@color/colorStarIcon_smoky</color> <!-- used for active star color -->
@@ -98,6 +99,7 @@
         <item name="colorMapTitleBox">@color/colorMapTitleBox_smoky</item>
 
         <item name="colorStarIcon">@color/colorStarIcon_smoky</item>
+        <item name="colorStarIconBord">@color/colorStarIcon_smoky</item>
 
         <item name="cardCorner">@dimen/cardCornerDefault_smoky</item>
 

@@ -1,5 +1,6 @@
 package com.online.languages.study.studymaster;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,7 +8,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
@@ -17,19 +20,27 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.ImageListAdapter;
 import com.online.languages.study.studymaster.adapters.MapListAdapter;
+import com.online.languages.study.studymaster.adapters.ResizeHeight;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
@@ -42,6 +53,8 @@ import com.online.languages.study.studymaster.data.ViewCategory;
 import com.online.languages.study.studymaster.data.ViewSection;
 
 import java.util.ArrayList;
+
+import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 
 
 public class ImageListActivity extends AppCompatActivity {
@@ -58,6 +71,10 @@ public class ImageListActivity extends AppCompatActivity {
     ImageListAdapter cardsAdapter;
     ImageListAdapter imagesAdapter;
 
+    RecyclerView.LayoutManager mLayoutManager;
+    GridLayoutManager cardsManager;
+    GridLayoutManager imagesManager;
+
     NavStructure navStructure;
 
     String tSectionID = "01010";
@@ -72,11 +89,17 @@ public class ImageListActivity extends AppCompatActivity {
     ImageMapsData imageMapsData;
     ArrayList<DataItem> dataItems;
 
-    View itemsList, cardsList, imagesList;
+    RelativeLayout itemsList, cardsList, imagesList, itemListWrap;
 
     private MenuItem changeLayoutBtn;
 
     int listType;
+
+    DBHelper dbHelper;
+    DataManager dataManager;
+
+    final String STARRED = "starred";
+    final String PIC_LIST = "pic_list";
 
 
     @Override
@@ -92,7 +115,6 @@ public class ImageListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_images_list);
 
-
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
         listType = appSettings.getInt(Constants.IMG_LIST_LAYOUT, 2);
@@ -102,14 +124,21 @@ public class ImageListActivity extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         itemsList = findViewById(R.id.items_list);
+        itemListWrap = findViewById(R.id.itemListWrap);
+
+
         cardsList = findViewById(R.id.cards_list);
         imagesList = findViewById(R.id.images_list);
 
+
+        dataManager = new DataManager(this);
+        dbHelper = dataManager.dbHelper;
 
         imageMapsData = new ImageMapsData(this);
 
@@ -129,8 +158,9 @@ public class ImageListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         mAdapter = new ImageListAdapter(this, dataItems, 1, themeTitle);
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration( new DividerItemDecoration(this) );
         recyclerView.setSelected(true);
@@ -141,7 +171,9 @@ public class ImageListActivity extends AppCompatActivity {
         /// cards list layout
         recyclerViewCards = findViewById(R.id.recycler_view_cards);
         cardsAdapter = new ImageListAdapter(this, dataItems, 2, themeTitle);
-        recyclerViewCards.setLayoutManager(new GridLayoutManager(this, 2));
+        cardsManager = new GridLayoutManager(this, 2);
+
+        recyclerViewCards.setLayoutManager(cardsManager);
         recyclerViewCards.setItemAnimator(new DefaultItemAnimator());
         recyclerViewCards.setSelected(true);
         recyclerViewCards.setAdapter(cardsAdapter);
@@ -150,25 +182,259 @@ public class ImageListActivity extends AppCompatActivity {
         // images list layout
         recyclerViewImages = findViewById(R.id.recycler_view_images);
         imagesAdapter = new ImageListAdapter(this, dataItems, 3, themeTitle);
-        recyclerViewImages.setLayoutManager(new GridLayoutManager(this, 3));
+        imagesManager = new GridLayoutManager(this, 3);
+        recyclerViewImages.setLayoutManager(imagesManager);
         recyclerViewImages.setItemAnimator(new DefaultItemAnimator());
         recyclerViewImages.setSelected(true);
         recyclerViewImages.setAdapter(imagesAdapter);
         ViewCompat.setNestedScrollingEnabled(recyclerViewCards, false);
 
 
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) { openCat(view); }
+            @Override
+            public void onLongClick(View view, int position) { longClick(view); }
+        }));
+
+        recyclerViewCards.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewCards, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) { openCat(view);}
+            @Override
+            public void onLongClick(View view, int position) { longClick(view); }
+        }));
+
+        recyclerViewImages.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewImages, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) { openCat(view); }
+            @Override
+            public void onLongClick(View view, int position) { longClick(view); }
+        }));
     }
+
+
+
+    private void longClick(View view) {
+            changeStarred(view);
+    }
+
+
+    private void checkItemById(String id) {
+
+        int position = -1;
+
+        boolean starred = dataManager.checkStarStatusById(id);
+
+        for (int i=0; i < dataItems.size() ; i++ ) {
+            if (dataItems.get(i).id.equals(id))  {
+                if (starred ) dataItems.get(i).starred = 1;
+                else dataItems.get(i).starred = 0;
+                position =i;
+                break;
+            }
+        }
+
+        if (position != -1) {
+            updateStarInList(mLayoutManager, position, starred);
+            updateStarInList(cardsManager, position, starred);
+            updateStarInList(imagesManager, position, starred);
+        }
+
+
+    }
+
+
+    private void updateStarInList(RecyclerView.LayoutManager manager, int position, boolean display) {
+        View p = manager.findViewByPosition(position);
+        updateStarIcon(p, display);
+    }
+
+
+
+    private void updateStarIcon(View parent, boolean display) {
+        if (parent != null ) {
+            ImageView star = parent.findViewById(R.id.starIcon);
+            if (display) {
+                star.setAlpha(0f);
+                star.setVisibility(View.VISIBLE);
+                star.animate().alpha(1f).setDuration(150);
+            }
+            else {
+                star.animate().alpha(0f).setDuration(150);
+            }
+        }
+    }
+
+
+
+    public void changeStarred(View view){   /// check just one item
+
+
+        View tagged = view.findViewById(R.id.tagged);
+        String id = (String) tagged.getTag();
+
+        boolean starred = dataManager.checkStarStatusById(id );
+
+        int status = dataManager.dbHelper.setStarred(id, !starred, GALLERY_TAG);
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        int vibLen = 30;
+
+        if (status == 0) {
+            Toast.makeText(this, R.string.starred_limit, Toast.LENGTH_SHORT).show();
+            vibLen = 300;
+        }
+
+
+        if (getListType().equals(STARRED)) findRemoved(dataItems);
+        else checkItemById(id);
+
+
+        assert v != null;
+        v.vibrate(vibLen);
+    }
+
+
+    public String getListType () {
+        return PIC_LIST;
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+
+            if(resultCode == RESULT_OK){
+                final String id = data.getStringExtra("result");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (getListType().equals(STARRED)) findRemoved(dataItems);
+                        else  checkItemById(id);
+                    }
+                }, 150);
+            }
+        }
+
+
+    }
+
+    private void setWrapContentHeight(View view) {
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+         view.setLayoutParams(params);
+
+    }
+
+
+    private void findRemoved(ArrayList<DataItem> wordList) {
+
+        if (wordList != null) {
+
+            wordList = dbHelper.checkStarredList(wordList);
+
+            if (listType == 1) {
+                removeFromList(wordList, recyclerView, itemListWrap, mAdapter);
+                cardsAdapter.notifyDataSetChanged();
+                imagesAdapter.notifyDataSetChanged();
+
+                setWrapContentHeight(cardsList);
+                setWrapContentHeight(imagesList);
+            }
+
+            if (listType == 2) {
+                removeFromList(wordList, recyclerViewCards, cardsList, cardsAdapter);
+                mAdapter.notifyDataSetChanged();
+                imagesAdapter.notifyDataSetChanged();
+
+                setWrapContentHeight(itemListWrap);
+                setWrapContentHeight(imagesList);
+            }
+
+            if (listType == 3) {
+                removeFromList(wordList, recyclerViewImages, imagesList, imagesAdapter);
+                cardsAdapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
+                setWrapContentHeight(cardsList);
+                setWrapContentHeight(itemListWrap);
+            }
+        }
+    }
+
+
+    private void removeFromList(ArrayList<DataItem> wordList, RecyclerView recyclerView, View helper, ImageListAdapter adapter) {
+
+        helper.setMinimumHeight(recyclerView.getHeight());  /// TODO lisst
+
+        for (int i = 0; i < wordList.size(); i++) {
+            if (wordList.get(i).starred < 1) {
+
+                try {
+                    int count = recyclerView.getChildCount();
+
+                    if (count > 0) {
+                        setHR(recyclerView, helper);
+                    }
+                } finally {
+                    adapter.remove(i);
+                }
+            }
+        }
+
+
+    }
+
+
+    private void setHR(final RecyclerView recycler, final View helper) {
+
+        recycler.setMinimumHeight(recycler.getHeight());
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                recyclerView.setMinimumHeight(0);
+                recyclerViewCards.setMinimumHeight(0);
+                recyclerViewImages.setMinimumHeight(0);
+
+            }
+        }, 500);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                int h = recycler.getHeight();
+                ResizeHeight resizeHeight = new ResizeHeight(helper, h);
+                resizeHeight.setDuration(400);
+                helper.startAnimation(resizeHeight);
+
+
+            }
+        }, 600);
+
+    }
+
 
     public void getImages() {
 
-        DataManager dataManager = new DataManager(this);
-
-        dataItems = dataManager.getCatDBList(tCatID);
+        dataItems = getDataItems();
 
         for (ViewCategory cat: viewSection.categories) {
             ImageData image = imageMapsData.getMapInfoById(cat.id);
             cat.image  = image.image;
         }
+    }
+
+    public ArrayList<DataItem> getDataItems() {
+        return dataManager.getCatDBList(tCatID);
     }
 
 
@@ -190,6 +456,14 @@ public class ImageListActivity extends AppCompatActivity {
 
     private void applyLayoutStatus(int type) {
 
+        setWrapContentHeight(itemListWrap);
+        setWrapContentHeight(imagesList);
+        setWrapContentHeight(cardsList);
+
+        itemListWrap.setMinimumHeight(0);
+        imagesList.setMinimumHeight(0);
+        cardsList.setMinimumHeight(0);
+
         if (type == 1) {
             imagesList.setVisibility(View.GONE);
             cardsList.setVisibility(View.GONE);
@@ -207,27 +481,40 @@ public class ImageListActivity extends AppCompatActivity {
             changeLayoutBtn.setIcon(getDrawableIcon(R.attr.iconGrid2));
         }
 
+
     }
 
 
     public void openCat(final View view) {
 
-        final int position = (int) view.getTag();
+
+        ViewGroup p = (ViewGroup) view.getParent();
+
+        View tagged = view.findViewById(R.id.tagged);
+
+
+        final String id = (String) tagged.getTag();
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                showAlertDialog(position, view);
+                showAlertDialog(id, view);
             }
         }, 50);
     }
 
 
-    public void showAlertDialog(int position, View view) {
+    public void showAlertDialog(String id, View view) {
 
         // String id = view.getTag().toString();
 
-        String id = dataItems.get(position).id;
 
+        int position = 0;
+
+        for (int i = 0; i < dataItems.size(); i++) {
+            if (dataItems.get(i).id.equals(id)) position  = i;
+        }
 
 
         ViewGroup p = (ViewGroup) view.getParent();
@@ -244,7 +531,6 @@ public class ImageListActivity extends AppCompatActivity {
         intent.putExtra("id", id );
         intent.putExtra("position", position);
 
-
          startActivityForResult(intent, 1);
          overridePendingTransition(R.anim.slide_in_down, 0);
 
@@ -253,52 +539,12 @@ public class ImageListActivity extends AppCompatActivity {
 
 
 
-    public void openCatActivity(int position) {
-
-        ViewCategory viewCategory = viewSection.categories.get(position);
-
-        if (viewCategory.type.equals("set")) return;
-
-        Intent i;
-
-        if (viewCategory.type.equals("group")) {
-
-            i = new Intent(ImageListActivity.this, SubSectionActivity.class);
-
-            i.putExtra(Constants.EXTRA_CAT_ID, viewCategory.id);
-            i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
-            i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
-
-        } else {
-
-            if (viewCategory.spec.equals("map")) {
-                i = new Intent(ImageListActivity.this, MapActivity.class);
-                i.putExtra("page_id", viewCategory.id);
-
-            } else {
-                i = new Intent(ImageListActivity.this, CatActivity.class);
-                i.putExtra(Constants.EXTRA_CAT_ID, viewCategory.id);
-                i.putExtra(Constants.EXTRA_CAT_SPEC, viewCategory.spec);
-                i.putExtra("cat_title", viewCategory.title);
-            }
-        }
-
-        // i.putExtra("show_ad", showAd);
-
-        startActivityForResult(i, 1);
-        pageTransition();
-    }
-
     public void pageTransition() {
         if ( !getResources().getBoolean(R.bool.wide_width)) {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // updateContent();
-    }
 
     @Override
     public void onBackPressed() {
@@ -371,12 +617,59 @@ public class ImageListActivity extends AppCompatActivity {
 
 
     private int getDrawableIcon(int iconAttr) {
-
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(iconAttr, typedValue, true);
         int drawableRes = typedValue.resourceId;
-
         return drawableRes;
     }
+
+
+
+
+    public interface ClickListener {
+        void onClick(View view, int position);
+        void onLongClick(View view, int position);
+    }
+
+    class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
+        private ClickListener clicklistener;
+        private GestureDetector gestureDetector;
+
+        public RecyclerTouchListener(Context context, final RecyclerView recycleView, final ClickListener clicklistener){
+            this.clicklistener=clicklistener;
+            gestureDetector=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    View child=recycleView.findChildViewUnder(e.getX(),e.getY());
+                    if(child!=null && clicklistener!=null){
+                        clicklistener.onLongClick(child,recycleView.getChildAdapterPosition(child));
+                    }
+                }
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            View child=rv.findChildViewUnder(e.getX(),e.getY());
+            if(child!=null && clicklistener!=null && gestureDetector.onTouchEvent(e)){
+                clicklistener.onClick(child,rv.getChildAdapterPosition(child));
+            }
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+        }
+    }
+
 
 }

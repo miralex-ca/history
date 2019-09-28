@@ -67,6 +67,7 @@
     <color name="colorDetail_ww">#323241</color>
 
     <color name="colorStarIcon_ww">#CCFF90</color> <!-- for stars in lists -->
+    <color name="colorStarIconBord_ww">#8AFC03</color>
 
     <color name="colorStarButton_ww">#444454</color>  <!-- used for star button -->
     <color name="colorStarButtonIcon_ww">@color/colorStarIcon_ww</color> <!-- used for active star color -->
@@ -140,6 +141,7 @@
         <item name="colorMapTitleBox">@color/colorMapTitleBox_ww</item>
 
         <item name="colorStarIcon">@color/colorStarIcon_ww</item>
+        <item name="colorStarIconBord">@color/colorStarIconBord_ww</item>
 
         <item name="colorExIconBg">@color/ex_icon_ww</item>
         <item name="colorExResult">@color/ex_link_result_ww</item>

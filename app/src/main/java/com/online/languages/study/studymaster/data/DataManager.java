@@ -56,7 +56,13 @@ public class DataManager {
     }
 
 
+
     public ArrayList<DataItem> getStarredWords(Boolean sort) {
+        return getStarredWords(1, sort);
+    }
+
+
+    public ArrayList<DataItem> getStarredWords(int type, Boolean sort) {
 
         SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -66,7 +72,8 @@ public class DataManager {
 
         ArrayList<DataItem> dataItems;
 
-        dataItems = dbHelper.getStarredFromDB();
+        if (type == 2) dataItems = dbHelper.getStarredFromDB(2);
+        else dataItems = dbHelper.getStarredFromDB();
 
         if (sortType.equals("0")) {
             Collections.sort(dataItems, new TimeStarredComparator());

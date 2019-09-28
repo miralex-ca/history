@@ -76,6 +76,7 @@
     <attr name="colorContactIcon" format="reference" />
 
     <attr name="colorStarIcon" format="reference" />
+    <attr name="colorStarIconBord" format="reference" />
     <attr name="colorStarButton" format="reference" />
     <attr name="colorStarButtonIcon" format="reference" />
 

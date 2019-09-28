@@ -63,6 +63,7 @@ public class Constants {
     public static final int SECTION_TESTS_NUM_ALL = 3;
 
 
+
     public static final int TEST_OPTIONS_NUM = 4;
     public static final int TEST_LONG_OPTIONS_NUM = 3;
     public static final int TEST_LONG_OPTION_LEN = 40;
@@ -93,6 +94,7 @@ public class Constants {
     public static final String REVISE_CAT_TAG = "revise";
     public static final int EXPAND_TIME = 920;
 
+    public static final String GALLERY_TAG = "#gallery";
 
 
 

@@ -7,6 +7,9 @@
 
     <string name="app_structure_file">simple_structure.json</string>
 
+    <string name="app_data_file">data_simple.json</string>
+    <string name="app_detail_file">details_simple.json</string>
+
     <dimen name="home_card_image_width">@dimen/_home_card_image_width_4</dimen>
     <dimen name="home_card_image_height">@dimen/_home_card_image_height_4</dimen>
     <dimen name="home_card_title_bottom">@dimen/_home_card_title_bottom_4</dimen>

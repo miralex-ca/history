@@ -134,7 +134,11 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".ImageListActivity"
+        android:name=".ImageListActivity"
+        android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".StarredGalleryActivity"
             android:theme="@style/AppTheme" />
 
         <activity

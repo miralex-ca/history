@@ -9,7 +9,7 @@
 
       "categories":
         [
-          {"parent": "root", "type": "simple", "id": "10010020", "title": "Даты и события", "desc": "Основные события"}
+          {"parent": "root", "type": "simple", "id": "10010100", "title": "Даты и события", "desc": "Основные события"}
         ]
 	},
 
@@ -33,17 +33,16 @@
       "categories":
       [
 
-        {"parent": "root", "type": "set", "id": "set_1_2", "title": "Раздел 1", "desc": ""},
-        {"parent": "root", "type": "page", "spec": "image_list", "id": "10020010", "title": "Борьба", "desc": "Славяне и их соседи в VII-VIII вв.", "image":  "battle_ledovoe.jpg"},
+        {"parent": "root", "type": "set", "id": "set_1_2", "title": "none", "desc": ""},
+        {"parent": "root", "type": "page", "spec": "image_list", "id": "10020100", "title": "Архитектура", "desc": "Архитектура", "image":  "gallery/sobor_blazhenniy.jpg"},
 
         {"parent": "root", "type": "page", "spec": "image_list", "id": "10050010", "title": "1801-1825 гг.", "desc": "Царствование Александра I.", "image":  "aleksandr_1_2.jpg"},
 
         {"parent": "root", "type": "set", "id": "set_1_2", "title": "Раздел 2", "desc": ""},
 
-        {"parent": "root", "type": "page", "spec": "image_list", "id": "10040200", "title": "Личности", "desc": "Исторические личности XVIII века. А также просто текст чтобы строка была длинной", "image":  "petr_1.jpg"},
-        {"parent": "root", "type": "page", "spec": "image_list", "id": "10050010", "title": "1801-1825 гг.", "desc": "Царствование Александра I.", "image":  "aleksandr_1_2.jpg"},
+        {"parent": "root", "type": "page", "spec": "image_list", "id": "10010200", "title": "Личности", "desc": "Исторические личности XVIII века. А также просто текст чтобы строка была длинной", "image":  "petr_1.jpg"},
 
-        {"parent": "root", "type": "page", "spec": "image_list", "id": "10040200", "title": "Личности", "desc": "Исторические личности XVIII века.", "image":  "petr_1.jpg"},
+
 
         {"parent": "root", "type": "set", "id": "set_1_3", "title": "none", "desc": ""},
 

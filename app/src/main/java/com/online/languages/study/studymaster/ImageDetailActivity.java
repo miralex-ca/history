@@ -30,6 +30,8 @@ import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.DetailItem;
 import com.squareup.picasso.Picasso;
 
+import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+
 public class ImageDetailActivity extends AppCompatActivity {
 
 
@@ -245,7 +247,7 @@ public class ImageDetailActivity extends AppCompatActivity {
     public void finish() {
 
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("result", itemPostion);
+        returnIntent.putExtra("result", detailItem.id);
 
         if (starStatusChanged) {
             setResult(CatInfoDetailActivity.RESULT_OK,returnIntent);
@@ -269,7 +271,7 @@ public class ImageDetailActivity extends AppCompatActivity {
 
         Boolean starred = checkStarred(tag);
 
-        int status = dbHelper.setStarred(tag, !starred); // id to id
+        int status = dbHelper.setStarred(tag, !starred, GALLERY_TAG); // id to id
 
         if (status == 0) {
             limitMessage();

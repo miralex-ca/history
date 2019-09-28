@@ -38,14 +38,13 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
         TextView title, sectionDesc;
         View sectionItemBox, setDivider, taggedView;
         ImageView mapImage;
+        View star;
 
 
         MyViewHolder(View view) {
             super(view);
 
-
             sectionItemBox = view.findViewById(R.id.sectionItemBox);
-
             setDivider = view.findViewById(R.id.divider);
 
             title = view.findViewById(R.id.sectionTitle);
@@ -53,6 +52,8 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
 
             mapImage = view.findViewById(R.id.mapImage);
             taggedView = view.findViewById(R.id.tagged);
+
+            star = view.findViewById(R.id.starIcon);
 
         }
     }
@@ -71,10 +72,10 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
 
         View itemView;
 
-        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_map_item, parent, false);
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_img_item_list, parent, false);
 
         if (type == 2 ) {
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_map_item_card, parent, false);
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_img_item_card, parent, false);
         }
 
         if (type == 3 ) {
@@ -92,6 +93,7 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
         return type;
     }
 
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
@@ -100,8 +102,8 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
         DataItem dataItem = imagesArrayList.get(position);
 
 
-        holder.sectionItemBox.setTag(position);
-        holder.taggedView.setTag(position);
+        holder.sectionItemBox.setTag(dataItem.id);
+        holder.taggedView.setTag(dataItem.id);
 
 
         String title = dataItem.item;
@@ -112,6 +114,13 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
         }
 
         holder.title.setText(title);
+
+
+        if (dataItem.starred > 0 ) {
+            holder.star.setVisibility(View.VISIBLE);
+        } else {
+            holder.star.setVisibility(View.GONE);
+        }
 
 
         if (dataItem.image.equals("")) dataItem.image = "battle_ledovoe.jpg";
@@ -144,6 +153,12 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
     @Override
     public int getItemCount() {
         return imagesArrayList.size();
+    }
+
+
+    public void remove(int position) {
+        imagesArrayList.remove(position);
+        notifyItemRemoved(position);
     }
 
 

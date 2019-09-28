@@ -23,7 +23,6 @@
 
 
         <RelativeLayout
-            android:animateLayoutChanges="true"
             android:visibility="gone"
             android:id="@+id/items_list"
             android:layout_width="match_parent"
@@ -35,7 +34,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
             style="@style/CardViewStyle"
-            android:minHeight="200dp"
+            android:minHeight="0dp"
             >
 
             <FrameLayout
@@ -45,6 +44,11 @@
                 />
 
             <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/itemListWrap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
@@ -60,14 +64,19 @@
 
             </RelativeLayout>
 
+            </RelativeLayout>
+
         </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <RelativeLayout
             android:visibility="gone"
-            android:animateLayoutChanges="true"
             android:id="@+id/cards_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,10 +94,15 @@
 
         </RelativeLayout>
 
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <RelativeLayout
             android:id="@+id/images_list"
             android:visibility="gone"
-            android:animateLayoutChanges="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -105,7 +119,7 @@
 
         </RelativeLayout>
 
-
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"

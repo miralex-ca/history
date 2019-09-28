@@ -265,7 +265,7 @@ public class UserListTabFragment1 extends Fragment {
 
         if (wordList == null) {
 
-            Toast.makeText(getActivity(), "Null", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), "Null", Toast.LENGTH_SHORT).show();
 
         } else {
 

@@ -892,6 +892,17 @@ public class MainActivity extends AppCompatActivity
         pageTransition();
     }
 
+    public void openStarredGallery(View view) {
+        Intent i = new Intent(MainActivity.this, StarredGalleryActivity.class);
+
+        i.putExtra(Constants.EXTRA_CAT_ID, "01010");
+        i.putExtra(Constants.EXTRA_SECTION_ID, "01010");
+        i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
+
+        startActivity(i);
+        pageTransition();
+    }
+
 
     public void openReference(View view) {
         Intent i = new Intent(MainActivity.this, ReferenceActivity.class);

@@ -2,6 +2,8 @@ package com.online.languages.study.studymaster.data;
 
 import android.content.Context;
 
+import com.online.languages.study.studymaster.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,14 +22,14 @@ public class DetailFromJson {
 
     public DetailFromJson(Context _context, String _itemId) {
         context = _context;
-        detailFile = "details.json";
+        detailFile = context.getString(R.string.app_detail_file);
 
         fillData(_itemId);
     }
 
     public DetailFromJson(Context _context) {
         context = _context;
-        detailFile = "details.json";
+        detailFile = context.getString(R.string.app_detail_file);
     }
 
 

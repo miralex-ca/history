@@ -88,7 +88,7 @@
 
 
         <item name="colorStarIcon">@color/colorStarIcon</item>   <!-- for stars in lists-->
-
+        <item name="colorStarIconBord">@color/colorStarIconBord</item>
 
         <item name="colorStarButton">@color/colorStarButton</item>
         <item name="colorStarButtonIcon">@color/colorStarButtonIcon</item>
@@ -553,6 +553,7 @@
     <style name="DefaultTheme.UserDialog" parent="AppTheme.Dialog">
 
         <item name="colorStarIcon">@color/colorStarIcon</item>
+        <item name="colorStarIconBord">@color/colorStarIconBord</item>
 
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
         <item name="colorMainText">@color/colorDetailMainText</item>

@@ -3,8 +3,10 @@ package com.online.languages.study.studymaster.fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +28,7 @@ import com.online.languages.study.studymaster.adapters.ContentAdapter;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.ExRecycleAdapter;
 import com.online.languages.study.studymaster.adapters.StarredAdapter;
+import com.online.languages.study.studymaster.adapters.StarredTabsPagerAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
@@ -52,6 +55,10 @@ public class StarredFragment extends Fragment {
 
     LinearLayout previewList;
 
+    ViewPager tabsPager;
+    TabLayout tabLayout;
+    StarredTabsPagerAdapter tabsAdapter;
+
 
     public StarredFragment() {
         // Required empty public constructor
@@ -76,18 +83,63 @@ public class StarredFragment extends Fragment {
 
         infoBox = rootView.findViewById(R.id.starred_info);
 
-
-
         previewList = rootView.findViewById(R.id.starred_preview_list);
-
 
         words = updateTitle(words);
 
-
         createPreviewList(words);
+
+        View starredList = rootView.findViewById(R.id.starredList);
+
+        View starredTabs = rootView.findViewById(R.id.starredTabs);
+
+        starredList.setVisibility(View.GONE);
+        starredTabs.setVisibility(View.VISIBLE);
 
 
         return rootView;
+    }
+
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        tabLayout = view.findViewById(R.id.tab_layout);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+        tabLayout.addTab(tabLayout.newTab().setText("Записи"));
+        tabLayout.addTab(tabLayout.newTab().setText("Галерея"));
+
+
+        tabsPager = view.findViewById(R.id.tabContainer);
+        tabsAdapter = new StarredTabsPagerAdapter(getChildFragmentManager(), 2 );
+
+        tabsPager.setAdapter(tabsAdapter);
+
+        tabsPager.setOffscreenPageLimit(2);
+
+        tabsPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tabsPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
     }
 
 
@@ -111,12 +163,21 @@ public class StarredFragment extends Fragment {
             previewList.addView(item);
         }
 
+    }
+
+    public void updateTabName(int tab, int count) {
+        if (tab == 1) {
+            tabLayout.getTabAt(0).setText("Записи ("+count+")");
+        }
+
+        if (tab == 2) {
+            tabLayout.getTabAt(1).setText("Галерея ("+count+")");
+        }
 
     }
 
 
     private ArrayList<DataItem> updateTitle(ArrayList<DataItem> words) {
-
 
         words = dataManager.getStarredWords(false);
 
@@ -125,10 +186,8 @@ public class StarredFragment extends Fragment {
             infoBox.setVisibility(View.GONE);
 
         } else {
-
             zero.setVisibility(View.GONE);
             infoBox.setVisibility(View.VISIBLE);
-
         }
 
 
@@ -138,7 +197,6 @@ public class StarredFragment extends Fragment {
         String descTxt = String.format(getResources().getString(R.string.starred_words_info),  limit);
 
         String count = String.format("%d / %d", words.size(), limit);
-
 
 
         String zero = "0 / " + limit;

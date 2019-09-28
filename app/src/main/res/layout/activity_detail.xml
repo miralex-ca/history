@@ -106,8 +106,6 @@
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin_right"
 
-
-
         app:layout_anchor="@id/app_bar"
 
         app:layout_anchorGravity="bottom|end"

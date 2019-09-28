@@ -19,6 +19,7 @@ public class DataItem implements Parcelable {
     public int rate = 0;
     public int errors = 0;
     public int testError = 0;
+    public String filter = "";
 
     public long time = 0;
     public long time_errors = 0;
@@ -60,6 +61,7 @@ public class DataItem implements Parcelable {
         this.info = parcel.readString();
         this.id = parcel.readString();
         this.image = parcel.readString();
+        this.filter = parcel.readString();
         this.starred = parcel.readInt();
         this.testError = parcel.readInt();
     }
@@ -77,6 +79,7 @@ public class DataItem implements Parcelable {
         dest.writeString(info);
         dest.writeString(id);
         dest.writeString(image);
+        dest.writeString(filter);
         dest.writeInt(starred);
         dest.writeInt(testError);
 

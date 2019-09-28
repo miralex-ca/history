@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -179,8 +181,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-
         populateDB(db);
 
         db.execSQL(CREATE_CATDATA_TABLE);
@@ -192,7 +192,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
 
         populateDB(db);
         sanitizeDB(db);
@@ -554,11 +553,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public int setStarred(String w_id, Boolean star) {
+
+       return setStarred(w_id, star, "");
+    }
+
+
+    public int setStarred(String w_id, Boolean star, String _info) {
         SQLiteDatabase db = this.getWritableDatabase();
         String action = "nothing";
         int status = 1;
 
-        int check = starredGroupSize(db, w_id);
+        int check = starredGroupSize(db, w_id, _info);
 
         // Toast.makeText(cntx, "Starred: "+ check, Toast.LENGTH_SHORT).show();
 
@@ -570,9 +575,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
             int w_progress = 0;
             int starred = 0;
+
             long time = System.currentTimeMillis();
 
             if (star) starred = 1;
+
+            String info = _info;
+            if (!star) info = "";
 
             if (cursor.moveToFirst()) {
                 cursor.moveToFirst();
@@ -584,6 +593,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
             ContentValues values = new ContentValues();
             values.put(KEY_USER_ITEM_ID, w_id);
+            values.put(KEY_ITEM_INFO, info);
             values.put(KEY_ITEM_PROGRESS, w_progress);
             values.put(KEY_ITEM_STARRED, starred);
             values.put(KEY_ITEM_TIME_STARRED, time);
@@ -605,7 +615,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    private int starredGroupSize(SQLiteDatabase db, String id) {
+    private int starredGroupSize(SQLiteDatabase db, String id, String _filter) {
 
         String idPrefix = "10%";
 
@@ -614,8 +624,17 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         Cursor checkCursor = db.query(TABLE_USER_DATA,  null,
-                KEY_USER_ITEM_ID + " LIKE ? AND " + KEY_ITEM_STARRED +" > ?",
-                new String[] {idPrefix, "0"}, null, null, null);
+                KEY_USER_ITEM_ID + " LIKE ? AND " + KEY_ITEM_STARRED +" > ? AND " + KEY_ITEM_INFO +" NOT LIKE ?",
+                new String[] {idPrefix, "0", GALLERY_TAG}, null, null, null);
+
+        if (_filter.contains(GALLERY_TAG)) {
+
+            checkCursor = db.query(TABLE_USER_DATA,  null,
+                    KEY_USER_ITEM_ID + " LIKE ? AND " + KEY_ITEM_STARRED +" > ? AND " + KEY_ITEM_INFO +" LIKE ?",
+                    new String[] {idPrefix, "0", GALLERY_TAG}, null, null, null);
+        }
+
+
         int size = checkCursor.getCount();
         checkCursor.close();
 
@@ -1134,6 +1153,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public ArrayList<DataItem> getStarredFromDB() {
+        return getStarredFromDB(1);
+    }
+
+    public ArrayList<DataItem> getStarredFromDB(int type) {
 
         ArrayList<DataItem> items = new ArrayList<>();
 
@@ -1148,13 +1171,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
         try {
             while (cursor.moveToNext()) {
-                items.add(getItemFromCursor(cursor));
+
+                DataItem item = getItemFromCursor(cursor);
+                if (type == 2) {
+                    if (item.filter.contains(GALLERY_TAG)) items.add(item);
+                } else {
+                    if (!item.filter.contains(GALLERY_TAG)) items.add(item);
+                }
             }
         } finally {
             cursor.close();
         }
 
-        return  items;
+        return items;
     }
 
 
@@ -1782,6 +1811,8 @@ public class DBHelper extends SQLiteOpenHelper {
         dataItem.starred = cursor.getInt(cursor.getColumnIndex(KEY_ITEM_STARRED));
         dataItem.rate = cursor.getInt(cursor.getColumnIndex(KEY_ITEM_SCORE));
         dataItem.errors = cursor.getInt(cursor.getColumnIndex(KEY_ITEM_ERRORS));
+
+        dataItem.filter = cursor.getString(cursor.getColumnIndex(KEY_ITEM_INFO));
 
         dataItem.starred_time = cursor.getLong(cursor.getColumnIndex(KEY_ITEM_TIME_STARRED));
         dataItem.time = cursor.getLong(cursor.getColumnIndex(KEY_ITEM_TIME));
