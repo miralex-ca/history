@@ -33,11 +33,13 @@ import java.util.List;
 import java.util.Map;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+import static com.online.languages.study.studymaster.Constants.STARRED_TAB_ACTIVE;
 
 
 public class DBHelper extends SQLiteOpenHelper {
 
     private Context cntx;
+    SharedPreferences appSettings;
     private int MAX_SCORE = 4;
     private static final int DATABASE_VERSION = 35;
 
@@ -173,7 +175,7 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         cntx = context;
 
-        SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(context);
+        appSettings = PreferenceManager.getDefaultSharedPreferences(context);
         data_mode = Integer.parseInt(appSettings.getString("data_mode", "2"));
 
     }
@@ -234,6 +236,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 values.put(KEY_ITEM_DESC, item.info);
                 values.put(KEY_ITEM_IMAGE, item.image);
                 values.put(KEY_ITEM_DIVIDER, item.divider);
+                values.put(KEY_ITEM_FILTER, item.filter);
                 values.put(KEY_ITEM_MODE, item.mode);
 
                 db.insert(TABLE_ITEMS_DATA, null, values);
@@ -552,6 +555,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    private void setStarredTab(int tab) {
+        SharedPreferences.Editor editor = appSettings.edit();
+        editor.putInt(STARRED_TAB_ACTIVE, tab);
+        editor.apply();
+
+    }
+
     public int setStarred(String w_id, Boolean star) {
 
        return setStarred(w_id, star, "");
@@ -578,7 +588,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
             long time = System.currentTimeMillis();
 
-            if (star) starred = 1;
+            if (star) {
+                starred = 1;
+                if (_info.contains(GALLERY_TAG)) setStarredTab(1);
+                else setStarredTab(0);
+            }
 
             String info = _info;
             if (!star) info = "";
@@ -721,10 +735,8 @@ public class DBHelper extends SQLiteOpenHelper {
             conditionLike.append(like);
         }
 
-
         String query = "SELECT * FROM " +TABLE_ITEMS_DATA
                 +" WHERE "+conditionLike;
-
 
 
         Cursor cursor = db.rawQuery(query, null);
@@ -1174,9 +1186,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
                 DataItem item = getItemFromCursor(cursor);
                 if (type == 2) {
-                    if (item.filter.contains(GALLERY_TAG)) items.add(item);
+                    if (item.db_filter.contains(GALLERY_TAG)) items.add(item);
                 } else {
-                    if (!item.filter.contains(GALLERY_TAG)) items.add(item);
+                    if (!item.db_filter.contains(GALLERY_TAG)) items.add(item);
                 }
             }
         } finally {
@@ -1799,6 +1811,7 @@ public class DBHelper extends SQLiteOpenHelper {
         dataItem.info = cursor.getString(cursor.getColumnIndex(KEY_ITEM_DESC));
         dataItem.image = cursor.getString(cursor.getColumnIndex(KEY_ITEM_IMAGE));
         dataItem.divider = cursor.getString(cursor.getColumnIndex(KEY_ITEM_DIVIDER));
+        dataItem.filter = cursor.getString(cursor.getColumnIndex(KEY_ITEM_FILTER));
 
         return dataItem;
     }
@@ -1812,7 +1825,7 @@ public class DBHelper extends SQLiteOpenHelper {
         dataItem.rate = cursor.getInt(cursor.getColumnIndex(KEY_ITEM_SCORE));
         dataItem.errors = cursor.getInt(cursor.getColumnIndex(KEY_ITEM_ERRORS));
 
-        dataItem.filter = cursor.getString(cursor.getColumnIndex(KEY_ITEM_INFO));
+        dataItem.db_filter = cursor.getString(cursor.getColumnIndex(KEY_ITEM_INFO));
 
         dataItem.starred_time = cursor.getLong(cursor.getColumnIndex(KEY_ITEM_TIME_STARRED));
         dataItem.time = cursor.getLong(cursor.getColumnIndex(KEY_ITEM_TIME));

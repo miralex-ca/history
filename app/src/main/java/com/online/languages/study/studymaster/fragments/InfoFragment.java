@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
+
 
 public class InfoFragment extends Fragment {
 
@@ -50,11 +52,12 @@ public class InfoFragment extends Fragment {
 
         View rootview = inflater.inflate(R.layout.fragment_info, container, false);
 
-        WebView webView = (WebView) rootview.findViewById(R.id.webView);
+        WebView webView = rootview.findViewById(R.id.webView);
 
         String resName = "info";
-        Context context = getActivity().getBaseContext(); //получаем контекст
+        if (APP_SIMPLIFIED) resName = "info_simplified";
 
+        Context context = getActivity().getBaseContext(); //получаем контекст
 
         String text = readRawTextFile(context, getResources().getIdentifier(resName, "raw", getActivity().getPackageName()));
 

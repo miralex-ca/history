@@ -53,8 +53,6 @@
         </Preference>
 
 
-
-
     </PreferenceCategory>
 
 
@@ -63,7 +61,6 @@
         android:title="НАСТРОЙКИ ДАННЫХ"
         android:summary="НАСТРОЙКИ ДАННЫХ"
         >
-
 
         <ListPreference
             android:key="data_mode"
@@ -158,10 +155,6 @@
             android:defaultValue="1"
             android:dialogTitle="@string/set_control_dialog_title" />
 
-
-
-
-
     </PreferenceCategory>
 
 
@@ -209,8 +202,6 @@
             android:summaryOff ="Не отображается"
             android:summaryOn ="Отображается в строке состояния"
             android:defaultValue="false" />
-
-
 
     </PreferenceCategory>
 

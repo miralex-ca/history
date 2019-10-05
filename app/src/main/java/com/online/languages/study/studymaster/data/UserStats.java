@@ -90,7 +90,7 @@ public class UserStats {
             if (navSection.spec.equals("world")) {
                if (showWorld) userStatsData.sectionsDataList.add(new Section(navSection, context));
             } else {
-                if (!navSection.id.equals("galery")) // TODO check to change to spec
+                if (!navSection.id.equals("gallery")) // TODO check to change to spec
                 userStatsData.sectionsDataList.add(new Section(navSection, context));
             }
 

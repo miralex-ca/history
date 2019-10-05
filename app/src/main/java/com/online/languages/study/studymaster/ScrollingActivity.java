@@ -31,6 +31,8 @@ import com.online.languages.study.studymaster.data.DetailFromJson;
 import com.online.languages.study.studymaster.data.DetailItem;
 import com.squareup.picasso.Picasso;
 
+import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+
 public class ScrollingActivity extends AppCompatActivity {
 
 
@@ -44,8 +46,8 @@ public class ScrollingActivity extends AppCompatActivity {
     int itemPostion = 0;
 
     Boolean starrable = false;
-
     Boolean starStatusChanged = false;
+    int sourceType;
 
 
     @Override
@@ -64,14 +66,15 @@ public class ScrollingActivity extends AppCompatActivity {
         starrable = getIntent().getBooleanExtra("starrable", false);
 
 
-        if (appSettings.getBoolean(Constants.SET_VERSION_TXT, false)) starrable = true;
+        sourceType = getIntent().getIntExtra("source", 0); // 0 - list, 1 - search
 
+
+
+        if (appSettings.getBoolean(Constants.SET_VERSION_TXT, false)) starrable = true;
 
         starStatusChanged= false;
 
         setContentView(R.layout.activity_detail);
-
-
 
         dbHelper = new DBHelper(this);
 
@@ -89,8 +92,8 @@ public class ScrollingActivity extends AppCompatActivity {
         if (detailItem.title.equals("not found")) {
             DataItem dataItem =  dataManager.getDataItemFromDB(tag);
             detailItem  = new DetailItem(dataItem);
+            sourceType = 1; // the same height as in search
         }
-
 
 
         TextView infoT = findViewById(R.id.lbl_text);
@@ -98,23 +101,19 @@ public class ScrollingActivity extends AppCompatActivity {
 
         View appbar = findViewById(R.id.app_bar);
         View screem = findViewById(R.id.screem_btm);
+        View coordinator = findViewById(R.id.coordinator);
 
-        View coordiinator = findViewById(R.id.coordinator);
+
+        if (sourceType==1) {
+            int dialogHeight = getResources().getInteger(R.integer.search_dialog_height);
+            int imgHeight = getResources().getInteger(R.integer.search_dialog_img_height);
+            changeDialogSize(coordinator, appbar, dialogHeight, imgHeight);
+        }
 
         if (detailItem.image.equals("none")) {
-
-            ///Toast.makeText(this, "No image", Toast.LENGTH_SHORT).show();
-
-            coordiinator.getLayoutParams().height = convertDimen(380);
-            coordiinator.setLayoutParams(coordiinator.getLayoutParams());
-
-            appbar.getLayoutParams().height = convertDimen(130);
-            appbar.setLayoutParams(appbar.getLayoutParams());
-
+            changeDialogSize(coordinator, appbar, 380, 130);
             screem.setVisibility(View.GONE);
             imgIfo.setVisibility(View.GONE);
-
-
         }
 
 
@@ -164,7 +163,6 @@ public class ScrollingActivity extends AppCompatActivity {
             if (Constants.DEBUG)  placePicutre.setColorFilter(Color.argb(255, 50, 255, 240), PorterDuff.Mode.MULTIPLY);
         }
 
-
         checkStarStatus(detailItem.id, fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -198,6 +196,16 @@ public class ScrollingActivity extends AppCompatActivity {
             textHelper.setText(title);
             textHelper.setVisibility(View.VISIBLE);
         }
+
+    }
+
+    private void changeDialogSize(View coordinator, View appbar, int coordHeight, int barHeight) {
+
+        appbar.getLayoutParams().height = convertDimen(barHeight);
+        appbar.setLayoutParams(appbar.getLayoutParams());
+
+        coordinator.getLayoutParams().height = convertDimen(coordHeight);
+        coordinator.setLayoutParams(coordinator.getLayoutParams());
 
     }
 
@@ -237,7 +245,6 @@ public class ScrollingActivity extends AppCompatActivity {
             setResult(CatInfoDetailActivity.RESULT_CANCELED,returnIntent);
         }
 
-
         super.finish();
         overridePendingTransition(0, R.anim.fade_out_2);
     }
@@ -253,7 +260,13 @@ public class ScrollingActivity extends AppCompatActivity {
 
         Boolean starred = checkStarred(tag);
 
-        int status = dbHelper.setStarred(tag, !starred); // id to id
+
+        DataItem dataItem = dbHelper.getDataItemById(tag);
+
+        String filter = "";
+        if (dataItem.filter.contains(GALLERY_TAG)) filter = GALLERY_TAG;
+
+        int status = dbHelper.setStarred(tag, !starred, filter); // id to id
 
         if (status == 0) {
             limitMessage();

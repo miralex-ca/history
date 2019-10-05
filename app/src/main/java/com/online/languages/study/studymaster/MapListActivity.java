@@ -20,7 +20,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.MapListAdapter;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
@@ -107,7 +109,6 @@ public class MapListActivity extends AppCompatActivity {
         viewSection = new ViewSection(this, navSection, navStructure.getNavCatListFromParent(tCatID, tSectionID));
 
         getImages();
-
 
         recyclerView = findViewById(R.id.recycler_view);
         mAdapter = new MapListAdapter(this, viewSection.categories, 1, themeTitle);
@@ -271,31 +272,17 @@ public class MapListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_maps_list, menu);
-
         changeLayoutBtn =  menu.findItem(R.id.list_layout);
         applyLayoutStatus(listType);
-
         return true;
     }
 
 
     public void showInfoDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.starred_menu_info)
-                .setCancelable(true)
-                .setNegativeButton(R.string.dialog_close_txt,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                .setMessage(R.string.maps_info);
-        AlertDialog alert = builder.create();
-        alert.show();
-
-        TextView textView = alert.findViewById(android.R.id.message);
-        textView.setTextSize(14);
+        String message = getString(R.string.maps_info);
+        if (navSection.spec.equals("gallery")) message = getString(R.string.info_menu_map);
+        DataModeDialog dataModeDialog = new DataModeDialog(this);
+        dataModeDialog.createDialog(getString(R.string.info_txt), message);
     }
 
 

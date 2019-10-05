@@ -98,7 +98,6 @@
     <dimen name="detail_card_width_max">@dimen/_detail_card_width_max</dimen>
     <dimen name="detail_card_width_min">@dimen/_detail_card_width_min</dimen>
 
-
     <dimen name="detail_card_height">@dimen/_detail_card_height</dimen>
     <dimen name="detail_image_height">@dimen/_detail_image_height</dimen>
 
@@ -114,11 +113,11 @@
 
     <dimen name="detail_text_size">@dimen/_detail_text_size</dimen>
 
-
-
-
     <dimen name="dialog_card_height">@dimen/_dialog_card_height</dimen>
+    <dimen name="dialog_card_img_height">@dimen/_dialog_card_img_height</dimen>
 
+    <integer name="search_dialog_height">@integer/_search_dialog_height</integer>
+    <integer name="search_dialog_img_height">@integer/_search_dialog_img_height</integer>
 
     <dimen name="stats_diagram_ext_size">@dimen/_stats_diagram_ext_size</dimen>
     <dimen name="stats_diagram_int_size">@dimen/_stats_diagram_int_size</dimen>
@@ -130,7 +129,7 @@
 
     <dimen name="article_keylines">16dp</dimen>
 
-    <dimen name="dialog_card_img_height">@dimen/_dialog_card_img_height</dimen>
+
 
     <!-- dialog activity -->
     <dimen name="text_margin">16dp</dimen>

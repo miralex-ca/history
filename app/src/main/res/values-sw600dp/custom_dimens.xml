@@ -65,7 +65,6 @@
     <dimen name="_card_padding">34dp</dimen>
 
     <style name="DetailSize.Width">
-
     </style>
 
     <dimen name="_detail_card_width">350dp</dimen>

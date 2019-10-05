@@ -28,6 +28,7 @@ import com.online.languages.study.studymaster.adapters.CustomDataListAdapter;
 import com.online.languages.study.studymaster.adapters.CustomDataPagerAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
@@ -41,18 +42,17 @@ import com.online.languages.study.studymaster.fragments.CustomTabFragment3;
 
 import java.util.ArrayList;
 
-public class CustomDataActivity extends AppCompatActivity {
+import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
 
+public class CustomDataActivity extends AppCompatActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
     public String themeTitle;
 
-
     ArrayList<DataItem> dataItems;
 
     RecyclerView recyclerView;
-
     DataManager dataManager;
 
     public static  String sectionId;
@@ -63,11 +63,7 @@ public class CustomDataActivity extends AppCompatActivity {
 
     View emptyTxt;
 
-
-
     int listType;
-
-    NavCategory navCategory;
 
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
@@ -76,11 +72,11 @@ public class CustomDataActivity extends AppCompatActivity {
     ViewPager viewPager;
 
     CustomDataPagerAdapter adapter;
+    OpenActivity openActivity;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
 
@@ -92,26 +88,21 @@ public class CustomDataActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_custom_data_tabs);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+
+        openActivity.setOrientation();
 
         adapterListType = -1;
 
         sectionId = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
-
         catId = getIntent().getStringExtra(Constants.EXTRA_CAT_ID);
 
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new DataModeDialog(this);
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
 
         listType = getIntent().getIntExtra(Constants.EXTRA_DATA_TYPE, 0); //
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
@@ -119,12 +110,9 @@ public class CustomDataActivity extends AppCompatActivity {
 
         setTitle(getCatTitleById(catId));
 
-
         emptyTxt = findViewById(R.id.emptyTxt);
 
-
         dataManager = new DataManager(this);
-
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -133,21 +121,15 @@ public class CustomDataActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Пройдено"));
         tabLayout.addTab(tabLayout.newTab().setText("Не пройдено"));
 
-
         viewPager = findViewById(R.id.container);
 
-        adapter = new CustomDataPagerAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount());
+        adapter = new CustomDataPagerAdapter (getSupportFragmentManager(), tabLayout.getTabCount());
 
         viewPager.setAdapter(adapter);
-
         viewPager.setOffscreenPageLimit(2);
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-
         setActiveTab(listType);
-
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -163,8 +145,6 @@ public class CustomDataActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
-
     }
 
 
@@ -179,43 +159,22 @@ public class CustomDataActivity extends AppCompatActivity {
         return title;
     }
 
-
-
     private void setActiveTab(int listType) { // 0 - studied, 1 - familiar, 2 - unknown;
-
         viewPager.setCurrentItem(listType);
-
-
     }
 
-
-
-    private void onItemClick(final View view, final int position) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                showAlertDialog(view, position);
-            }
-        }, 50);
-    }
-
-
-    public void showAlertDialog(View view, int position) {
+    public void showDetailDialog(View view, int position) {
 
         Intent intent = new Intent(CustomDataActivity.this, ScrollingActivity.class);
 
         String id = view.getTag().toString();
-
         intent.putExtra("starrable", navSection.unlocked);
         intent.putExtra("id", id );
         intent.putExtra("position", position);
 
         startActivityForResult(intent,1);
-
         overridePendingTransition(R.anim.slide_in_down, 0);
     }
-
-
 
 
     @Override
@@ -224,12 +183,10 @@ public class CustomDataActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1) {
-
             if(resultCode == CustomDataActivity.RESULT_OK){
                 updateLists(0);
             }
         }
-
     }
 
 
@@ -238,7 +195,6 @@ public class CustomDataActivity extends AppCompatActivity {
         CustomDataFragment fragment = (CustomDataFragment) adapter.getRegisteredFragment(0);
         CustomTabFragment2 fragment2 = (CustomTabFragment2) adapter.getRegisteredFragment(1);
         CustomTabFragment3 fragment3 = (CustomTabFragment3) adapter.getRegisteredFragment(2);
-
 
         if (origin == 1) {
             if (fragment2 != null) fragment2.checkDataList();
@@ -260,12 +216,8 @@ public class CustomDataActivity extends AppCompatActivity {
 
     }
 
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
 
         if (sectionId.equals(Constants.ERRORS_CAT_TAG)) {
             getMenuInflater().inflate(R.menu.menu_custom_list, menu);
@@ -273,19 +225,15 @@ public class CustomDataActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.stats_mode_info, menu);
             MenuItem modeMenuItem = menu.findItem(R.id.easy_mode);
             if (easy_mode) modeMenuItem.setVisible(true);
-
         }
 
         return true;
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -294,34 +242,23 @@ public class CustomDataActivity extends AppCompatActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
-
             case R.id.easy_mode:
                 dataModeDialog.openDialog();
                 return true;
             case R.id.info_from_menu:
-                dataModeDialog.modeInfoDialog();
+                openInfo();
                 return true;
-
-
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
+    public void openInfo() {
+        if (APP_SIMPLIFIED) dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
+        else dataModeDialog.modeInfoDialog();
     }
-
-
-
-
-
 
 
 }

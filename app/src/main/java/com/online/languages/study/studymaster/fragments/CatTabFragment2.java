@@ -14,22 +14,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.DBHelper;
-import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.ColorProgress;
-import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.ExRecycleAdapter;
-import com.online.languages.study.studymaster.data.CatData;
-import com.online.languages.study.studymaster.data.Category;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
 
@@ -99,7 +91,7 @@ public class CatTabFragment2 extends Fragment {
             minCardHeight.setMinimumHeight(0);
         }
 
-        if (Constants.ONE_CAT) {
+        if (Constants.APP_SIMPLIFIED) {
             topStatsCard.setVisibility(View.GONE);
             divide.setVisibility(View.GONE);
         }

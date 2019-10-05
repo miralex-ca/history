@@ -15,9 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -26,16 +24,14 @@ import com.google.android.gms.ads.MobileAds;
 import com.online.languages.study.studymaster.adapters.CatViewPagerAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
-import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
-import com.online.languages.study.studymaster.data.NavCategory;
-import com.online.languages.study.studymaster.data.NavSection;
-import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.Section;
 import com.online.languages.study.studymaster.fragments.CatTabFragment1;
 
 import java.util.ArrayList;
+
+import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
 
 public class CatActivity extends AppCompatActivity {
 
@@ -226,11 +222,17 @@ public class CatActivity extends AppCompatActivity {
                 dataModeDialog.openDialog();
                 return true;
             case R.id.info_from_menu:
-                dataModeDialog.modeInfoDialog();
+                infoMessage();
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void infoMessage() {
+        if (APP_SIMPLIFIED) dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
+        else dataModeDialog.modeInfoDialog();
+
     }
 
 
@@ -301,7 +303,6 @@ public class CatActivity extends AppCompatActivity {
     }
 
 
-
     private void checkAdShow() {
         showAd = appSettings.getBoolean(Constants.SET_SHOW_AD, false);
 
@@ -310,13 +311,11 @@ public class CatActivity extends AppCompatActivity {
         SharedPreferences mLaunches = getSharedPreferences(AppStart.APP_LAUNCHES, Context.MODE_PRIVATE);
         int launchesNum = mLaunches.getInt(AppStart.LAUNCHES_NUM, 0);
 
-
         if (showAd) showAdCard();
 
         if (launchesNum < 2) {
             adContainer.setVisibility(View.GONE);
         } else  {
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

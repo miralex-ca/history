@@ -13,11 +13,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -567,7 +566,7 @@ public class MainActivity extends AppCompatActivity
 
         NavSection navSection = navStructure.sections.get(position);
 
-        if (Constants.ONE_CAT) {
+        if (Constants.APP_SIMPLIFIED) {
 
             if (navSection.spec.equals("gallery")) {
                 openGallery(navSection);
@@ -850,7 +849,7 @@ public class MainActivity extends AppCompatActivity
 
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
 
-        startActivity(i);
+        startActivityForResult(i, 10);
 
     }
 
@@ -870,8 +869,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         onMenuItemClicker(i);
@@ -887,14 +884,12 @@ public class MainActivity extends AppCompatActivity
 
     public void openStarred(View view) {
         Intent i = new Intent(MainActivity.this, UserListActivity.class);
-
         startActivity(i);
         pageTransition();
     }
 
     public void openStarredGallery(View view) {
         Intent i = new Intent(MainActivity.this, StarredGalleryActivity.class);
-
         i.putExtra(Constants.EXTRA_CAT_ID, "01010");
         i.putExtra(Constants.EXTRA_SECTION_ID, "01010");
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
@@ -913,9 +908,7 @@ public class MainActivity extends AppCompatActivity
 
     public void openGetPremium(View view) {
         Intent i = new Intent(MainActivity.this, GetPremium.class);
-
         startActivityForResult(i, 1);
-
     }
 
 
@@ -993,6 +986,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
                 Intent intent = getIntent();
@@ -1000,6 +995,18 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         }
+
+
+        if (requestCode == 10) {
+
+            Fragment fragment = fragmentManager.findFragmentByTag("starred");
+            if (fragment != null) {
+                fragment.onActivityResult(requestCode, resultCode, data);
+            }
+
+        }
+
+
 
 
     }

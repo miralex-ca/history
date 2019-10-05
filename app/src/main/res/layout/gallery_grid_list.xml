@@ -5,15 +5,20 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/title"
-        android:text="Раздел"
-        android:textSize="18sp"
+    <RelativeLayout
+        android:id="@+id/titleWrap"
         android:paddingTop="6dp"
         android:layout_margin="10dp"
-        android:alpha="0.8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title"
+            android:textSize="18sp"
+            android:alpha="0.8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
@@ -23,5 +28,4 @@
                 android:nestedScrollingEnabled="false"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 />
-
 </LinearLayout>

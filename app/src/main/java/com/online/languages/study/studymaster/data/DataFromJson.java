@@ -192,7 +192,6 @@ public class DataFromJson {
 
                     cat.unlocked = section.unlocked;
 
-
                     if (category.has("desc")) {
                         cat.desc = category.getString("desc");
                     } else {
@@ -346,6 +345,12 @@ public class DataFromJson {
                 dataItem.divider =  itemInfo.getString("divider");
             } else {
                 dataItem.divider =  "no";
+            }
+
+            if (itemInfo.has("filter")) {
+                dataItem.filter =  itemInfo.getString("filter");
+            } else {
+                dataItem.filter =  "";
             }
 
             if (itemInfo.has("image")) {

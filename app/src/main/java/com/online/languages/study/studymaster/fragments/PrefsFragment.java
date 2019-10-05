@@ -22,13 +22,13 @@ import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
 
+import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
+
 
 public class PrefsFragment extends PreferenceFragmentCompat {
 
     PreferenceScreen screen;
     PreferenceGroup preferenceParent;
-
-
 
 
     @Override
@@ -37,12 +37,21 @@ public class PrefsFragment extends PreferenceFragmentCompat {
 
         addPreferencesFromResource(R.xml.settings);
 
-
         screen = getPreferenceScreen();
         preferenceParent = (PreferenceGroup) findPreference("interface");
 
         Preference hidden = getPreferenceManager().findPreference("hidden");
         screen.removePreference(hidden);
+
+        Preference controlTests = getPreferenceManager().findPreference("control_tests");
+
+        if (APP_SIMPLIFIED) {
+            Preference data = getPreferenceManager().findPreference("data");
+            screen.removePreference(data);
+
+            controlTests.setVisible(false);
+        }
+
 
 
         SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -55,9 +64,9 @@ public class PrefsFragment extends PreferenceFragmentCompat {
 
 
 
+
         final ListPreference btm = (ListPreference) getPreferenceManager().findPreference("btm_nav");
         if (Build.VERSION.SDK_INT < 21) btm.setVisible(false);
-
 
         btm.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference, Object newValue) {

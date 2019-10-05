@@ -2,7 +2,12 @@ package com.online.languages.study.studymaster.fragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.design.internal.SnackbarContentLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
@@ -37,6 +42,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.online.languages.study.studymaster.Constants.STARRED_TAB_ACTIVE;
+
 
 public class StarredFragment extends Fragment {
 
@@ -59,6 +66,12 @@ public class StarredFragment extends Fragment {
     TabLayout tabLayout;
     StarredTabsPagerAdapter tabsAdapter;
 
+    View starredList;
+    View starredTabs;
+
+    SharedPreferences appSettings;
+    int activeTab;
+
 
     public StarredFragment() {
         // Required empty public constructor
@@ -72,6 +85,12 @@ public class StarredFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_starred, container, false);
 
 
+        appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        activeTab = appSettings.getInt(STARRED_TAB_ACTIVE, 0);
+
+        starredList = rootView.findViewById(R.id.starredList);
+        starredTabs = rootView.findViewById(R.id.starredTabs);
 
         text = rootView.findViewById(R.id.starredWords);
         dataManager = new DataManager(getActivity());
@@ -86,18 +105,34 @@ public class StarredFragment extends Fragment {
         previewList = rootView.findViewById(R.id.starred_preview_list);
 
         words = updateTitle(words);
+        checkTabsDisplay();
 
         createPreviewList(words);
 
-        View starredList = rootView.findViewById(R.id.starredList);
-
-        View starredTabs = rootView.findViewById(R.id.starredTabs);
-
-        starredList.setVisibility(View.GONE);
-        starredTabs.setVisibility(View.VISIBLE);
 
 
         return rootView;
+    }
+
+    private void checkTabsDisplay() {
+        ArrayList<DataItem> dataFromGallery = dataManager.getStarredWords(2,false);
+        if (dataFromGallery.size() > 0) {
+            starredList.setVisibility(View.GONE);
+            starredTabs.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private int getActiveTabNum() {
+        int act = appSettings.getInt(STARRED_TAB_ACTIVE, 0);
+        //Toast.makeText(getActivity(), "Active tab: "+ activeTab, Toast.LENGTH_SHORT).show();
+        return act;
+    }
+
+    private void setStarredTab(int tab) {
+        SharedPreferences.Editor editor = appSettings.edit();
+        editor.putInt(STARRED_TAB_ACTIVE, tab);
+        editor.apply();
+
     }
 
 
@@ -125,9 +160,12 @@ public class StarredFragment extends Fragment {
         tabsPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
+                setStarredTab(tab.getPosition());
                 tabsPager.setCurrentItem(tab.getPosition());
             }
 
@@ -140,13 +178,22 @@ public class StarredFragment extends Fragment {
             }
         });
 
+
+        new android.os.Handler().postDelayed(new Runnable() {
+            public void run() {
+                tabsPager.setCurrentItem(activeTab, false);
+            }
+        }, 100);
+
+
+
+
     }
 
 
 
 
     private void createPreviewList(ArrayList<DataItem> dataItems) {
-
 
         previewList.removeAllViews();
 
@@ -173,7 +220,6 @@ public class StarredFragment extends Fragment {
         if (tab == 2) {
             tabLayout.getTabAt(1).setText("Галерея ("+count+")");
         }
-
     }
 
 
@@ -184,12 +230,10 @@ public class StarredFragment extends Fragment {
         if (words.size() < 1) {
             zero.setVisibility(View.VISIBLE);
             infoBox.setVisibility(View.GONE);
-
         } else {
             zero.setVisibility(View.GONE);
             infoBox.setVisibility(View.VISIBLE);
         }
-
 
 
         int limit = Constants.STARRED_LIMIT;
@@ -217,83 +261,22 @@ public class StarredFragment extends Fragment {
     }
 
 
-    private String getStarredWordsTitle(ArrayList<DataItem> words, int type) {
-        String title= "";
-
-        String divider = "; ";
-        String ending = " ...";
-        int limit = 7;
-
-        if (type == 2) {
-            divider  = "<br/></br>"; ending = "........"; limit = 5;
-        }
-
-        for (int i = 0; i<words.size(); i++) {
-
-            String item = "<b>"+words.get(i).item + "</b><br>" + words.get(i).info;
-
-            title = title + item;
-
-            if (i < (words.size()-1) ) title = title +divider;
-
-            if (i >=  (limit-1) ) break;
-        }
-        if (words.size() > limit ) title += ending;
-        return title;
-    }
-
-
     @Override
     public void onResume() {
-
         super.onResume();
-
         words = updateTitle(words);
-
         createPreviewList(words);
+        checkTabsDisplay();
+
 
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_starred, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.info_from_menu:
-                showInfoDialog();
-                return true;
-
-            default:
-                break;
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 10) {
+           if (tabsPager !=null) tabsPager.setCurrentItem(getActiveTabNum(), true);
         }
-        return false;
     }
-
-    public void showInfoDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.starred_menu_info)
-                .setCancelable(true)
-                .setNegativeButton(R.string.dialog_close_txt,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                .setMessage(R.string.starred_words_info);
-        AlertDialog alert = builder.create();
-        alert.show();
-
-    }
-
-
-
 
 
 

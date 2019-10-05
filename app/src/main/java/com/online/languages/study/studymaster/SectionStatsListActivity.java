@@ -77,9 +77,7 @@ public class SectionStatsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
-
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(this);
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
@@ -98,66 +96,43 @@ public class SectionStatsListActivity extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
-
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         tSectionID = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
-
         section = new Section(navStructure.getNavSectionByID(tSectionID), this);
-
         navSection = navStructure.getNavSectionByID(tSectionID);
 
         dbHelper = new DBHelper(this);
 
-
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         setTitle(R.string.title_custom_txt);
 
         dataCountTxt = findViewById(R.id.sectionCustomDataCount);
         dataTitle = findViewById(R.id.customListTile);
         dataDesc = findViewById(R.id.customListDesc);
-
         dataType = getIntent().getIntExtra(Constants.EXTRA_DATA_TYPE, 0);
 
-
         recyclerView = findViewById(R.id.recycler_view);
-
 
         section = dbHelper.getSectionCatItemsStats(section);
         setContent();
 
         mAdapter = new CustomSectionAdapter(this, section.categories, mainColor, dataType);
 
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-       // recyclerView.addItemDecoration(new DividerItemDecoration(this));
-
-
         recyclerView.setSelected(true);
-
         recyclerView.setAdapter(mAdapter);
-
 
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-               // int count  = (int) view.findViewById(R.id.sectionTitle).getTag(R.id.data_count);
-               // if (count  == 0) displayEmtySection();
-
                 onListItemClick(position);
-
-
             }
 
             @Override
@@ -165,10 +140,7 @@ public class SectionStatsListActivity extends AppCompatActivity {
 
             }
         }));
-
-
     }
-
 
 
     @Override
@@ -189,12 +161,7 @@ public class SectionStatsListActivity extends AppCompatActivity {
         if (easy_mode) modeMenuItem.setVisible(true);
 
         return true;
-
     }
-
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -210,34 +177,9 @@ public class SectionStatsListActivity extends AppCompatActivity {
             case R.id.easy_mode:
                 dataModeDialog.openDialog();
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-    private void getStatsCount() {
-        UserStats userStats = new UserStats(this);
-
-        String wCount = "";
-        switch (list_type) {
-            case "studied":
-            //    wCount = userStats.userStatsData.studiedWords;
-                break;
-            case "known":
-             //   wCount = userStats.userStatsData.knownWords;
-                break;
-            case "familiar":
-            //    wCount = userStats.userStatsData.familiarWords;
-                break;
-            case "seen":
-            //    wCount = userStats.userStatsData.seenWords;
-                break;
-        }
-
-       // wordsCountTxt.setText(wCount);
-    }
-
 
     private void startContent() {
         new Handler().postDelayed(new Runnable() {
@@ -248,21 +190,16 @@ public class SectionStatsListActivity extends AppCompatActivity {
         }, 30);
     }
 
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         updateContent();
-
     }
 
     public void updateContent() {
         section = dbHelper.getSectionCatItemsStats(section);
         setContent();
-
         mAdapter.notifyDataSetChanged();
     }
-
 
     public void setContent() {
 

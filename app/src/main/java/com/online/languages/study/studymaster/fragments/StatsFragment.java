@@ -94,8 +94,6 @@ public class StatsFragment extends Fragment {
         unknownTxt = rootview.findViewById(R.id.unknownCountTxt);
 
 
-
-
         knownProgress = rootview.findViewById(R.id.knownProgress);
         studiedProgress = rootview.findViewById(R.id.studiedProgress);
 
@@ -159,8 +157,6 @@ public class StatsFragment extends Fragment {
     }
 
 
-
-
     private void updateData() {
 
         userStats.updateData();
@@ -171,8 +167,6 @@ public class StatsFragment extends Fragment {
         errorsList = userStats.userStatsData.errorsWords;
         MainActivity.errorsList = userStats.userStatsData.errorsWords;
     }
-
-
 
 
     private void setContent() {
@@ -211,8 +205,6 @@ public class StatsFragment extends Fragment {
         studiedTxtProgress.setText("Изучено: " + studiedProgressValue + "%" );
         knownTxtProgress.setText("Пройдено: " + knownProgressValue + "%" );
         unknownTxtProgress.setText("Не пройдено: " + (100 - knownProgressValue) + "%" );
-
-
 
 
         knownProgress.setAlpha(0);

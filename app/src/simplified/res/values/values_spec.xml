@@ -16,6 +16,4 @@
     <dimen name="home_card_title_txt_size">@dimen/_home_card_title_txt_size_4</dimen>
     <dimen name="home_card_desc_txt_size">@dimen/_home_card_desc_txt_size_4</dimen>
 
-
-
 </resources>

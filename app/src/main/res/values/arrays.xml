@@ -140,15 +140,14 @@
         <item>ekaterina_2_3.jpg</item>
         <item>aleksandr_1_2.jpg</item>
         <item>nikolay_2_0.jpg</item>
-
     </string-array>
 
     <string-array name="home_card_3">
-        <item>hram.jpg</item>
-        <item>dogovor_1686.jpg</item>
+        <item>gallery/sobor_blazhenniy.jpg</item>
+        <item>gallery/monument/monument_nikolay_1.jpg</item>
         <item>russia_gerb_2.jpg</item>
         <item>jandarm.jpg</item>
-        <item>andrey_rublev.jpg</item>
+        <item>gallery/paint/devochka_s_persikami.jpg</item>
 
     </string-array>
 

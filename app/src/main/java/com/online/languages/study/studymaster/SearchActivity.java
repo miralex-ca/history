@@ -41,6 +41,8 @@ import com.online.languages.study.studymaster.data.NavStructure;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -53,26 +55,19 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     SearchDataAdapter adapter;
     RecyclerView recyclerView;
-
-
     ArrayList<DataItem> data;
     ArrayList<DataItem> displayData;
 
     int moreDataCoount = 0;
-
     Boolean full_version;
-
 
     SearchView searchView;
 
     View card;
-
     TextView result;
-
     TextView loadMoreTxt;
 
     NavStructure navStructure;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +88,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         navStructure.getUniqueCats();
 
 
-
         if(getResources().getBoolean(R.bool.portrait_only)){
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
@@ -104,7 +98,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         setTitle("");
 
-
         dbHelper = new DBHelper(this);
 
         card = findViewById(R.id.card);
@@ -112,24 +105,15 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         loadMoreTxt = findViewById(R.id.loadMoreTxt);
 
-
         recyclerView = findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-
-
-
-
 
         recyclerView.setLayoutManager(mLayoutManager);
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        // recyclerView.addItemDecoration(new DividerItemDecoration(this));
-
         recyclerView.setSelected(true);
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
-
-
 
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new ClickListener() {
@@ -150,7 +134,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }));
 
 
-
         NestedScrollView mNestedScrollView  = findViewById(R.id.scrollView);
 
 
@@ -169,11 +152,17 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     public void changeStarred(int position){   /// check just one item
 
-        String id = data.get(position).id;
+        DataItem dataItem = data.get(position);
+
+        String id = dataItem.id;
+
+
+        String filter = "";
+        if (dataItem.filter.contains(GALLERY_TAG)) filter = GALLERY_TAG;
+
         Boolean starred = dbHelper.checkStarred(id );
 
-        int status = dbHelper.setStarred(id, !starred); // id to id
-
+        int status = dbHelper.setStarred(id, !starred, filter); // id to id
 
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         int vibLen = 30;
@@ -184,7 +173,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         }
 
         checkStarred(position);
-
 
         assert v != null;
         v.vibrate(vibLen);
@@ -202,10 +190,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             }
         }, 200);
     }
-
-
-
-
 
 
 
@@ -236,18 +220,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     }
 
 
-
-
-
     public void showAlertDialog(View view, int position) {
 
         Intent intent = new Intent(SearchActivity.this, ScrollingActivity.class);
-        // String id = view.getTag(R.id.item_id).toString();
-
         intent.putExtra("id", data.get(position).id );
         intent.putExtra("position", position);
-
         intent.putExtra("item", data.get(position));
+        intent.putExtra("source", 1);
 
         startActivityForResult(intent,1);
         overridePendingTransition(R.anim.slide_in_down, 0);
@@ -257,11 +236,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id) {
-            case android.R.id.home:
-                finish();
-                return true;
-
+        if (id == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -287,18 +264,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(this);
         searchView.setQueryHint("Поиск");
-
-
         searchView.setIconified(false);
-
         searchView.requestFocus();
 
-
         return true;
-
     }
-
-
 
 
     @Override
@@ -312,23 +282,18 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         if (newText.length() < 2 ) {
             adapter = new SearchDataAdapter(this, new ArrayList<DataItem>(), themeTitle);
             recyclerView.setAdapter(adapter);
-
             result.setVisibility(View.GONE);
             card.setVisibility(View.GONE);
 
-
         } else {
             results(newText);
-
         }
 
         return true;
     }
 
     public void focusLayout(View view) {
-
         searchView.clearFocus();
-
     }
 
 
@@ -353,34 +318,25 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             card.setVisibility(View.VISIBLE);
         }
 
-
         int limit = 15;
-
 
         displayData = new ArrayList<>(data);
 
         if (size > limit) {
 
-            // Toast.makeText(this, "Count: "+ data.size(), Toast.LENGTH_SHORT).show();
-
             displayData = new ArrayList<>(data.subList(0, limit));
-
         }
-
 
         adapter = new SearchDataAdapter(this, displayData, themeTitle);
         recyclerView.setAdapter(adapter);
-
 
         manageMoreButton();
 
     }
 
-
     private void manageMoreButton() {
 
         moreDataCoount = displayLoadMore( displayData.size() ,  data.size() );
-
 
         int dif = data.size() - displayData.size();
 
@@ -392,9 +348,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
             loadMoreTxt.setVisibility(View.GONE);
         }
-
     }
-
 
     public void loadMore(View view) {
 
@@ -406,17 +360,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         adapter.notifyItemRangeInserted(displayData.size(), moreDataCoount);
 
-
         manageMoreButton();
-
-
-        // Toast.makeText(this, "from"+ displayData.size() +" to "+ (displayData.size() + moreDataCoount), Toast.LENGTH_SHORT).show();
-
-
-        // adapter = new SearchDataAdapter(displayData);
-        // recyclerView.setAdapter(adapter);
-
-
     }
 
 
@@ -438,9 +382,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             }
         }
 
-
         return load;
-
     }
 
 

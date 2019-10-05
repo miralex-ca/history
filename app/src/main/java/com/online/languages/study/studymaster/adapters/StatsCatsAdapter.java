@@ -11,11 +11,12 @@ import android.widget.TextView;
 
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
-import com.online.languages.study.studymaster.data.CatData;
 import com.online.languages.study.studymaster.data.Section;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
 
 
 public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyViewHolder> {
@@ -50,7 +51,7 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         sections = _sections;
         context = _context;
         colorProgress = new ColorProgress(context);
-        simplified = Constants.ONE_CAT;
+        simplified = APP_SIMPLIFIED;
     }
 
     @Override
@@ -59,6 +60,8 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         View itemView;
 
         itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.stats_cat_list_item, parent, false);
+
+        if (sections.size() < 4) itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.stats_cat_list_item_big, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -109,7 +112,6 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         holder.desc.setText(Html.fromHtml(desc));
         if (simplified) {
             holder.desc.setText(section.desc_short);
-            holder.desc.setTextSize(12);
         }
 
         // */

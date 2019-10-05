@@ -61,6 +61,7 @@
 
                 <View
                     android:visibility="visible"
+                    android:alpha="0.4"
                     android:id="@+id/screem_top"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -69,17 +70,28 @@
                     android:background="@drawable/screem_top"/>
 
 
-
-                <ImageView
+                <RelativeLayout
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/ic_star"
-                    android:id="@+id/starIcon"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="3dp"
                     android:visibility="invisible"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
+                    android:id="@+id/starIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_star_bg"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp" />
+
+                    <ImageView
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_star"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp" />
+                </RelativeLayout>
 
 
             </RelativeLayout>

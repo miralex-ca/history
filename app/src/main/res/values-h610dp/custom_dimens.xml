@@ -12,6 +12,9 @@
     <dimen name="_detail_card_height">470dp</dimen>
     <dimen name="_detail_appbar_height">250dp</dimen>
 
+    <integer name="_search_dialog_height">430</integer>
+    <integer name="_search_dialog_img_height">260</integer>
+
 
     <dimen name="_flash_card_height">340dp</dimen>
     <dimen name="_flash_text_box_height">120dp</dimen>

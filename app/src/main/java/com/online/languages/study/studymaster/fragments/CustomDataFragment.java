@@ -1,11 +1,9 @@
 package com.online.languages.study.studymaster.fragments;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,16 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.CustomDataActivity;
 import com.online.languages.study.studymaster.R;
-import com.online.languages.study.studymaster.adapters.ContentAdapter;
 import com.online.languages.study.studymaster.adapters.CustomDataListAdapter;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
-import com.online.languages.study.studymaster.data.NavCategory;
 
 import java.util.ArrayList;
 
@@ -150,7 +145,7 @@ public class CustomDataFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ((CustomDataActivity)getActivity()).showAlertDialog(view, position);
+                ((CustomDataActivity)getActivity()).showDetailDialog(view, position);
             }
         }, 50);
     }

@@ -89,13 +89,14 @@ public class Constants {
 
     public static final String IMG_LIST_LAYOUT = "img_list_layout";
 
-    public static final Boolean ONE_CAT = BuildConfig.SIMPLIFIED;
+    public static final Boolean APP_SIMPLIFIED = BuildConfig.SIMPLIFIED;
 
     public static final String REVISE_CAT_TAG = "revise";
     public static final int EXPAND_TIME = 920;
 
     public static final String GALLERY_TAG = "#gallery";
 
+    public static final String STARRED_TAB_ACTIVE = "starred_tab_active";
 
 
     public enum Status {

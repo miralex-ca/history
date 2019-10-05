@@ -183,8 +183,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
-
-
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
@@ -192,6 +190,7 @@
                         android:id="@+id/starred_preview_list"
                         android:focusable="true"
                         android:clickable="true"
+                        android:layout_marginBottom="20dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:onClick="openStarredGallery"
                         android:padding="@dimen/starred_preview_padding"
@@ -199,12 +198,7 @@
 
                         </LinearLayout>
 
-
-
                 </LinearLayout>
-
-
-
 
 </LinearLayout>
 

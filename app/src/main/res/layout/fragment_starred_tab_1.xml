@@ -192,6 +192,7 @@
                         android:id="@+id/starred_preview_list"
                         android:focusable="true"
                         android:clickable="true"
+                        android:layout_marginBottom="25dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:onClick="openStarred"
                         android:padding="@dimen/starred_preview_padding"

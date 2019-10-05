@@ -37,6 +37,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.ImageListAdapter;
 import com.online.languages.study.studymaster.adapters.MapListAdapter;
@@ -132,7 +133,6 @@ public class ImageListActivity extends AppCompatActivity {
         itemsList = findViewById(R.id.items_list);
         itemListWrap = findViewById(R.id.itemListWrap);
 
-
         cardsList = findViewById(R.id.cards_list);
         imagesList = findViewById(R.id.images_list);
 
@@ -150,10 +150,13 @@ public class ImageListActivity extends AppCompatActivity {
         navSection = navStructure.getNavSectionByID(tSectionID);
         viewSection = new ViewSection(this, navSection, navStructure.getNavCatListFromParent(tCatID, tSectionID));
 
-        setTitle("Список");
+        setTitle(getIntent().getStringExtra("title"));
+
+
 
         getImages();
 
+        if (getListType().equals(STARRED)) setTitle("Избранное ("+dataItems.size()+")");
 
         recyclerView = findViewById(R.id.recycler_view);
         mAdapter = new ImageListAdapter(this, dataItems, 1, themeTitle);
@@ -166,7 +169,6 @@ public class ImageListActivity extends AppCompatActivity {
         recyclerView.setSelected(true);
         recyclerView.setAdapter(mAdapter);
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
-
 
         /// cards list layout
         recyclerViewCards = findViewById(R.id.recycler_view_cards);
@@ -239,8 +241,6 @@ public class ImageListActivity extends AppCompatActivity {
             updateStarInList(cardsManager, position, starred);
             updateStarInList(imagesManager, position, starred);
         }
-
-
     }
 
 
@@ -253,7 +253,7 @@ public class ImageListActivity extends AppCompatActivity {
 
     private void updateStarIcon(View parent, boolean display) {
         if (parent != null ) {
-            ImageView star = parent.findViewById(R.id.starIcon);
+            View star = parent.findViewById(R.id.starIcon);
             if (display) {
                 star.setAlpha(0f);
                 star.setVisibility(View.VISIBLE);
@@ -365,6 +365,8 @@ public class ImageListActivity extends AppCompatActivity {
                 setWrapContentHeight(cardsList);
                 setWrapContentHeight(itemListWrap);
             }
+
+            setTitle("Избранное ("+dataItems.size()+")");
         }
     }
 
@@ -415,7 +417,6 @@ public class ImageListActivity extends AppCompatActivity {
                 ResizeHeight resizeHeight = new ResizeHeight(helper, h);
                 resizeHeight.setDuration(400);
                 helper.startAnimation(resizeHeight);
-
 
             }
         }, 600);
@@ -481,20 +482,16 @@ public class ImageListActivity extends AppCompatActivity {
             changeLayoutBtn.setIcon(getDrawableIcon(R.attr.iconGrid2));
         }
 
-
     }
 
 
     public void openCat(final View view) {
 
-
         ViewGroup p = (ViewGroup) view.getParent();
 
         View tagged = view.findViewById(R.id.tagged);
 
-
         final String id = (String) tagged.getTag();
-
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -591,28 +588,18 @@ public class ImageListActivity extends AppCompatActivity {
             }
         }, 80);
 
-
         return true;
     }
 
 
     public void showInfoDialog() {
+        DataModeDialog dataModeDialog = new DataModeDialog(this);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.starred_menu_info)
-                .setCancelable(true)
-                .setNegativeButton(R.string.dialog_close_txt,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                .setMessage(R.string.maps_info);
-        AlertDialog alert = builder.create();
-        alert.show();
+        String info = getString(R.string.info_star_txt);
 
-        TextView textView = alert.findViewById(android.R.id.message);
-        textView.setTextSize(14);
+        if (getListType().equals(STARRED)) info = getString(R.string.info_img_starred);
+
+        dataModeDialog.createDialog(getString(R.string.info_txt), info);
     }
 
 

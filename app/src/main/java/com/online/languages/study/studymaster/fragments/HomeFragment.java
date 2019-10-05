@@ -10,35 +10,19 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.online.languages.study.studymaster.AppStart;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
-import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.HomeCardRecycleAdapter;
-import com.online.languages.study.studymaster.adapters.RoundedTransformation;
 import com.online.languages.study.studymaster.data.DataFromJson;
-import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.Section;
-import com.online.languages.study.studymaster.util.IabHelper;
-import com.online.languages.study.studymaster.util.IabResult;
-import com.online.languages.study.studymaster.util.Inventory;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -85,7 +69,7 @@ public class HomeFragment extends Fragment {
 
 
         int recycleType = 1;
-        if (Constants.ONE_CAT) {
+        if (Constants.APP_SIMPLIFIED) {
             recyclerView.setVisibility(View.GONE);
             recyclerViewCards.setVisibility(View.VISIBLE);
             recycleType = 2;

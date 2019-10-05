@@ -78,7 +78,6 @@ public class StarredTabOne extends Fragment {
         if (getTabType() == 2) words = dataManager.getStarredWords(2,false);
         else words = dataManager.getStarredWords(false);
 
-
         zero.setVisibility(View.GONE);
         infoBox.setVisibility(View.GONE);
 

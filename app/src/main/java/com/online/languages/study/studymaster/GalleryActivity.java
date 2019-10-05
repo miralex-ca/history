@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.GalleryAdapter;
 import com.online.languages.study.studymaster.adapters.MapListAdapter;
@@ -160,12 +161,16 @@ public class GalleryActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item = inflater.inflate(R.layout.gallery_items_list, null);
 
+        View titleWrap = item.findViewById(R.id.titleWrap);
         TextView title = item.findViewById(R.id.title);
-        if (! group.title.equals("none")) {
+
+        if (group.title.equals("none")) {
+            title.setVisibility(View.GONE);
+        } else if (group.title.equals("gone")) {
+            titleWrap.setVisibility(View.GONE);
+        } else {
             title.setText(group.title);
             title.setVisibility(View.VISIBLE);
-        } else {
-            title.setVisibility(View.GONE);
         }
 
         RecyclerView recyclerView = item.findViewById(R.id.recycler_view);
@@ -189,11 +194,15 @@ public class GalleryActivity extends AppCompatActivity {
         View item = inflater.inflate(R.layout.gallery_grid_list, null);
 
         TextView title = item.findViewById(R.id.title);
-        if (! group.title.equals("none")) {
+        View titleWrap = item.findViewById(R.id.titleWrap);
+
+        if (group.title.equals("none")) {
+            title.setVisibility(View.GONE);
+        } else if (group.title.equals("gone")) {
+            titleWrap.setVisibility(View.GONE);
+        } else {
             title.setText(group.title);
             title.setVisibility(View.VISIBLE);
-        } else {
-            title.setVisibility(View.GONE);
         }
 
         RecyclerView recyclerViewCards = item.findViewById(R.id.recycler_view);
@@ -310,21 +319,8 @@ public class GalleryActivity extends AppCompatActivity {
 
     public void showInfoDialog() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.starred_menu_info)
-                .setCancelable(true)
-                .setNegativeButton(R.string.dialog_close_txt,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                .setMessage(R.string.maps_info);
-        AlertDialog alert = builder.create();
-        alert.show();
-
-        TextView textView = alert.findViewById(android.R.id.message);
-        textView.setTextSize(14);
+        DataModeDialog dataModeDialog = new DataModeDialog(this);
+        dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_gallery_txt));
     }
 
 
@@ -340,7 +336,6 @@ public class GalleryActivity extends AppCompatActivity {
     private class CatSet {
         private ArrayList<ViewCategory> catList = new ArrayList<>();
         private String title = "none";
-
         private CatSet() {
         }
     }

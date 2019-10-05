@@ -15,6 +15,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 
 import java.io.BufferedReader;
@@ -29,6 +30,8 @@ public class ReferenceActivity extends AppCompatActivity {
     SharedPreferences appSettings;
     public String themeTitle;
 
+    OpenActivity openActivity;
+
     String htmlStart = "<!DOCTYPE html><html><head><style>";
 
 
@@ -41,24 +44,20 @@ public class ReferenceActivity extends AppCompatActivity {
 
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         setContentView(R.layout.activity_reference);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        WebView webView = findViewById(R.id.webView);
 
+        String resName = getString(R.string.app_reference_file);
 
-        WebView webView = (WebView) findViewById(R.id.webView);
-
-        String resName = "reference";
-        Context context = getBaseContext(); //получаем контекст
-
+        Context context = getBaseContext();
 
         String text = readRawTextFile(context, getResources().getIdentifier(resName, "raw", getPackageName()));
 
@@ -70,31 +69,34 @@ public class ReferenceActivity extends AppCompatActivity {
         webView.loadDataWithBaseURL(null, info, "text/html", "en_US", null);
         webView.setBackgroundColor(Color.TRANSPARENT);
 
-
     }
-
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id) {
-            case android.R.id.home:
-                finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
-                return true;
-
+        if (id == android.R.id.home) {
+            finish();
+            openActivity.pageBackTransition();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private String getThemeFont () {
+
+        String color = "body {color: #111;}";
+
+        if (themeTitle.contains("dark") || themeTitle.contains("smoky") || themeTitle.contains("westworld")) {
+            color= "body {color: #fff;} a {color: #7eafff;}";
+        }
+
+        return color;
     }
 
     public static String readRawTextFile(Context context, int resId)
@@ -115,22 +117,6 @@ public class ReferenceActivity extends AppCompatActivity {
             return null;
         }
         return builder.toString();
-    }
-
-
-    private String getThemeFont () {
-
-        appSettings = PreferenceManager.getDefaultSharedPreferences(this);
-        themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
-
-        String color = "body {color: #111;}";
-
-        if (themeTitle.contains("dark") || themeTitle.contains("smoky") || themeTitle.contains("westworld")) {
-            color= "body {color: #fff;} a {color: #7eafff;}";
-        }
-
-        return color;
-
     }
 
 

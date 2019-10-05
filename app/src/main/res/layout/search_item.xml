@@ -15,20 +15,37 @@
     android:background="?android:attr/selectableItemBackground">
 
 
-    <ImageView
-        android:id="@+id/image"
 
+    <RelativeLayout
         android:layout_centerVertical="true"
+        android:id="@+id/image_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        android:layout_marginRight="12dp"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
+
+        <ImageView
+            android:layout_marginRight="16dp"
+            android:id="@+id/image"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/gIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignRight="@+id/image"
+            android:layout_alignBottom="@+id/image"
+            android:layout_marginRight="-10dp"
+            android:layout_marginBottom="0dp"
+            app:srcCompat="@drawable/ic_gallery_item" />
 
 
+    </RelativeLayout>
 
     <TextView
         android:text="Текст"
-        android:layout_toRightOf="@+id/image"
+        android:layout_toRightOf="@+id/image_wrapper"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

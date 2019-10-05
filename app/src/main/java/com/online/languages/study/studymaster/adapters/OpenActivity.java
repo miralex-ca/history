@@ -4,6 +4,7 @@ package com.online.languages.study.studymaster.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 
 import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
@@ -53,6 +54,13 @@ public class OpenActivity  {
     }
 
 
+    public void setOrientation() {
+        if(context.getResources().getBoolean(R.bool.portrait_only)){
+            ((Activity)context).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+    }
+
+
     public void pageTransition() {
         if ( !  context.getApplicationContext().getResources().getBoolean(R.bool.wide_width)) {
             ((Activity) context).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -79,7 +87,6 @@ public class OpenActivity  {
 
     private Intent createIntent(Context packageContext, Class<?> cls) {
         return new Intent(packageContext, cls);
-
     }
 
     public void openMapList(NavStructure navStructure, String sectionID, String catID ) {
@@ -112,8 +119,9 @@ public class OpenActivity  {
     }
 
 
-    public void openImageList(NavStructure navStructure, String sectionID, String catID ) {
+    private void openImageList(NavStructure navStructure, String sectionID, String catID, String title) {
         Intent i = createIntent(context, ImageListActivity.class);
+        i.putExtra("title", title);
         callSubActivity(i, navStructure, sectionID, catID);
     }
 
@@ -134,14 +142,13 @@ public class OpenActivity  {
             if (viewCategory.spec.equals("map")) {
                 openMap(viewCategory.id);
             }  else if (viewCategory.spec.equals("image_list")) {
-                openImageList(navStructure, tSectionID, viewCategory.id);
+                openImageList(navStructure, tSectionID, viewCategory.id, viewCategory.title);
             } else {
                 openCat(viewCategory.id, viewCategory.spec, viewCategory.title);
             }
         }
 
     }
-
 
 
     }

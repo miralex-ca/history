@@ -5,7 +5,6 @@
 
     android:id="@+id/coordinator"
 
-
     style="@style/DetailSize.Width"
 
     android:background="?attr/colorDialogBackground"

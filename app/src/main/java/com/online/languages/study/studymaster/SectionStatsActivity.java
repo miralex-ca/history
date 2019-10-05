@@ -135,7 +135,7 @@ public class SectionStatsActivity extends AppCompatActivity {
         View sectionListLink = findViewById(R.id.sectionListLink);
         View sectionTestLink = findViewById(R.id.sectionTestLink);
 
-        if (Constants.ONE_CAT) {
+        if (Constants.APP_SIMPLIFIED) {
             sectionListLink.setVisibility(View.GONE);
             sectionTestLink.setVisibility(View.GONE);
         }
@@ -442,7 +442,7 @@ public class SectionStatsActivity extends AppCompatActivity {
     public void openDataTypeBySections (int type) {
 
 
-        if (Constants.ONE_CAT) {
+        if (Constants.APP_SIMPLIFIED) {
 
             Intent i = new Intent(SectionStatsActivity.this, CustomDataActivity.class);
 
@@ -481,7 +481,7 @@ public class SectionStatsActivity extends AppCompatActivity {
     public void openCatActivity(View view) {
 
 
-        if (Constants.ONE_CAT) {
+        if (Constants.APP_SIMPLIFIED) {
             Category cat = section.categories.get(0);
 
             Intent i = new Intent(SectionStatsActivity.this, CatActivity.class);

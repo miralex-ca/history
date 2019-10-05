@@ -82,9 +82,7 @@ public class ImageDetailActivity extends AppCompatActivity {
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
         String tag = getIntent().getStringExtra("id");
-
 
         DataManager dataManager = new DataManager(this);
 
@@ -178,7 +176,6 @@ public class ImageDetailActivity extends AppCompatActivity {
 
         int infoSize = getResources().getInteger(R.integer.detail_text_size_small);
         String txtVal = appSettings.getString("detail_txt_size", "small");
-
         if (txtVal.equals("medium")) infoSize = getResources().getInteger(R.integer.detail_text_size_medium);
         if (txtVal.equals("large")) infoSize = getResources().getInteger(R.integer.detail_text_size_large);
 
@@ -227,7 +224,6 @@ public class ImageDetailActivity extends AppCompatActivity {
             case R.id.fullscreen:
                 openImage();
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -254,7 +250,6 @@ public class ImageDetailActivity extends AppCompatActivity {
         } else {
             setResult(CatInfoDetailActivity.RESULT_CANCELED,returnIntent);
         }
-
 
         super.finish();
         overridePendingTransition(0, R.anim.fade_out_2);

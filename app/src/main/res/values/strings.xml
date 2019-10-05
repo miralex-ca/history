@@ -169,8 +169,7 @@
     <string name="title_activity_cat_data_stats">CatDataStatsActivity</string>
     <string name="title_activity_custom_data_list">CustomDataListActivity</string>
 
-    <string name="starred_menu_info">Справка</string>
-    <string name="starred_words_info">В избранное можно добавить в списке раздела или темы (не более %1$d записей).</string>
+
     <string name="starred_limit">Не добавлено. Достигнут лимит</string>
     <string name="dialog_close_txt">Закрыть</string>
     <string name="continue_txt">Продолжить</string>
@@ -349,7 +348,6 @@
     <string name="cat_progress_txt">Средний результат \nтестов</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_map_list">MapListActivity</string>
-    <string name="maps_info">На этой странице представлен список карт по темам раздела.</string>
 
     <string name="section_content_title">Содержание раздела</string>
     <string name="section_content_title_short">Содержание</string>
@@ -358,8 +356,6 @@
     <string name="dimen_size_h">default</string>
     <string name="detail_img_info_txt">Изображение: %s</string>
     <string name="title_activity_backup">BackupActivity</string>
-
-
 
 
     <string name="backup_info"><![CDATA[
@@ -400,7 +396,6 @@
     <string name="import_last_desc">Последний импорт</string>
     <string name="import_last_info">"Последний импорт: "</string>
 
-
     <string name="cancel_txt">Отмена</string>
     <string name="starred_confirm_title">Подтверждение удаления</string>
     <string name="set_starred_confirm_summary">Подтверждать удаление из избранного</string>
@@ -408,5 +403,17 @@
     <string name="dont_ask_again">Больше не спрашивать</string>
     <string name="confirmation_txt">Подтверждение</string>
 
+
+    <string name="info_star_txt">\nДля дополнительной работы отдельные записи можно добавить в избранное. В избранное можно добавить, выбрав запись в списке и нажав на иконку со звездочкой в появившемся окне, а также долгим нажатием на элемент списка. Максимально в избранное можно добавить 30 записей.\n</string>
+
+    <string name="starred_menu_info">Справка</string>
+    <string name="starred_words_info">В избранное можно добавить в списке раздела или темы (не более %1$d записей).</string>
+
+    <string name="info_gallery_txt">\nВ галерее представлены различные материалы для дополнительного изучения. Записи из галереи можно добавить в избранное, при этом они появятся в отдельной вкладке в разделе Избранное. Записи и темы из галереи, как правило, не включены в тесты и упражнения.  \n</string>
+
+    <string name="info_img_starred">\nУдалить записи из избранного можно, выбрав запись в списке и нажав на иконку со звездочкой в появившемся окне, а также долгим нажатием на элемент списка.\n</string>
+
+    <string name="maps_info">\nНа этой странице представлен список карт по темам раздела.\n</string>
+    <string name="info_menu_map">\nКарты можно открыть на новой странице и увеличить жестом или двойным касанием.\n</string>
 
 </resources>

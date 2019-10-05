@@ -26,7 +26,6 @@ public class DetailItem {
         title = dataItem.item;
         desc = dataItem.info;
         image = dataItem.image;
-        img_info = dataItem.item;
     }
 
     public DetailItem(String _tag, String _title, String _desc, String _image) {

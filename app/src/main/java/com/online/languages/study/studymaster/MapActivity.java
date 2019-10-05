@@ -108,7 +108,7 @@ public class MapActivity extends AppCompatActivity {
 
 
         float maxZoomRatio = 2.4f;
-        if (picType == 1) maxZoomRatio = 1.4f;
+        if (picType == 1) maxZoomRatio = 1.5f;
 
 
         setTitle(mapData.title);
@@ -135,6 +135,11 @@ public class MapActivity extends AppCompatActivity {
 
         detailItem = dataManager.getDetailFromDB(id);
 
+        if (detailItem.title.equals("not found")) {
+            DataItem dataItem =  dataManager.getDataItemFromDB(id);
+            dataItem.item = dataItem.item + "\n\n" + dataItem.info;
+            detailItem  = new DetailItem(dataItem);
+        }
 
         return new ImageData(detailItem.title, "", detailItem.id, detailItem.image);
     }
