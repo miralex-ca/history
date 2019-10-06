@@ -26,6 +26,8 @@ import com.online.languages.study.studymaster.data.Section;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.Constants.HOME_CARDS;
+
 
 public class HomeFragment extends Fragment {
 
@@ -69,7 +71,7 @@ public class HomeFragment extends Fragment {
 
 
         int recycleType = 1;
-        if (Constants.APP_SIMPLIFIED) {
+        if (HOME_CARDS) {
             recyclerView.setVisibility(View.GONE);
             recyclerViewCards.setVisibility(View.VISIBLE);
             recycleType = 2;

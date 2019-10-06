@@ -523,22 +523,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void showInfoDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Info")
-                .setCancelable(true)
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                .setMessage("Message");
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
     private void openPageFromMenu(int position) {
         if (menuActiveItem != position) {
             menuActiveItem = position;
@@ -555,7 +539,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void pageTransition() {
-
         if ( !getResources().getBoolean(R.bool.wide_width)) {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
@@ -566,7 +549,7 @@ public class MainActivity extends AppCompatActivity
 
         NavSection navSection = navStructure.sections.get(position);
 
-        if (Constants.APP_SIMPLIFIED) {
+        if (navSection.type.equals("simple")) {
 
             if (navSection.spec.equals("gallery")) {
                 openGallery(navSection);

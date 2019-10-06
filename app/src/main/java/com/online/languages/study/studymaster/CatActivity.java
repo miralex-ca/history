@@ -232,7 +232,6 @@ public class CatActivity extends AppCompatActivity {
     private void infoMessage() {
         if (APP_SIMPLIFIED) dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
         else dataModeDialog.modeInfoDialog();
-
     }
 
 

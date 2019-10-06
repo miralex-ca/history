@@ -18,6 +18,7 @@ public class NavSection implements Parcelable {
     public String image;
     public boolean unlocked = true;
     public String spec;
+    public String type;
 
 
     public ArrayList <NavCategory> navCategories = new ArrayList<>();
@@ -36,9 +37,9 @@ public class NavSection implements Parcelable {
         this.desc_short = parcel.readString();
         this.image = parcel.readString();
         this.spec = parcel.readString();
+        this.type = parcel.readString();
 
         this.unlocked = parcel.readInt() == 1;
-
 
         parcel.readTypedList(navCategories, NavCategory.CREATOR);
         parcel.readTypedList(uniqueCategories, NavCategory.CREATOR);
@@ -64,6 +65,7 @@ public class NavSection implements Parcelable {
         dest.writeString(desc_short);
         dest.writeString(image);
         dest.writeString(spec);
+        dest.writeString(type);
 
         dest.writeInt(unlocked ? 1 : 0);
 
@@ -72,15 +74,12 @@ public class NavSection implements Parcelable {
 
         dest.writeList(catIdList);
 
-       //
-
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         public NavSection createFromParcel(Parcel source) {
             return new NavSection(source);
         }
-
         public NavSection[] newArray(int size) {
             return new NavSection[size];
         }

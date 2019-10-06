@@ -135,7 +135,7 @@ public class SectionStatsActivity extends AppCompatActivity {
         View sectionListLink = findViewById(R.id.sectionListLink);
         View sectionTestLink = findViewById(R.id.sectionTestLink);
 
-        if (Constants.APP_SIMPLIFIED) {
+        if (navSection.type.equals("simple")) {
             sectionListLink.setVisibility(View.GONE);
             sectionTestLink.setVisibility(View.GONE);
         }
@@ -145,12 +145,8 @@ public class SectionStatsActivity extends AppCompatActivity {
             if (!navSection.unlocked)  sectionTestLink.setVisibility(View.GONE);
         }
 
-
-
         updateContent();
         setStatsText(section);
-
-
 
     }
 
@@ -171,7 +167,6 @@ public class SectionStatsActivity extends AppCompatActivity {
 
         sectionNum = getIntent().getIntExtra(Constants.EXTRA_SECTION_NUM, 0);
 
-
         section = new Section(navStructure.getNavSectionByID(tSectionID), this); /// TODO initialize once
 
         //section.allData = dbHelper.getAllDataItems(navStructure.getNavSectionByID(tSectionID).uniqueCategories);
@@ -179,7 +174,6 @@ public class SectionStatsActivity extends AppCompatActivity {
         section = dbHelper.checkSectionStatsDB(section);
 
         //Toast.makeText(this, "Tests: "+ section.controlTests, Toast.LENGTH_SHORT).show();
-
 
         Picasso.with(this )
                 .load("file:///android_asset/pics/"+section.image)
@@ -442,7 +436,7 @@ public class SectionStatsActivity extends AppCompatActivity {
     public void openDataTypeBySections (int type) {
 
 
-        if (Constants.APP_SIMPLIFIED) {
+        if (navSection.type.equals("simple")) {
 
             Intent i = new Intent(SectionStatsActivity.this, CustomDataActivity.class);
 
@@ -481,9 +475,8 @@ public class SectionStatsActivity extends AppCompatActivity {
     public void openCatActivity(View view) {
 
 
-        if (Constants.APP_SIMPLIFIED) {
+        if (navSection.type.equals("simple")) {
             Category cat = section.categories.get(0);
-
             Intent i = new Intent(SectionStatsActivity.this, CatActivity.class);
             openActivity.openCat(i, cat.id, cat.title, cat.spec);
 

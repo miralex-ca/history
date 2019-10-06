@@ -38,6 +38,8 @@ import com.online.languages.study.studymaster.fragments.CatTabFragment1;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
+
 public class SectionListActivity extends AppCompatActivity {
 
 
@@ -267,16 +269,20 @@ public class SectionListActivity extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
                 return true;
-
             case R.id.easy_mode:
                 dataModeDialog.openDialog();
                 return true;
             case R.id.info_from_menu:
-                dataModeDialog.modeInfoDialog();
+                infoMessage();
                 return true;
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void infoMessage() {
+        if (APP_SIMPLIFIED) dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
+        else dataModeDialog.modeInfoDialog();
     }
 
 

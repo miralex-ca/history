@@ -170,6 +170,12 @@ public class DataFromJson {
                 section.spec = "";
             }
 
+            if (itemInfo.has("type")) {
+                section.type = itemInfo.getString("type");
+            } else {
+                section.type = "";
+            }
+
 
             if (itemInfo.has("categories")) {
 
@@ -192,24 +198,14 @@ public class DataFromJson {
 
                     cat.unlocked = section.unlocked;
 
-                    if (category.has("desc")) {
-                        cat.desc = category.getString("desc");
-                    } else {
-                        cat.desc = "";
-                    }
+                    if (category.has("desc")) cat.desc = category.getString("desc");
+                    else cat.desc = "";
 
-                    if (category.has("spec")) {
-                        cat.spec = category.getString("spec");
-                    } else {
-                        cat.spec = "";
-                    }
+                    if (category.has("spec")) cat.spec = category.getString("spec");
+                    else cat.spec = "";
 
-                    if (category.has("image")) {
-                        cat.image = category.getString("image");
-                    } else {
-                        cat.image = "";
-                    }
-
+                    if (category.has("image")) cat.image = category.getString("image");
+                    else cat.image = "";
 
                     if (!cat.type.equals("group") && !cat.type.equals("set") && !cat.type.equals("page")) {
                         if (!set.contains(cat.id)) {
@@ -219,10 +215,7 @@ public class DataFromJson {
                         }
                     }
                 }
-
-
             }
-
 
         } catch (JSONException e) {
             e.printStackTrace();

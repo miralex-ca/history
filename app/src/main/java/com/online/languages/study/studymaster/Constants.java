@@ -1,13 +1,14 @@
 package com.online.languages.study.studymaster;
 
 
-import android.support.v4.content.ContextCompat;
-
 public class Constants {
 
     public static final boolean PRO = true;  // TODO change in PRO
     public static final boolean DEBUG = true;  /// should be true to see ads in debug
     public static final boolean SCREEN_SHOW = false;
+
+    public static final Boolean APP_SIMPLIFIED = true; //BuildConfig.SIMPLIFIED;
+    public static final Boolean HOME_CARDS = BuildConfig.HOMECARDS;
 
     public static final String SET_VERSION_TXT = "full_version"; /// check text in settings
     public static final String SET_SHOW_AD= "show_ad"; /// check text in settings
@@ -19,15 +20,7 @@ public class Constants {
     static final String SET_GALLERY_LAYOUT = "gallery_layout";
     static final int SET_GALLERY_LAYOUT_DEFAULT = 1;
 
-
-    public static final String APP_STARRED = "starred";
-    public static final String APP_HISTORY = "history"; // настройка для истории
-
-    public static final String LIST_ALL = "all_kanji";
     public static final String LIST_STUDIED = "studied";
-    public static final String LIST_KNOWN = "known";
-    public static final String LIST_FAMILIAR = "familiar";
-    public static final String LIST_SEEN = "seen";
 
     public static final int STARRED_LIMIT = 30;
     public static final int LIMIT_STARRED_EX = 1;
@@ -62,15 +55,11 @@ public class Constants {
     public static final int SECTION_TESTS_NUM = 2;
     public static final int SECTION_TESTS_NUM_ALL = 3;
 
-
-
     public static final int TEST_OPTIONS_NUM = 4;
     public static final int TEST_LONG_OPTIONS_NUM = 3;
     public static final int TEST_LONG_OPTION_LEN = 40;
 
-
     public static final int DATA_MODE = 1;
-
 
     public static final String EXTRA_DATA_TYPE = "data_type";
 
@@ -89,8 +78,6 @@ public class Constants {
 
     public static final String IMG_LIST_LAYOUT = "img_list_layout";
 
-    public static final Boolean APP_SIMPLIFIED = BuildConfig.SIMPLIFIED;
-
     public static final String REVISE_CAT_TAG = "revise";
     public static final int EXPAND_TIME = 920;
 
@@ -98,12 +85,11 @@ public class Constants {
 
     public static final String STARRED_TAB_ACTIVE = "starred_tab_active";
 
-
     public enum Status {
         STUDIED,
         FAMILIAR,
         UNKNOWN
-
     }
+
 
 }

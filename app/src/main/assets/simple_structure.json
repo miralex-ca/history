@@ -6,7 +6,6 @@
       "title_short": "Хронология",
       "desc_short": "Даты основных событий",
       "image": "varyagi.jpg",
-
       "categories":
         [
           {"parent": "root", "type": "simple", "id": "10010100", "title": "Даты и события", "desc": "Основные события"}
@@ -18,9 +17,10 @@
       "title_short": "Личности",
       "desc_short": "Даты основных событий",
       "image": "aleksandr_nevskiy.jpg",
+      "type": "simple",
       "categories":
       [
-        {"parent": "root", "type": "simple", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "", "review": "false"}
+        {"parent": "root", "type": "simple", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "Государственные и политические деятели"}
       ]
     },
 
@@ -29,6 +29,7 @@
       "title_short": "Личности",
       "desc_short": "Даты основных событий",
       "image": "moskva_kreml.jpg",
+      "type": "simple",
       "spec": "gallery",
       "categories":
       [

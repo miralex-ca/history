@@ -53,15 +53,12 @@ public class PrefsFragment extends PreferenceFragmentCompat {
         }
 
 
-
         SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
         boolean full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
         Preference versionItem = getPreferenceManager().findPreference("version");
 
         if (full_version)  versionItem.setVisible(false);
-
-
 
 
 
