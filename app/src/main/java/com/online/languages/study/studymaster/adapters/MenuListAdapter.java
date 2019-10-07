@@ -28,6 +28,7 @@ public class MenuListAdapter extends BaseAdapter {
 
     private int[] icons = {
             R.drawable.ic_nav_home,
+            R.drawable.ic_gallery_item,
             R.drawable.ic_nav_star,
             R.drawable.ic_nav_stats,
             R.drawable.ic_nav_settings,
@@ -72,7 +73,6 @@ public class MenuListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
         View view;
         view = lInflater.inflate(R.layout.menu_list_item, parent, false);
         view.setBackground( null );
@@ -92,7 +92,7 @@ public class MenuListAdapter extends BaseAdapter {
           //  view = lInflater.inflate(R.layout.null_item, null);
         }
 
-        if (position==3 || position==7) {
+        if (position==4 || position==7) {
             divider.setVisibility(View.VISIBLE);
         }
 

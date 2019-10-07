@@ -58,6 +58,7 @@
 
 
     <string name="nav_home_txt">Главная</string>
+    <string name="nav_gallery_txt">Галерея</string>
     <string name="nav_starred_txt">Избранное</string>
     <string name="nav_stats_txt">Статистика</string>
     <string name="nav_settings_txt">Настройки</string>
@@ -66,6 +67,7 @@
 
     <string-array name="menu_titles">
         <item>@string/title_home_txt</item>
+        <item>@string/title_gallery_txt</item>
         <item>@string/title_starred_txt</item>
         <item>@string/title_stats_txt</item>
         <item>@string/title_settings_txt</item>
@@ -74,6 +76,7 @@
     </string-array>
 
     <string name="title_home_txt">Главная</string>
+    <string name="title_gallery_txt">Галерея</string>
     <string name="title_starred_txt">Избранное</string>
     <string name="title_stats_txt">Статистика</string>
     <string name="title_settings_txt">Настройки</string>

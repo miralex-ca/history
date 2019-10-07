@@ -56,6 +56,8 @@ import com.online.languages.study.studymaster.util.Inventory;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.Constants.GALLERY_SECTION;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity
     Boolean multipane;
 
     ListView listView = null;
-
 
     NavStructure navStructure;
 
@@ -150,9 +151,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (multipane) {
-
             setContentView(R.layout.main_multipane);
-
         } else {
 
             if (Build.VERSION.SDK_INT >= 21) {
@@ -215,8 +214,6 @@ public class MainActivity extends AppCompatActivity
             hasPrivilege = true;
         }
 
-
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -238,6 +235,10 @@ public class MainActivity extends AppCompatActivity
             navigationView.setNavigationItemSelectedListener(this);
 
             bottomNav = findViewById(R.id.navigation);
+
+            if (GALLERY_SECTION) bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
+            else bottomNav.inflateMenu(R.menu.bottom_nav);
+
             bottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
             bottomNavBox = findViewById(R.id.bottomNavBox);
 
@@ -296,7 +297,6 @@ public class MainActivity extends AppCompatActivity
             bottomNavDisplay = display;
             if (display)  {
                 bottomNavBox.setVisibility(View.VISIBLE);
-
 
                 if (navigationView != null) {
                    if (btmSetting.equals(getString(R.string.set_btm_nav_value_1))) {
@@ -393,9 +393,8 @@ public class MainActivity extends AppCompatActivity
 
     public void openPage(int position) {
 
-        String[] tags = {"home", "starred", "stats", "prefs", "info", "contact"};
+        String[] tags = {"home", "gallery", "starred", "stats", "prefs", "info", "contact"};
         String tag = tags[position];
-
 
         fPages = fragmentManager.beginTransaction();
         //fragmentManager.popBackStack(null, 0);
@@ -408,7 +407,6 @@ public class MainActivity extends AppCompatActivity
             }
 
         }  else {
-
             fragmentManager.popBackStack(null, 0);
         }
 
@@ -419,20 +417,20 @@ public class MainActivity extends AppCompatActivity
         if (position == 0) {
             fPages.replace(R.id.content_fragment, homeFragment, tag);
         } else if (position == 1) {
-            fPages.replace(R.id.content_fragment, starredFragment, tag);
-        } else if (position == 2) {
-            fPages.replace(R.id.content_fragment, statsFragment, tag);
-        } else if (position == 3) {
-            fPages.replace(R.id.content_fragment, prefsFragment, tag);
-        } else if (position == 4) {
             fPages.replace(R.id.content_fragment, infoFragment, tag);
+        } else if (position == 2) {
+            fPages.replace(R.id.content_fragment, starredFragment, tag);
+        } else if (position == 3) {
+            fPages.replace(R.id.content_fragment, statsFragment, tag);
+        } else if (position == 4) {
+            fPages.replace(R.id.content_fragment, prefsFragment, tag);
         } else if (position == 5) {
+            fPages.replace(R.id.content_fragment, infoFragment, tag);
+        } else if (position == 6) {
             fPages.replace(R.id.content_fragment, contactFragment, tag);
         }
 
         if (position !=0 ) fPages.addToBackStack(tag);
-
-
 
         fPages.commit();
 
@@ -441,7 +439,7 @@ public class MainActivity extends AppCompatActivity
 
 
     public void updateMenuList(int activePosition) {
-        int[] menuItemsPosition = {0, 1, 2, 3, 4, 5, 6};
+        int[] menuItemsPosition = {0, 1, 2, 3, 4, 5, 6, 7};
         menuActiveItem = activePosition;
 
         if (multipane) {
@@ -459,12 +457,10 @@ public class MainActivity extends AppCompatActivity
 
         } else {
 
-
             int size = navigationView.getMenu().size();
             for (int i = 0; i < size; i++) {
                 navigationView.getMenu().getItem(i).setChecked(false);
             }
-
 
             bottomNav.getMenu().setGroupCheckable(0, true, false);
 
@@ -483,9 +479,12 @@ public class MainActivity extends AppCompatActivity
                 setToolbarTitle(activePosition);
 
 
-                if (activePosition < 3 ) {
-                  bottomNav.getMenu().getItem(activePosition).setChecked(true);
+                if (GALLERY_SECTION) {
+                    if (activePosition < 4 ) bottomNav.getMenu().getItem(activePosition).setChecked(true);
+                } else {
+                    if (activePosition < 3 ) bottomNav.getMenu().getItem(activePosition).setChecked(true);
                 }
+
 
                 //// enable drawer indicator
                 shouldBack = false;
@@ -506,11 +505,8 @@ public class MainActivity extends AppCompatActivity
             } else {
                 findViewById(R.id.nav_footer).setVisibility(View.VISIBLE);
             }
-
-
         }
     }
-
 
 
     public void setToolbarTitle(int position) {
@@ -550,7 +546,6 @@ public class MainActivity extends AppCompatActivity
         NavSection navSection = navStructure.sections.get(position);
 
         if (navSection.type.equals("simple")) {
-
             if (navSection.spec.equals("gallery")) {
                 openGallery(navSection);
                 return;
@@ -563,7 +558,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             Intent i = new Intent(MainActivity.this, SectionActivity.class);
             openActivity.openSection(i, navStructure, navSection.id, "root");
-
         }
 
     }
@@ -575,7 +569,6 @@ public class MainActivity extends AppCompatActivity
         i.putExtra(Constants.EXTRA_CAT_ID, "root");
         i.putExtra(Constants.EXTRA_SECTION_ID, navSection.id);
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
-
         startActivityForResult(i, 1);
         pageTransition();
 
@@ -596,9 +589,7 @@ public class MainActivity extends AppCompatActivity
 
     public void openProgressStats(View view) {
         Intent i = new Intent(MainActivity.this, ProgressStatsActivity.class);
-
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
-
         startActivity(i);
         pageTransition();
 
@@ -619,11 +610,8 @@ public class MainActivity extends AppCompatActivity
 
 
     public void openDataTypeBySections (int type) {
-
         Intent i = new Intent(MainActivity.this, SectionStatsListActivity.class);
-
         i.putExtra(Constants.EXTRA_DATA_TYPE, type);
-
         startActivity(i);
         pageTransition();
     }
@@ -631,31 +619,20 @@ public class MainActivity extends AppCompatActivity
 
     public void openErrors(View view) {
         Intent i = new Intent(MainActivity.this, CustomDataListActivity.class);
-
-
         i.putParcelableArrayListExtra("dataItems", errorsList);
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, "errors");
-
         startActivity(i);
         pageTransition();
     }
 
 
-
     public void testAllPage(View view) {
 
-        Intent i = new Intent(MainActivity.this, ExerciseActivity.class) ;
-
-
+        Intent i = new Intent(MainActivity.this, ExerciseActivity.class);
         i.putExtra("ex_type", 1);
-
-
         i.putExtra(Constants.EXTRA_CAT_TAG, "all");
-
-
         i.putParcelableArrayListExtra("dataItems", allDataList);
-
         startActivity(i);
         pageTransition();
     }
@@ -667,7 +644,6 @@ public class MainActivity extends AppCompatActivity
         if (oldestDataList.size() < 1) {
             displayEmtySection();
         } else {
-
             openOldPage();
         }
 
@@ -686,11 +662,8 @@ public class MainActivity extends AppCompatActivity
         //  i = new Intent(MainActivity.this, CardsActivity.class);
 
         i.putExtra("ex_type", 1);
-
         i.putExtra(Constants.EXTRA_CAT_TAG, Constants.REVISE_CAT_TAG);
-
         i.putParcelableArrayListExtra("dataItems", oldestDataList);
-
         startActivity(i);
         pageTransition();
 
@@ -702,7 +675,6 @@ public class MainActivity extends AppCompatActivity
         startActivity(i);
         pageTransition();
     }
-
 
 
     @Override
@@ -721,16 +693,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             position  = 0;
-        } else if (id == R.id.nav_starred) {
+        } else if (id == R.id.nav_gallery) {
             position  = 1;
-        } else if (id == R.id.nav_statistic) {
+        } else if (id == R.id.nav_starred) {
             position  = 2;
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_statistic) {
             position  = 3;
-        } else if (id == R.id.nav_info) {
+        } else if (id == R.id.nav_settings) {
             position  = 4;
-        } else if (id == R.id.nav_contact) {
+        } else if (id == R.id.nav_info) {
             position  = 5;
+        } else if (id == R.id.nav_contact) {
+            position  = 6;
         }
 
         onMenuItemClicker(position);
@@ -749,10 +723,12 @@ public class MainActivity extends AppCompatActivity
             int id = item.getItemId();
             int position = 0;
 
-            if (id == R.id.nav_starred) {
-                position  = 1;
-            } else if (id == R.id.nav_statistic) {
+            if (id == R.id.nav_gallery) {
+                 position  = 1;
+            } else if (id == R.id.nav_starred) {
                 position  = 2;
+            } else if (id == R.id.nav_statistic) {
+                position  = 3;
             }
 
             onMenuItemClicker(position);
@@ -762,14 +738,11 @@ public class MainActivity extends AppCompatActivity
     };
 
 
-
-
     @Override
     public void onBackPressed() {
 
         if (multipane) {
             goBack();
-
         } else {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -793,8 +766,6 @@ public class MainActivity extends AppCompatActivity
             t2 = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
 
         updateMenuList(0);
-
-
         super.onBackPressed();
     }
 
@@ -802,38 +773,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-
         return true;
-
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id) {
-            case R.id.search:
-
-                openSearch();
-
-                return true;
-
+        if (id == R.id.search) {
+            openSearch();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
     private void openSearch() {
-
         Intent i = new Intent(MainActivity.this, SearchActivity.class);
-
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
-
         startActivityForResult(i, 10);
-
     }
 
 
@@ -850,8 +810,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         onMenuItemClicker(i);
@@ -859,7 +817,6 @@ public class MainActivity extends AppCompatActivity
 
     public void openTestAct(View view) {
         Intent i = new Intent(MainActivity.this, SampleActivity.class);
-
         startActivity(i);
         pageTransition();
 
@@ -884,7 +841,6 @@ public class MainActivity extends AppCompatActivity
 
     public void openReference(View view) {
         Intent i = new Intent(MainActivity.this, ReferenceActivity.class);
-
         startActivity(i);
         pageTransition();
     }
@@ -893,7 +849,6 @@ public class MainActivity extends AppCompatActivity
         Intent i = new Intent(MainActivity.this, GetPremium.class);
         startActivityForResult(i, 1);
     }
-
 
 
     public void sendFeedback(View view) {
@@ -936,9 +891,7 @@ public class MainActivity extends AppCompatActivity
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(MainActivity.this, R.string.msg_no_browser, Toast.LENGTH_SHORT).show();
         }
-
     }
-
 
 
     public void rateApp(View view) {
@@ -948,7 +901,6 @@ public class MainActivity extends AppCompatActivity
     private void rateApplication() {
 
         String pack = getString(R.string.app_market_link);
-
 
         //pack = context.getPackageName();
         Uri uri = Uri.parse("market://details?id=" + pack);
@@ -986,12 +938,7 @@ public class MainActivity extends AppCompatActivity
             if (fragment != null) {
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
-
         }
-
-
-
-
     }
 
     @Override
@@ -1000,9 +947,6 @@ public class MainActivity extends AppCompatActivity
         if (mHelper != null) mHelper.dispose();
         mHelper = null;
     }
-
-
-
 
 
 }

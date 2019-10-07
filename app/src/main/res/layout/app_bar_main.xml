@@ -55,7 +55,7 @@
             android:foreground="?attr/selectableItemBackground"
             app:itemIconTint="@color/color_nav_btm_item"
             app:itemTextColor="@color/color_nav_btm_item"
-            app:menu="@menu/bottom_nav" />
+             />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

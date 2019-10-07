@@ -10,6 +10,11 @@
             android:title="@string/nav_home_txt" />
 
         <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_gallery_item"
+            android:title="@string/nav_gallery_txt" />
+
+        <item
             android:id="@+id/nav_starred"
             android:icon="@drawable/ic_nav_star"
             android:title="@string/nav_starred_txt" />
