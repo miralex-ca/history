@@ -67,7 +67,7 @@ public class UserStats {
         userStatsData.idsToCheck = new ArrayList<>();
 
         for (Section section: sections) {
-            if (! section.id.equals("galery")) {
+            if (! section.type.equals("gallery")) {
                 userStatsData.idsToCheck.addAll(section.checkCatIds);
                 userStatsData.allUniqueIds.addAll(section.allCatIds);
             }
@@ -83,14 +83,12 @@ public class UserStats {
 
     private void getStatsStructure() {
 
-
-
         for (NavSection navSection: navStructure.sections) {
 
             if (navSection.spec.equals("world")) {
                if (showWorld) userStatsData.sectionsDataList.add(new Section(navSection, context));
             } else {
-                if (!navSection.id.equals("gallery")) // TODO check to change to spec
+                if (!navSection.type.equals("gallery")) // TODO check to change to spec
                 userStatsData.sectionsDataList.add(new Section(navSection, context));
             }
 

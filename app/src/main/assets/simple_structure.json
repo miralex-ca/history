@@ -5,6 +5,7 @@
       "desc": "Даты основных событий в истории России.",
       "title_short": "Хронология",
       "desc_short": "Даты основных событий",
+      "type": "simple",
       "image": "varyagi.jpg",
       "categories":
         [
@@ -29,8 +30,24 @@
       "title_short": "Личности",
       "desc_short": "Даты основных событий",
       "image": "moskva_kreml.jpg",
-      "type": "simple",
-      "spec": "gallery",
+      "type": "gallery",
+      "categories":
+      [
+
+        {"parent": "root", "type": "set", "id": "set_1_2", "title": "gone", "desc": ""},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020100", "title": "Архитектура", "desc": "Архитектура", "image":  "gallery/sobor_blazhenniy.jpg"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020400", "title": "Памятники", "desc": "Памятники", "image":  "gallery/monument/medniy_vsadnik.jpg"}
+      ]
+    },
+
+
+    {"tag": "cat4", "title": "Галерея", "id": "nav_gallery",
+      "desc": "Артефакты, предметы быта, науки, искусства",
+      "title_short": "Личности",
+      "desc_short": "Даты основных событий",
+      "image": "moskva_kreml.jpg",
+      "type": "gallery",
+      "spec": "nav_gallery",
       "categories":
       [
 
@@ -55,10 +72,15 @@
         {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10060510", "title": "Российская империя", "desc": "Карта Российской империи конца XIX века."},
         {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10070590", "title": "СССР", "desc": "Карта СССР в послевоенный период."},
 
-        {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10080510", "title": "Карта РФ", "desc": "Карта России после падения СССР."}
+        {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10080510", "title": "Карта РФ", "desc": "Карта России после падения СССР."},
 
+        {"parent": "root", "type": "set", "id": "set_1_3", "title": "Тест", "desc": ""},
 
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020100", "title": "Архитектура", "desc": "Архитектура", "image":  "gallery/sobor_blazhenniy.jpg"},
 
+        {"parent": "root", "type": "group", "spec": "gallery", "id": "group_1_1", "title": "Группа", "desc": "Термины и понятия", "image":  "gallery/pers/pers_chekhov.jpg"},
+
+        {"parent": "group_1_1", "type": "simple", "spec": "image_list", "id": "10020300", "title": "Известные картины", "desc": "Известные картины", "image":  "gallery/paint/utro_v_lesu.jpg"}
       ]
     }
 

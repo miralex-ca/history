@@ -28,7 +28,7 @@ public class MenuListAdapter extends BaseAdapter {
 
     private int[] icons = {
             R.drawable.ic_nav_home,
-            R.drawable.ic_gallery_item,
+            R.drawable.ic_nav_gallery,
             R.drawable.ic_nav_star,
             R.drawable.ic_nav_stats,
             R.drawable.ic_nav_settings,

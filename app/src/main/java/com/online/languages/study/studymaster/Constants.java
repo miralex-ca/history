@@ -19,8 +19,8 @@ public class Constants {
     public static final String SET_THEME_DEFAULT = "default";
     public static final String SET_THEME_DARK = "dark";
 
-    static final String SET_GALLERY_LAYOUT = "gallery_layout";
-    static final int SET_GALLERY_LAYOUT_DEFAULT = 1;
+    public static final String SET_GALLERY_LAYOUT = "gallery_layout";
+    public static final int SET_GALLERY_LAYOUT_DEFAULT = 1;
 
     public static final String LIST_STUDIED = "studied";
 
@@ -86,6 +86,9 @@ public class Constants {
     public static final String GALLERY_TAG = "#gallery";
 
     public static final String STARRED_TAB_ACTIVE = "starred_tab_active";
+
+    public static final int GALLERY_REQUESTCODE = 100;
+
 
     public enum Status {
         STUDIED,

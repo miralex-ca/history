@@ -164,17 +164,12 @@ public class DataFromJson {
             section.image = itemInfo.getString("image");
             section.unlocked = !itemInfo.has("unlocked") || !itemInfo.getString("unlocked").equals("false");
 
-            if (itemInfo.has("spec")) {
-                section.spec = itemInfo.getString("spec");
-            } else {
-                section.spec = "";
-            }
+            if (itemInfo.has("spec"))   section.spec = itemInfo.getString("spec");
+            else   section.spec = "";
 
-            if (itemInfo.has("type")) {
-                section.type = itemInfo.getString("type");
-            } else {
-                section.type = "";
-            }
+
+            if (itemInfo.has("type"))  section.type = itemInfo.getString("type");
+            else  section.type = "";
 
 
             if (itemInfo.has("categories")) {
@@ -291,9 +286,6 @@ public class DataFromJson {
 
         return dataList;
     }
-
-
-
 
     public DataItem getDataItemById(String id) {
 

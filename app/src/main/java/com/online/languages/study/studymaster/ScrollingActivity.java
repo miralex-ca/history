@@ -14,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -48,6 +49,8 @@ public class ScrollingActivity extends AppCompatActivity {
     Boolean starrable = false;
     Boolean starStatusChanged = false;
     int sourceType;
+
+    FloatingActionButton floatingActionButton;
 
 
     @Override
@@ -121,14 +124,15 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
 
-        final FloatingActionButton fab = findViewById(R.id.fab);
+        floatingActionButton = findViewById(R.id.fab);
+
 
 
         if (starrable) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    fab.show();
+                    floatingActionButton.show();
                 }
             }, 350);
         }
@@ -163,14 +167,17 @@ public class ScrollingActivity extends AppCompatActivity {
             if (Constants.DEBUG)  placePicutre.setColorFilter(Color.argb(255, 50, 255, 240), PorterDuff.Mode.MULTIPLY);
         }
 
-        checkStarStatus(detailItem.id, fab);
+        checkStarStatus(detailItem.id, floatingActionButton);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                changeStarStatus(detailItem.id, fab);
+                changeStarStatus(detailItem.id, floatingActionButton);
                 starStatusChanged = true;
+
+                floatingActionButton.hide();
+                floatingActionButton.show();
 
             }
         });
@@ -282,7 +289,6 @@ public class ScrollingActivity extends AppCompatActivity {
 
         int styleTheme = themeAdapter.styleTheme;
 
-
         TypedArray attr = getTheme().obtainStyledAttributes(styleTheme, new int[] {R.attr.starButtonIconInactive});
         int starIconInactive = attr.getResourceId(0, 0);
         attr.recycle();
@@ -309,7 +315,26 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         }
 
-        button.setImageDrawable(d);
+
+        // issue with fab icon - https://issuetracker.google.com/issues/117476935
+
+
+
+        //Toast.makeText(this, "Test: " + starred, Toast.LENGTH_SHORT).show();
+
+        //button.setImageResource(R.drawable.ic_star_border_older);
+
+       // floatingActionButton.setImageResource(R.drawable.ic_star_border_older);
+
+        final Drawable f= d;
+
+        floatingActionButton.setImageDrawable(f);
+
+
+
+
+
+
     }
 
 

@@ -22,7 +22,7 @@ public class Section {
     public String id;
     public String tag;
     public String image;
-    public String type;
+    public String type = "";
 
     public int progress = 0;
 
@@ -78,6 +78,7 @@ public class Section {
         title_short = navSection.title_short;
         desc_short = navSection.desc_short;
         image = navSection.image;
+        type = navSection.type;
 
         haveExtra = false;
 

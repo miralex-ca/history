@@ -21,6 +21,7 @@ import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.HomeCardRecycleAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
+import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.Section;
 
@@ -37,14 +38,7 @@ public class HomeFragment extends Fragment {
 
     private HomeCardRecycleAdapter mAdapter;
 
-    private boolean firstAdReceived = false;
-
-    ArrayList<Section> sections;
-
-    NavStructure navStructure;
-
     SharedPreferences appSettings;
-
 
 
     public HomeFragment() {
@@ -61,14 +55,12 @@ public class HomeFragment extends Fragment {
         appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         NavStructure navStructure = getArguments().getParcelable("structure");
-
-        getSectionsData();
+        ArrayList<NavSection> navSections = checkSections(navStructure.sections);
 
         recyclerView = rootView.findViewById(R.id.recycler_view);
         recyclerViewCards = rootView.findViewById(R.id.recycler_view_cards);
 
         String theme = appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
-
 
         int recycleType = 1;
         if (HOME_CARDS) {
@@ -80,7 +72,7 @@ public class HomeFragment extends Fragment {
             recyclerViewCards.setVisibility(View.GONE);
         }
 
-        mAdapter = new HomeCardRecycleAdapter(getActivity(), navStructure.sections, theme, recycleType);
+        mAdapter = new HomeCardRecycleAdapter(getActivity(), navSections, theme, recycleType);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -122,16 +114,16 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
+    private ArrayList<NavSection> checkSections(ArrayList<NavSection> navSections) {
+        ArrayList<NavSection> sections = new ArrayList<>();
 
-    private void getSectionsData() {
+        for (NavSection section: navSections) {
+            if (!section.id.equals("nav_gallery")) sections.add(section);
+        }
 
-        DataFromJson dataFromJson = new DataFromJson(getActivity());
-
-        sections = dataFromJson.getSectionsList();
-
-        navStructure = dataFromJson.getStructure();
-
+        return sections;
     }
+
 
 
     private void onGridClick(final View view, final int position) {

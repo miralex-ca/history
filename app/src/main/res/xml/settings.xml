@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    app:iconSpaceReserved="false"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:key="interface"
         android:title="ИНТЕРФЕЙС"
-        android:summary="ИНТЕРФЕЙС"
+        app:iconSpaceReserved="false"
         >
         <ListPreference
             android:key="theme"
@@ -13,9 +15,11 @@
             android:entries="@array/themes"
             android:entryValues="@array/themes_values"
             android:defaultValue="@string/set_theme_default"
+            app:iconSpaceReserved="false"
             android:dialogTitle="Тема приложения" />
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="btm_nav"
             android:title="@string/set_btm_nav_title"
             android:summary="@string/set_btm_nav_summary"
@@ -25,6 +29,7 @@
             android:dialogTitle="@string/set_btm_nav_dialog_title" />
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="detail_txt_size"
             android:title="@string/set_detail_txt"
             android:summary="@string/set_detail_txt_summary"
@@ -34,6 +39,7 @@
             android:dialogTitle="@string/set_detail_txt_dialog_title" />
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="show_status"
             android:title="@string/set_show_status"
             android:summary="@string/set_show_status_summary"
@@ -44,6 +50,7 @@
 
 
         <Preference
+            app:iconSpaceReserved="false"
             android:key="version"
             android:title="Полная версия"
             android:summary="Доступ к полной версии приложения">
@@ -63,6 +70,7 @@
         >
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="data_mode"
             android:title="@string/set_data_mode_title"
             android:summary="@string/set_data_mode_summary"
@@ -73,6 +81,7 @@
 
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="data_select"
             android:title="@string/set_data_control_title"
             android:summary="@string/set_data_control_summary"
@@ -82,6 +91,7 @@
             android:dialogTitle="@string/set_data_control_dialog_title" />
 
         <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
             android:key="world_section"
             android:title="Раздел Мировой истории"
             android:summaryOff ="Не отображается"
@@ -99,6 +109,7 @@
         android:title="@string/set_starred_section">
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="starred_sort_type"
             android:title="@string/set_starred_sort_title"
             android:summary="@string/set_starred_sort_sum"
@@ -108,6 +119,7 @@
             android:dialogTitle="@string/set_starred_sort_title_dialog" />
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="starred_save_type"
             android:title="@string/set_starred_save_title"
             android:summary="@string/set_starred_save_sum"
@@ -117,11 +129,13 @@
             android:dialogTitle="@string/set_starred_save_title_dialog" />
 
         <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
             android:key="show_starred_results"
             android:title="@string/starred_lessons_results"
             android:defaultValue="true" />
 
         <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
             android:key="set_starred_confirm"
             android:title="@string/starred_confirm_title"
             android:summary = "@string/set_starred_confirm_summary"
@@ -138,6 +152,7 @@
         >
 
         <PreferenceScreen
+            app:iconSpaceReserved="false"
             android:title="Импорт и экпорт данных"
             android:summary="Синхронизация, резервная копия">
             <intent
@@ -147,6 +162,7 @@
 
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:key="control_tests"
             android:title="@string/set_control_title"
             android:summary="@string/set_control_summary"
@@ -167,11 +183,6 @@
             android:visibility="gone"
             android:key="ex_buttons_show"
             android:defaultValue="false" />
-
-        <SwitchPreferenceCompat
-            android:visibility="gone"
-            android:key="card_buttons_show"
-            android:defaultValue="true" />
 
         <SwitchPreferenceCompat
             android:visibility="gone"

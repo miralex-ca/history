@@ -227,8 +227,21 @@
     <style name="AppTheme.CustomPreferenceThemeOverlay" parent="PreferenceThemeOverlay.v14.Material">
         <item name="preferenceFragmentListStyle">@style/AppTheme.FixForPreferenceFragmentList</item>
         <item name="preferenceFragmentCompatStyle">@style/AppPreferenceFragmentCompatStyle</item>
+        <item name="preferenceCategoryStyle">@style/CustomPreferenceCategory</item>
         <!-- item name="colorControlHighlight">@color/colorAccent</item -->
 
+    </style>
+
+    <style name="CustomPreferenceCategory" parent="MyTextViewStyle">
+        <item name="android:layout">@layout/custom_preference_category</item>
+    </style>
+
+    <style name="CustomPreferenceCategoryText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
 
@@ -267,6 +280,8 @@
         <item name="colorPrimary">?attr/colorPrimary</item>
         <item name="colorPrimaryDark">?attr/colorPrimaryDark</item>
     </style>
+
+
 
 
     <!-- Alert Dialog Theme -->

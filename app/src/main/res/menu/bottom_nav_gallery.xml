@@ -8,7 +8,7 @@
 
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_gallery_item"
+            android:icon="@drawable/ic_nav_gallery"
             android:title="@string/nav_gallery_txt" />
 
         <item

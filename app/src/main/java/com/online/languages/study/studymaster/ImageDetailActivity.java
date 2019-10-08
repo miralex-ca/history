@@ -123,9 +123,7 @@ public class ImageDetailActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
                     fab.show();
-
                 }
             }, 350);
         }
@@ -167,6 +165,9 @@ public class ImageDetailActivity extends AppCompatActivity {
 
                 changeStarStatus(detailItem.id, fab);
                 starStatusChanged = true;
+
+                fab.hide();
+                fab.show();
 
             }
         });

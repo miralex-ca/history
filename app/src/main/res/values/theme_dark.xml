@@ -135,10 +135,9 @@
         <item name="colorCardWidgetBg">@color/colorCardWidgetBg_dark</item>
         <item name="colorMainText">@color/colorMainText_dark</item>
         <item name="colorBannerBg">@color/colorBannerBg_dark</item>
+
         <item name="colorBtmNavBg">@color/colorBtmNavBg_dark</item>
-
         <item name="colorBtmNav_inactive">@color/colorBtmNav_inactive_dark</item>
-
 
         <item name="cardMargin">@dimen/card_margin_default_dark</item>
 

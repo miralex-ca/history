@@ -87,6 +87,7 @@
 
 
     <style name="WestworldTheme" parent="DarkTheme">
+
         <item name="colorPrimary">@color/colorPrimary_ww</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_ww</item>
         <item name="colorAccent">@color/colorAccent_ww</item>
@@ -94,8 +95,6 @@
         <item name="colorMainText">@color/colorMainText_ww</item>
         <item name="colorMainTextDisabled">@color/colorMainTextDisabled_ww</item>
         <item name="colorSecondaryText">@color/colorSecondaryText_ww</item>
-
-        <item name="android:textColorSecondary">#4DB6AC</item>
 
         <item name="colorButtonNormal">@color/colorButtonNormal_ww</item>
         <item name="colorControlHighlight">@color/colorControlHighlight_ww</item>
@@ -105,9 +104,9 @@
         <item name="colorCardWidgetBg">@color/colorCardWidgetBg_ww</item>
 
         <item name="colorBannerBg">@color/colorBannerBg_ww</item>
-        <item name="colorBtmNavBg">@color/colorBtmNavBg_ww</item>
 
-        <item name="colorBtmNav_active">@color/colorAccent_ww</item>
+        <item name="colorBtmNavBg">@color/colorBtmNavBg_ww</item>
+        <item name="colorBtmNav_active">@color/colorBtmNav_inactive_ww</item>
         <item name="colorBtmNav_inactive">@color/colorBtmNav_inactive_ww</item>
 
         <item name="cardMargin">@dimen/card_margin_default</item>
@@ -118,7 +117,6 @@
         <item name="colorDialogBg">@color/colorDialogBg_ww</item>
 
         <item name="colorDrawerItemBg">@color/colorDrawerMenuBg_ww</item>
-
 
         <item name="colorNavHeaderTxt">@color/colorNavHeaderTxt_ww</item>
         <item name="colorDrawerItemTxt">@color/colorDrawerMenuTxt_ww</item>

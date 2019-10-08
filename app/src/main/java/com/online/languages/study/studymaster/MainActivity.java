@@ -28,6 +28,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
@@ -44,6 +45,7 @@ import com.online.languages.study.studymaster.data.NavCategory;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.fragments.ContactFragment;
+import com.online.languages.study.studymaster.fragments.GalleryFragment;
 import com.online.languages.study.studymaster.fragments.HomeFragment;
 import com.online.languages.study.studymaster.fragments.InfoFragment;
 import com.online.languages.study.studymaster.fragments.PrefsFragment;
@@ -56,6 +58,9 @@ import com.online.languages.study.studymaster.util.Inventory;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.Constants.EXTRA_CAT_ID;
+import static com.online.languages.study.studymaster.Constants.EXTRA_SECTION_ID;
+import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCODE;
 import static com.online.languages.study.studymaster.Constants.GALLERY_SECTION;
 
 public class MainActivity extends AppCompatActivity
@@ -91,6 +96,7 @@ public class MainActivity extends AppCompatActivity
     InfoFragment infoFragment;
     ContactFragment contactFragment;
     SectionFragment sectionFragment;
+    GalleryFragment galleryFragment;
 
 
     FragmentTransaction fPages;
@@ -236,8 +242,13 @@ public class MainActivity extends AppCompatActivity
 
             bottomNav = findViewById(R.id.navigation);
 
-            if (GALLERY_SECTION) bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
-            else bottomNav.inflateMenu(R.menu.bottom_nav);
+            if (GALLERY_SECTION) {
+                bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
+            } else {
+                bottomNav.inflateMenu(R.menu.bottom_nav);
+            }
+
+            checkGalleryNavItem(navigationView);
 
             bottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
             bottomNavBox = findViewById(R.id.bottomNavBox);
@@ -253,6 +264,7 @@ public class MainActivity extends AppCompatActivity
         sectionFragment = new SectionFragment();
         contactFragment = new ContactFragment();
         statsFragment = new StatsFragment();
+        galleryFragment = new GalleryFragment();
 
 
         if (savedInstanceState != null) {
@@ -279,9 +291,13 @@ public class MainActivity extends AppCompatActivity
         Bundle bundle = new Bundle();
 
         bundle.putParcelable("structure", navStructure);
+        bundle.putString(EXTRA_SECTION_ID, "root");
+        bundle.putString(EXTRA_CAT_ID, "root");
 
-        statsFragment.setArguments(bundle);
         homeFragment.setArguments(bundle);
+        statsFragment.setArguments(bundle);
+        galleryFragment.setArguments(bundle);
+
 
     }
 
@@ -325,10 +341,31 @@ public class MainActivity extends AppCompatActivity
                     wrap.setPadding(0, 0, 0, 0);
                 }
             }
-
-
         }
 
+        checkGalleryNavItem(navigationView);
+    }
+
+
+    private void checkGalleryNavItem(NavigationView navigation) {
+
+        String btmSetting = appSettings.getString("btm_nav", getString(R.string.set_btm_nav_value_default));
+
+        if (navigation != null) {
+
+            if (GALLERY_SECTION) {
+
+                if (btmSetting.equals(getString(R.string.set_btm_nav_value_default))) {
+                    navigation.getMenu().findItem(R.id.nav_gallery).setVisible(false);
+                } else {
+                    navigation.getMenu().findItem(R.id.nav_gallery).setVisible(true);
+                }
+
+            }
+            else {
+                navigation.getMenu().findItem(R.id.nav_gallery).setVisible(false);
+            }
+        }
     }
 
 
@@ -417,7 +454,7 @@ public class MainActivity extends AppCompatActivity
         if (position == 0) {
             fPages.replace(R.id.content_fragment, homeFragment, tag);
         } else if (position == 1) {
-            fPages.replace(R.id.content_fragment, infoFragment, tag);
+            fPages.replace(R.id.content_fragment, galleryFragment, tag);
         } else if (position == 2) {
             fPages.replace(R.id.content_fragment, starredFragment, tag);
         } else if (position == 3) {
@@ -478,13 +515,13 @@ public class MainActivity extends AppCompatActivity
                 navigationView.getMenu().getItem(pos).setChecked(true);
                 setToolbarTitle(activePosition);
 
-
                 if (GALLERY_SECTION) {
                     if (activePosition < 4 ) bottomNav.getMenu().getItem(activePosition).setChecked(true);
                 } else {
                     if (activePosition < 3 ) bottomNav.getMenu().getItem(activePosition).setChecked(true);
                 }
 
+                checkGalleryNavItem(navigationView);
 
                 //// enable drawer indicator
                 shouldBack = false;
@@ -497,6 +534,7 @@ public class MainActivity extends AppCompatActivity
                 toggle.setDrawerIndicatorEnabled(false);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
+
 
 
             fullVersion = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
@@ -546,16 +584,18 @@ public class MainActivity extends AppCompatActivity
         NavSection navSection = navStructure.sections.get(position);
 
         if (navSection.type.equals("simple")) {
-            if (navSection.spec.equals("gallery")) {
-                openGallery(navSection);
-                return;
-            }
 
             NavCategory cat = navSection.navCategories.get(0);
             Intent i = new Intent(MainActivity.this, CatActivity.class);
             openActivity.openCat(i, cat.id, cat.title, cat.spec);
 
         } else {
+
+            if (navSection.type.equals("gallery")) {
+                openGallery(navSection);
+                return;
+            }
+
             Intent i = new Intent(MainActivity.this, SectionActivity.class);
             openActivity.openSection(i, navStructure, navSection.id, "root");
         }
@@ -646,7 +686,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             openOldPage();
         }
-
     }
 
     public void displayEmtySection() {
@@ -670,10 +709,26 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
+    public void openCatFromGallery(final View view) {
+        ViewGroup v = (ViewGroup) view.getParent();
+        View tagged = v.findViewById(R.id.tagged);
+        final String tag = (String) tagged.getTag();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               if (galleryFragment!=null) galleryFragment.openCatActivity(tag);
+            }
+        }, 50);
+    }
+
+
     public void openCatDataStats(View view) {
         Intent i = new Intent(MainActivity.this, SectionStatsListActivity.class);
         startActivity(i);
         pageTransition();
+
+
     }
 
 
@@ -935,6 +990,13 @@ public class MainActivity extends AppCompatActivity
         if (requestCode == 10) {
 
             Fragment fragment = fragmentManager.findFragmentByTag("starred");
+            if (fragment != null) {
+                fragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+
+        if (requestCode == GALLERY_REQUESTCODE) {
+            Fragment fragment = fragmentManager.findFragmentByTag("gallery");
             if (fragment != null) {
                 fragment.onActivityResult(requestCode, resultCode, data);
             }

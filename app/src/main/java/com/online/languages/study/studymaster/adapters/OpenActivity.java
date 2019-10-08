@@ -18,10 +18,14 @@ import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.ViewCategory;
 import com.online.languages.study.studymaster.data.ViewSection;
 
+import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCODE;
+
 public class OpenActivity  {
 
     Context context;
 
+
+    int requestCode = 1;
 
     public OpenActivity(Context _context) {
         context = _context;
@@ -49,8 +53,9 @@ public class OpenActivity  {
 
 
     private void callActivity(Intent intent) {
-        ((Activity) context).startActivityForResult(intent, 1);
+        ((Activity) context).startActivityForResult(intent, requestCode);
         pageTransition();
+        requestCode = 1;
     }
 
 
@@ -95,6 +100,7 @@ public class OpenActivity  {
     }
 
     public void openGallery(NavStructure navStructure, String sectionID, String catID ) {
+        requestCode = GALLERY_REQUESTCODE;
         Intent i = createIntent(context, GalleryActivity.class);
         callSubActivity(i, navStructure, sectionID, catID);
     }
