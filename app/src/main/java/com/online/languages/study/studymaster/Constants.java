@@ -10,7 +10,7 @@ public class Constants {
     public static final Boolean APP_SIMPLIFIED = true; //BuildConfig.SIMPLIFIED;
     public static final Boolean HOME_CARDS = BuildConfig.HOMECARDS;
 
-    public static final Boolean GALLERY_SECTION = true;
+    public static final Boolean GALLERY_SECTION = false;
 
     public static final String SET_VERSION_TXT = "full_version"; /// check text in settings
     public static final String SET_SHOW_AD= "show_ad"; /// check text in settings
@@ -30,7 +30,7 @@ public class Constants {
     public static final int RATE_INCLUDE = 4; // used for priority of unfamiliar dataItems in tests
 
     public static final int QUEST_NUM = 60;  // limit for tests
-    public static final int ALL_TEST_NUM = 100;  //  100 for prod
+    public static final int SECTION_TEST_LIMIT = 100;  //  100 for prod
     public static final int REVISE_NUM = 30;
 
     static final String EXTRA_KEY_WORDS = "dataItems";

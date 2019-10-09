@@ -220,6 +220,15 @@
     <string name="set_control_tests_two">Всегда</string>
     <string name="set_control_tests_three">Никогда</string>
 
+    <string name="set_test_all_limit_title">Заданий в общем тесте</string>
+    <string name="set_test_all_limit_summary">Количество: %s</string>
+    <string name="set_test_all_limit_dialog_title">Общий тест</string>
+
+    <string name="set_test_all_limit_1">30 заданий</string>
+    <string name="set_test_all_limit_2">50 заданий</string>
+    <string name="set_test_all_limit_3">80 заданий</string>
+    <string name="set_test_all_limit_4">100 заданий</string>
+
     <string name="set_btm_nav_title">Нижняя панели навигации</string>
     <string name="set_btm_nav_summary">%s</string>
     <string name="set_btm_nav_dialog_title">Нижняя навигация</string>

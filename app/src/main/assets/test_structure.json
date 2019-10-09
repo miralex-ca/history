@@ -1,0 +1,58 @@
+{
+  "sections":
+  [
+	{"tag": "section1", "title": "Первый раздел", "id": "10010",
+      "desc": "Полное описание первого раздела",
+      "title_short": "Раздел 1",
+      "desc_short": "Краткое описание раздела",
+      "image": "picto/pers_red_l.png",
+      "categories":
+        [
+          {"parent": "root", "type": "simple", "id": "10010010", "title": "Тема: Личности", "desc": "Описание темы"},
+          {"parent": "root", "type": "simple", "id": "10030010", "title": "Тема: Объекты", "desc": "Описание темы"},
+
+          {"parent": "root", "type": "set", "id": "set_1_2", "title": "none", "desc": ""},
+
+          {"parent": "root", "type": "simple", "id": "10020010", "title": "Тема: Изображения", "desc": "Описание темы", "review":  "false"},
+          {"parent": "root", "type": "simple", "id": "10030020", "title": "Тема: Термины", "desc": "Описание темы", "review":  "false"}
+
+        ]
+	},
+
+    {"tag": "section2", "title": "Второй раздел", "id": "10020",
+      "desc": "Полное описание второго раздела",
+      "title_short": "Раздел 2",
+      "desc_short": "Краткое описание раздела",
+      "image": "picto/image_green_l.png",
+      "type": "simple",
+      "categories":
+      [
+        {"parent": "root", "type": "simple", "id": "10010010", "title": "Тема: Личности", "desc": "Описание темы"}
+      ]
+    },
+
+    {"tag": "section3", "title": "Галерея", "id": "10030",
+      "desc": "Полное описание галереи",
+      "title_short": "Раздел 3",
+      "desc_short": "Краткое описание раздела",
+      "image": "picto/shape_blue_l.png",
+      "type": "gallery",
+      "categories":
+      [
+        {"parent": "root", "type": "set", "id": "set_1_1", "title": "gone", "desc": ""},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10030030", "title": "Тема: Фото", "desc": "Описание темы", "image":  "picto/flower_green_l.png"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10010010", "title": "Тема: Личности", "desc": "Описание темы", "image":  "picto/pers_gray.png"},
+
+        {"parent": "root", "type": "set", "id": "set_1_2", "title": "none", "desc": ""},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10030010", "title": "Тема: Объекты", "desc": "Описание темы", "image":  "picto/shape_red_l.png"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020010", "title": "Тема: Изображения", "desc": "Описание темы", "image":  "picto/image_blue.png"},
+        {"parent": "root", "type": "simple", "spec": "items_list", "id": "10010010", "title": "Тема: Личности", "desc": "Описание темы", "image":  "picto/pers_gray_l.png"}
+
+      ]
+    }
+
+  ]
+
+
+}
+

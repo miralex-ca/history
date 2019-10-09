@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 
 import com.online.languages.study.studymaster.CatActivity;
+import com.online.languages.study.studymaster.CatListActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.GalleryActivity;
 import com.online.languages.study.studymaster.ImageListActivity;
@@ -39,10 +40,14 @@ public class OpenActivity  {
     }
 
 
+
+
     public void openCat(String cat_id, String spec, String title) {
         Intent i = createIntent(context, CatActivity.class);
         callActivity( catIntent(i, cat_id, title, spec) );
     }
+
+
 
     private Intent catIntent(Intent intent, String cat_id, String title, String spec) {
         intent.putExtra(Constants.EXTRA_CAT_ID, cat_id);
@@ -124,6 +129,12 @@ public class OpenActivity  {
         callActivity(intent);
     }
 
+    public void openCatList(NavStructure navStructure, String sectionID, String catID, String title) {
+        Intent i = createIntent(context, CatListActivity.class);
+        i.putExtra("title", title);
+        callSubActivity(i, navStructure, sectionID, catID);
+    }
+
 
     private void openImageList(NavStructure navStructure, String sectionID, String catID, String title) {
         Intent i = createIntent(context, ImageListActivity.class);
@@ -149,6 +160,8 @@ public class OpenActivity  {
                 openMap(viewCategory.id);
             }  else if (viewCategory.spec.equals("image_list")) {
                 openImageList(navStructure, tSectionID, viewCategory.id, viewCategory.title);
+            } else if (viewCategory.spec.equals("items_list")) {
+                openCatList(navStructure, tSectionID, viewCategory.id, viewCategory.title);
             } else {
                 openCat(viewCategory.id, viewCategory.spec, viewCategory.title);
             }

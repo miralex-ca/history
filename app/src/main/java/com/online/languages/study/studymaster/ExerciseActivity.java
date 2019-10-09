@@ -360,8 +360,18 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private void getTasks () {
         int limit = Constants.QUEST_NUM;
-        if (topicTag.equals(Constants.ALL_CAT_TAG) || topicTag.contains(Constants.SECTION_TEST_PREFIX)) {
-            limit = Constants.ALL_TEST_NUM;
+
+        if (topicTag.equals(Constants.ALL_CAT_TAG)) {
+
+            String lim =  appSettings.getString("test_all_limit", getString(R.string.set_test_all_limit_default));
+
+            limit = Integer.parseInt(lim);
+
+
+        }
+
+        if (topicTag.contains(Constants.SECTION_TEST_PREFIX)) {
+            limit = Constants.SECTION_TEST_LIMIT;
         }
 
         Collections.shuffle(originWordsList);

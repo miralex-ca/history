@@ -44,11 +44,27 @@
         <item>0</item>
     </string-array>
 
-
     <string-array name="set_data_control_tests_list">
         <item>@string/set_data_control_dates</item>
         <item>@string/set_data_control_all</item>
     </string-array>
+
+
+    <string-array name="set_test_all_limit_list">
+        <item>@string/set_test_all_limit_1</item>
+        <item>@string/set_test_all_limit_2</item>
+        <item>@string/set_test_all_limit_3</item>
+    </string-array>
+
+    <string-array name="set_test_all_limit_values">
+        <item>@string/set_test_all_limit_default</item>
+        <item>50</item>
+        <item>80</item>
+    </string-array>
+
+    <string name="set_test_all_limit_default">30</string>
+
+
 
     <string-array name="data_control_tests_list_values">
         <item>dates</item>
@@ -148,7 +164,6 @@
         <item>russia_gerb_2.jpg</item>
         <item>jandarm.jpg</item>
         <item>gallery/paint/devochka_s_persikami.jpg</item>
-
     </string-array>
 
 </resources>
