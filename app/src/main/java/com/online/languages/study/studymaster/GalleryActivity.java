@@ -74,6 +74,7 @@ public class GalleryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         tSectionID = getIntent().getStringExtra(EXTRA_SECTION_ID);

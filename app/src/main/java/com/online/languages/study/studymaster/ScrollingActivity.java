@@ -321,14 +321,12 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
         //Toast.makeText(this, "Test: " + starred, Toast.LENGTH_SHORT).show();
-
         //button.setImageResource(R.drawable.ic_star_border_older);
-
        // floatingActionButton.setImageResource(R.drawable.ic_star_border_older);
 
         final Drawable f= d;
 
-        floatingActionButton.setImageDrawable(f);
+        floatingActionButton.setImageDrawable(d);
 
 
 

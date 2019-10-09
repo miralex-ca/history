@@ -52,7 +52,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/cat_item_star_right"
-        app:srcCompat="@drawable/ic_star"
+        app:srcCompat="@drawable/ic_star_borded"
         android:id="@+id/voclistStar"
         android:visibility="visible"
         android:layout_width="20dp"

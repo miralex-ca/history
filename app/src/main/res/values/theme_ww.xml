@@ -139,7 +139,6 @@
         <item name="colorMapTitleBox">@color/colorMapTitleBox_ww</item>
 
         <item name="colorStarIcon">@color/colorStarIcon_ww</item>
-        <item name="colorStarIconBord">@color/colorStarIconBord_ww</item>
 
         <item name="colorExIconBg">@color/ex_icon_ww</item>
         <item name="colorExResult">@color/ex_link_result_ww</item>
