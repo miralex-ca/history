@@ -1185,6 +1185,7 @@ public class DBHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext()) {
 
                 DataItem item = getItemFromCursor(cursor);
+                if (item.db_filter == null) item.db_filter = "";
                 if (type == 2) {
                     if (item.db_filter.contains(GALLERY_TAG)) items.add(item);
                 } else {

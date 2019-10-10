@@ -32,6 +32,8 @@
     <dimen name="home_card_title_txt_size">@dimen/_home_card_title_txt_size</dimen>
     <dimen name="home_card_desc_txt_size">@dimen/_home_card_desc_txt_size</dimen>
 
+    <integer name="home_card_pics_count">4</integer>
+
     <integer name="home_card_desc_maxlines">@integer/_home_card_desc_maxlines</integer>
 
     <dimen name="home_card_title_left">@dimen/_home_card_title_left</dimen>

@@ -4,6 +4,8 @@
     <string name="dimen_size_h">h610dp</string>
 
 
+    <integer name="home_card_pics_count">5</integer>
+
     <!-- exercise -->
 
     <dimen name="_detail_image_height">460dp</dimen>

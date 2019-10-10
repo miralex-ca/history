@@ -30,6 +30,7 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
     private Boolean showWorld;
     private String theme;
     int type;
+    int count = 5;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -54,6 +55,7 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
         type = _type;
         sections = checkSections(_sections);
         theme = _theme;
+        if (type == 2) count = context.getResources().getInteger(R.integer.home_card_pics_count);
     }
 
     @Override
@@ -94,7 +96,6 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            int count = 5;
 
             for (int i = 0; i < count; i++) {
 
