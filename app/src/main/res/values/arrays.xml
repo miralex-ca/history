@@ -58,8 +58,8 @@
 
     <string-array name="set_test_all_limit_values">
         <item>@string/set_test_all_limit_default</item>
-        <item>50</item>
-        <item>80</item>
+        <item>60</item>
+        <item>100</item>
     </string-array>
 
     <string name="set_test_all_limit_default">30</string>
@@ -159,7 +159,7 @@
     </string-array>
 
     <string-array name="home_card_3">
-        <item>gallery/sobor_blazhenniy.jpg</item>
+        <item>gallery/arch/sobor_blazhenniy.jpg</item>
         <item>gallery/monument/monument_nikolay_1.jpg</item>
         <item>russia_gerb_2.jpg</item>
         <item>jandarm.jpg</item>

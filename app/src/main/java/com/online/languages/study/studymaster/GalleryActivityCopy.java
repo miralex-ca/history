@@ -93,7 +93,7 @@ public class GalleryActivityCopy extends AppCompatActivity {
 
         setTitle(navSection.title);
 
-        viewSection = new ViewSection(this, navSection, navStructure.getNavCatListFromParent(tCatID, tSectionID));
+        viewSection = new ViewSection(this, navSection, tCatID);
 
         organizeSection();
 

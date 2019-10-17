@@ -52,6 +52,8 @@ public class MapActivity extends AppCompatActivity {
 
     int picType = 0;
 
+    String title;
+
 
 
     @Override
@@ -81,9 +83,6 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
 
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-           // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,10 +96,12 @@ public class MapActivity extends AppCompatActivity {
 
         picType = getIntent().getIntExtra("pic", 0);
 
+        title = "";
 
         String folder = "maps/";
         if (picType != 1) {
             mapData = imageMapsData.getMapInfoById(mapId);
+            title = mapData.title;
         } else {
             folder = "pics/";
             mapData = getDataFromDetail(mapId);
@@ -109,9 +110,8 @@ public class MapActivity extends AppCompatActivity {
 
         float maxZoomRatio = 2.4f;
         if (picType == 1) maxZoomRatio = 1.5f;
-
-
-        setTitle(mapData.title);
+        
+        setTitle(title);
 
         TouchImageView imageView = findViewById(R.id.frag_imageview);
         imageView.setMaxZoomRatio(maxZoomRatio);
@@ -122,8 +122,6 @@ public class MapActivity extends AppCompatActivity {
                 //.load(R.raw.e)
                 .load("file:///android_asset/"+folder+ mapData.image)
                 .into(imageView);
-
-
     }
 
 
@@ -137,8 +135,11 @@ public class MapActivity extends AppCompatActivity {
 
         if (detailItem.title.equals("not found")) {
             DataItem dataItem =  dataManager.getDataItemFromDB(id);
+            title = dataItem.item;
+
             dataItem.item = dataItem.item + "\n\n" + dataItem.info;
             detailItem  = new DetailItem(dataItem);
+
         }
 
         return new ImageData(detailItem.title, "", detailItem.id, detailItem.image);
@@ -174,7 +175,6 @@ public class MapActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 pageTransition();
-
                 return true;
 
             case R.id.pic_info:

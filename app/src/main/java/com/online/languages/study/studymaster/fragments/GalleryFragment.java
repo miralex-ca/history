@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.online.languages.study.studymaster.Constants;
@@ -49,6 +50,8 @@ public class GalleryFragment extends Fragment {
 
     SharedPreferences appSettings;
     public String themeTitle;
+
+    Context context;
 
     NavStructure navStructure;
 
@@ -80,6 +83,8 @@ public class GalleryFragment extends Fragment {
         appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
+        context = getActivity();
+
         setHasOptionsMenu(true);
 
         assert getArguments() != null;
@@ -102,10 +107,9 @@ public class GalleryFragment extends Fragment {
 
         openActivity = new OpenActivity(getActivity());
 
-        viewSection = new ViewSection(getActivity(), navSection, navStructure.getNavCatListFromParent(tCatID, tSectionID));
+        viewSection = new ViewSection(getActivity(), navSection, tCatID);
 
         organizeSection();
-
 
         return rootview;
 
@@ -120,7 +124,6 @@ public class GalleryFragment extends Fragment {
 
         for (int i=0; i < viewSection.categories.size(); i++) {
             ViewCategory viewCategory = viewSection.categories.get(i);
-            viewCategory.tag = "tag"+i;
 
             if (viewCategory.type.equals("set")) {
                 if (catSet.catList.size()>0) catSetsList.add(catSet);
@@ -160,7 +163,7 @@ public class GalleryFragment extends Fragment {
         RecyclerView recyclerView = item.findViewById(R.id.recycler_view);
         GalleryAdapter mAdapter = new GalleryAdapter(getActivity(), group.catList, 1, themeTitle);
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration( new DividerItemDecoration(getActivity()) );
@@ -239,7 +242,6 @@ public class GalleryFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_gallery_fragement, menu);
-        // You can look up you menu item here and store it in a global variable by
         changeLayoutBtn = menu.findItem(R.id.list_layout);
         listType = appSettings.getInt(SET_GALLERY_LAYOUT, SET_GALLERY_LAYOUT_DEFAULT);
         applyLayoutStatus(listType);
@@ -248,8 +250,7 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        MenuItem menuItem = menu.findItem(R.id.list_layout); // You can change the state of the menu item here if you call getActivity().supportInvalidateOptionsMenu(); somewhere in your code
-
+        MenuItem menuItem = menu.findItem(R.id.list_layout);
         menuItem.setVisible(true);
 
     }
@@ -285,13 +286,10 @@ public class GalleryFragment extends Fragment {
         ViewCategory viewCategory = new ViewCategory();
 
         for (ViewCategory category: viewSection.categories) {
-            if (category.tag.equals(tag)) viewCategory = category;
+            if (category.tag.equals(tag))   viewCategory = category;
         }
-
         openActivity.openFromViewCat(navStructure, tSectionID, viewCategory);
     }
-
-
 
 
 

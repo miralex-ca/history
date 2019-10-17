@@ -15,11 +15,12 @@
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:theme="?attr/DetailTextTheme"
         android:paddingTop="30dp">
 
 
-
         <TextView
+            android:textIsSelectable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Text text text"
@@ -28,6 +29,7 @@
 
 
         <TextView
+            android:textIsSelectable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13sp"

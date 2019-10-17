@@ -22,6 +22,8 @@
     </style>
 
 
+
+
     <style name="UserDialog" >
 
         <item name="android:windowIsTranslucent">true</item>

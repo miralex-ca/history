@@ -30,6 +30,8 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <dimen name="_image_list_pic_height">180dp</dimen>
+
     <style name="homeCardDescStyle">
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
@@ -63,6 +65,8 @@
     <dimen name="_cat_item_info_txt_size">14sp</dimen>
 
 
+    <dimen name="_home_card_side">18dp</dimen>
+
     <dimen name="_card_padding">34dp</dimen>
 
     <style name="DetailSize.Width">
@@ -73,7 +77,14 @@
     <dimen name="design_fab_size_normal">52dp</dimen>
     <dimen name="fab_margin_right">26dp</dimen>
 
-
+    <dimen name="_gallery_card_img_size">230dp</dimen>
+    <dimen name="_gallery_item_padding">14dp</dimen>
+    <dimen name="_gallery_item_pic_size">90dp</dimen>
+    <dimen name="_gallery_item_pic_left">2dp</dimen>
+    <dimen name="_gallery_item_pic_right">12dp</dimen>
+    <dimen name="_gallery_item_title_txt_size">18sp</dimen>
+    <dimen name="_gallery_item_desc_txt_size">15sp</dimen>
+    <dimen name="_gallery_item_desc_top">5dp</dimen>
 
     <dimen name="_detail_card_width_max">450dp</dimen>
     <dimen name="_detail_card_width_min">480dp</dimen>

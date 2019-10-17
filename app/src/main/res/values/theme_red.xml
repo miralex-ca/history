@@ -57,7 +57,12 @@
         <item name="colorCatProgressPerfect">@color/colorCatProgressPerfect_red</item>
 
         <item name="cardCorner">@dimen/cardCornerDefault_red</item>
+        <item name="DetailTextTheme">@style/DetailTextTheme.Red</item>
 
+    </style>
+
+    <style name="DetailTextTheme.Red">
+        <item name="colorAccent">@color/colorAccent_red</item>
     </style>
 
 

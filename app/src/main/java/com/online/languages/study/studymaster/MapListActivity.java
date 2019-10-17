@@ -106,7 +106,7 @@ public class MapListActivity extends AppCompatActivity {
         tCatID = getIntent().getStringExtra(Constants.EXTRA_CAT_ID);
 
         navSection = navStructure.getNavSectionByID(tSectionID);
-        viewSection = new ViewSection(this, navSection, navStructure.getNavCatListFromParent(tCatID, tSectionID));
+        viewSection = new ViewSection(this, navSection, tCatID);
 
         getImages();
 

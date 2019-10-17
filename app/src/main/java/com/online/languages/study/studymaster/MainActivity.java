@@ -355,7 +355,7 @@ public class MainActivity extends AppCompatActivity
 
             if (GALLERY_SECTION) {
 
-                if (btmSetting.equals(getString(R.string.set_btm_nav_value_default))) {
+                if (btmSetting.equals(getString(R.string.set_btm_nav_value_1))) {
                     navigation.getMenu().findItem(R.id.nav_gallery).setVisible(false);
                 } else {
                     navigation.getMenu().findItem(R.id.nav_gallery).setVisible(true);
@@ -717,7 +717,10 @@ public class MainActivity extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-               if (galleryFragment!=null) galleryFragment.openCatActivity(tag);
+
+                GalleryFragment fragment = (GalleryFragment)fragmentManager.findFragmentByTag("gallery");
+               if (fragment!=null) fragment.openCatActivity(tag);
+
             }
         }, 50);
     }

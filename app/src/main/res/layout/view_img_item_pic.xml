@@ -44,7 +44,7 @@
                     android:alpha="?attr/map_thumbnail_alpha"
                     android:id="@+id/mapImage"
                     android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_height="@dimen/image_list_pic_height"
                     android:layout_centerInParent="true"
                      />
 

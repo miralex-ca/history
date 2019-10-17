@@ -40,10 +40,9 @@ public class AppStart extends AppCompatActivity {
 
             DBHelper dbHelper = new DBHelper(this);
 
-            //dbHelper.sanitizeDB();
+            dbHelper.sanitizeDB();
             dbHelper.populateDB();
         }
-
 
 
 

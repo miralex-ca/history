@@ -148,7 +148,7 @@ public class ImageListActivity extends AppCompatActivity {
 
 
         navSection = navStructure.getNavSectionByID(tSectionID);
-        viewSection = new ViewSection(this, navSection, navStructure.getNavCatListFromParent(tCatID, tSectionID));
+        viewSection = new ViewSection(this, navSection, tCatID);
 
         setTitle(getIntent().getStringExtra("title"));
 

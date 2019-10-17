@@ -244,7 +244,6 @@
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
         <item name="colorDialogBackground">@color/colorDetail_dark</item>
 
-
         <item name="colorAccent">@color/colorStarButton_dark</item>
         <item name="colorStarButton">@color/colorStarButton_dark</item>
         <item name="colorStarButtonIcon">@color/colorStarButtonIcon_dark</item>

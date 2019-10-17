@@ -22,6 +22,11 @@
 
     <dimen name="tab_width">@dimen/_tab_width</dimen>
 
+    <dimen name="image_list_pic_height">@dimen/_image_list_pic_height</dimen>
+
+
+
+
     <item name="mapThumbAlpha" format="float" type="dimen">1.0</item>
 
 
@@ -41,6 +46,19 @@
 
     <dimen name="home_image_height">@dimen/_home_image_height</dimen>
 
+    <dimen name="home_card_side">@dimen/_home_card_side</dimen>
+
+
+
+    <dimen name="gallery_card_img_size">@dimen/_gallery_card_img_size</dimen>
+    <dimen name="gallery_item_padding">@dimen/_gallery_item_padding</dimen>
+    <dimen name="gallery_item_pic_size">@dimen/_gallery_item_pic_size</dimen>
+    <dimen name="gallery_item_pic_left">@dimen/_gallery_item_pic_left</dimen>
+    <dimen name="gallery_item_pic_right">@dimen/_gallery_item_pic_right</dimen>
+
+    <dimen name="gallery_item_title_txt_size">@dimen/_gallery_item_title_txt_size</dimen>
+    <dimen name="gallery_item_desc_txt_size">@dimen/_gallery_item_desc_txt_size</dimen>
+    <dimen name="gallery_item_desc_top">@dimen/_gallery_item_desc_top</dimen>
 
     <dimen name="main_card_top">@dimen/_main_card_top</dimen>
 

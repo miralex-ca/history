@@ -48,6 +48,7 @@ public class GalleryActivity extends AppCompatActivity {
     NavSection navSection;
 
     GalleryFragment galleryFragment;
+    FragmentManager mFragmentManager;
 
     LinearLayout itemsList, cardsList;
 
@@ -85,15 +86,16 @@ public class GalleryActivity extends AppCompatActivity {
 
 
         Bundle bundle = new Bundle();
+
         bundle.putParcelable("structure", navStructure);
         bundle.putString(EXTRA_SECTION_ID, tSectionID);
         bundle.putString(EXTRA_CAT_ID, tCatID);
 
         galleryFragment.setArguments(bundle);
 
-        FragmentManager mFragmentManager = getSupportFragmentManager();
+        mFragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_fragment, galleryFragment).commit();
+        fragmentTransaction.replace(R.id.content_fragment, galleryFragment, "gallery").commit();
 
 
     }
@@ -106,7 +108,10 @@ public class GalleryActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (galleryFragment!=null) galleryFragment.openCatActivity(tag);
+
+                GalleryFragment fragment = (GalleryFragment)mFragmentManager.findFragmentByTag("gallery");
+                if (fragment!=null) fragment.openCatActivity(tag);
+
             }
         }, 50);
     }
@@ -119,8 +124,10 @@ public class GalleryActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == GALLERY_REQUESTCODE) {
-            if (galleryFragment != null) {
-                galleryFragment.onActivityResult(requestCode, resultCode, data);
+
+            GalleryFragment fragment = (GalleryFragment)mFragmentManager.findFragmentByTag("gallery");
+            if (fragment != null) {
+                fragment.onActivityResult(requestCode, resultCode, data);
             }
         }
 

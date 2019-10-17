@@ -133,9 +133,13 @@
         <item name="colorStarButtonIcon">@color/colorStarButtonIcon_smoky</item>
         <item name="starButtonIconInactive">@drawable/ic_star_border</item>
         <item name="colorStarButtonIconInactive">@color/colorStarButtonInactive_smoky</item>
+        <item name="DetailTextTheme">@style/DetailTextTheme.Dark</item>
 
     </style>
 
+    <style name="DetailTextTheme.Dark">
+        <item name="colorAccent">@color/colorAccent_smoky</item>
+    </style>
 
     <style name="deviderStyle_smoky">
         <item name="android:visibility">gone</item>

@@ -135,15 +135,18 @@
         <item name="cardCorner">@dimen/cardCornerDefault_white</item>
 
         <item name="colorDrawerHeadDivider">@color/colorDrawerHeadDivider_white</item>
+        <item name="DetailTextTheme">@style/DetailTextTheme.White</item>
+
+    </style>
 
 
+    <style name="DetailTextTheme.White">
+        <item name="colorAccent">@color/colorAccent_white</item>
     </style>
 
 
     <style name="WhiteThemeMap" parent="WhiteTheme">
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-
-
     </style>
 
 

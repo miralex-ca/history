@@ -196,7 +196,7 @@
         <item name="ToolBarStyle">@style/ToolBarStyle</item>
 
         <item name="CardViewBorder">@style/CardViewBorder</item>
-
+        <item name="DetailTextTheme">@style/DetailTextTheme</item>
     </style>
 
 
@@ -221,6 +221,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
+    </style>
+
+    <style name="DetailText">
     </style>
 
 
@@ -280,6 +283,8 @@
         <item name="colorPrimary">?attr/colorPrimary</item>
         <item name="colorPrimaryDark">?attr/colorPrimaryDark</item>
     </style>
+
+
 
 
 
@@ -539,8 +544,7 @@
         <item name="windowFixedWidthMajor">@dimen/detail_card_width_max</item> <!-- landscape-->
         <item name="windowFixedWidthMinor">@dimen/detail_card_width_min</item> <!-- portrait-->
 
-
-
+        <item name="DetailTextTheme">@style/DetailTextTheme</item>
     </style>
 
 
@@ -561,8 +565,12 @@
         <item name="colorGoodText">@color/colorGoodText</item>
         <item name="colorVeryGoodText">@color/colorVeryGoodText</item>
         <item name="colorGreatText">@color/colorGreatText</item>
+        <item name="DetailTextTheme">@style/DetailTextThemeDark</item>
 
     </style>
+
+
+
 
 
     <style name="DefaultTheme.UserDialog" parent="AppTheme.Dialog">
@@ -589,6 +597,8 @@
 
 
     </style>
+
+
 
 
     <style name="AppTheme.Finder" parent="Theme.AppCompat.Light.NoActionBar">
@@ -628,6 +638,15 @@
     <style name="TextAppearance.AppCompat.Medium">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorFinderText</item>
+    </style>
+
+
+    <style name="DetailTextTheme">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="DetailTextThemeDark">
+        <item name="colorAccent">@color/colorAccent_dk</item>
     </style>
 
 

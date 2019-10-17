@@ -203,9 +203,14 @@
         <item name="colorStarButtonIcon">@color/colorStarButtonIcon_ww</item>
         <item name="starButtonIconInactive">@drawable/ic_star_border</item>
         <item name="colorStarButtonIconInactive">@color/colorStarButtonInactive_ww</item>
+        <item name="DetailTextTheme">@style/DetailTextTheme.WW</item>
 
     </style>
 
+
+    <style name="DetailTextTheme.WW">
+        <item name="colorAccent">@color/colorAccent_ww</item>
+    </style>
 
     <style name="deviderStyle_ww">
         <item name="android:visibility">gone</item>

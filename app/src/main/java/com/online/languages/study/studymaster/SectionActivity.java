@@ -116,7 +116,7 @@ public class SectionActivity extends AppCompatActivity {
 
         navSection = navStructure.getNavSectionByID(tSectionID);
 
-        viewSection = new ViewSection(this, navSection, navStructure.getNavCatListFromParent(parent, tSectionID));
+        viewSection = new ViewSection(this, navSection, parent);
 
 
         sectionTitle = findViewById(R.id.sectionTitle);

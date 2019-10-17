@@ -25,6 +25,8 @@
 
     <dimen name="_card_stats_side">0dp</dimen>
 
+    <dimen name="_image_list_pic_height">110dp</dimen>
+
 
     <dimen name="_dialog_card_height">440dp</dimen>
     <dimen name="_dialog_card_img_height">200dp</dimen>
@@ -64,6 +66,18 @@
     <dimen name="_home_card_title_txt_size_4">@dimen/_home_card_title_txt_size</dimen>
     <dimen name="_home_card_desc_txt_size_4">@dimen/_home_card_desc_txt_size</dimen>
     <integer name="_home_card_desc_maxlines_4">2</integer>
+
+    <dimen name="_home_card_side">0dp</dimen>
+
+    <dimen name="_gallery_card_img_size">170dp</dimen>
+    <dimen name="_gallery_item_padding">10dp</dimen>
+    <dimen name="_gallery_item_pic_size">60dp</dimen>
+    <dimen name="_gallery_item_pic_left">2dp</dimen>
+    <dimen name="_gallery_item_pic_right">10dp</dimen>
+    <dimen name="_gallery_item_title_txt_size">16sp</dimen>
+    <dimen name="_gallery_item_desc_txt_size">13sp</dimen>
+    <dimen name="_gallery_item_desc_top">2dp</dimen>
+
 
 
     <dimen name="_home_card_padding">2dp</dimen>

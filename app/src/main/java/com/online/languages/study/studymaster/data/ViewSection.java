@@ -33,7 +33,7 @@ public class ViewSection {
     public ViewSection() {
     }
 
-    public ViewSection(Context _context, NavSection _navSection, ArrayList<NavCategory> cats) {
+    public ViewSection(Context _context, NavSection _navSection, String parentCat) {
 
         navSection = _navSection;
 
@@ -45,7 +45,20 @@ public class ViewSection {
 
         dataManager = new DataManager(context);
 
-        for (NavCategory navCategory: cats) {
+
+        ArrayList<NavCategory> cats = new ArrayList<>();
+
+
+        for (NavCategory category: navSection.navCategories) {
+            if (category.parent.equals(parentCat)) {
+                cats.add(category);
+             }
+         }
+
+
+        for (int i = 0; i<cats.size(); i++) {
+
+            NavCategory navCategory = cats.get(i);
 
             ViewCategory viewCategory = new ViewCategory(navCategory);
 
@@ -53,10 +66,9 @@ public class ViewSection {
                 viewCategory.subgroup = countGroupByID(navSection, navCategory.id);
             }
 
+            viewCategory.tag = "tag"+i;
 
             categories.add(viewCategory );
-
-
 
         }
     }

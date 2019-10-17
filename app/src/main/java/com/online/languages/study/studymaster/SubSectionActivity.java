@@ -75,7 +75,7 @@ public class SubSectionActivity extends AppCompatActivity {
         tCatID = getIntent().getStringExtra(Constants.EXTRA_CAT_ID);
 
         navSection = navStructure.getNavSectionByID(tSectionID);
-        viewSection = new ViewSection(this, navSection, navStructure.getNavCatListFromParent(tCatID, tSectionID));
+        viewSection = new ViewSection(this, navSection, tCatID);
         viewSection.getProgress();
 
         recyclerView = findViewById(R.id.recycler_view);

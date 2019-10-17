@@ -21,6 +21,7 @@ import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
+import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 
 import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
 
@@ -30,10 +31,21 @@ public class PrefsFragment extends PreferenceFragmentCompat {
     PreferenceScreen screen;
     PreferenceGroup preferenceParent;
 
+    ThemeAdapter themeAdapter;
+    SharedPreferences appSettings;
+    public String themeTitle;
+
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         //add xml
+
+
+        appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
+
+        themeAdapter = new ThemeAdapter(getActivity(), themeTitle, false);
+        themeAdapter.getTheme();
 
         addPreferencesFromResource(R.xml.settings);
 
@@ -117,6 +129,9 @@ public class PrefsFragment extends PreferenceFragmentCompat {
     @Override
     public RecyclerView onCreateRecyclerView(LayoutInflater inflater,
                                              ViewGroup parent, Bundle savedInstanceState) {
+
+
+
         RecyclerView list = super.onCreateRecyclerView(inflater, parent,
                 savedInstanceState);
         if (list != null) {

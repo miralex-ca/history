@@ -54,6 +54,39 @@
         {"parent": "root", "type": "simple", "spec": "image_list", "id": "10030030", "title": "Тема: Зеленые фото", "desc": "Описание темы", "image":  "picto/flower_green_l.png"},
         {"parent": "root", "type": "simple", "spec": "image_list", "id": "10030040", "title": "Тема: Серые фото", "desc": "Описание темы", "image":  "picto/flower_gray_l.png"}
       ]
+    },
+
+
+    {"tag": "section4", "title": "Галерея навигации", "id": "10040",
+      "desc": "Полное описание галереи из навигации",
+      "title_short": "Галерея",
+      "desc_short": "Краткое описание раздела",
+      "image": "picto/image_blue_l.png",
+      "type": "gallery",
+      "spec": "nav_gallery",
+      "categories":
+      [
+
+        {"parent": "root", "type": "set", "id": "set_1_2", "title": "gone", "desc": ""},
+
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10040010", "title": "Тема: Синие изображения", "desc": "Описание темы", "image":  "picto/image_blue_l.png"},
+
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10040020", "title": "Тема: Красные изображения", "desc": "Описание темы", "image":  "picto/image_red_l.png"},
+
+        {"parent": "root", "type": "group", "id": "group_4_1", "spec": "gallery", "title": "Группа изображений", "desc": "Описание группы", "image":  "picto/image_gray_l.png"},
+
+        {"parent": "group_4_1", "type": "simple", "spec": "image_list", "id": "10040040", "title": "Тема: Серые изображения", "desc": "Описание темы", "image":  "picto/image_gray_l.png"},
+        {"parent": "group_4_1", "type": "simple", "spec": "image_list", "id": "10040050", "title": "Тема: Черные изображения", "desc": "Описание темы", "image":  "picto/image_black_l.png"},
+
+
+
+        {"parent": "root", "type": "group", "id": "group_4_2", "spec": "maps", "title": "Группа карт", "desc": "Разные карты", "image":  "picto/image_green_l.png"},
+
+        {"parent": "group_4_2", "type": "page", "spec": "map", "id": "100400300010", "title": "Зеленые карты", "desc": "Описание темы"},
+        {"parent": "group_4_2", "type": "page", "spec": "map", "id": "100400300020", "title": "Серые карты", "desc": "Описание темы"}
+
+
+      ]
     }
 
   ]

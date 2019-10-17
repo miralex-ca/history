@@ -36,6 +36,8 @@
 
     <item name="button_width" format="float" type="dimen">0.4</item>
 
+    <dimen name="_gallery_card_img_size">180dp</dimen>
+
 
     <!--  cat item -->
 

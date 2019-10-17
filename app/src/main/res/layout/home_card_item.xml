@@ -37,6 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingLeft="@dimen/home_card_side"
+                android:paddingRight="@dimen/home_card_side"
                 >
 
 
