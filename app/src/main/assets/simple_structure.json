@@ -52,14 +52,14 @@
       [
 
         {"parent": "root", "type": "set", "id": "set_1_2", "title": "gone", "desc": ""},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020100", "title": "Архитектура", "desc": "Архитектура", "image":  "gallery/arch/sobor_blazhenniy.jpg"},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020200", "title": "Памятники", "desc": "Памятники", "image":  "gallery/monument/medniy_vsadnik.jpg"},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020300", "title": "Известные картины", "desc": "Известные картины", "image":  "gallery/paint/utro_v_lesu.jpg"},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020500", "title": "Знаменитые личности", "desc": "Знаменитые личности", "image":  "gallery/pers/pers_chekhov.jpg"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020100", "title": "Архитектура", "desc": "Храмы, дворцы, исторические сооружения и т.п.", "image":  "gallery/arch/sobor_blazhenniy.jpg"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020200", "title": "Памятники", "desc": "Самые знаменитые памятники и монументы.", "image":  "gallery/monument/medniy_vsadnik.jpg"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020300", "title": "Изобразительное искусство", "desc": "Наиболее известные работы русских художников.", "image":  "gallery/paint/utro_v_lesu.jpg"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020500", "title": "Выдающиеся личности", "desc": "Видные деятели искусства и науки.", "image":  "gallery/pers/pers_chekhov.jpg"},
 
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020600", "title": "Гербы и флаги", "desc": "Гербы и флаги", "image":  "russia_gerb_1.jpg"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020600", "title": "Гербы и флаги", "desc": "Стяги, знамена, гербы, флаги", "image":  "russia_gerb_1.jpg"},
 
-        {"parent": "root", "type": "group", "id": "group_1_5", "spec": "maps", "title": "Карты", "desc": "Разные карты", "image":  "moskva_yaroslavl.jpg"},
+        {"parent": "root", "type": "group", "id": "group_1_5", "spec": "maps", "title": "Карты", "desc": "Карты русских княжеств, российского государства, СССР.", "image":  "moskva_yaroslavl.jpg"},
 
         {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10010510", "title": "Славянские племена", "desc": "Славяне и их соседи в VII-VIII вв."},
         {"parent": "group_1_5", "type": "page", "spec": "map", "id": "10010520", "title": "Русь в XI в.", "desc": "Киевская Русь в 1015-1113 гг."},
