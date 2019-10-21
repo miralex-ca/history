@@ -6,7 +6,7 @@
 
     <integer name="home_card_pics_count">5</integer>
 
-    <dimen name="_gallery_card_img_size">190dp</dimen>
+    <dimen name="_gallery_card_img_size">180dp</dimen>
 
     <!-- exercise -->
 

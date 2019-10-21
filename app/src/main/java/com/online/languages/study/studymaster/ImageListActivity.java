@@ -56,6 +56,7 @@ import com.online.languages.study.studymaster.data.ViewSection;
 import java.util.ArrayList;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+import static com.online.languages.study.studymaster.Constants.IMG_LIST_LAYOUT;
 
 
 public class ImageListActivity extends AppCompatActivity {
@@ -118,7 +119,7 @@ public class ImageListActivity extends AppCompatActivity {
 
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
-        listType = appSettings.getInt(Constants.IMG_LIST_LAYOUT, 2);
+        listType = appSettings.getInt(IMG_LIST_LAYOUT, 3); /// default - 3 image grid
 
 
         if(getResources().getBoolean(R.bool.portrait_only)){
@@ -450,7 +451,7 @@ public class ImageListActivity extends AppCompatActivity {
         }
 
         SharedPreferences.Editor editor = appSettings.edit();
-        editor.putInt(Constants.IMG_LIST_LAYOUT, listType);
+        editor.putInt(IMG_LIST_LAYOUT, listType);
         editor.apply();
         applyLayoutStatus(listType);
     }

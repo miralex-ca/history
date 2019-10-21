@@ -688,7 +688,6 @@
 
 
     <style name="fTextBox">
-        <item name="android:textSize">@dimen/flash_txt_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginTop">15dp</item>

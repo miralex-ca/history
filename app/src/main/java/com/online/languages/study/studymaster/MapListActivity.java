@@ -82,7 +82,7 @@ public class MapListActivity extends AppCompatActivity {
 
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
-        listType = appSettings.getInt("maps_list_layout", 1);
+        listType = appSettings.getInt("maps_list_layout", 2);
 
 
         if(getResources().getBoolean(R.bool.portrait_only)){

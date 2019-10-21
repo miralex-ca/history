@@ -73,7 +73,7 @@
     <dimen name="_gallery_item_padding">10dp</dimen>
     <dimen name="_gallery_item_pic_size">60dp</dimen>
     <dimen name="_gallery_item_pic_left">2dp</dimen>
-    <dimen name="_gallery_item_pic_right">10dp</dimen>
+    <dimen name="_gallery_item_pic_right">16dp</dimen>
     <dimen name="_gallery_item_title_txt_size">16sp</dimen>
     <dimen name="_gallery_item_desc_txt_size">13sp</dimen>
     <dimen name="_gallery_item_desc_top">2dp</dimen>
@@ -175,6 +175,25 @@
     <dimen name="_flash_txt_padding_side">2dp</dimen>
 
 
+    <!-- card text sizes -->
+    <integer name="f_item_txt_size_norm">24</integer>
+    <integer name="f_item_txt_size_medium">23</integer>
+    <integer name="f_item_txt_size_small">22</integer>
+
+
+    <integer name="_f_info_txt_size_norm">18</integer>
+    <integer name="_f_info_txt_size_mid">16</integer>
+    <integer name="_f_info_txt_size_small">15</integer>
+    <integer name="_f_info_txt_size_smallest">14</integer>
+
+    <integer name="_f_info_txt_size_norm_opt">18</integer>
+    <integer name="_f_info_txt_size_mid_opt">16</integer>
+    <!-- card text sizes -->
+    <dimen name="_f_btn_padding_top_btm">15dp</dimen>
+    <dimen name="_f_btn_margin_side">15dp</dimen>
+
+
+
     <dimen name="_ex_card_field_minheight">366dp</dimen>
     <integer name="_ex_card_wrap">300</integer>
     <integer name="_ex_card_wrap_high">338</integer>
@@ -190,22 +209,6 @@
 
     <dimen name="_ex_sheet_padding_top">0dp</dimen>
     <dimen name="_ex_sheet_padding_side">8dp</dimen>
-
-
-
-
-
-    <!-- card text sizes -->
-    <integer name="_f_info_txt_size_norm">18</integer>
-    <integer name="_f_info_txt_size_mid">16</integer>
-    <integer name="_f_info_txt_size_small">15</integer>
-    <integer name="_f_info_txt_size_smallest">14</integer>
-
-    <integer name="_f_info_txt_size_norm_opt">18</integer>
-    <integer name="_f_info_txt_size_mid_opt">16</integer>
-    <!-- card text sizes -->
-    <dimen name="_f_btn_padding_top_btm">15dp</dimen>
-    <dimen name="_f_btn_margin_side">15dp</dimen>
 
 
 

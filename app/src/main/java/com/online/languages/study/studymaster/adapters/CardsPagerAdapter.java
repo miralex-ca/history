@@ -63,8 +63,8 @@ public class CardsPagerAdapter extends PagerAdapter {
         reverseData = CardsActivity.fRevertData;
 
 
-        LinearLayout content = (LinearLayout) itemView.findViewById(R.id.fCardContent);
-        LinearLayout contentMirror = (LinearLayout) itemView.findViewById(R.id.fCardContentMirror);
+        LinearLayout content = itemView.findViewById(R.id.fCardContent);
+        LinearLayout contentMirror = itemView.findViewById(R.id.fCardContentMirror);
 
         if (reverseData) {
             content.setVisibility(View.GONE);
@@ -75,17 +75,17 @@ public class CardsPagerAdapter extends PagerAdapter {
         }
 
 
-        TextView text = (TextView) itemView.findViewById(R.id.fCardText);
-        RelativeLayout answerBox = (RelativeLayout) itemView.findViewById(R.id.fAnswerBox);
-        final TextView showMsg = (TextView) itemView.findViewById(R.id.showMsg);
-        final TextView answer = (TextView) itemView.findViewById(R.id.fCardAnswer);
+        TextView text = itemView.findViewById(R.id.fCardText);
+        RelativeLayout answerBox = itemView.findViewById(R.id.fAnswerBox);
+        final TextView showMsg = itemView.findViewById(R.id.showMsg);
+        final TextView answer = itemView.findViewById(R.id.fCardAnswer);
 
-        TextView textMirror = (TextView) itemView.findViewById(R.id.fCardTextMirror);
-        final LinearLayout fTextMirrorBox  = (LinearLayout) itemView.findViewById(R.id.fTextMirrorBox);
+        TextView textMirror = itemView.findViewById(R.id.fCardTextMirror);
+        final LinearLayout fTextMirrorBox  = itemView.findViewById(R.id.fTextMirrorBox);
 
-        RelativeLayout answerBoxMirror = (RelativeLayout) itemView.findViewById(R.id.fAnswerBoxMirror);
-        final TextView showMsgMirror = (TextView) itemView.findViewById(R.id.showMsgMirror);
-        final TextView answerMirror = (TextView) itemView.findViewById(R.id.fCardAnswerMirror);
+        RelativeLayout answerBoxMirror = itemView.findViewById(R.id.fAnswerBoxMirror);
+        final TextView showMsgMirror = itemView.findViewById(R.id.showMsgMirror);
+        final TextView answerMirror = itemView.findViewById(R.id.fCardAnswerMirror);
 
 
         if (showTranslate){
@@ -98,6 +98,8 @@ public class CardsPagerAdapter extends PagerAdapter {
         }
 
         text.setText( wordData.item );
+        text.setTextSize(itemTextSize(wordData.item));
+
         int infoSize = textSize( wordData.info );
         answer.setText(wordData.info);
         answer.setTextSize( infoSize );
@@ -116,6 +118,7 @@ public class CardsPagerAdapter extends PagerAdapter {
 
 
         textMirror.setText( wordData.item );
+        textMirror.setTextSize(itemMirrorTextSize( wordData.item ));
 
         int infoSizeMirror = textSizeMirror( wordData.info );
         answerMirror.setText(wordData.info);
@@ -148,6 +151,23 @@ public class CardsPagerAdapter extends PagerAdapter {
 
 
 
+    private int itemTextSize(String text) {
+        int textLength = text.length();
+        int tSize = context.getResources().getInteger(R.integer.f_item_txt_size_norm);
+        if ( textLength > 20) tSize = context.getResources().getInteger(R.integer.f_item_txt_size_medium);
+        if ( textLength > 60) tSize = context.getResources().getInteger(R.integer.f_item_txt_size_small);
+        return tSize;
+    }
+
+
+    private int itemMirrorTextSize(String text) {
+        int textLength = text.length();
+        int tSize = context.getResources().getInteger(R.integer.f_item_txt_size_medium);
+        if ( textLength > 30) tSize = context.getResources().getInteger(R.integer.f_item_txt_size_small);
+        return tSize;
+    }
+
+
     private int textSize(String text) {
         int textLength = text.length();
         int tSize = context.getResources().getInteger(R.integer.f_info_txt_size_norm);
@@ -160,9 +180,9 @@ public class CardsPagerAdapter extends PagerAdapter {
 
     private int textSizeMirror(String text) {
         int textLength = text.length();
-        int tSize = context.getResources().getInteger(R.integer.f_info_txt_size_norm_opt);;
+        int tSize = context.getResources().getInteger(R.integer.f_info_txt_size_norm_opt);
 
-        if ( textLength > 150) tSize = context.getResources().getInteger(R.integer.f_info_txt_size_mid_opt);;
+        if ( textLength > 150) tSize = context.getResources().getInteger(R.integer.f_info_txt_size_mid_opt);
         if ( textLength > 200) tSize = context.getResources().getInteger(R.integer.f_info_txt_size_small);
         if ( textLength > 240 ) tSize = context.getResources().getInteger(R.integer.f_info_txt_size_smallest);
 

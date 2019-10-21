@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context cntx;
     SharedPreferences appSettings;
     private int MAX_SCORE = 4;
-    private static final int DATABASE_VERSION = 35;
+    private static final int DATABASE_VERSION = 36;
 
     private static final String DATABASE_NAME = "userPrgress";
 

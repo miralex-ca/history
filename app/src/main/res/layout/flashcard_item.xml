@@ -20,6 +20,7 @@
             style="@style/fTextWrap">
 
             <TextView
+                android:textSize="@dimen/flash_txt_size"
                 android:id="@+id/fCardText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

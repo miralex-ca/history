@@ -68,6 +68,11 @@
 
     <dimen name="_flash_txt_padding_side">18dp</dimen>
 
+    <integer name="f_item_txt_size_norm">25</integer>
+    <integer name="f_item_txt_size_medium">24</integer>
+    <integer name="f_item_txt_size_small">23</integer>
+
+
 
     <!-- exercise -->
 

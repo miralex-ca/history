@@ -28,6 +28,7 @@ import com.online.languages.study.studymaster.data.Section;
 import java.util.ArrayList;
 
 import static com.online.languages.study.studymaster.Constants.HOME_CARDS;
+import static com.online.languages.study.studymaster.Constants.NAV_GALLERY_SPEC;
 
 
 public class HomeFragment extends Fragment {
@@ -118,7 +119,7 @@ public class HomeFragment extends Fragment {
         ArrayList<NavSection> sections = new ArrayList<>();
 
         for (NavSection section: navSections) {
-            if (!section.id.equals("nav_gallery")) sections.add(section);
+            if (!section.spec.equals(NAV_GALLERY_SPEC)) sections.add(section);
         }
 
         return sections;
