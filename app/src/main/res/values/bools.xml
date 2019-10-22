@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="portrait_only">false</bool>
+    <bool name="portrait_only">true</bool>
     <bool name="small_height">true</bool> <!-- change for more 560dp -->
     <bool name="normal_height">false</bool>
     <bool name="wide_width">false</bool>

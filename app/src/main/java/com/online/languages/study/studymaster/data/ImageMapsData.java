@@ -7,20 +7,16 @@ import java.util.ArrayList;
 
 public class ImageMapsData {
 
-
     Context context;
     ArrayList<ImageData> data = new ArrayList<>();
-
 
     public ImageMapsData(Context _context) {
         prepareData();
     }
 
-
     public ImageMapsData(DetailItem detailItem) {
         prepareData();
     }
-
 
     public ImageData getMapInfoById(String id) {
 
@@ -33,9 +29,7 @@ public class ImageMapsData {
         }
 
         return imageData;
-
     }
-
 
     private void prepareData() {
 
@@ -170,7 +164,6 @@ public class ImageMapsData {
                 "10050550", "map_war_1856.jpg",
                 "Крымская война 1853-1856 гг. Карта театра военных действий воюющих сторон на суше и на море в бассейне Чёрного моря."));
 
-
         data.add(new ImageData("1877–1878 гг.",
                 "https://history.wikireading.ru/23688",
                 "10050560", "map_war_1878.jpg",
@@ -236,12 +229,5 @@ public class ImageMapsData {
                 "10080510", "map_russia.jpg",
                 "Карта России после падения СССР."));
 
-
-
-
     }
-
-
-
-
 }

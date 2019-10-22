@@ -19,16 +19,11 @@
     <dimen name="card_wrap_padding">@dimen/_card_wrap_padding</dimen>
     <dimen name="card_wrap_top">@dimen/_card_wrap_top</dimen>
 
-
     <dimen name="tab_width">@dimen/_tab_width</dimen>
 
     <dimen name="image_list_pic_height">@dimen/_image_list_pic_height</dimen>
 
-
-
-
     <item name="mapThumbAlpha" format="float" type="dimen">1.0</item>
-
 
     <!-- home grid activity -->
     <dimen name="home_card_image_width">@dimen/_home_card_image_width</dimen>
@@ -47,8 +42,6 @@
     <dimen name="home_image_height">@dimen/_home_image_height</dimen>
 
     <dimen name="home_card_side">@dimen/_home_card_side</dimen>
-
-
 
     <dimen name="gallery_card_img_size">@dimen/_gallery_card_img_size</dimen>
     <dimen name="gallery_item_padding">@dimen/_gallery_item_padding</dimen>
@@ -114,7 +107,6 @@
 
     <dimen name="detail_card_width">@dimen/_detail_card_width</dimen>
 
-
     <dimen name="detail_card_width_max">@dimen/_detail_card_width_max</dimen>
     <dimen name="detail_card_width_min">@dimen/_detail_card_width_min</dimen>
 
@@ -149,11 +141,8 @@
 
     <dimen name="article_keylines">16dp</dimen>
 
-
-
     <!-- dialog activity -->
     <dimen name="text_margin">16dp</dimen>
-
 
     <!-- links to exercises -->
     <dimen name="ex_links_list_padding_side">@dimen/_ex_links_list_padding_side</dimen>
@@ -164,9 +153,7 @@
     <dimen name="ex_link_padding_top">@dimen/_ex_link_padding_top</dimen>
     <dimen name="ex_link_padding_btm">@dimen/_ex_link_padding_btm</dimen>
 
-
     <dimen name="ex_links_icon_margin_right">@dimen/_ex_links_icon_margin_right</dimen>
-
 
     <!-- flashcard to exercises -->
     <dimen name="flash_card_height">@dimen/_flash_card_height</dimen>

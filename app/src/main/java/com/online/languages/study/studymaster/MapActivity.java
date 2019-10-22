@@ -72,7 +72,6 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -81,7 +80,6 @@ public class MapActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_map);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -102,6 +100,7 @@ public class MapActivity extends AppCompatActivity {
         if (picType != 1) {
             mapData = imageMapsData.getMapInfoById(mapId);
             title = mapData.title;
+            mapData.title = "Изображение: " + mapData.title;
         } else {
             folder = "pics/";
             mapData = getDataFromDetail(mapId);
@@ -110,7 +109,7 @@ public class MapActivity extends AppCompatActivity {
 
         float maxZoomRatio = 2.4f;
         if (picType == 1) maxZoomRatio = 1.5f;
-        
+
         setTitle(title);
 
         TouchImageView imageView = findViewById(R.id.frag_imageview);
@@ -131,36 +130,27 @@ public class MapActivity extends AppCompatActivity {
 
         DataManager dataManager = new DataManager(this);
 
-        detailItem = dataManager.getDetailFromDB(id);
+        // detailItem = dataManager.getDetailFromDB(id);
 
-        if (detailItem.title.equals("not found")) {
-            DataItem dataItem =  dataManager.getDataItemFromDB(id);
-            title = dataItem.item;
+        DataItem dataItem =  dataManager.getDataItemFromDB(id);
+        title = dataItem.item;
 
-            dataItem.item = dataItem.item + "\n\n" + dataItem.info;
-            detailItem  = new DetailItem(dataItem);
+        dataItem.item = dataItem.item + "\n\n" + dataItem.info;
 
-        }
+        detailItem  = new DetailItem(dataItem);
 
         return new ImageData(detailItem.title, "", detailItem.id, detailItem.image);
     }
 
-
-
     private void pageTransition() {
         if (picType == 1) {
             overridePendingTransition(R.anim.fade_in_img_back, R.anim.fade_out_img_back);
-
         } else {
-
             if ( !getResources().getBoolean(R.bool.wide_width)) {
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
-
         }
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -194,10 +184,8 @@ public class MapActivity extends AppCompatActivity {
 
     public void showInfoDialog() {
 
-
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View content = inflater.inflate(R.layout.dialog_pic_info, null);
-
 
         TextView title = content.findViewById(R.id.picTitle);
         TextView info = content.findViewById(R.id.picInfo);
@@ -206,7 +194,7 @@ public class MapActivity extends AppCompatActivity {
 
         if (mapData.weblink.equals("")) webLink.setVisibility(View.GONE);
 
-        title.setText("Изображение: " + mapData.title);
+        title.setText(mapData.title);
 
         info.setText(mapData.desc);
 

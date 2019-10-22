@@ -284,13 +284,14 @@
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
+                    android:layout_height="35dp"
                     android:paddingTop="0dp"
                     app:tabTextColor="?attr/colorSecondaryText"
                     app:tabIndicatorColor="?attr/colorSecondaryText"
                     app:tabSelectedTextColor="?attr/colorMainText"
                     app:tabIndicatorHeight="1dp"
-
+                    app:tabMinWidth="0dp"
+                    app:tabMaxWidth="0dp"
                     />
 
 

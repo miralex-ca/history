@@ -2,7 +2,6 @@
   "data":
   [
 
-
     {"id": "100102000010", "mode": "0", "item": "Аскольд и Дир", "info": "Легендарные киевские князья второй половины IX в.", "image": "askold_dir.jpg"},
     {"id": "100102000020", "mode": "0", "item": "Андрей Боголюбский", "info": "Великий князь владимирский с 1157 г.", "image": "bogolubskiy.jpg"},
     {"id": "100102000030", "mode": "0", "item": "Борис и Глеб", "info": "Сыновья Владимира, убиты Святополком в ходе междоусобной войны.", "image": "boris_gleb.jpg"},
@@ -410,7 +409,7 @@
     {"id": "100500100080", "mode": "0", "item": "1807 г.", "info": "Тильзитский мир.", "image": "aleksandr_tilzit.jpg"},
     {"id": "100500100090", "mode": "1", "item": "1810 г.", "info": "Создание Государственного совета.", "image": "russia_gerb_1.jpg"},
     {"id": "100500100100", "mode": "0", "item": "1812 г., 12 июня – 21 декабря", "info": "Отечественная война.", "image": "french_war.jpg"},
-    {"id": "100500100110", "mode": "1", "item": "1812 г., 3–6 августа", "info": "Смоленское сражение.", "image": "battle_smolensk_1812_2.png"},
+    {"id": "100500100110", "mode": "1", "item": "1812 г., 3–6 августа", "info": "Смоленское сражение.", "image": "battle_smolensk_1812_2.jpg"},
     {"id": "100500100120", "mode": "0", "item": "1812 г., 26 августа", "info": "Сражение при Бородино.", "image": "battle_borodino.jpg"},
     {"id": "100500100130", "mode": "1", "item": "1812 г., 1 сентября", "info": "Совещание в Филях.", "image": "kutuzov_fili.jpg"},
     {"id": "100500100140", "mode": "0", "item": "1812 г., 7 октября", "info": "Уход французов из Москвы.", "image": "french_moskva.jpg"},
@@ -1369,7 +1368,7 @@
     {"id": "101006000020", "item": "Стяг «Всемилостивейшего Спаса»", "info": "Период: 1552 г.", "image": "gallery/flag/flag_znamya_Ivana_4.jpg", "filter": "#gallery"},
     {"id": "101006000030", "item": "Великий стяг Ивана Грозного", "info": "Период: 1560 г.", "image": "gallery/flag/flag_znamya_2_Ivana_4.jpg", "filter": "#gallery"},
     {"id": "101006000040", "item": "Герб с печати Ивана IV", "info": "Период: Середина XVI века.", "image": "gallery/flag/gerb_16v_1.jpg", "filter": "#gallery"},
-    {"id": "101006000050", "item": "Герб со печати Фёдора I", "info": "Период: 1580-е – 1620-е годы.", "image": "gallery/flag/gerb_16_17v.jpg", "filter": "#gallery"},
+    {"id": "101006000050", "item": "Герб с печати Фёдора I", "info": "Период: 1580-е – 1620-е годы.", "image": "gallery/flag/gerb_16_17v.jpg", "filter": "#gallery"},
     {"id": "101006000060", "item": "Герб с печати Алексея Михайловича", "info": "Период: 1620-е – 1690-е годы.", "image": "gallery/flag/gerb_17v.jpg", "filter": "#gallery"},
     {"id": "101006000070", "item": "Флаг царя Московского", "info": "Период: 1693 г.", "image": "gallery/flag/flag_1693.jpg", "filter": "#gallery"},
     {"id": "101006000080", "item": "Гербовое знамя", "info": "Период: 1696 г.", "image": "gallery/flag/flag_znyamya_1696.jpg", "filter": "#gallery"},
