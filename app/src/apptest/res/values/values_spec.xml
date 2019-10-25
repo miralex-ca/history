@@ -58,7 +58,6 @@
     </string-array>
 
 
-
     <color name="colorPrimary">#424242</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#fcb70c</color>
@@ -73,7 +72,6 @@
 
     <color name="colorPrimaryDialog">#616161</color>
     <color name="colorDetailMainText">#444</color>
-
 
     <color name="colorNavBgStart">#616161</color>
     <color name="colorNavBgCenter">#585858</color>
