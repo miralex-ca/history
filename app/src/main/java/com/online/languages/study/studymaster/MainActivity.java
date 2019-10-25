@@ -172,6 +172,9 @@ public class MainActivity extends AppCompatActivity
 
 
         String base64EncodedPublicKey = PUBLIC_KEY_1+PUBLIC_KEY_2+PUBLIC_KEY_3+PUBLIC_KEY_4;
+
+        base64EncodedPublicKey = getString(R.string.encoded_key);
+
         mHelper = new IabHelper(this, base64EncodedPublicKey);
 
         PRO_VERSION = Constants.PRO;
@@ -360,7 +363,6 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     navigation.getMenu().findItem(R.id.nav_gallery).setVisible(true);
                 }
-
             }
             else {
                 navigation.getMenu().findItem(R.id.nav_gallery).setVisible(false);
@@ -680,7 +682,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void testOldstPage(View view) {
-
         if (oldestDataList.size() < 1) {
             displayEmtySection();
         } else {

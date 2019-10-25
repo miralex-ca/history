@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name_spec">apptest-</string>
     <string name="app_name">Тест История</string>
     <string name="backup_file_name">Backup_test.csv</string>
 
-    <string name="app_structure_file">test_structure.json</string>
+    <string name="app_structure_file">test_structure_simple.json</string>
     <string name="app_data_file">test_data.json</string>
 
     <string name="app_detail_file">details_simple.json</string>
@@ -15,8 +15,6 @@
     <dimen name="home_card_title_bottom">@dimen/_home_card_title_bottom_4</dimen>
     <dimen name="home_card_title_txt_size">@dimen/_home_card_title_txt_size_4</dimen>
     <dimen name="home_card_desc_txt_size">@dimen/_home_card_desc_txt_size_4</dimen>
-
-
 
     <string-array name="home_card_1">
         <item>picto/shape_red_l.png</item>
@@ -41,6 +39,53 @@
         <item>picto/image_green_l.png</item>
         <item>picto/image_blue_l.png</item>
     </string-array>
+
+
+    <string-array name="themes" tools:ignore="InconsistentArrays">
+        <item>@string/set_theme_default_name</item>
+        <item>@string/set_theme_dark_name</item>
+        <item>@string/set_theme_smoky_name</item>
+        <item>@string/set_theme_white_name</item>
+        <item>@string/set_theme_ww_name</item>
+    </string-array>
+
+    <string-array name="themes_values" tools:ignore="InconsistentArrays">
+        <item>default</item>
+        <item>dark</item>
+        <item>smoky</item>
+        <item>white</item>
+        <item>westworld</item>
+    </string-array>
+
+
+
+    <color name="colorPrimary">#424242</color>
+    <color name="colorPrimaryDark">#212121</color>
+    <color name="colorAccent">#fcb70c</color>
+    <color name="colorAccent1">#6d6d6d</color>
+    <color name="colorButtonNormal">#e1e1e1</color>
+
+    <color name="colorBtmNav_active">#444</color>
+    <color name="colorBtmNav_inactive">#777</color>
+
+    <color name="colorDetailBar">@color/colorAccent</color>
+    <color name="colorPrimaryDarkDetail">#26327c</color>
+
+    <color name="colorPrimaryDialog">#616161</color>
+    <color name="colorDetailMainText">#444</color>
+
+
+    <color name="colorNavBgStart">#616161</color>
+    <color name="colorNavBgCenter">#585858</color>
+    <color name="colorNavBgEnd">#333333</color>
+
+    <color name="ex_icon">#8e8d8d</color>
+    <color name="ex_link_result">#F5F5F5</color>
+    <color name="ex_link_result_txt">#000000</color>
+
+    <color name="colorExActiveTxt">#757575</color>
+
+    <color name="colorContactIcon">#8e8d8d</color>
 
 
 
