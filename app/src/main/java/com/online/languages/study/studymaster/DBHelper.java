@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context cntx;
     SharedPreferences appSettings;
     private int MAX_SCORE = 4;
-    private static final int DATABASE_VERSION = 37;
+    private static final int DATABASE_VERSION = BuildConfig.VERSION_CODE;
 
     private static final String DATABASE_NAME = "userPrgress";
 
@@ -87,8 +87,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_ITEM_TIME = "item_time";
     private static final String KEY_ITEM_TIME_STARRED = "item_time_starred";
     private static final String KEY_ITEM_TIME_ERROR = "item_time_error";
-
-
 
     //// detail table columns
     private static final String KEY_DETAIL_ID = "detail_id";

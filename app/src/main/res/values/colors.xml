@@ -106,7 +106,6 @@
     <color name="translucent_scrim_bottom">#82000000</color>
     <color name="translucent_scrim_bottom_center">#0D000000</color>
 
-
     <color name="red_snack">#FF1744</color>
     <color name="red_snack_txt">#FFFFFF</color>
     <color name="green_snack">#00E676</color>
@@ -127,10 +126,8 @@
     <color name="progress_bad">#FF3D00</color>
     <color name="progress_verybad">#FF1744</color>
 
-
     <color name="colorExOptionTxt">#000000</color>
     <color name="colorExDisabledTxt">#888888</color>
-
 
     <color name="colorExBottomDivider">#45b3b3b3</color>
     <color name="colorExBottomBox">#00aeaeae</color>
@@ -147,7 +144,6 @@
     <color name="colorVeryGoodTextCat">#019681</color>
     <color name="colorGreatTextCat">#01a344</color>
 
-
     <color name="colorCatProgressPerfect">#00b94d</color>
     <color name="colorCatProgressGreat">#00ab93</color>
     <color name="colorCatProgressGood">#01a2ba</color>
@@ -157,20 +153,17 @@
     <color name="colorProgressTxt">#fff</color>
     <color name="colorCatGroup">#30a8adaf</color>
 
-
     <color name="colorCatProgressPerfect_default">#00b94d</color>
     <color name="colorCatProgressGreat_default">#00ab93</color>
     <color name="colorCatProgressGood_default">#01a2ba</color>
     <color name="colorCatProgressBad_default">#FF3D00</color>
     <color name="colorCatProgressLow_default">#FF1744</color>
 
-
     <color name="colorErrors">#FF1744</color>
 
     <color name="colorUnknown">#c1000000</color>
     <color name="colorKnown">#2772f1</color>
     <color name="colorStudied">#02a445</color>
-
 
     <color name="colorStudiedBox">#00C853</color>
     <color name="colorKnownBox">#0091EA</color>
@@ -180,18 +173,14 @@
     <color name="colorKnownBoxTxt">#fff</color>
     <color name="colorUnknownBoxTxt">#fff</color>
 
-
     <color name="colorKnownProgress">#0091EA</color>
     <color name="colorStudiedProgress">#00C853</color>
-
 
     <color name="colorErrorBox">#f55555</color>
     <color name="colorErrorBoxTxt">#FFFFFF</color>
 
     <color name="colorTestBox">#00897B</color>
     <color name="colorOpenBox">#0097A7</color>
-
-
     <color name="colorIconArrow">#EF6C00</color>
     <color name="colorIconArrowBg">#7cffcc80</color>
     <color name="colorIconHistory">#0097A7</color>
@@ -200,24 +189,14 @@
     <color name="colorIconReviewBg">#4e80d8ff</color>
     <color name="colorIconTest">#26A69A</color>
     <color name="colorIconTestBg">#491de9b6</color>
-
-
     <color name="white">#fff</color>
-
-
     <color name="screem_img_center">#0f000000</color>
     <color name="screem_img_btm">#20000000</color>
-
     <color name="colorMapTitleBox">#ffffff</color>
     <color name="colorToolbarIcon">#ffffff</color>
-
     <color name="colorNavHeaderTxt">#ffffff</color>
-
     <color name="colorTabIndicator">#ffffff</color>
-
     <color name="colorDrawerHeadDivider">#00000000</color>
-
-
     <color name="colorImageTitleBox">#54000000</color>
 
 

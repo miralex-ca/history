@@ -57,6 +57,8 @@ public class GetPremium extends AppCompatActivity {
 
         String base64EncodedPublicKey = MainActivity.PUBLIC_KEY_1+MainActivity.PUBLIC_KEY_2+MainActivity.PUBLIC_KEY_3+MainActivity.PUBLIC_KEY_4;
 
+        base64EncodedPublicKey = getString(R.string.encoded_key);
+
         mHelper = new IabHelper(this, base64EncodedPublicKey);
 
 
