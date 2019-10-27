@@ -331,7 +331,7 @@ public class ExerciseDataCollect {
         HashSet<String> set = new HashSet<>();
 
         for (DataItem item: dataItems) {
-            String catId = item.id.substring(0, 8);
+            String catId = item.id.substring(0, sectionTagSize);
             if (!set.contains(catId)) {
                 ids.add(catId);
                 optionsCatData.add(new OptionsCatData(catId));

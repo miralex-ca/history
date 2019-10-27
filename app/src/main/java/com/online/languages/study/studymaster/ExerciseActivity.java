@@ -832,7 +832,7 @@ public class ExerciseActivity extends AppCompatActivity {
         if ( topicTag.equals(Constants.ALL_CAT_TAG) ) {
             if (saveStats) applySaveStatsStatus(false);
             saveStats = false;
-            exSaveStatsRadio.setEnabled(false);
+            if (! Constants.APP_SIMPLIFIED) exSaveStatsRadio.setEnabled(false);
         }
 
     }
