@@ -28,6 +28,8 @@ import com.online.languages.study.studymaster.data.DataManager;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
+
 public class CatTabFragment2 extends Fragment {
 
     RecyclerView recyclerView;
@@ -88,10 +90,10 @@ public class CatTabFragment2 extends Fragment {
             topStatsCard.setVisibility(View.GONE);
             divide.setVisibility(View.GONE);
         } else {
-            minCardHeight.setMinimumHeight(0);
+            if (!APP_SIMPLIFIED) minCardHeight.setMinimumHeight(0);
         }
 
-        if (Constants.APP_SIMPLIFIED) {
+        if (APP_SIMPLIFIED) {
             topStatsCard.setVisibility(View.GONE);
             divide.setVisibility(View.GONE);
         }

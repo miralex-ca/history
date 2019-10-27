@@ -44,6 +44,8 @@ public class ExerciseDataCollect {
 
     int exType = 1;
 
+    private int sectionTagSize;
+
 
 
     public ExerciseDataCollect(Context _context, ArrayList<DataItem> _data, int _exType) {
@@ -55,6 +57,7 @@ public class ExerciseDataCollect {
 
         data = _data;
         getCatIdsFromDataItems(data);
+        sectionTagSize = context.getResources().getInteger(R.integer.section_id_length);
 
        // collect(data);
 
