@@ -46,6 +46,9 @@
     <dimen name="_home_card_title_txt_size">19sp</dimen>
     <dimen name="_home_card_title_bottom">12dp</dimen>
 
+    <dimen name="_home_card_image_width_4">180dp</dimen>
+    <dimen name="_home_card_image_height_4">155dp</dimen>
+
     <style name="homeCardTitleStyle">
         <item name="android:textStyle">normal</item>
     </style>

@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
 
+import static com.online.languages.study.studymaster.Constants.GALLERY_SECTION;
+
 
 public class MenuListAdapter extends BaseAdapter {
 
@@ -89,7 +91,7 @@ public class MenuListAdapter extends BaseAdapter {
         divider = view.findViewById(R.id.menu_list_divider);
 
         if ( position == 1)  {
-          //  view = lInflater.inflate(R.layout.null_item, null);
+           if (!GALLERY_SECTION) view = lInflater.inflate(R.layout.null_item, null);
         }
 
         if (position==4 || position==7) {
