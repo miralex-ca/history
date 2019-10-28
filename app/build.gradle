@@ -17,6 +17,12 @@ android {
         }
     }
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     dataBinding {
         enabled = true
     }
@@ -45,21 +51,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     flavorDimensions "mode"
+
     productFlavors {
         master {
             dimension "mode"
         }
         history {
+            dimension "mode"
             applicationId 'com.online.languages.study.ruhistory'
             resValue("string", "applicationId", applicationId)
-
-            dimension "mode"
             signingConfig signingConfigs.config
+            buildConfigField ("boolean", "GALLERY", "true")
 
         }
 
         simplified {
+            dimension "mode"
             applicationId 'com.online.languages.study.simplified'
             resValue("string", "applicationId", applicationId)
             buildConfigField ("boolean", "SIMPLIFIED", "true")
@@ -67,6 +76,7 @@ android {
         }
 
         apptest {
+            dimension "mode"
             applicationId 'com.online.languages.study.tester'
             resValue("string", "applicationId", applicationId)
             buildConfigField ("boolean", "SIMPLIFIED", "true")
@@ -95,6 +105,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+    testImplementation 'org.robolectric:robolectric:4.3'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:preference-v14:28.0.0'
