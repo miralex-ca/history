@@ -3,6 +3,7 @@ package com.online.languages.study.studymaster;
 import android.content.Context;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-
+@Ignore
 @RunWith(RobolectricTestRunner.class)
 public class PreReleaseAncientTest {
 
