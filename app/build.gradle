@@ -42,7 +42,7 @@ android {
         resValue("string", "applicationId", applicationId)
         buildConfigField ("boolean", "SIMPLIFIED", "false")
         buildConfigField ("boolean", "HOMECARDS", "false")
-        buildConfigField ("boolean", "GALLERY", "false")
+        buildConfigField ("boolean", "GALLERY", "true")
 
     }
     buildTypes {

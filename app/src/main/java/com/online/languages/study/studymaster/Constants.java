@@ -3,8 +3,8 @@ package com.online.languages.study.studymaster;
 
 public class Constants {
 
-    public static final boolean PRO = false;  // TODO change in PRO
-    public static final boolean DEBUG = false;  /// should be true to see ads in debug
+    public static final boolean PRO = true;  // TODO change in PRO
+    public static final boolean DEBUG = true;  /// should be true to see ads in debug
     public static final boolean SCREEN_SHOW = false;
 
     public static final Boolean APP_SIMPLIFIED = BuildConfig.SIMPLIFIED;
@@ -88,6 +88,8 @@ public class Constants {
     public static final String STARRED_TAB_ACTIVE = "starred_tab_active";
 
     public static final int GALLERY_REQUESTCODE = 100;
+
+    public static final int TEST_OPTIONS_RANGE = 8;
 
 
     public enum Status {

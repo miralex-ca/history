@@ -1,6 +1,7 @@
 package com.online.languages.study.studymaster.data;
 
 import android.content.Context;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.online.languages.study.studymaster.Constants;
@@ -12,6 +13,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+
+import static com.online.languages.study.studymaster.Constants.TEST_OPTIONS_RANGE;
 
 
 public class ExerciseDataCollect {
@@ -52,12 +55,13 @@ public class ExerciseDataCollect {
         context = _context;
         exType = _exType;
 
+        sectionTagSize = context.getResources().getInteger(R.integer.section_id_length);
+
         dataFromJson = new DataFromJson(context);
         dbHelper = new DBHelper(context);
 
         data = _data;
         getCatIdsFromDataItems(data);
-        sectionTagSize = context.getResources().getInteger(R.integer.section_id_length);
 
        // collect(data);
 
@@ -280,6 +284,8 @@ public class ExerciseDataCollect {
 
       //  Collections.shuffle(optionsList);
 
+        //if (optionsList.size() < 1) Toast.makeText(context, "No item " + dataItem.item, Toast.LENGTH_SHORT ).show();
+
         DataItem option = optionsList.get(0);
 
         if (option.item.equals(dataItem.item)) {
@@ -354,8 +360,6 @@ public class ExerciseDataCollect {
                 }
 
             }
-
-
     }
 
 
@@ -363,16 +367,99 @@ public class ExerciseDataCollect {
 
         ArrayList<DataItem> tOptions = new ArrayList<>();
 
+
+
         for (OptionsCatData optionsCat: optionsCatData) {
             if (id.matches(optionsCat.id + ".*")) {
-                tOptions = optionsCat.options;
+
+                tOptions = getNeighborOptions(optionsCat.options, id);
+
+              //  if (tOptions.size() < 1) Toast.makeText(context, "0: " + id, Toast.LENGTH_SHORT).show();
+
+                if (tOptions.size() < 1)  tOptions = optionsCat.options; // TODO improve to collect neighbors
+
+               //
+
                 break;
             }
 
         }
 
-
         return tOptions;
+    }
+
+    private ArrayList<DataItem> getNeighborOptions (ArrayList<DataItem> options, String id) {
+
+
+        /// define index of the item and form a list of indexes
+        int target = -1;
+        ArrayList<Integer> indexesArray = new ArrayList<>();
+
+        for (int i = 0; i < options.size(); i ++ ) {
+            if (options.get(i).id.equals(id)) target = i;
+            indexesArray.add(i);
+        }
+
+        ArrayList<Integer> targetArray = new ArrayList<>();
+        boolean toLeft = true;
+
+        int range = TEST_OPTIONS_RANGE;
+
+        for (int i = 0; i < range; i ++) {  /// getting neighbor indexes
+
+            int targetIndex = getIndexByValue(indexesArray, target);
+
+            if (indexesArray.size() < 2) break;
+
+            if (toLeft)  {
+                if ((targetIndex-1) > -1 && (targetIndex-1) < (indexesArray.size()) ) {
+                    targetArray.add(indexesArray.get(targetIndex-1));
+                    targetArray.add(indexesArray.remove(targetIndex-1));
+
+                } else {
+                    if ((targetIndex+1) > -1 && (targetIndex+1) < (indexesArray.size())) {
+                        targetArray.add(indexesArray.get(targetIndex+1));
+                        targetArray.add(indexesArray.remove(targetIndex+1));
+                    }
+                }
+                toLeft = false;
+
+            } else {
+                if ((targetIndex+1) > -1 && (targetIndex+1) < (indexesArray.size())) {
+                    targetArray.add(indexesArray.get(targetIndex+1));
+                    targetArray.add(indexesArray.remove(targetIndex+1));
+
+                } else {
+                    if ((targetIndex-1) > -1 && (targetIndex-1) < (indexesArray.size())) {
+                        targetArray.add(indexesArray.get(targetIndex-1));
+                        targetArray.add(indexesArray.remove(targetIndex-1));
+                    }
+                }
+                toLeft = true;
+            }
+        }
+
+        ArrayList<DataItem> newOptions = new ArrayList<>();
+
+        for (Integer index: targetArray) {
+            newOptions.add(options.get(index));
+        }
+
+       // if (newOptions.size() < 1) Toast.makeText(context, "0: " + id, Toast.LENGTH_SHORT).show();
+
+        return newOptions;
+
+    }
+
+    private int getIndexByValue(ArrayList<Integer> indexes, int value) {
+
+        int index = -1;
+
+        for (int i = 0; i < indexes.size(); i ++ ) {
+            if ( indexes.get(i) == value) index = i;
+        }
+
+        return index;
     }
 
 
