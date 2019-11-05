@@ -64,7 +64,7 @@ public class ExerciseResultActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Результат теста");
+        setTitle(R.string.test_result_title);
 
         testResult = new TestResult(this, originList);
 
@@ -95,9 +95,9 @@ public class ExerciseResultActivity extends AppCompatActivity {
         TextView skippedCount = findViewById(R.id.skippedTotalCount);
         TextView testProgress = findViewById(R.id.testProgress);
 
-        taskCount.setText("Всего заданий: " + originList.size());
-        errorCount.setText("Ошибок: " + testResult.testErrors.size());
-        skippedCount.setText("Пропущено: " + testResult.unanswered.size());
+        taskCount.setText(String.format(getString(R.string.total_tasks), originList.size()));
+        errorCount.setText(String.format(getString(R.string.test_errors), testResult.testErrors.size()));
+        skippedCount.setText(String.format(getString(R.string.tasks_missed), testResult.unanswered.size()));
 
         int correct =  originList.size() - testResult.testErrors.size() - testResult.unanswered.size();
 
@@ -111,13 +111,6 @@ public class ExerciseResultActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-    private String getData() {
-        return testResult.prepareDisplay();
-    }
 
 
     public void openView(View view) {

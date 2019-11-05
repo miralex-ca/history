@@ -297,8 +297,6 @@ public class CatListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
         if (sectionId.equals(Constants.ERRORS_CAT_TAG)) {
             getMenuInflater().inflate(R.menu.menu_custom_list, menu);
         } else {

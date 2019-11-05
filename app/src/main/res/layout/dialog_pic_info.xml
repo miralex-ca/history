@@ -8,8 +8,6 @@
     android:fillViewport="true"
     android:gravity="center_horizontal">
 
-
-
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,7 +24,7 @@
         android:id="@+id/picTitle"
         android:textSize="14sp"
         android:layout_marginLeft="8dp"
-        android:text="Изображение"
+        android:text="@string/image_info_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -35,7 +33,7 @@
         android:layout_marginLeft="8dp"
         android:id="@+id/picInfo"
         android:textSize="14sp"
-        android:text="Описание"
+        android:text="@string/image_info_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -67,7 +65,7 @@
 
         <TextView
             android:layout_gravity="center_vertical"
-            android:text="Ссылка на источник"
+            android:text="@string/pic_link"
             android:textSize="16sp"
             android:id="@+id/resultSection"
 

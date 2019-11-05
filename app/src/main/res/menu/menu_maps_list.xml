@@ -8,7 +8,7 @@
         android:id="@+id/list_layout"
         android:orderInCategory="100"
         android:icon="@drawable/ic_view_list"
-        android:title="Раскладка"
+        android:title="@string/menu_layout"
         app:showAsAction="always" />
 
     <item

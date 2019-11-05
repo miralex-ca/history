@@ -23,7 +23,6 @@
             android:textIsSelectable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Text text text"
             android:textSize="@dimen/detail_text_size"
             android:id="@+id/lbl_text" />
 

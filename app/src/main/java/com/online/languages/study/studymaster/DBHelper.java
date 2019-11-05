@@ -915,31 +915,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return items;
     }
 
-    public ArrayList<DataItem> selectDataItemsByIds(SQLiteDatabase db, ArrayList<String> conditions) {
-
-        ArrayList<DataItem> items = new ArrayList<>();
-        StringBuilder conditionLike = new StringBuilder("");
-
-        for (int i = 0; i < conditions.size(); i++) {
-            String like = "a."+KEY_ITEM_ID + " LIKE '" + conditions.get(i) + "%' ";
-            if (i != 0) like = "OR " + like;
-            conditionLike.append(like);
-        }
-
-        String query = "SELECT * FROM "+TABLE_ITEMS_DATA +" a LEFT JOIN "+TABLE_USER_DATA
-                +" b ON a.item_id=b.user_item_id"
-                +" WHERE "+conditionLike;
-
-        Cursor cursor = db.rawQuery(query, null);
-
-        while (cursor.moveToNext()) {
-            items.add(getItemFromCursor(cursor));
-        }
-        cursor.close();
-
-        return items;
-    }
-
 
 
     public Section selectSectionDataFromDB(SQLiteDatabase db, Section section) {
@@ -1400,18 +1375,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Section> checkSectionListStats(ArrayList<Section> sections) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        sections = checkSectionListStatsDB(db, sections);
-
-        db.close();
-        return sections;
-    }
-
-
-
 
     public UserStatsData checkAppStatsDB(UserStatsData userStatsData) {
 
@@ -1426,7 +1389,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-    public Section checkSectionStatsDB(Section section) {
+    Section checkSectionStatsDB(Section section) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         section = checkSectionStatsDB(db, section);
@@ -1884,7 +1847,7 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             while (cursor.moveToNext()) {
                 String txt = cursor.getString(cursor.getColumnIndex(KEY_USER_ITEM_ID));
-                Boolean found = false;
+                boolean found = false;
 
                 DataItem foundW = new DataItem();
                 for (DataItem word: allItems) {
@@ -1933,8 +1896,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-
-
     public void importUserData(SQLiteDatabase db, List<DBImport.UserItemData> list) {
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_DATA);
@@ -1949,7 +1910,7 @@ public class DBHelper extends SQLiteOpenHelper {
             }
 
             db.setTransactionSuccessful();
-            Toast.makeText(cntx, "Обновлено записей: " + list.size(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(cntx, String.format(cntx.getString(R.string.entries_updated), list.size()), Toast.LENGTH_SHORT).show();
 
         } finally {
             db.endTransaction();

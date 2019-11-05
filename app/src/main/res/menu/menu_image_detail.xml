@@ -7,6 +7,6 @@
         android:id="@+id/fullscreen"
         android:orderInCategory="100"
         android:icon="@drawable/ic_fullscreen"
-        android:title="Fullscreen"
+        android:title="@string/menu_fullscreen"
         app:showAsAction="always" />
 </menu>

@@ -100,7 +100,7 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         }
 
 
-        String desc = "Пройдено тем: "+ catsNum+" &nbsp;&nbsp;&nbsp;";
+        String desc = context.getString(R.string.cats_studied)+ catsNum+" &nbsp;&nbsp;&nbsp;";
 
         if (errors > 0) {
             desc = desc + "<font color=\"red\">Ошибок: "+errors+"</font>";

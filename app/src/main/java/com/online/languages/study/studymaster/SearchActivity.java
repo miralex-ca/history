@@ -263,7 +263,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         searchView.setSubmitButtonEnabled(false);
         searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(this);
-        searchView.setQueryHint("Поиск");
+        searchView.setQueryHint(getString(R.string.search_hint));
         searchView.setIconified(false);
         searchView.requestFocus();
 
@@ -307,7 +307,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         if (size == 0) {
             result.setVisibility(View.VISIBLE);
 
-            String str = "Нет записей по запросу: <br> <b><i>" + query +"</i></b>";
+            String str = String.format(getString(R.string.no_search_result), query);
 
             result.setText(Html.fromHtml(str));
 
@@ -342,7 +342,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         if (moreDataCoount > 0) {
             loadMoreTxt.setVisibility(View.VISIBLE);
-            loadMoreTxt.setText("Загрузить ещё " + moreDataCoount + " из " + dif);
+            loadMoreTxt.setText(String.format(getString(R.string.load_more), moreDataCoount, dif));
 
         } else {
 

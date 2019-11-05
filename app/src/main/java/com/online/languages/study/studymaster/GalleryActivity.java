@@ -44,17 +44,10 @@ public class GalleryActivity extends AppCompatActivity {
     String tSectionID = "01010";
     String tCatID = "01010";
 
-    ViewSection viewSection;
     NavSection navSection;
 
     GalleryFragment galleryFragment;
     FragmentManager mFragmentManager;
-
-    LinearLayout itemsList, cardsList;
-
-    private MenuItem changeLayoutBtn;
-
-    int listType;
 
 
     @Override

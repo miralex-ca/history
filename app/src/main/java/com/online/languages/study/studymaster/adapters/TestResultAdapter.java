@@ -73,8 +73,8 @@ public class TestResultAdapter extends RecyclerView.Adapter<TestResultAdapter.My
         TestResult.ResultCategory category = categoryArrayList.get(position);
 
         holder.title.setText(category.title);
-        holder.taskCount.setText("Заданий: " + category.dataItems.size());
-        holder.errorsCount.setText("Неправильно: " + category.errors.size());
+        holder.taskCount.setText(String.format(context.getString(R.string.result_task_count), category.dataItems.size()));
+        holder.errorsCount.setText(String.format(context.getString(R.string.result_incorrect_count), category.errors.size()));
 
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

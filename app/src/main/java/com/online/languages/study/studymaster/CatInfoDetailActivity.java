@@ -63,11 +63,11 @@ public class CatInfoDetailActivity extends AppCompatActivity {
 
 
         //TextView titleT = (TextView) findViewById(R.id.text);
-        TextView infoT = (TextView) findViewById(R.id.lbl_text);
-        TextView imgIfo = (TextView) findViewById(R.id.lbl_img_desc);
+        TextView infoT = findViewById(R.id.lbl_text);
+        TextView imgIfo = findViewById(R.id.lbl_img_desc);
 
-        box = (LinearLayout) findViewById(R.id.box);
-        mask = (View) findViewById(R.id.mask);
+        box = findViewById(R.id.box);
+        mask = findViewById(R.id.mask);
 
         //box.setAlpha(0.0f);
        // box.setVisibility(View.VISIBLE);
@@ -77,7 +77,7 @@ public class CatInfoDetailActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+                findViewById(R.id.collapsing_toolbar);
 
 
 
@@ -88,12 +88,12 @@ public class CatInfoDetailActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(detailItem.title);
 
         infoT.setText(detailItem.desc);
-        imgIfo.setText("Изображение: "+detailItem.img_info);
+        imgIfo.setText(String.format(getString(R.string.pic_name_label), detailItem.img_info));
 
 
         //Toast.makeText(this, detailItem.image , Toast.LENGTH_SHORT).show();
 
-        ImageView placePicutre = (ImageView) findViewById(R.id.image);
+        ImageView placePicutre = findViewById(R.id.image);
 
         //*/
         Picasso.with(this)

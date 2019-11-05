@@ -113,10 +113,7 @@
             android:theme="@style/MyButton"
             android:layout_gravity="center_horizontal" />
 
-
     </LinearLayout>
-
-
 
 
     <LinearLayout
@@ -146,9 +143,6 @@
             android:fontFamily="sans-serif-light"
             />
 
-
-
     </LinearLayout>
-
 
 </RelativeLayout>

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:scrollbars="vertical"
     android:background="?attr/colorBaseBg">
-
 
 
     <LinearLayout
@@ -18,10 +14,8 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
-
         style="@style/CardWrapper.Width"
         >
-
 
         <android.support.v7.widget.CardView
 
@@ -47,16 +41,13 @@
 
 
                 <TextView
-                android:text="Статистика темы"
-
+                    android:text="@string/cat_stats_title"
                     android:textSize="@dimen/cat_stat_title_txt_size"
                     android:paddingLeft="@dimen/cat_stat_title_txt_left"
                     android:paddingTop="14dp"
                     android:layout_marginBottom="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 
                 <LinearLayout
@@ -66,8 +57,6 @@
                     android:orientation="horizontal"
                     android:weightSum="1"
                     >
-
-
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -80,12 +69,14 @@
                             android:orientation="vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
+
                             <TextView
                                 android:textSize="15sp"
                                 android:id="@+id/catTotalCount"
-                                android:text="Всего записей: "
+                                android:text="@string/cat_stats_total_items"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
+
                             <LinearLayout
                                 android:layout_marginTop="10dp"
                                 android:orientation="horizontal"
@@ -104,7 +95,7 @@
                                         android:textSize="13sp"
                                         android:maxLines="1"
                                         android:textColor="?attr/colorSecondaryText"
-                                        android:text="Пройдено"
+                                        android:text="@string/cat_stats_familliar_count"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" />
 
@@ -128,7 +119,7 @@
                                         android:textSize="13sp"
                                         android:maxLines="1"
                                         android:textColor="?attr/colorSecondaryText"
-                                        android:text="Изучено"
+                                        android:text="@string/cat_stats_studied_count"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" />
 
@@ -173,27 +164,18 @@
                                 android:id="@id/catProgress"
                                 android:layout_centerInParent="true"
                                 android:textSize="32sp"
-                                android:text="65%"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 
                         </RelativeLayout>
 
-
                     </LinearLayout>
-
-
 
                 </LinearLayout>
 
-
-
-
             </LinearLayout>
 
-
         </android.support.v7.widget.CardView>
-
 
         <View
             android:id="@+id/carDivider"
@@ -207,13 +189,10 @@
 
 
         <android.support.v7.widget.CardView
-
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-
             style="?attr/cardViewStyle"
-
             >
 
             <FrameLayout
@@ -234,7 +213,6 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/ex_links_list_padding_side"
                 android:paddingRight="@dimen/ex_links_list_padding_side"
-
                 android:paddingTop="@dimen/ex_links_list_padding_top"
                 android:paddingBottom="@dimen/ex_links_list_padding_top"
                 android:layout_marginBottom="20dp"
@@ -253,12 +231,9 @@
 
             </LinearLayout>
 
-
             </RelativeLayout>
 
-
         </android.support.v7.widget.CardView>
-
 
         <View
             android:layout_width="match_parent"
@@ -266,10 +241,6 @@
 
 
     </LinearLayout>
-
-
-
-
 
 
 </android.support.v4.widget.NestedScrollView>

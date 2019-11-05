@@ -44,7 +44,6 @@
 
             <TextView
                 android:maxLines="1"
-                android:text="Тест"
                 android:id="@+id/sectionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +54,6 @@
             <TextView
                 android:maxLines="1"
                 android:visibility="gone"
-                android:text="Тест"
                 android:layout_marginTop="2dp"
                 android:id="@+id/sectionDesc"
                 android:layout_width="wrap_content"

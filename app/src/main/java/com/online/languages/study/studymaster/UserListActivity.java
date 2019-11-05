@@ -57,7 +57,6 @@ public class UserListActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-
         appSettings = PreferenceManager.getDefaultSharedPreferences(this);
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
@@ -80,17 +79,17 @@ public class UserListActivity extends AppCompatActivity {
         getVocab();
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.section_tab1_title));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.section_tab2_title));
-        viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager = findViewById(R.id.container);
         adapter = new UserListViewPagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
 
@@ -120,58 +119,26 @@ public class UserListActivity extends AppCompatActivity {
     public void showAlertDialog(View view) {
 
         Intent intent = new Intent(UserListActivity.this, ScrollingActivity.class);
-
         String tag = view.getTag().toString();
-
-
         intent.putExtra("starrable", true);
         intent.putExtra("id", tag );
-
         startActivityForResult(intent,1);
-
         overridePendingTransition(R.anim.slide_in_down, 0);
     }
 
 
     private void getVocab() {
 
-        DataFromJson dataFromJson = new DataFromJson(this);
-        //topicData = dataFromJson.wordArr;
-        // exerciseData = dataFromJson.exArr;
-        //cardData = dataFromJson.cardArr;
-
-        ArrayList<DataItem> words = getStarredWords();
-
         topicData = dataManager.getStarredWords(true);
-
         exerciseData = topicData;
         cardData = topicData;
-
         setPageTitle(topicData.size());
-
-
-        //DBHelper dbHelper = new DBHelper(this);
-        //topicData = dbHelper.checkStarredList(topicData);
 
     }
 
     public void setPageTitle(int count) {
-        String title = "Избранное ("+count+")";
+        String title = String.format(getString(R.string.starred_title), count);
         setTitle(title);
-    }
-
-
-
-    private ArrayList<DataItem> getStarredWords() {
-        ArrayList<DataItem> words;
-        DBHelper dbHelper = new DBHelper(this);
-        words = dbHelper.getStarredFromDB();
-
-
-
-        //Toast.makeText(this, "Len: "+ dataItems.size(), Toast.LENGTH_SHORT).show();
-
-        return words;
     }
 
 
@@ -193,11 +160,9 @@ public class UserListActivity extends AppCompatActivity {
     }
 
 
-
     public void nextPage(int pos) {
 
         Intent i = new Intent(UserListActivity.this, ExerciseActivity.class) ;
-
 
         if (pos == 0 )  {
             i = new Intent(UserListActivity.this, CardsActivity.class);
@@ -211,7 +176,6 @@ public class UserListActivity extends AppCompatActivity {
         }
 
         i.putExtra(Constants.EXTRA_CAT_TAG, Constants.STARRED_CAT_TAG);
-
 
         startActivity(i);
         pageTransition();
@@ -237,7 +201,6 @@ public class UserListActivity extends AppCompatActivity {
                     fragment.checkStarred();
 
                 }
-
             }
         }
     }
@@ -272,13 +235,10 @@ public class UserListActivity extends AppCompatActivity {
     private  void deleteStarredExResults() {
 
         String[] topic = new String[1];
-
         topic[0] = Constants.STARRED_CAT_TAG +"_1";
         topic[0] = Constants.STARRED_CAT_TAG +"_2";
 
-
         dbHelper.deleteExData(topic);
-
 
         UserListTabFragment2 fragment = (UserListTabFragment2) adapter.getFragmentTwo();
         if (fragment != null) {

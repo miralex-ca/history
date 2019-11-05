@@ -13,11 +13,14 @@ import com.online.languages.study.studymaster.data.DataItem;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.App.getAppContext;
+
 
 public class SectionListAdapter extends RecyclerView.Adapter<SectionListAdapter.MyViewHolder> {
 
     private ArrayList<DataItem> dataList;
     private int showStatus;
+    private String errorsLabel;
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,6 +43,7 @@ public class SectionListAdapter extends RecyclerView.Adapter<SectionListAdapter.
     public SectionListAdapter(ArrayList<DataItem> _dataList, int _show_status) {
         dataList = _dataList;
         showStatus = _show_status;
+        errorsLabel = getAppContext().getString(R.string.section_errors_label);
     }
 
     @Override
@@ -148,7 +152,7 @@ public class SectionListAdapter extends RecyclerView.Adapter<SectionListAdapter.
 
     private void manageErrorsView(View statusBox, int errorsCount) {
         TextView errorsTxt = statusBox.findViewById(R.id.errorsCount);
-        errorsTxt.setText("Ошибки: " + errorsCount);
+        errorsTxt.setText(String.format(errorsLabel, errorsCount));
 
         if (errorsCount > 0) {
             errorsTxt.setVisibility(View.VISIBLE);

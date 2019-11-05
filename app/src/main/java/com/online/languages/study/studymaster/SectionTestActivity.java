@@ -90,7 +90,7 @@ public class SectionTestActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        setTitle("Тесты раздела");
+        setTitle(R.string.section_tests_titile);
 
         getAllDataFromJson();
 

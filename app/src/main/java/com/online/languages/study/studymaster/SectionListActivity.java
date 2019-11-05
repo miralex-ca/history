@@ -72,9 +72,7 @@ public class SectionListActivity extends AppCompatActivity {
 
         NavStructure navStructure;
 
-
-        String tSectionID = "01010";
-
+        String tSectionID;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_list);
@@ -89,11 +87,11 @@ public class SectionListActivity extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Обзор раздела");
+        setTitle(R.string.section_review_title);
 
 
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
@@ -108,7 +106,7 @@ public class SectionListActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         data = dbHelper.getSectionListDataItems( navSection.uniqueCategories );
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
         adapter = new SectionListAdapter(data, showStatus);
 

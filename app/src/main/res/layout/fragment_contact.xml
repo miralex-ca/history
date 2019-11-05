@@ -16,7 +16,6 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/main_card_top"
-
         style="@style/CardWrapper.Width"
 
         >
@@ -28,8 +27,6 @@
             style="?attr/cardViewStyle"
             app:cardCornerRadius="?attr/cardCornerSpec"
             >
-
-
 
             <FrameLayout
                 android:layout_width="match_parent"

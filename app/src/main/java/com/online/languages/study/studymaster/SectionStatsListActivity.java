@@ -50,16 +50,9 @@ public class SectionStatsListActivity extends AppCompatActivity {
 
     int dataType = 0;
 
-    String list_type = Constants.LIST_STUDIED;
-
     int mainColor = -1;
 
-    ArrayList<Section> sectionsCustomList;
-
-    UserStats userStats;
-
     TextView dataCountTxt, dataTitle, dataDesc;
-
 
     NavStructure navStructure;
     String tSectionID = "01010";
@@ -67,7 +60,6 @@ public class SectionStatsListActivity extends AppCompatActivity {
     NavSection navSection;
 
     DBHelper dbHelper;
-    int update = 0;
 
     Boolean full_version;
 
@@ -181,15 +173,6 @@ public class SectionStatsListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void startContent() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setContent();
-            }
-        }, 30);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         updateContent();
@@ -205,8 +188,8 @@ public class SectionStatsListActivity extends AppCompatActivity {
 
         int dataCount = 0;
 
-        String title = "Изучено в разделе";
-        String desc = "статус «изучено»";
+        String title = getString(R.string.section_studied_title);
+        String desc = getString(R.string.status_studied);
 
         if (dataType == 0) {
             dataCount = section.studiedDataCount;
@@ -214,20 +197,19 @@ public class SectionStatsListActivity extends AppCompatActivity {
         if (dataType == 1) {
             dataCount = section.familiarDataCount;
 
-            title = "Пройдено в разделе";
-            desc = "статус «пройдено» и «изучено»";
+            title = getString(R.string.section_familiar_title);
+            desc = getString(R.string.status_familiar);
         }
         if (dataType == 2) {
             dataCount = section.unknownDataCount;
-            title = "Не пройдено в разделе";
-            desc = "статус «не пройдено»";
+            title = getString(R.string.section_unknown_title);
+            desc = getString(R.string.status_unknown);
         }
 
         dataCountTxt.setText(String.valueOf(dataCount));
         dataTitle.setText(title);
         dataDesc.setText(desc);
     }
-
 
 
     public void onListItemClick(int position) {
@@ -267,7 +249,6 @@ public class SectionStatsListActivity extends AppCompatActivity {
     }
 
 
-
     public void openList (int position) {
 
         if (!full_version) {
@@ -279,7 +260,6 @@ public class SectionStatsListActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(this, CustomDataActivity.class);
-
         intent.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
         intent.putExtra(Constants.EXTRA_DATA_TYPE, dataType);
         intent.putExtra(Constants.EXTRA_CAT_ID, section.categories.get(position).id);
@@ -291,16 +271,12 @@ public class SectionStatsListActivity extends AppCompatActivity {
     }
 
 
-
-
     public void notifyLocked() {
-        Snackbar.make(recyclerView, Html.fromHtml("<font color=\"#ffffff\">Доступно в полной версии</font>"), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
-    }
+        String inPro = getString(R.string.pro_content);
 
+        Snackbar.make(recyclerView, Html.fromHtml("<font color=\"#ffffff\">"+inPro+"</font>"), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
-    public void displayEmtySection() {
-        Snackbar.make(recyclerView, Html.fromHtml("<font color=\"#ffffff\">Нет записей</font>"), Snackbar.LENGTH_SHORT).show();
     }
 
 
@@ -309,22 +285,6 @@ public class SectionStatsListActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
-
-
-    private void colorTxt(TextView tv, String list_type) {
-
-        int color = -1;
-
-       // if (list_type.equals(Constants.LIST_SEEN))  color = ContextCompat.getColor(this, colors[0]);
-       // if (list_type.equals(Constants.LIST_FAMILIAR)) color = ContextCompat.getColor(this, colors[1]);
-       // if (list_type.equals(Constants.LIST_KNOWN)) color = ContextCompat.getColor(this, colors[2]);
-
-        if (color != -1) {
-            tv.setTextColor(color);
-            mainColor = color;
-        }
-    }
-
 
 
 

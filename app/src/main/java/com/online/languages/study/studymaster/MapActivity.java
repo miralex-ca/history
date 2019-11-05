@@ -100,7 +100,7 @@ public class MapActivity extends AppCompatActivity {
         if (picType != 1) {
             mapData = imageMapsData.getMapInfoById(mapId);
             title = mapData.title;
-            mapData.title = "Изображение: " + mapData.title;
+            mapData.title = String.format(getString(R.string.pic_name_label), mapData.title);
         } else {
             folder = "pics/";
             mapData = getDataFromDetail(mapId);
@@ -202,7 +202,7 @@ public class MapActivity extends AppCompatActivity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Сведения об изображении")
+        builder.setTitle(R.string.pic_info_title)
                 .setCancelable(true)
                 .setNegativeButton(R.string.dialog_close_txt,
                         new DialogInterface.OnClickListener() {

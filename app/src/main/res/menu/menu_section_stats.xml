@@ -8,7 +8,7 @@
         android:id="@+id/easy_mode"
         android:orderInCategory="100"
         android:icon="?attr/iconSchool"
-        android:title="Упрощенный режим"
+        android:title="@string/menu_easy_mode"
         android:visible="false"
         app:showAsAction="always" />
 
@@ -16,6 +16,6 @@
         android:id="@+id/stats_info"
         android:orderInCategory="100"
         android:icon="@drawable/ic_info"
-        android:title="Справка"
+        android:title="@string/menu_item_info"
         app:showAsAction="always" />
 </menu>

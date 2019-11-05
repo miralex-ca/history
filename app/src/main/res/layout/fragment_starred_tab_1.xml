@@ -23,20 +23,16 @@
                         android:layout_width="wrap_content"
                         android:orientation="vertical"
                         android:layout_height="wrap_content"
-
                         android:gravity="center"
                         android:paddingTop="14dp"
                         android:paddingBottom="16dp"
-
                         android:paddingLeft="18dp"
                         android:paddingRight="18dp"
-
-
                         android:layout_margin="12dp"
                         >
 
                         <TextView
-                            android:text="Добавлено в избранное"
+                            android:text="@string/starred_items_title"
                             android:textSize="18sp"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
@@ -75,9 +71,7 @@
 
 
                 <LinearLayout
-
                     android:id="@+id/starred_info"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -88,24 +82,18 @@
                         android:layout_width="wrap_content"
                         android:orientation="vertical"
                         android:layout_height="wrap_content"
-
                         style="@style/Widget.AppCompat.Button.Borderless"
-
                         android:onClick="openStarred"
-
                         android:gravity="center"
                         android:paddingTop="14dp"
                         android:paddingBottom="16dp"
-
                         android:paddingLeft="18dp"
                         android:paddingRight="18dp"
-
-
                         android:layout_margin="12dp"
                         >
 
                         <TextView
-                            android:text="Добавлено в избранное"
+                            android:text="@string/starred_items_title"
                             android:textSize="18sp"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
@@ -137,7 +125,7 @@
                             >
 
                             <TextView
-                                android:text="ПОДРОБНЕЕ"
+                                android:text="@string/open_starred"
                                 android:textSize="13sp"
                                 android:id="@+id/exBtnNextTxt"
                                 android:layout_width="wrap_content"
@@ -178,12 +166,10 @@
                     <TextView
                             android:padding="10dp"
                             android:layout_marginLeft="10dp"
-                            android:text="ПОСЛЕДНЕЕ"
+                            android:text="@string/recently_starred"
                             android:textSize="14sp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
-
-
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -200,12 +186,7 @@
 
                         </LinearLayout>
 
-
-
                 </LinearLayout>
-
-
-
 
 </LinearLayout>
 

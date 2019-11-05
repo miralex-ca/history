@@ -68,7 +68,7 @@ public class SubSectionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Подраздел");
+        setTitle(R.string.subsection_title);
 
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         tSectionID = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);

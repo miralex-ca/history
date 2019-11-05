@@ -79,11 +79,9 @@
             <TextView
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:text="Тест"
                 android:id="@+id/sectionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:textSize="@dimen/gallery_item_title_txt_size"
 
                 />
@@ -93,7 +91,6 @@
                 android:ellipsize="end"
                 android:textSize="@dimen/gallery_item_desc_txt_size"
                 android:visibility="gone"
-                android:text="Тест"
                 android:layout_marginTop="@dimen/gallery_item_desc_top"
                 android:id="@+id/sectionDesc"
                 android:layout_width="wrap_content"
@@ -104,8 +101,6 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
-
 
 </RelativeLayout>

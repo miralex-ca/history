@@ -200,7 +200,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.MyViewHo
 
     private void manageErrorsView(View statusBox, int errorsCount) {
         TextView errorsTxt = statusBox.findViewById(R.id.errorsCount);
-        errorsTxt.setText("Ошибки: " + errorsCount);
+        errorsTxt.setText(String.format(context.getString(R.string.errors_label), errorsCount));
 
         if (errorsCount > 0) {
             errorsTxt.setVisibility(View.VISIBLE);

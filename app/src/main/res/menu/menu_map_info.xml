@@ -6,6 +6,6 @@
         android:id="@+id/pic_info"
         android:orderInCategory="100"
         android:icon="@drawable/ic_info"
-        android:title="Справка"
+        android:title="@string/menu_item_info"
         app:showAsAction="always" />
 </menu>

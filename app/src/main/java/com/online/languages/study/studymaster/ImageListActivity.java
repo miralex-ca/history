@@ -153,11 +153,9 @@ public class ImageListActivity extends AppCompatActivity {
 
         setTitle(getIntent().getStringExtra("title"));
 
-
-
         getImages();
 
-        if (getListType().equals(STARRED)) setTitle("Избранное ("+dataItems.size()+")");
+        if (getListType().equals(STARRED)) setTitle(String.format(getString(R.string.starred_pic_title), dataItems.size()));
 
         recyclerView = findViewById(R.id.recycler_view);
         mAdapter = new ImageListAdapter(this, dataItems, 1, themeTitle);
@@ -367,7 +365,7 @@ public class ImageListActivity extends AppCompatActivity {
                 setWrapContentHeight(itemListWrap);
             }
 
-            setTitle("Избранное ("+dataItems.size()+")");
+            setTitle(String.format(getString(R.string.starred_pic_title), dataItems.size()));
         }
     }
 

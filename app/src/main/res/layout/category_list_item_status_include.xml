@@ -25,33 +25,28 @@
             android:paddingBottom="2dp"
             android:paddingRight="6dp"
             android:paddingLeft="6dp"
-
-            android:text="Статус: не пройдено"
+            android:text="@string/item_status_unknown"
             android:id="@+id/statusUnknown"
             android:textColor="#fff"
             android:textSize="11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:background="@drawable/text_round_gray_bg_v1"
 
             />
 
         <TextView
-
             android:visibility="gone"
             android:paddingTop="0dp"
             android:paddingBottom="2dp"
             android:paddingRight="6dp"
             android:paddingLeft="6dp"
-
-            android:text="Статус: пройдено"
+            android:text="@string/item_status_familiar"
             android:id="@+id/statusKnown"
             android:textColor="#fff"
             android:textSize="11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:background="@drawable/text_round_blue_bg_v1"
 
             />
@@ -62,8 +57,7 @@
             android:paddingBottom="2dp"
             android:paddingRight="6dp"
             android:paddingLeft="6dp"
-
-            android:text="Статус: изучено"
+            android:text="@string/item_status_studied"
             android:id="@+id/statusStudied"
             android:textColor="#fff"
             android:textSize="11sp"
@@ -75,21 +69,14 @@
     </RelativeLayout>
 
     <TextView
-
-
         android:paddingTop="0dp"
         android:paddingBottom="2dp"
         android:paddingRight="6dp"
         android:paddingLeft="6dp"
-
         android:id="@+id/errorsCount"
-        android:text="Ошибки: 0"
         android:textColor="#fff"
-
         android:ellipsize="middle"
         android:singleLine="true"
-
-
         android:textSize="11sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

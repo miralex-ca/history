@@ -12,14 +12,11 @@
     <LinearLayout
         android:focusableInTouchMode="true"
         android:layout_height="wrap_content"
-
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/main_card_top"
-
         style="@style/CardWrapper.Width"
-
         >
 
         <android.support.v7.widget.CardView
@@ -35,15 +32,12 @@
                 style="?attr/CardViewBorder"
                 />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:minHeight="@dimen/card_main_min_height"
                 android:gravity="center_horizontal">
-
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -54,13 +48,11 @@
                         android:gravity="center"
                         >
 
-
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:minHeight="150dp"
                             >
-
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -70,10 +62,8 @@
                                 android:layout_centerInParent="true"
                                 >
 
-
                                 <TextView
                                     android:id="@+id/customListTile"
-                                    android:text="Изучено в приложении"
                                     android:textSize="15sp"
                                     android:layout_marginBottom="4dp"
                                     android:layout_marginTop="4dp"
@@ -88,7 +78,6 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="55sp"
                                     android:textAlignment="center"
-
                                     android:gravity="center"
                                     />
 
@@ -96,8 +85,6 @@
                                     android:id="@+id/customListDesc"
 
                                     tools:text="статус «изучено»"
-
-                                    android:text="статус «изучено»"
 
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -128,7 +115,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:text="Информация по темам"
+                            android:text="@string/cats_data_list_title"
                             android:layout_width="match_parent"
                             android:textAllCaps="true"
                             android:textSize="15sp"
@@ -139,13 +126,12 @@
                         <RelativeLayout
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-
                             android:paddingBottom="16dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:text="Загрузка"
+                                android:text="@string/loading"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="90dp"
                                 android:layout_width="wrap_content"

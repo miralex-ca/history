@@ -9,7 +9,6 @@
       <TextView
           android:layout_marginLeft="10dp"
           android:alpha=".9"
-         android:text="Содержание"
          android:id="@+id/content"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"

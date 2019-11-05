@@ -65,7 +65,7 @@ public class BackupActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_backup);
 
-        setTitle("Экспорт/Импорт");
+        setTitle(R.string.backup_page_title);
 
         infoDialog = new InfoDialog(this);
 
@@ -83,7 +83,7 @@ public class BackupActivity extends AppCompatActivity {
 
         lastImportTxt = findViewById(R.id.importInfo);
 
-        String lastImportInfo = mLaunches.getString("last_import", "нет данных");
+        String lastImportInfo = mLaunches.getString("last_import", getString(R.string.no_import_data));
 
         lastImportTxt.setText(String.format("%s%s", getString(R.string.import_last_info), lastImportInfo));
 
@@ -154,7 +154,7 @@ public class BackupActivity extends AppCompatActivity {
                 .withActivity(this)
                 .withCustomActivity(FinderDialogActivity.class)
                 .withRequestCode(10)
-                .withFilter(Pattern.compile("(.*\\.rhdb$)|(.*\\.csv$)|(.*\\.txt$)"))
+                .withFilter(Pattern.compile("(.*\\.rhdb$)|(.*\\.csv$)"))
                 .withHiddenFiles(false)
                 .withPath(uri.getPath())
                 .start();
@@ -205,7 +205,7 @@ public class BackupActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(new Date());
         mLaunches.edit().putString("last_import", date).apply();
-        lastImportTxt.setText("Последний импорт: " + date);
+        lastImportTxt.setText(String.format(getString(R.string.last_import_dat), date));
     }
 
 
@@ -256,6 +256,9 @@ public class BackupActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
+
+        String noAccess = getString(R.string.no_access);
+
         switch (requestCode) {
 
             case MY_PERMISSIONS_REQUEST_WRITE_STORAGE: {
@@ -265,7 +268,7 @@ public class BackupActivity extends AppCompatActivity {
                     export();
 
                 } else {
-                    Snackbar.make(lastImportTxt, Html.fromHtml("<font color=\"#ffffff\">Нет доступа</font>"), Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(lastImportTxt, Html.fromHtml("<font color=\"#ffffff\">"+noAccess+"</font>"), Snackbar.LENGTH_SHORT).show();
                 }
 
                 return;
@@ -279,7 +282,7 @@ public class BackupActivity extends AppCompatActivity {
                     selectCSVFile();
 
                 } else {
-                    Snackbar.make(lastImportTxt, Html.fromHtml("<font color=\"#ffffff\">Нет доступа</font>"), Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(lastImportTxt, Html.fromHtml("<font color=\"#ffffff\">"+noAccess+"</font>"), Snackbar.LENGTH_SHORT).show();
                 }
             }
 

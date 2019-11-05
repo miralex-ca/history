@@ -117,9 +117,9 @@ public class CustomDataActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Изучено"));
-        tabLayout.addTab(tabLayout.newTab().setText("Пройдено"));
-        tabLayout.addTab(tabLayout.newTab().setText("Не пройдено"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.studied_tab));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.familiar_tab));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.unknown_tab));
 
         viewPager = findViewById(R.id.container);
 

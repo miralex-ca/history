@@ -57,8 +57,6 @@
                 android:ellipsize="end"
                 android:textSize="13sp"
                 android:visibility="gone"
-
-                android:text="Тест"
                 android:layout_marginTop="2dp"
                 android:id="@+id/sectionDesc"
                 android:layout_width="wrap_content"

@@ -42,8 +42,6 @@ public class SectionStatsActivity extends AppCompatActivity {
     SharedPreferences appSettings;
     public String themeTitle;
 
-    UserStats userStats;
-
     TextView sectionTitle, sectionDesc, sectionProgress, sectionStudiedCountTxt, sectionFamiliarCountTxt, sectionUnknownCountTxt;
     TextView testResult, familiarProgress, studiedProgress;
     ImageView placePicutre;
@@ -51,10 +49,8 @@ public class SectionStatsActivity extends AppCompatActivity {
     Section section;
     int sectionNum;
 
-
     View errorsCard;
     TextView recentErrorsTxt, recentErrorsTxt2;
-
 
     NavStructure navStructure;
     String tSectionID = "01010";
@@ -93,14 +89,10 @@ public class SectionStatsActivity extends AppCompatActivity {
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new InfoDialog(this);
 
-        //Toast.makeText(this, "Easy mode: " + easy_mode, Toast.LENGTH_SHORT).show();
-
-
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         tSectionID = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
 
         navSection = navStructure.getNavSectionByID(tSectionID);
-
 
         dbHelper = new DBHelper(this);
         openActivity = new OpenActivity(this);
@@ -128,9 +120,7 @@ public class SectionStatsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        setTitle("Статистика раздела");
-
+        setTitle(getString(R.string.stats_page_activity));
 
         View sectionListLink = findViewById(R.id.sectionListLink);
         View sectionTestLink = findViewById(R.id.sectionTestLink);
@@ -139,7 +129,6 @@ public class SectionStatsActivity extends AppCompatActivity {
             sectionListLink.setVisibility(View.GONE);
             sectionTestLink.setVisibility(View.GONE);
         }
-
 
         if (!full_version) {
             if (!navSection.unlocked)  sectionTestLink.setVisibility(View.GONE);
@@ -150,11 +139,6 @@ public class SectionStatsActivity extends AppCompatActivity {
 
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -169,11 +153,7 @@ public class SectionStatsActivity extends AppCompatActivity {
 
         section = new Section(navStructure.getNavSectionByID(tSectionID), this); /// TODO initialize once
 
-        //section.allData = dbHelper.getAllDataItems(navStructure.getNavSectionByID(tSectionID).uniqueCategories);
-
         section = dbHelper.checkSectionStatsDB(section);
-
-        //Toast.makeText(this, "Tests: "+ section.controlTests, Toast.LENGTH_SHORT).show();
 
         Picasso.with(this )
                 .load("file:///android_asset/pics/"+section.image)
@@ -189,15 +169,12 @@ public class SectionStatsActivity extends AppCompatActivity {
 
     private void setStatsText(Section section) {
 
-
         checkErrors(section);
-
 
         sectionTitle.setText(section.title_short);
         sectionDesc.setText(section.desc);
 
         sectionProgress.setText(section.progress + "%");
-
 
         ColorProgress colorProgress = new ColorProgress(this);
 
@@ -220,9 +197,7 @@ public class SectionStatsActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View content = inflater.inflate(R.layout.result_dialog, null);
 
-
         TextView txt = content.findViewById(R.id.resultSection);
-
 
         TextView resultInfoTestTxt = content.findViewById(R.id.resultInfoTestTxt);
         TextView resultInfoKnownTxt = content.findViewById(R.id.resultInfoKnownTxt);
@@ -232,25 +207,19 @@ public class SectionStatsActivity extends AppCompatActivity {
         TextView resultInfoKnown = content.findViewById(R.id.resultInfoKnown);
         TextView resultInfoStudied = content.findViewById(R.id.resultInfoStudied);
 
+        txt.setText(String.format(getString(R.string.stats_total), section.progress));
 
-        txt.setText("ИТОГО: " + section.progress + "%");
+        resultInfoTestTxt.setText(String.format(getString(R.string.stats_tests), section.testResults));
+        resultInfoKnownTxt.setText(String.format(getString(R.string.stats_familiar), section.knownPart));
+        resultInfoStudiedTxt.setText(String.format(getString(R.string.stats_studied), section.studiedPart));
 
-        resultInfoTestTxt.setText("Тесты:   " + section.testResults  + "% * 0.5");
-        resultInfoKnownTxt.setText("Пройдено: " + section.knownPart + "% * 0.3");
-        resultInfoStudiedTxt.setText("Изучено:  " + section.studiedPart +  "%  * 0.2");
+        resultInfoTest.setText(String.format(getString(R.string.stats_percent), section.testResult));
+        resultInfoKnown.setText(String.format(getString(R.string.stats_percent), section.knownResult));
+        resultInfoStudied.setText(String.format(getString(R.string.stats_percent), section.studiedResult));
 
-        resultInfoTest.setText("+ "+section.testResult + "%");
-        resultInfoKnown.setText("+ "+section.knownResult + "%");
-        resultInfoStudied.setText("+ "+section.studiedResult + "%");
-
-
-        //ColorProgress colorProgress = new ColorProgress(this);
-        // resultInfoTest.setTextColor(colorProgress.getColorFromAttr(section.testResult));
-        // resultInfoKnown.setTextColor(colorProgress.getColorFromAttr(section.knownResult));
-        // resultInfoStudied.setTextColor(colorProgress.getColorFromAttr(section.studiedResult));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Общий результат")
+        builder.setTitle(R.string.total_result)
                 .setCancelable(true)
                 .setNegativeButton(R.string.dialog_close_txt,
                         new DialogInterface.OnClickListener() {
@@ -258,8 +227,6 @@ public class SectionStatsActivity extends AppCompatActivity {
                                 dialog.cancel();
                             }
                         })
-
-                ///.setMessage(Html.fromHtml(resultTxt))
 
                 .setView(content);
 
@@ -292,7 +259,7 @@ public class SectionStatsActivity extends AppCompatActivity {
             for (int i = 0; i< data.size(); i++) {
 
                 if (i < 3) {
-                    errors = errors +"\n"+ data.get(i).item ;
+                    errors = errors + "\n"+ data.get(i).item ;
                 } else {
                     errors2 = errors2 +"\n"+ data.get(i).item ;
                 }
@@ -324,15 +291,12 @@ public class SectionStatsActivity extends AppCompatActivity {
     }
 
 
-
     public void openSectionTest(View view) {
 
         Intent i = new Intent(SectionStatsActivity.this, SectionTestActivity.class);
 
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
-
-        // i.putExtra("show_ad", showAd);
 
         startActivityForResult(i, 1);
         pageTransition();
@@ -372,7 +336,6 @@ public class SectionStatsActivity extends AppCompatActivity {
             case R.id.easy_mode:
                 dataModeDialog.openEasyModeDialog();
                 return true;
-
 
         }
         return super.onOptionsItemSelected(item);
@@ -425,11 +388,13 @@ public class SectionStatsActivity extends AppCompatActivity {
             openDataTypeBySections (2);
         }
 
-
     }
 
     public void displayEmtySection() {
-        Snackbar.make(sectionTitle, Html.fromHtml("<font color=\"#ffffff\">Нет записей</font>"), Snackbar.LENGTH_SHORT).show();
+
+        String noData = getString(R.string.no_entries_msg);
+
+        Snackbar.make(sectionTitle, Html.fromHtml("<font color=\"#ffffff\">"+noData+"</font>"), Snackbar.LENGTH_SHORT).show();
     }
 
 
@@ -439,9 +404,6 @@ public class SectionStatsActivity extends AppCompatActivity {
         if (navSection.type.equals("simple")) {
 
             Intent i = new Intent(SectionStatsActivity.this, CustomDataActivity.class);
-
-            ///i.putParcelableArrayListExtra("dataItems", );
-
             i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
             i.putExtra(Constants.EXTRA_SECTION_ID, section.id);
             i.putExtra(Constants.EXTRA_DATA_TYPE, type);
@@ -454,7 +416,6 @@ public class SectionStatsActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, SectionStatsListActivity.class);
 
-
             intent.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
 
             intent.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
@@ -466,14 +427,10 @@ public class SectionStatsActivity extends AppCompatActivity {
 
         }
 
-
-
     }
 
 
-
     public void openCatActivity(View view) {
-
 
         if (navSection.type.equals("simple")) {
             Category cat = section.categories.get(0);
@@ -486,41 +443,24 @@ public class SectionStatsActivity extends AppCompatActivity {
             openActivity.openSection(i, navStructure, tSectionID, "root");
         }
 
-
     }
-
-
 
     public void openSectionList(View view) {
 
         Intent i = new Intent(SectionStatsActivity.this, SectionListActivity.class);
-
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
-
-        // i.putExtra("show_ad", showAd);
-
         startActivityForResult(i, 1);
         pageTransition();
+
     }
-
-
-
-
-    public void openDataList (View view) {
-        openCat (1);
-    }
-
-
 
     public void openCat (int position) {
 
         Intent intent = new Intent(this, CustomDataListActivity.class);
-
         startActivity(intent);
         pageTransition();
     }
-
 
 
     public void showInfo (View view) {
@@ -546,12 +486,6 @@ public class SectionStatsActivity extends AppCompatActivity {
         textView.setTextSize(14);
 
     }
-
-
-    public void showModeDialog() {
-        dataModeDialog.openEasyModeDialog();
-    }
-
 
 
 }

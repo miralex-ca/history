@@ -46,15 +46,10 @@ public class SectionActivity extends AppCompatActivity {
     public String themeTitle;
 
 
-
-    UserStats userStats;
-
-
     TextView sectionTitle, sectionDesc;
     ImageView placePicutre;
 
     Section section;
-    int sectionNum;
 
 
     RecyclerView recyclerView;

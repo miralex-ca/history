@@ -8,5 +8,4 @@
         android:title="@string/correct_errors"
         app:showAsAction="never" />
 
-
 </menu>

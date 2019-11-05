@@ -12,12 +12,16 @@ import com.online.languages.study.studymaster.data.DataItem;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.App.getAppContext;
+
 
 public class CustomDataListAdapter extends RecyclerView.Adapter<CustomDataListAdapter.MyViewHolder> {
 
     private ArrayList<DataItem> dataList;
     private int showStatus;
     int listType = -1;
+
+    String errorsLabel;
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -38,11 +42,14 @@ public class CustomDataListAdapter extends RecyclerView.Adapter<CustomDataListAd
 
 
     public CustomDataListAdapter(ArrayList<DataItem> _dataList) {
+
+        errorsLabel = getAppContext().getString(R.string.errors_label);
         dataList = _dataList;
         showStatus = 2;
     }
 
     public CustomDataListAdapter(ArrayList<DataItem> _dataList, int _listType) {
+        errorsLabel = getAppContext().getString(R.string.errors_label);
         dataList = _dataList;
         showStatus = 2;
         listType = _listType;
@@ -146,7 +153,7 @@ public class CustomDataListAdapter extends RecyclerView.Adapter<CustomDataListAd
 
     private void manageErrorsView(View statusBox, int errorsCount) {
         TextView errorsTxt = statusBox.findViewById(R.id.errorsCount);
-        errorsTxt.setText("Ошибки: " + errorsCount);
+        errorsTxt.setText(String.format(errorsLabel, errorsCount));
 
         if (errorsCount > 0) {
             errorsTxt.setVisibility(View.VISIBLE);

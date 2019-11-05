@@ -85,7 +85,7 @@ public class ProgressStatsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Степень изученности");
+        setTitle(R.string.stats_progress_title);
 
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
 
@@ -97,10 +97,6 @@ public class ProgressStatsActivity extends AppCompatActivity {
 
         knownProgressTxt = findViewById(R.id.knonwnProgressTxt);
         studiedProgressTxt = findViewById(R.id.studiedProgressTxt);
-
-
-
-        // Toast.makeText(this, "Title: "+ section.knownPart, Toast.LENGTH_SHORT).show();
 
 
         recyclerView = findViewById(R.id.recycler_view);
@@ -137,8 +133,6 @@ public class ProgressStatsActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // String id =  vocab.sectionTags.get(act);
-
                 openSectionStats(position);
             }
         }, 80);
@@ -198,7 +192,7 @@ public class ProgressStatsActivity extends AppCompatActivity {
     public void showInfoDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Степень изученности")
+        builder.setTitle(R.string.stats_progress_title)
                 .setCancelable(true)
                 .setNegativeButton(R.string.dialog_close_txt,
                         new DialogInterface.OnClickListener() {

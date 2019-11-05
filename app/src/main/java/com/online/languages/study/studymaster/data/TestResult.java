@@ -64,26 +64,6 @@ public class TestResult {
     }
 
 
-    public String prepareDisplay() {
-
-        String str = "<b>Неправильные ответы</b><br><br>";
-
-        for (ResultCategory category: categories) {
-
-
-            if (category.errors.size() > 0) {
-                str += "<b> " + category.title.toUpperCase() + "</b><br><br>";
-
-                for (DataItem dataItem: category.errors) {
-                    str += "<font color=red><b>" +dataItem.item +"</b> <br>"+ dataItem.info +"</font><br><br>";
-                }
-            }
-
-        }
-
-        return str;
-    }
-
 
     private void structureData() {
 

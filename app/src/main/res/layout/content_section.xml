@@ -183,7 +183,7 @@
                                     <TextView
                                         android:layout_marginLeft="@dimen/section_list_txt_left"
                                         android:textSize="@dimen/section_list_txt_size"
-                                        android:text="Обзор"
+                                        android:text="@string/section_list_title"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" />
 
@@ -199,7 +199,7 @@
                                         android:maxLines="1"
                                         android:ellipsize="end"
                                         android:textSize="11sp"
-                                        android:text="Сисок всех записей"
+                                        android:text="@string/section_list_desc"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" />
 
@@ -265,7 +265,7 @@
 
                                                 android:layout_marginLeft="@dimen/section_list_txt_left"
                                                 android:textSize="@dimen/section_list_txt_size"
-                                                android:text="Тесты"
+                                                android:text="@string/section_tests_title"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content" />
 
@@ -280,7 +280,7 @@
                                                 android:maxLines="1"
                                                 android:ellipsize="end"
                                                 android:textSize="11sp"
-                                                android:text="Всe записи раздела"
+                                                android:text="@string/sections_title_desc"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content" />
 

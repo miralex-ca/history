@@ -88,11 +88,9 @@ public class StatsFragment extends Fragment {
         recentErrorsTxt = rootview.findViewById(R.id.recentErrors);
         recentErrorsTxt2 = rootview.findViewById(R.id.recentErrors2);
 
-
         studiedTxt = rootview.findViewById(R.id.studiedCountTxt);
         knownTxt = rootview.findViewById(R.id.knownCountTxt);
         unknownTxt = rootview.findViewById(R.id.unknownCountTxt);
-
 
         knownProgress = rootview.findViewById(R.id.knownProgress);
         studiedProgress = rootview.findViewById(R.id.studiedProgress);
@@ -104,12 +102,9 @@ public class StatsFragment extends Fragment {
         studiedCount = rootview.findViewById(R.id.stats_studied_count);
         knownCount= rootview.findViewById(R.id.stats_known_count);
 
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
-
-       // userStats = new UserStats(getActivity());
 
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
@@ -125,7 +120,6 @@ public class StatsFragment extends Fragment {
             }
         }));
 
-
         return rootview;
     }
 
@@ -134,36 +128,30 @@ public class StatsFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.stats_mode, menu);
-        // You can look up you menu item here and store it in a global variable by
-        // 'mMenuItem = menu.findItem(R.id.my_menu_item);'
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        MenuItem menuItem = menu.findItem(R.id.easy_mode); // You can change the state of the menu item here if you call getActivity().supportInvalidateOptionsMenu(); somewhere in your code
-
+        MenuItem menuItem = menu.findItem(R.id.easy_mode);
         if (easy_mode) menuItem.setVisible(true);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
-        // Handle actions based on the id field.
         if(id == R.id.easy_mode)  dataModeDialog.openDialog();
-
         return false;
-    }
 
+    }
 
     private void updateData() {
 
         userStats.updateData();
-
         MainActivity.allDataList = userStats.getAllDataFromJson();
         MainActivity.oldestDataList = userStats.getOldestLIst();
-
         errorsList = userStats.userStatsData.errorsWords;
         MainActivity.errorsList = userStats.userStatsData.errorsWords;
     }
@@ -198,13 +186,13 @@ public class StatsFragment extends Fragment {
           int st = userStats.userStatsData.allDataCount * studiedProgressValue / 100;
           int kn = userStats.userStatsData.allDataCount * knownProgressValue / 100;
 
-          studiedCount.setText(""+st);
-          knownCount.setText(""+kn);
+          studiedCount.setText(String.valueOf(st));
+          knownCount.setText(String.valueOf(kn));
         }
 
-        studiedTxtProgress.setText("Изучено: " + studiedProgressValue + "%" );
-        knownTxtProgress.setText("Пройдено: " + knownProgressValue + "%" );
-        unknownTxtProgress.setText("Не пройдено: " + (100 - knownProgressValue) + "%" );
+        studiedTxtProgress.setText(String.format(getString(R.string.stats_studied_percent), studiedProgressValue));
+        knownTxtProgress.setText(String.format(getString(R.string.stats_familier_percent), knownProgressValue));
+        unknownTxtProgress.setText(String.format(getString(R.string.stats_unknown_percent), 100 - knownProgressValue));
 
 
         knownProgress.setAlpha(0);
@@ -237,11 +225,9 @@ public class StatsFragment extends Fragment {
     }
 
     private void onGridClick(final View view, final int position) {
-        final int act = position;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // String id =  vocab.sectionTags.get(act);
 
                 ((MainActivity)getActivity()).openSectionStats(view, position);
 
@@ -285,8 +271,6 @@ public class StatsFragment extends Fragment {
             recentErrorsTxt.setText("");
             recentErrorsTxt2.setText("");
         }
-
-       // Toast.makeText(getActivity(), "Er: " + errorsList.size(), Toast.LENGTH_SHORT).show();
 
     }
 
