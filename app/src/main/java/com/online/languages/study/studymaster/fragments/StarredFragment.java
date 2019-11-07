@@ -144,8 +144,8 @@ public class StarredFragment extends Fragment {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        tabLayout.addTab(tabLayout.newTab().setText("Записи"));
-        tabLayout.addTab(tabLayout.newTab().setText("Галерея"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.starred_tab_info));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.starred_tab_gallery));
 
 
         tabsPager = view.findViewById(R.id.tabContainer);
@@ -212,11 +212,11 @@ public class StarredFragment extends Fragment {
 
     public void updateTabName(int tab, int count) {
         if (tab == 1) {
-            tabLayout.getTabAt(0).setText("Записи ("+count+")");
+            tabLayout.getTabAt(0).setText(String.format(getString(R.string.starrd_tab_info_count), count));
         }
 
         if (tab == 2) {
-            tabLayout.getTabAt(1).setText("Галерея ("+count+")");
+            tabLayout.getTabAt(1).setText(String.format(getString(R.string.starrd_tab_gallery_count), count));
         }
     }
 

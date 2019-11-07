@@ -5,18 +5,18 @@
 
     <PreferenceCategory
         android:key="interface"
-        android:title="ИНТЕРФЕЙС"
+        android:title="@string/set_interface"
         app:iconSpaceReserved="false"
         >
         <ListPreference
             android:key="theme"
-            android:title="Тема приложения"
+            android:title="@string/set_app_theme_title"
             android:summary="@string/set_starred_save_sum"
             android:entries="@array/themes"
             android:entryValues="@array/themes_values"
             android:defaultValue="@string/set_theme_default"
             app:iconSpaceReserved="false"
-            android:dialogTitle="Тема приложения" />
+            android:dialogTitle="@string/set_app_theme_title" />
 
         <ListPreference
             app:iconSpaceReserved="false"

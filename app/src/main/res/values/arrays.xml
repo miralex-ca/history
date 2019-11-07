@@ -26,12 +26,7 @@
 
     <string name="set_theme_default">default</string>
 
-    <string name="set_theme_default_name">Основная</string>
-    <string name="set_theme_dark_name">Черная</string>
-    <string name="set_theme_smoky_name">Темная</string>
-    <string name="set_theme_red_name">Красная</string>
-    <string name="set_theme_white_name">Белая</string>
-    <string name="set_theme_ww_name">Контрастная</string>
+
 
 
     <string-array name="set_control_tests_list">

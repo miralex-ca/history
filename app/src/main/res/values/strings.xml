@@ -7,7 +7,7 @@
     <string name="admob_ap_id" translatable="false">ca-app-pub-4215105690061587~1169718468</string>
 
 
-    <string name="encoded_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuHpMkp0RqQJ4CzsokYgM0kkzAXgffvRI9aQCS5KYGsSe6RIAZHqvZurxjWjQNkpKHwRa5IdDHZD7BUsA1+pooJtyPRZLEvCAlXf1XNY93clF9UEHz77fp29RuzTEGtlZysUk56Do5++FKKcwa4UEJkobyObTCzo6e+jVMy23gFX2A0HP25aP4RUfX5UsPjFpPMydGgGyLZoD5TcQVB1aLvUSCCdTuQpgkEEB4Cdqd09VlYXSrgJqDg4f0+ZbDM06UvE63XEmtnj79ivu5adm9S1NLNHkFor9DbTrMgNWvvcFCIMPkMxlcRYS0ewdFptA8mKmDABMBEq12rCkjOFSSwIDAQAB</string>
+    <string name="encoded_key" translatable="false" >MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuHpMkp0RqQJ4CzsokYgM0kkzAXgffvRI9aQCS5KYGsSe6RIAZHqvZurxjWjQNkpKHwRa5IdDHZD7BUsA1+pooJtyPRZLEvCAlXf1XNY93clF9UEHz77fp29RuzTEGtlZysUk56Do5++FKKcwa4UEJkobyObTCzo6e+jVMy23gFX2A0HP25aP4RUfX5UsPjFpPMydGgGyLZoD5TcQVB1aLvUSCCdTuQpgkEEB4Cdqd09VlYXSrgJqDg4f0+ZbDM06UvE63XEmtnj79ivu5adm9S1NLNHkFor9DbTrMgNWvvcFCIMPkMxlcRYS0ewdFptA8mKmDABMBEq12rCkjOFSSwIDAQAB</string>
 
 
     <string name="app_name">История России</string>
@@ -161,6 +161,17 @@
     <string name="starred_lessons_results">Показать результаты теста </string>
     <string name="set_starred_result_summary">Отображение результатов</string>
 
+
+    <string name="set_interface">ИНТЕРФЕЙС</string>
+    <string name="set_app_theme_title">Тема приложения</string>
+
+    <string name="set_theme_default_name">Основная</string>
+    <string name="set_theme_dark_name">Черная</string>
+    <string name="set_theme_smoky_name">Темная</string>
+    <string name="set_theme_red_name">Красная</string>
+    <string name="set_theme_white_name">Белая</string>
+    <string name="set_theme_ww_name">Контрастная</string>
+
     <string name="set_starred_sort_title">Сортировка списка избранных</string>
     <string name="set_starred_sort_sum">Текущая: %s</string>
     <string name="set_starred_sort_title_dialog">Выберите сортировку</string>
@@ -298,7 +309,7 @@
     <string name="get_premium_txt">Полная версия</string>
     <string name="title_activity_get_premium">Полная версия</string>
 
-    <string name="get_premium_activity">Полная верся</string>
+    <string name="get_premium_activity">Полная версия</string>
     <string name="purchase_txt">Получите полную версию приложения без рекламы</string>
     <string name="get_premium_thank">Спасибо!</string>
     <string name="get_premium_continue">Продолжить</string>
@@ -483,7 +494,7 @@
     <string name="search_no_result">Не найдено</string>
     <string name="search_load_more">Загрузить еще</string>
     <string name="section_list_title">Обзор</string>
-    <string name="section_list_desc">Сисок всех записей</string>
+    <string name="section_list_desc">Список всех записей</string>
     <string name="section_tests_title">Тесты</string>
     <string name="sections_title_desc">Всe записи раздела</string>
     <string name="pic_link">Ссылка на источник</string>
@@ -505,6 +516,10 @@
     <string name="progress_familiar_label">Пройдено</string>
     <string name="progress_unknown_label">Не пройдено</string>
     <string name="result_skipped_task">Невыполненные задания</string>
+    <string name="starred_tab_info">Записи</string>
+    <string name="starred_tab_gallery">Галерея</string>
+    <string name="starrd_tab_info_count">Записи (%d)</string>
+    <string name="starrd_tab_gallery_count">Галерея (%d)</string>
 
 
 </resources>

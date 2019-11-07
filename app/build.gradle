@@ -80,7 +80,7 @@ android {
             applicationId 'com.online.languages.study.tester'
             resValue("string", "applicationId", applicationId)
             buildConfigField ("boolean", "SIMPLIFIED", "true")
-            buildConfigField ("boolean", "HOMECARDS", "false")
+            buildConfigField ("boolean", "HOMECARDS", "true")
             buildConfigField ("boolean", "GALLERY", "false")
         }
     }

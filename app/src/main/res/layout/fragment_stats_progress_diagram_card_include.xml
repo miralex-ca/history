@@ -43,7 +43,7 @@
                 android:gravity="center"
 
 
-                android:text="Степень изученности"
+                android:text="@string/stats_progress_title"
                 android:textSize="15sp"
 
                 android:paddingLeft="20dp"
@@ -89,7 +89,7 @@
                         <TextView
                             android:id="@+id/studiedTxtProgress"
                             android:text="@string/progress_studied_label"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -112,7 +112,7 @@
                         <TextView
                             android:id="@+id/knownTxtProgress"
                             android:text="@string/progress_familiar_label"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -134,7 +134,7 @@
                         <TextView
                             android:id="@+id/unknownTxtProgress"
                             android:text="@string/progress_unknown_label"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
