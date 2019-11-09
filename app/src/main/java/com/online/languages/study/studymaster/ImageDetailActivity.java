@@ -32,7 +32,7 @@ import com.squareup.picasso.Picasso;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 
-public class ImageDetailActivity extends AppCompatActivity {
+public class ImageDetailActivity extends BaseActivity {
 
 
     DetailItem detailItem;

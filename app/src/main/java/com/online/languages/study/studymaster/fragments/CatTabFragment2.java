@@ -28,8 +28,6 @@ import com.online.languages.study.studymaster.data.DataManager;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
-
 public class CatTabFragment2 extends Fragment {
 
     RecyclerView recyclerView;
@@ -90,10 +88,10 @@ public class CatTabFragment2 extends Fragment {
             topStatsCard.setVisibility(View.GONE);
             divide.setVisibility(View.GONE);
         } else {
-            if (!APP_SIMPLIFIED) minCardHeight.setMinimumHeight(0);
+            if (!dataManager.simplified) minCardHeight.setMinimumHeight(0);
         }
 
-        if (APP_SIMPLIFIED) {
+        if (dataManager.simplified) {
             topStatsCard.setVisibility(View.GONE);
             divide.setVisibility(View.GONE);
         }
@@ -188,10 +186,11 @@ public class CatTabFragment2 extends Fragment {
             if (item.rate > 2) studiedCount++;
         }
 
-        catTotalCount.setText("Всего записей: " + dataCount);
-        catKnownCount.setText(""+knownCount);
-        catStudiedCount.setText(""+studiedCount);
-        catProgress.setText(progress + "%");
+        String totalCount = getString(R.string.cat_stats_total_items)+ dataCount;
+        catTotalCount.setText(totalCount);
+        catKnownCount.setText(String.valueOf(knownCount));
+        catStudiedCount.setText(String.valueOf(studiedCount));
+        catProgress.setText(String.format(getString(R.string.number_percent), progress));
 
         catProgress.setTextColor(  colorProgress.getColorFromAttr(progress)  );
     }

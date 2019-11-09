@@ -14,6 +14,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
+import static com.online.languages.study.studymaster.Constants.SET_GALLERY;
+import static com.online.languages.study.studymaster.Constants.SET_HOMECARDS;
+import static com.online.languages.study.studymaster.Constants.SET_SIMPLIFIED;
+
 
 public class DataManager {
 
@@ -25,6 +29,12 @@ public class DataManager {
     public DataManager(Context _context) {
         context = _context;
         dbHelper = new DBHelper(context);
+        getParams();
+    }
+
+    public DataManager(Context _context, Boolean getParams) {
+        context = _context;
+        if (getParams) getParams();
     }
 
 
@@ -33,7 +43,7 @@ public class DataManager {
     }
 
     public ArrayList<DataItem> getSectionDBList(NavSection navSection) {
-        return dbHelper.getAllDataItems( navSection.uniqueCategories );
+        return dbHelper.getAllDataItems(navSection.uniqueCategories);
     }
 
 
@@ -46,7 +56,6 @@ public class DataManager {
     }
 
 
-
     public DetailItem getDetailFromDB(String id) {
         return dbHelper.getDetailById(id);
     }
@@ -54,7 +63,6 @@ public class DataManager {
     public DataItem getDataItemFromDB(String id) {
         return dbHelper.getDataItemById(id);
     }
-
 
 
     public ArrayList<DataItem> getStarredWords(Boolean sort) {
@@ -87,11 +95,11 @@ public class DataManager {
 
     public ArrayList<DataItem> getCatCustomList(ArrayList<NavCategory> categories, int type) {
 
-        ArrayList<DataItem> dataItems =  dbHelper.getDataItemsByCats( categories );
+        ArrayList<DataItem> dataItems = dbHelper.getDataItemsByCats(categories);
 
         ArrayList<DataItem> resultDataItems = new ArrayList<>();
 
-        for (DataItem dataItem: dataItems) {
+        for (DataItem dataItem : dataItems) {
             if (type == 0) { // studied
                 if (dataItem.rate > 2) resultDataItems.add(dataItem);
             } else if (type == 1) { // familiar
@@ -114,8 +122,7 @@ public class DataManager {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        for (Section section: userStatsData.sectionsDataList) {
-
+        for (Section section : userStatsData.sectionsDataList) {
 
 
             section = dbHelper.selectSectionDataFromDB(db, section);
@@ -129,8 +136,6 @@ public class DataManager {
     }
 
 
-
-
     public ArrayList<DataItem> getCatCustomList(String cat, int type) {
 
 
@@ -139,7 +144,7 @@ public class DataManager {
 
         ArrayList<DataItem> helperDataItems = new ArrayList<>();
 
-        for (DataItem dataItem: dataItems) {
+        for (DataItem dataItem : dataItems) {
             if (type == 0) { // studied
                 if (dataItem.rate > 2) resultDataItems.add(dataItem);
             } else if (type == 1) { // familiar
@@ -152,7 +157,7 @@ public class DataManager {
             }
         }
 
-        if (type == 1 ) resultDataItems.addAll(helperDataItems);
+        if (type == 1) resultDataItems.addAll(helperDataItems);
 
 
         return resultDataItems;
@@ -160,7 +165,7 @@ public class DataManager {
 
     public Map<String, String> getCatProgress(ArrayList<String> catIds) {
 
-       return dbHelper.checkCatProgressDB(catIds);
+        return dbHelper.checkCatProgressDB(catIds);
     }
 
 
@@ -174,9 +179,44 @@ public class DataManager {
     private class ScoreCountComparator implements Comparator<DataItem> {
         @Override
         public int compare(DataItem o1, DataItem o2) {
-            return ( o1.rate - o2.rate);
+            return (o1.rate - o2.rate);
         }
     }
 
+
+    public void getParamsAndSave() {
+        getParamsFromJSON();
+        saveParams();
+    }
+
+    public boolean simplified = false;
+    public boolean homecards = false;
+    public boolean gallerySection = false;
+
+    private void getParamsFromJSON() {
+
+        DataFromJson dataFromJson = new DataFromJson(context);
+        Map<String, Boolean> paramsList = dataFromJson.getParams();
+
+        simplified = paramsList.get("simplified");
+        homecards = paramsList.get("homecards");
+        gallerySection = paramsList.get("gallery");
+    }
+
+    private void saveParams() {
+        SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = appSettings.edit();
+        editor.putBoolean(SET_SIMPLIFIED, simplified);
+        editor.putBoolean(SET_HOMECARDS, homecards);
+        editor.putBoolean(SET_GALLERY, gallerySection);
+        editor.apply();
+    }
+
+    public void getParams() {
+        SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(context);
+        simplified = appSettings.getBoolean(SET_SIMPLIFIED, false);
+        homecards = appSettings.getBoolean(SET_HOMECARDS, false);
+        gallerySection = appSettings.getBoolean(SET_GALLERY, false);
+    }
 
 }

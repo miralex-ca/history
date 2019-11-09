@@ -30,7 +30,7 @@ import static com.online.languages.study.studymaster.Constants.EXTRA_SECTION_ID;
 import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCODE;
 
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryActivity extends BaseActivity {
 
 
     ThemeAdapter themeAdapter;

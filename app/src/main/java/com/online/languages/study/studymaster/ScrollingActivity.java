@@ -34,7 +34,7 @@ import com.squareup.picasso.Picasso;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class ScrollingActivity extends BaseActivity {
 
 
     DetailItem detailItem;

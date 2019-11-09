@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
+import com.online.languages.study.studymaster.data.DataManager;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_SECTION;
 
@@ -25,6 +26,7 @@ public class MenuListAdapter extends BaseAdapter {
     private String[] titles;
     private int activeItem;
     int hideItem;
+    DataManager dataManager;
 
     private int activeItemResourceId;
 
@@ -43,6 +45,8 @@ public class MenuListAdapter extends BaseAdapter {
         ctx = context;
         titles = _titles;
         activeItem = _activeItem;
+
+        dataManager = new DataManager(context, true);
 
         lInflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -90,8 +94,8 @@ public class MenuListAdapter extends BaseAdapter {
         View divider;
         divider = view.findViewById(R.id.menu_list_divider);
 
-        if ( position == 1)  {
-           if (!GALLERY_SECTION) view = lInflater.inflate(R.layout.null_item, null);
+        if ( position == 1)  {  // hide gallery if false in params
+           if (!dataManager.gallerySection) view = lInflater.inflate(R.layout.null_item, null);
         }
 
         if (position==4 || position==7) {

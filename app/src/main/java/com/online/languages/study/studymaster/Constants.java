@@ -1,13 +1,18 @@
 package com.online.languages.study.studymaster;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import com.online.languages.study.studymaster.data.DataFromJson;
+import java.util.Map;
+
 public class Constants {
 
     public static final boolean PRO = true;  // TODO change in PRO
     public static final boolean DEBUG = true;  /// should be true to see ads in debug
     public static final boolean SCREEN_SHOW = false;
 
-    public static final Boolean APP_SIMPLIFIED = BuildConfig.SIMPLIFIED;
     public static final Boolean HOME_CARDS = BuildConfig.HOMECARDS;
     public static final Boolean GALLERY_SECTION = BuildConfig.GALLERY;
 
@@ -97,6 +102,10 @@ public class Constants {
         FAMILIAR,
         UNKNOWN
     }
+
+    public static final String SET_SIMPLIFIED = "param_simplified";
+    public static final String SET_HOMECARDS = "param_homecards";
+    public static final String SET_GALLERY = "param_gallery";
 
 
 }

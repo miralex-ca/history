@@ -29,7 +29,7 @@ import com.online.languages.study.studymaster.data.DetailItem;
 import com.squareup.picasso.Picasso;
 
 
-public class CatInfoDetailActivity extends AppCompatActivity {
+public class CatInfoDetailActivity extends BaseActivity {
 
     LinearLayout box;
     View mask;

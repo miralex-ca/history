@@ -38,7 +38,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class SectionActivity extends AppCompatActivity {
+public class SectionActivity extends BaseActivity {
 
 
     ThemeAdapter themeAdapter;

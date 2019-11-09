@@ -1073,7 +1073,7 @@ public class DBHelper extends SQLiteOpenHelper {
         allCount = cursor.getCount();
 
         query = "SELECT * FROM "
-                +TABLE_USER_DATA +" a LEFT JOIN "+TABLE_ITEMS_DATA
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
 
                 +" WHERE ("+userConditionLike+") "
@@ -1086,7 +1086,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         query = "SELECT * FROM "
 
-                +TABLE_USER_DATA +" a LEFT JOIN "+TABLE_ITEMS_DATA
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
                 +" WHERE ("+userConditionLike+") "
                 +" AND (b."+KEY_ITEM_MODE+" < "+data_mode+") "
@@ -1148,7 +1148,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "SELECT * FROM "
-                +TABLE_USER_DATA +" a LEFT JOIN "+TABLE_ITEMS_DATA
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
                 +" WHERE a."+KEY_ITEM_STARRED +" > ? ORDER BY b.id";
 
@@ -1279,7 +1279,7 @@ public class DBHelper extends SQLiteOpenHelper {
         userStatsData.mostErrorsWords = new ArrayList<>();
 
         String query = "SELECT * FROM "
-                +TABLE_USER_DATA +" a LEFT JOIN "+TABLE_ITEMS_DATA
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
                 +" WHERE (a."+KEY_ITEM_ERRORS +" > ?) "
                 // + " AND (b."+KEY_ITEM_MODE+" < "+data_mode+")"
@@ -1298,7 +1298,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         String mostQuery = "SELECT * FROM "
-                +TABLE_USER_DATA +" a LEFT JOIN "+TABLE_ITEMS_DATA
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
                 +" WHERE (a."+KEY_ITEM_ERRORS +" > ?) "
                 // + " AND (b."+KEY_ITEM_MODE+" < "+data_mode+")"
@@ -1356,7 +1356,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         String query = "SELECT * FROM "
-                +TABLE_USER_DATA +" a LEFT JOIN "+TABLE_ITEMS_DATA
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
                 +" WHERE ("+conditionLike+") AND a."+KEY_ITEM_SCORE +" > ? "
                 +"ORDER BY a."+ KEY_ITEM_TIME +" ASC LIMIT "+String.valueOf(Constants.REVISE_NUM);
@@ -1515,10 +1515,10 @@ public class DBHelper extends SQLiteOpenHelper {
             conditionAllCatLike.append(like);
         }
 
-
+                        //TODO CHECK INNER
         String dataItemsQuery = "SELECT * FROM "
 
-                +TABLE_USER_DATA +" a LEFT JOIN "+ TABLE_ITEMS_DATA +" b ON a.user_item_id=b.item_id"
+                +TABLE_USER_DATA +" a INNER JOIN "+ TABLE_ITEMS_DATA +" b ON a.user_item_id=b.item_id"
 
                 + " WHERE (" + conditionLike +") "
 
@@ -1535,7 +1535,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         dataItemsQuery = "SELECT * FROM "
 
-                + TABLE_USER_DATA +" a LEFT JOIN "+ TABLE_ITEMS_DATA +" b ON a.user_item_id=b.item_id"
+                + TABLE_USER_DATA +" a INNER JOIN "+ TABLE_ITEMS_DATA +" b ON a.user_item_id=b.item_id"
                 + " WHERE (" + conditionLike +") "
 
                 + "AND (a." + KEY_ITEM_SCORE + " > 2) "
@@ -1551,7 +1551,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         dataItemsQuery = "SELECT * FROM "       /// TODO check mode for errors
 
-                + TABLE_USER_DATA +" a LEFT JOIN "+ TABLE_ITEMS_DATA +" b ON a.user_item_id=b.item_id"
+                + TABLE_USER_DATA +" a INNER JOIN "+ TABLE_ITEMS_DATA +" b ON a.user_item_id=b.item_id"
 
                 + " WHERE (" + conditionAllCatLike +")"
                 // + "AND (b."+KEY_ITEM_MODE+" < "+data_mode+")"
@@ -1739,7 +1739,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         String mostQuery = "SELECT * FROM "
-                +TABLE_USER_DATA +" a LEFT JOIN "+TABLE_ITEMS_DATA
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
                 +" WHERE ("+conditionLike +") "
                 // +" AND (b." + KEY_ITEM_MODE + " < " + data_mode + ") "

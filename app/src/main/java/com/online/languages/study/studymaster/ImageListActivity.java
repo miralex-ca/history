@@ -59,7 +59,7 @@ import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 import static com.online.languages.study.studymaster.Constants.IMG_LIST_LAYOUT;
 
 
-public class ImageListActivity extends AppCompatActivity {
+public class ImageListActivity extends BaseActivity {
 
 
     ThemeAdapter themeAdapter;

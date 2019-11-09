@@ -34,9 +34,7 @@ import com.online.languages.study.studymaster.data.NavStructure;
 
 import java.util.ArrayList;
 
-import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
-
-public class CatListActivity extends AppCompatActivity {
+public class CatListActivity extends BaseActivity {
 
 
     ThemeAdapter themeAdapter;
@@ -347,8 +345,7 @@ public class CatListActivity extends AppCompatActivity {
 
 
     public void openInfo() {
-        if (APP_SIMPLIFIED) dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
-        else dataModeDialog.modeInfoDialog();
+        dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
     }
 
 

@@ -1,4 +1,10 @@
 {
+  "params": {
+    "simplified": true,
+    "homecards": false,
+    "gallery": true
+  },
+
   "sections":
   [
 	{"tag": "section1", "title": "Первый раздел", "id": "10010",

@@ -15,9 +15,14 @@ import com.online.languages.study.studymaster.MapActivity;
 import com.online.languages.study.studymaster.MapListActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.SubSectionActivity;
+import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.ViewCategory;
 import com.online.languages.study.studymaster.data.ViewSection;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCODE;
 
@@ -26,12 +31,12 @@ public class OpenActivity  {
     Context context;
 
 
+
     int requestCode = 1;
 
     public OpenActivity(Context _context) {
         context = _context;
     }
-
 
 
     public void openCat(Intent intent, String cat_id, String title, String spec) {
@@ -168,6 +173,8 @@ public class OpenActivity  {
         }
 
     }
+
+
 
 
     }

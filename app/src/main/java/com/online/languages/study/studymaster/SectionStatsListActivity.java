@@ -38,7 +38,7 @@ import com.online.languages.study.studymaster.fragments.CatTabFragment1;
 
 import java.util.ArrayList;
 
-public class SectionStatsListActivity extends AppCompatActivity {
+public class SectionStatsListActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

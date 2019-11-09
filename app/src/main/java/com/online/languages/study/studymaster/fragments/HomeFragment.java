@@ -21,18 +21,16 @@ import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.HomeCardRecycleAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
+import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.Section;
 
 import java.util.ArrayList;
 
-import static com.online.languages.study.studymaster.Constants.HOME_CARDS;
 import static com.online.languages.study.studymaster.Constants.NAV_GALLERY_SPEC;
 
-
 public class HomeFragment extends Fragment {
-
 
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewCards;
@@ -63,8 +61,10 @@ public class HomeFragment extends Fragment {
 
         String theme = appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
+        DataManager dataManager = new DataManager(getActivity(), true);
+
         int recycleType = 1;
-        if (HOME_CARDS) {
+        if (dataManager.homecards) {
             recyclerView.setVisibility(View.GONE);
             recyclerViewCards.setVisibility(View.VISIBLE);
             recycleType = 2;

@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class UserListActivity extends AppCompatActivity {
+public class UserListActivity extends BaseActivity {
 
 
 

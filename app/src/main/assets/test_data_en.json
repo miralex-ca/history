@@ -9,8 +9,7 @@
     {"id": "100100100060", "item": "Blue object 6", "info": "Short description of blue object 6", "image": "picto/shape_blue_l.png"},
     {"id": "100100100070", "item": "Blue object 7", "info": "Short description of blue object 7", "image": "picto/shape_blue_l.png"},
     {"id": "100100100080", "item": "Blue object 8", "info": "Short description of blue object 8", "image": "picto/shape_blue_l.png"},
-    {"id": "100100100090", "item": "Blue object 9", "info": "Short description of blue object 9", "image": "picto/shape_blue_l.png"},
-    {"id": "100100100100", "item": "Blue object 10", "info": "Short description of blue object 10", "image": "picto/shape_blue_l.png"},
+
 
 
     {"id": "100100200010", "item": "Red object 1", "info": "Short description of red object 1", "image": "picto/shape_red_l.png"},

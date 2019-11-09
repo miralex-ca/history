@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
 import static com.online.languages.study.studymaster.AppStart.APP_LAUNCHES;
 
 
-public class BackupActivity extends AppCompatActivity {
+public class BackupActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

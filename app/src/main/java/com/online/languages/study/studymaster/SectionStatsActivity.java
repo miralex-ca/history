@@ -36,7 +36,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SectionStatsActivity extends AppCompatActivity {
+public class SectionStatsActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

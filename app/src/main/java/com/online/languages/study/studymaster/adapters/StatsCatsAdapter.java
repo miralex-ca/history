@@ -11,22 +11,22 @@ import android.widget.TextView;
 
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
+import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.Section;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
 
 
 public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyViewHolder> {
 
-    ArrayList<Section> sections = new ArrayList<>();
+    private ArrayList<Section> sections = new ArrayList<>();
     Context context;
 
-    ColorProgress colorProgress;
+    private ColorProgress colorProgress;
 
-    Boolean simplified = false;
+    private Boolean simplified = false;
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -39,9 +39,9 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         MyViewHolder(View view) {
             super(view);
 
-            title = (TextView) itemView.findViewById(R.id.titleText);
-            progress = (TextView) itemView.findViewById(R.id.progressText);
-            desc = (TextView) itemView.findViewById(R.id.descText);
+            title = itemView.findViewById(R.id.titleText);
+            progress = itemView.findViewById(R.id.progressText);
+            desc = itemView.findViewById(R.id.descText);
             image = itemView.findViewById(R.id.itemImage);
         }
     }
@@ -51,7 +51,9 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         sections = _sections;
         context = _context;
         colorProgress = new ColorProgress(context);
-        simplified = APP_SIMPLIFIED;
+        DataManager d = new DataManager(context);
+        d.getParams();
+        simplified = d.simplified;
     }
 
     @Override
@@ -73,16 +75,8 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
 
         holder.title.setText(section.title_short);
 
-
-
         int catsNum = section.stadiedCatsCount;
         int errors = section.errorsCount;
-
-
-
-
-       // holder.progress.setText(catData.progress+ "%");
-
 
         int progress = section.progress;
 
@@ -122,8 +116,6 @@ public class StatsCatsAdapter extends RecyclerView.Adapter<StatsCatsAdapter.MyVi
         holder.progress.setTextColor( colorProgress.getColorFromAttr(progress) );
 
         Picasso.with(context )
-                //.load(R.drawable.f)
-                //.load(R.raw.e)
                 .load("file:///android_asset/pics/"+section.image)
                 .transform(new RoundedTransformation(0,0))
                 .fit()

@@ -33,7 +33,7 @@ import com.online.languages.study.studymaster.data.NavStructure;
 
 import java.util.ArrayList;
 
-public class CustomDataListActivity extends AppCompatActivity {
+public class CustomDataListActivity extends BaseActivity {
 
 
     ThemeAdapter themeAdapter;

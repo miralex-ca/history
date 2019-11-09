@@ -1,14 +1,21 @@
 package com.online.languages.study.studymaster.adapters;
 
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.online.languages.study.studymaster.LocaleChangedReceiver;
 import com.online.languages.study.studymaster.R;
+
+import static com.online.languages.study.studymaster.App.getAppContext;
 
 
 public class ThemeAdapter {
@@ -51,6 +58,9 @@ public class ThemeAdapter {
 
 
        // Toast.makeText(context, "Dialog: "+ dialog, Toast.LENGTH_SHORT).show();
+
+
+
 
     }
 
@@ -108,7 +118,50 @@ public class ThemeAdapter {
 
 
 
-        //Toast.makeText(context, "Theme: "+theme, Toast.LENGTH_SHORT).show();
+
+
+
+
+       // BroadcastReceiver br = new LocaleChangedReceiver();
+
+        //IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+       // filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+       // context.registerReceiver(br, filter);
+
+       // IntentFilter filter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
+       // context.registerReceiver(br, filter);
+
+
+
+
+
+        /*
+        BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //RESTART APPLICATION
+
+
+                if (intent.getAction (). compareTo (Intent.ACTION_LOCALE_CHANGED) == 0)
+                {
+
+
+                }
+
+
+                Toast.makeText(getAppContext(), "Locale changed", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+            //register broadcastreceiver
+        LocalBroadcastManager.getInstance(context)
+                .registerReceiver(mBroadcastReceiver, new IntentFilter(Intent.ACTION_LOCALE_CHANGED));
+
+
+
+         */
+
+        //Toast.makeText(context, "Theme: "+styleTheme, Toast.LENGTH_SHORT).show();
     }
 
     public int getColorFromAttr(int attr) {

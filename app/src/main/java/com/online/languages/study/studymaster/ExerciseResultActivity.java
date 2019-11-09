@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import static com.online.languages.study.studymaster.adapters.ViewAnimatorSlideUpDown.slideDown;
 import static com.online.languages.study.studymaster.adapters.ViewAnimatorSlideUpDown.slideUp;
 
-public class ExerciseResultActivity extends AppCompatActivity {
+public class ExerciseResultActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

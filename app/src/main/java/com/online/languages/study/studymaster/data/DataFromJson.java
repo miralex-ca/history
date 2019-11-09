@@ -15,8 +15,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class DataFromJson {
 
@@ -55,6 +58,38 @@ public class DataFromJson {
         }
 
         return dataList;
+    }
+
+    public Map<String, Boolean> getParams() {
+
+        Map<String, Boolean> paramsList = new HashMap<>();
+
+        try {
+
+            JSONObject structure = new JSONObject(loadJSONFromAsset(navStructureFile));
+            JSONObject params = structure.getJSONObject("params");
+
+            boolean simplified = false;
+            boolean homecards = false;
+            boolean gallery = false;
+
+
+            if (params.has("simplified")) simplified = params.getBoolean("simplified");
+            if (params.has("homecards")) homecards = params.getBoolean("homecards");
+            if (params.has("gallery")) gallery = params.getBoolean("gallery");
+
+
+
+            paramsList.put("simplified", simplified);
+            paramsList.put("homecards", homecards);
+            paramsList.put("gallery", gallery);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return paramsList;
+
     }
 
 

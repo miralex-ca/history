@@ -39,7 +39,7 @@ import com.online.languages.study.studymaster.fragments.StatsFragment;
 import java.util.ArrayList;
 
 
-public class ProgressStatsActivity extends AppCompatActivity {
+public class ProgressStatsActivity extends BaseActivity {
 
 
     ThemeAdapter themeAdapter;

@@ -7,6 +7,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+import com.online.languages.study.studymaster.data.DataManager;
 
 public class AppStart extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class AppStart extends AppCompatActivity {
         SharedPreferences mLaunches = getSharedPreferences(APP_LAUNCHES, Context.MODE_PRIVATE);
         appSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
+        DataManager dataManager = new DataManager(this);
+        dataManager.getParamsAndSave();
 
         if(getResources().getBoolean(R.bool.portrait_only)){
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -40,7 +45,7 @@ public class AppStart extends AppCompatActivity {
 
             DBHelper dbHelper = new DBHelper(this);
 
-            dbHelper.sanitizeDB();
+           // dbHelper.sanitizeDB();
             dbHelper.populateDB();
         }
 

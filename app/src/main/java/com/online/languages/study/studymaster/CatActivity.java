@@ -31,9 +31,8 @@ import com.online.languages.study.studymaster.fragments.CatTabFragment1;
 
 import java.util.ArrayList;
 
-import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
 
-public class CatActivity extends AppCompatActivity {
+public class CatActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
@@ -230,8 +229,7 @@ public class CatActivity extends AppCompatActivity {
 
 
     private void infoMessage() {
-        if (APP_SIMPLIFIED) dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
-        else dataModeDialog.modeInfoDialog();
+        dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
     }
 
 

@@ -1,4 +1,10 @@
 {
+  "params": {
+    "simplified": true,
+    "homecards": true,
+    "gallery": true
+  },
+
   "sections":
   [
 	{"tag": "section1", "title": "First Section", "id": "10010",
@@ -12,8 +18,10 @@
           {"parent": "root", "type": "simple", "spec": "misc", "id": "10010020", "title": "Category: Red objects", "desc": "Category description"},
           {"parent": "root", "type": "set", "id": "set_1_2", "title": "none", "desc": ""},
           {"parent": "root", "type": "simple", "id": "10010030", "title": "Category: Green objects", "desc": "", "review":  "false"},
-          {"parent": "root", "type": "simple", "id": "10010040", "title": "Category: Gray objects", "desc": "", "review":  "false"},
+
+
           {"parent": "root", "type": "group", "id": "group_1_1", "title": "Group: Terms of objects", "desc": ""},
+
           {"parent": "group_1_1", "type": "simple", "spec": "term", "id": "10010110", "title": "Category: Terms of objects", "desc": "Описание темы", "review": "false"}
         ]
 	},

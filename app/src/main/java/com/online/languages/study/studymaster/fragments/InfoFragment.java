@@ -20,13 +20,11 @@ import android.widget.TextView;
 import com.online.languages.study.studymaster.BuildConfig;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
-
+import com.online.languages.study.studymaster.data.DataManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
 
 
 public class InfoFragment extends Fragment {
@@ -54,8 +52,10 @@ public class InfoFragment extends Fragment {
 
         WebView webView = rootview.findViewById(R.id.webView);
 
+        DataManager dataManager  = new DataManager(getActivity(), true);
+
         String resName = "info";
-        if (APP_SIMPLIFIED) resName = "info_simplified";
+        if (dataManager.simplified) resName = "info_simplified";
 
         Context context = getActivity().getBaseContext(); //получаем контекст
 

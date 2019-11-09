@@ -23,7 +23,7 @@ import com.online.languages.study.studymaster.data.ViewCategory;
 import com.online.languages.study.studymaster.data.ViewSection;
 
 
-public class SubSectionActivity extends AppCompatActivity {
+public class SubSectionActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

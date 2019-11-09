@@ -48,7 +48,7 @@ import com.online.languages.study.studymaster.data.ExerciseTask;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ExerciseActivity extends AppCompatActivity {
+public class ExerciseActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
@@ -114,6 +114,7 @@ public class ExerciseActivity extends AppCompatActivity {
     ExerciseController exerciseController;
 
     DBHelper dbHelper;
+    DataManager dataManager;
 
     Boolean restore;
     ArrayList<DataItem> savedWords;
@@ -147,6 +148,8 @@ public class ExerciseActivity extends AppCompatActivity {
 
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
+
+        dataManager = new DataManager(this);
 
 
         setContentView(R.layout.activity_exercise);
@@ -343,17 +346,6 @@ public class ExerciseActivity extends AppCompatActivity {
         intent.putParcelableArrayListExtra("dataItems", results);
              startActivityForResult(intent,1);
              overridePendingTransition(R.anim.fade_in_2, 0);
-    }
-
-
-    private void getDataItemsFromDB() {
-
-        String searchID = "";
-
-        DataManager dataManager = new DataManager(this);
-        ArrayList<DataItem> data = dataManager.getCatDBList(searchID);
-
-
     }
 
 
@@ -832,7 +824,7 @@ public class ExerciseActivity extends AppCompatActivity {
         if ( topicTag.equals(Constants.ALL_CAT_TAG) ) {
             if (saveStats) applySaveStatsStatus(false);
             saveStats = false;
-            if (! Constants.APP_SIMPLIFIED) exSaveStatsRadio.setEnabled(false);
+            if (! dataManager.simplified) exSaveStatsRadio.setEnabled(false);
         }
 
     }

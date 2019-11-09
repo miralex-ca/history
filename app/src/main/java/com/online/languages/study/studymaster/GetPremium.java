@@ -25,7 +25,7 @@ import com.online.languages.study.studymaster.util.SkuDetails;
 
 import java.util.Arrays;
 
-public class GetPremium extends AppCompatActivity {
+public class GetPremium extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

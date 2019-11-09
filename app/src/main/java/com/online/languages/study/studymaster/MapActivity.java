@@ -40,7 +40,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

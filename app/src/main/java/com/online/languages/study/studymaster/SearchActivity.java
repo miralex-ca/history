@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 
 
-public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class SearchActivity extends BaseActivity implements SearchView.OnQueryTextListener {
 
 
     ThemeAdapter themeAdapter;

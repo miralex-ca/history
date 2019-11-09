@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 
-public class SampleActivity extends AppCompatActivity {
+public class SampleActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

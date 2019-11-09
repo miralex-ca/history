@@ -29,7 +29,7 @@ import com.online.languages.study.studymaster.fragments.UserListTabFragment2;
 import java.util.ArrayList;
 
 
-public class SectionTestActivity extends AppCompatActivity {
+public class SectionTestActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;

@@ -34,7 +34,7 @@ import com.online.languages.study.studymaster.data.ViewCategory;
 import com.online.languages.study.studymaster.data.ViewSection;
 
 
-public class MapListActivity extends AppCompatActivity {
+public class MapListActivity extends BaseActivity {
 
 
     ThemeAdapter themeAdapter;

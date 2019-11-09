@@ -23,8 +23,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-
-import com.online.languages.study.studymaster.adapters.ContentAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.SectionListAdapter;
@@ -33,15 +31,10 @@ import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
-import com.online.languages.study.studymaster.data.Section;
-import com.online.languages.study.studymaster.fragments.CatTabFragment1;
 
 import java.util.ArrayList;
 
-import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
-
-public class SectionListActivity extends AppCompatActivity {
-
+public class SectionListActivity extends BaseActivity {
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
@@ -279,8 +272,7 @@ public class SectionListActivity extends AppCompatActivity {
     }
 
     private void infoMessage() {
-        if (APP_SIMPLIFIED) dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
-        else dataModeDialog.modeInfoDialog();
+        dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
     }
 
 

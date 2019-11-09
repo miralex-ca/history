@@ -29,7 +29,7 @@ import com.online.languages.study.studymaster.data.DataManager;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class CardsActivity extends AppCompatActivity {
+public class CardsActivity extends BaseActivity {
 
 
 

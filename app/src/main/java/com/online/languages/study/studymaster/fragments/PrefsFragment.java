@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.preference.ListPreference;
@@ -22,8 +23,7 @@ import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
-
-import static com.online.languages.study.studymaster.Constants.APP_SIMPLIFIED;
+import com.online.languages.study.studymaster.data.DataManager;
 
 
 public class PrefsFragment extends PreferenceFragmentCompat {
@@ -39,7 +39,6 @@ public class PrefsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         //add xml
-
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
@@ -57,10 +56,11 @@ public class PrefsFragment extends PreferenceFragmentCompat {
 
         Preference controlTests = getPreferenceManager().findPreference("control_tests");
 
-        if (APP_SIMPLIFIED) {
+        DataManager dataManager = new DataManager(getActivity(), true);
+
+        if (dataManager.simplified) {
             Preference data = getPreferenceManager().findPreference("data");
             screen.removePreference(data);
-
             controlTests.setVisible(false);
         }
 
@@ -88,11 +88,7 @@ public class PrefsFragment extends PreferenceFragmentCompat {
             }
         });
 
-
-
         final ListPreference list = (ListPreference) getPreferenceManager().findPreference("theme");
-
-        //Toast.makeText(getActivity(), "Pref: "+ list, Toast.LENGTH_SHORT).show();
 
         list.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference, Object newValue) {

@@ -520,6 +520,7 @@
     <string name="starred_tab_gallery">Галерея</string>
     <string name="starrd_tab_info_count">Записи (%d)</string>
     <string name="starrd_tab_gallery_count">Галерея (%d)</string>
+    <string name="number_percent">%d%%</string>
 
 
 </resources>

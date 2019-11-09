@@ -41,6 +41,7 @@ import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
+import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.NavCategory;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
@@ -61,9 +62,8 @@ import java.util.ArrayList;
 import static com.online.languages.study.studymaster.Constants.EXTRA_CAT_ID;
 import static com.online.languages.study.studymaster.Constants.EXTRA_SECTION_ID;
 import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCODE;
-import static com.online.languages.study.studymaster.Constants.GALLERY_SECTION;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
 
@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity
 
     OpenActivity openActivity;
 
+    DataManager dataManager;
+
     Toolbar toolbar;
 
 
@@ -151,6 +153,7 @@ public class MainActivity extends AppCompatActivity
         multipane = getResources().getBoolean(R.bool.multipane);
 
         openActivity = new OpenActivity(this);
+        dataManager = new DataManager(this, true);
 
         if(getResources().getBoolean(R.bool.portrait_only)){
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);  ///
@@ -245,7 +248,7 @@ public class MainActivity extends AppCompatActivity
 
             bottomNav = findViewById(R.id.navigation);
 
-            if (GALLERY_SECTION) {
+            if (dataManager.gallerySection) {
                 bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
             } else {
                 bottomNav.inflateMenu(R.menu.bottom_nav);
@@ -356,7 +359,7 @@ public class MainActivity extends AppCompatActivity
 
         if (navigation != null) {
 
-            if (GALLERY_SECTION) {
+            if (dataManager.gallerySection) {
 
                 if (btmSetting.equals(getString(R.string.set_btm_nav_value_1))) {
                     navigation.getMenu().findItem(R.id.nav_gallery).setVisible(false);
@@ -517,7 +520,7 @@ public class MainActivity extends AppCompatActivity
                 navigationView.getMenu().getItem(pos).setChecked(true);
                 setToolbarTitle(activePosition);
 
-                if (GALLERY_SECTION) {
+                if (dataManager.gallerySection) {
                     if (activePosition < 4 ) bottomNav.getMenu().getItem(activePosition).setChecked(true);
                 } else {
                     if (activePosition < 3 ) bottomNav.getMenu().getItem(activePosition).setChecked(true);
