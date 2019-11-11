@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.util.IabHelper;
 import com.online.languages.study.studymaster.util.IabResult;
@@ -38,6 +39,8 @@ public class GetPremium extends BaseActivity {
 
 
     IabHelper mHelper;
+
+    OpenActivity openActivity;
 
 
     @Override
@@ -62,17 +65,13 @@ public class GetPremium extends BaseActivity {
         mHelper = new IabHelper(this, base64EncodedPublicKey);
 
 
-
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
 
         getPremiumMsg = findViewById(R.id.getPremiumMsg);

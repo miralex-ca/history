@@ -45,9 +45,6 @@
             android:label="@string/title_activity_sample"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".CatInfoDetailActivity"
-            android:theme="@style/UserDialog" />
-        <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.Dialog" />

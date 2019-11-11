@@ -875,14 +875,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.endTransaction();
 
-
         db.close();
 
         return items;
     }
-
-
-
 
 
 
@@ -1137,11 +1133,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<DataItem> getStarredFromDB() {
-        return getStarredFromDB(1);
+    public ArrayList<DataItem> getStarredFromDB(ArrayList<NavCategory> navCategories) {
+        return getStarredFromDB(1, navCategories);
     }
 
-    public ArrayList<DataItem> getStarredFromDB(int type) {
+    public ArrayList<DataItem> getStarredFromDB(int type, ArrayList<NavCategory> navCategories) {
+
+        StringBuilder conditionLike = new StringBuilder("");
+
+        for (int i = 0; i < navCategories.size(); i++) {
+
+            String like = "a."+KEY_USER_ITEM_ID + " LIKE '" + navCategories.get(i).id + "%' ";
+
+            if (i != 0) {
+                like = "OR " + like;
+            }
+            conditionLike.append(like);
+        }
+
 
         ArrayList<DataItem> items = new ArrayList<>();
 
@@ -1150,7 +1159,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM "
                 +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
                 +" b ON a.user_item_id=b.item_id"
-                +" WHERE a."+KEY_ITEM_STARRED +" > ? ORDER BY b.id";
+                +" WHERE ("+conditionLike+") AND a."+KEY_ITEM_STARRED +" > ? ORDER BY b.id";
 
         Cursor cursor = db.rawQuery(query, new String[]{"0"});
 

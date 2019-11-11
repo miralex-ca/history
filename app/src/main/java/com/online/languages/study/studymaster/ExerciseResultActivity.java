@@ -107,8 +107,6 @@ public class ExerciseResultActivity extends BaseActivity {
         ColorProgress colorProgress = new ColorProgress(this);
         testProgress.setTextColor(  colorProgress.getColorFromAttr( (int)res)  );
 
-
-
     }
 
 

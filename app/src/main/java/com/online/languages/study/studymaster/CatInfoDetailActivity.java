@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DetailFromJson;
@@ -29,7 +30,7 @@ import com.online.languages.study.studymaster.data.DetailItem;
 import com.squareup.picasso.Picasso;
 
 
-public class CatInfoDetailActivity extends BaseActivity {
+public class CatInfoDetailActivity extends BaseActivity {   //// TODO check to remove
 
     LinearLayout box;
     View mask;
@@ -39,9 +40,10 @@ public class CatInfoDetailActivity extends BaseActivity {
     SharedPreferences appSettings;
     public String themeTitle;
 
+    OpenActivity openActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(this);
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
@@ -49,36 +51,23 @@ public class CatInfoDetailActivity extends BaseActivity {
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cat_info_dialog1);
 
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
-
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-
-
-
-
-        //TextView titleT = (TextView) findViewById(R.id.text);
         TextView infoT = findViewById(R.id.lbl_text);
         TextView imgIfo = findViewById(R.id.lbl_img_desc);
 
         box = findViewById(R.id.box);
         mask = findViewById(R.id.mask);
 
-        //box.setAlpha(0.0f);
-       // box.setVisibility(View.VISIBLE);
-        //box.animate().alpha(1.0f).start();
-
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar =
                 findViewById(R.id.collapsing_toolbar);
-
 
 
         String tag = getIntent().getStringExtra("id");
@@ -90,8 +79,6 @@ public class CatInfoDetailActivity extends BaseActivity {
         infoT.setText(detailItem.desc);
         imgIfo.setText(String.format(getString(R.string.pic_name_label), detailItem.img_info));
 
-
-        //Toast.makeText(this, detailItem.image , Toast.LENGTH_SHORT).show();
 
         ImageView placePicutre = findViewById(R.id.image);
 
@@ -159,7 +146,6 @@ public class CatInfoDetailActivity extends BaseActivity {
 
 
     public void dialogClose(View view) {
-        //supportFinishAfterTransition();
         exitAnimation();
     }
 

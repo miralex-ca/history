@@ -24,6 +24,7 @@ public class DataManager {
     private Context context;
 
     public DBHelper dbHelper;
+    private ArrayList<NavCategory> navCategories;
 
 
     public DataManager(Context _context) {
@@ -35,6 +36,18 @@ public class DataManager {
     public DataManager(Context _context, Boolean getParams) {
         context = _context;
         if (getParams) getParams();
+    }
+
+    public DataManager(Context _context, int type) {
+        context = _context;
+        dbHelper = new DBHelper(context);
+
+        if (type == 1) getUniquesCats();
+    }
+
+    private void getUniquesCats() {
+        DataFromJson dataFromJson = new DataFromJson(context);
+        navCategories = dataFromJson.getAllUniqueCats();
     }
 
 
@@ -80,8 +93,8 @@ public class DataManager {
 
         ArrayList<DataItem> dataItems;
 
-        if (type == 2) dataItems = dbHelper.getStarredFromDB(2);
-        else dataItems = dbHelper.getStarredFromDB();
+        if (type == 2) dataItems = dbHelper.getStarredFromDB(2, navCategories);
+        else dataItems = dbHelper.getStarredFromDB(navCategories);
 
         if (sortType.equals("0")) {
             Collections.sort(dataItems, new TimeStarredComparator());

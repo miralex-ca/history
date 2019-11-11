@@ -32,7 +32,6 @@ import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCO
 
 public class GalleryActivity extends BaseActivity {
 
-
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
     public String themeTitle;
@@ -74,9 +73,7 @@ public class GalleryActivity extends BaseActivity {
         tSectionID = getIntent().getStringExtra(EXTRA_SECTION_ID);
         tCatID = getIntent().getStringExtra(EXTRA_CAT_ID);
 
-
         galleryFragment = new GalleryFragment();
-
 
         Bundle bundle = new Bundle();
 

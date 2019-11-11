@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.CustomViewPager;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ResizeHeight;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
@@ -134,14 +135,13 @@ public class ExerciseActivity extends BaseActivity {
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
 
+    OpenActivity openActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(this);
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
@@ -154,6 +154,9 @@ public class ExerciseActivity extends BaseActivity {
 
         setContentView(R.layout.activity_exercise);
 
+        openActivity = new OpenActivity(this);
+
+        openActivity.setOrientation();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -642,10 +645,6 @@ public class ExerciseActivity extends BaseActivity {
         RadioGroup group = tView.findViewById(R.id.radioGroup1);
         viewPagerAdapter.exCheckItem(group, position);
 
-
-
-
-
         taskCheckedStatus = 1;
 
         if ( position >= (wordListLength-1)  ) {
@@ -669,8 +668,6 @@ public class ExerciseActivity extends BaseActivity {
     public static void exGoToResult() {
         exerciseField.setVisibility(View.GONE);
         exResultBox.setVisibility(View.VISIBLE);
-
-
         resultShow = true;
         taskCheckedStatus = 0;
 
@@ -681,15 +678,12 @@ public class ExerciseActivity extends BaseActivity {
 
 
         final View exResultDetail = exResultBox.findViewById(R.id.exResultDetail);
-
         final boolean showDetail = correctAnswers != wordListLength;
-
 
         exMarkTxtV.setAlpha(0.0f);
         exResTxt.setAlpha(0.0f);
         exResultDetail.setAlpha(0.0f);
         exRestartBtn.setAlpha(0.0f);
-
 
 
         double res = ((double) correctAnswers) / wordListLength * 100;
@@ -792,7 +786,6 @@ public class ExerciseActivity extends BaseActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_exercise, menu);
@@ -830,13 +823,10 @@ public class ExerciseActivity extends BaseActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -845,9 +835,7 @@ public class ExerciseActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
             case R.id.restart_from_menu:
 

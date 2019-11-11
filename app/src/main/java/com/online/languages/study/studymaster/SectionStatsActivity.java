@@ -80,9 +80,9 @@ public class SectionStatsActivity extends BaseActivity {
 
         setContentView(R.layout.activity_cat_stats);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+
+        openActivity.setOrientation();
 
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
@@ -95,8 +95,6 @@ public class SectionStatsActivity extends BaseActivity {
         navSection = navStructure.getNavSectionByID(tSectionID);
 
         dbHelper = new DBHelper(this);
-        openActivity = new OpenActivity(this);
-
 
         sectionTitle = findViewById(R.id.sectionTitle);
         sectionDesc = findViewById(R.id.sectionDesc);
@@ -285,9 +283,8 @@ public class SectionStatsActivity extends BaseActivity {
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, Constants.ERRORS_CAT_TAG);
 
-
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -299,24 +296,14 @@ public class SectionStatsActivity extends BaseActivity {
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
 
         startActivityForResult(i, 1);
-        pageTransition();
-    }
-
-
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
+        openActivity.pageTransition();
     }
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -325,9 +312,7 @@ public class SectionStatsActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
             case R.id.stats_info:
                 showInfoDialog();
@@ -360,7 +345,6 @@ public class SectionStatsActivity extends BaseActivity {
 
 
     public void openStudiedBySection (View view) {
-
         if (section.studiedDataCount == 0) {
             displayEmtySection();
         } else {
@@ -372,7 +356,6 @@ public class SectionStatsActivity extends BaseActivity {
 
         if (section.familiarDataCount == 0) {
             displayEmtySection();
-
         } else {
             openDataTypeBySections (1);
         }
@@ -382,7 +365,6 @@ public class SectionStatsActivity extends BaseActivity {
     public void openUnknownBySection (View view) {
 
         if (section.unknownDataCount == 0) {
-
             displayEmtySection();
         } else {
             openDataTypeBySections (2);
@@ -410,7 +392,7 @@ public class SectionStatsActivity extends BaseActivity {
             i.putExtra(Constants.EXTRA_CAT_ID, section.categories.get(0).id);
 
             startActivityForResult(i, 1);
-            pageTransition();
+            openActivity.pageTransition();
 
         } else {
 
@@ -423,7 +405,7 @@ public class SectionStatsActivity extends BaseActivity {
             intent.putExtra(Constants.EXTRA_DATA_TYPE, type);
 
             startActivityForResult(intent, 1);
-            pageTransition();
+            openActivity.pageTransition();
 
         }
 
@@ -451,17 +433,15 @@ public class SectionStatsActivity extends BaseActivity {
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
 
     }
 
     public void openCat (int position) {
-
         Intent intent = new Intent(this, CustomDataListActivity.class);
         startActivity(intent);
-        pageTransition();
+        openActivity.pageTransition();
     }
-
 
     public void showInfo (View view) {
         showResultDialog();

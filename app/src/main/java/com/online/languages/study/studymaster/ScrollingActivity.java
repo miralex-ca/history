@@ -1,5 +1,6 @@
 package com.online.languages.study.studymaster;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -247,9 +248,9 @@ public class ScrollingActivity extends BaseActivity {
         returnIntent.putExtra("result", itemPostion);
 
         if (starStatusChanged) {
-            setResult(CatInfoDetailActivity.RESULT_OK,returnIntent);
+            setResult(RESULT_OK,returnIntent);
         } else {
-            setResult(CatInfoDetailActivity.RESULT_CANCELED,returnIntent);
+            setResult(RESULT_CANCELED,returnIntent);
         }
 
         super.finish();

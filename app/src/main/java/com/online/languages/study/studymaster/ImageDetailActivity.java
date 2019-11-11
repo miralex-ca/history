@@ -49,6 +49,7 @@ public class ImageDetailActivity extends BaseActivity {
     Boolean starStatusChanged = false;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -247,9 +248,9 @@ public class ImageDetailActivity extends BaseActivity {
         returnIntent.putExtra("result", detailItem.id);
 
         if (starStatusChanged) {
-            setResult(CatInfoDetailActivity.RESULT_OK,returnIntent);
+            setResult(RESULT_OK,returnIntent);
         } else {
-            setResult(CatInfoDetailActivity.RESULT_CANCELED,returnIntent);
+            setResult(RESULT_CANCELED,returnIntent);
         }
 
         super.finish();

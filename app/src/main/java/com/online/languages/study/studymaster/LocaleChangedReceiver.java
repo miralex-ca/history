@@ -19,19 +19,7 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
-       // Toast.makeText(context, "Locale changed", Toast.LENGTH_SHORT).show();
-
-
-       // Intent i = new Intent(context, AppStart.class);
-       // i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-       // context.startActivity(i);
-
-
         if (intent.getAction().compareTo(Intent.ACTION_LOCALE_CHANGED) == 0) {
-
-          //  Toast.makeText(getAppContext(), "Locale changed 0", Toast.LENGTH_SHORT).show();
-
 
             Intent i = new Intent(context, AppStart.class);
             i.addFlags(FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -40,9 +28,6 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
                 ((Activity) context).finish();
             }
 
-
         }
-
-
     }
 }

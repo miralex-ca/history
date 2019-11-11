@@ -53,7 +53,7 @@ public class StarredTabOne extends Fragment {
 
 
         text = rootView.findViewById(R.id.starredWords);
-        dataManager = new DataManager(getActivity());
+        dataManager = new DataManager(getActivity(), 1);
         starredCount = rootView.findViewById(R.id.starred_count);
 
         zero = rootView.findViewById(R.id.starred_zero);

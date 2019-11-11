@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.CardsPagerAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
@@ -31,19 +32,14 @@ import java.util.Collections;
 
 public class CardsActivity extends BaseActivity {
 
-
-
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
     public String themeTitle;
-
-
 
     String topicTag;
     ArrayList<DataItem> wordList = new ArrayList<>();
 
     ArrayList<DataItem> originWordsList;
-
 
     TextView fCounterInfoBox;
     Button prevButton;
@@ -66,13 +62,13 @@ public class CardsActivity extends BaseActivity {
     ViewPager viewPager;
     CardsPagerAdapter viewPagerAdapter;
 
-    int catOrder;
 
     public static Boolean exButtonShow;
 
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
 
+    OpenActivity openActivity;
 
 
     @Override
@@ -88,9 +84,7 @@ public class CardsActivity extends BaseActivity {
 
         setContentView(R.layout.activity_cards);
 
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -106,9 +100,9 @@ public class CardsActivity extends BaseActivity {
 
         topicTag = "dates";
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         fPhraseLayout = topicTag.contains("ph_");
 
@@ -121,13 +115,9 @@ public class CardsActivity extends BaseActivity {
         exButtonShow = appSettings.getBoolean("card_buttons_show", true);
 
 
-        // originWordsList = getIntent().getParcelableArrayListExtra("dataItems");
-
         String cat = "dates";
         DataManager dataManager = new DataManager(this);
 
-
-        // originWordsList = dataManager.getCatList(cat);
 
         originWordsList = getIntent().getParcelableArrayListExtra("dataItems");
 
@@ -136,15 +126,11 @@ public class CardsActivity extends BaseActivity {
 
         wordListLength = wordList.size();
 
-        fCounterInfoBox = (TextView) findViewById(R.id.testInfoBox);
-        prevButton = (Button) findViewById(R.id.back_btn);
-        nextButton = (Button) findViewById(R.id.next_btn);
+        fCounterInfoBox = findViewById(R.id.testInfoBox);
+        prevButton = findViewById(R.id.back_btn);
+        nextButton = findViewById(R.id.next_btn);
 
-        //    DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
-        //     float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
-        //    Toast.makeText(this, "H: "+ dpHeight, Toast.LENGTH_SHORT).show();
-
-        viewPager = (ViewPager)findViewById(R.id.cardsPager);
+        viewPager = findViewById(R.id.cardsPager);
 
         startFlashcard(false);
 
@@ -169,9 +155,7 @@ public class CardsActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
 
@@ -181,9 +165,7 @@ public class CardsActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.fShowTranslate:
@@ -236,9 +218,7 @@ public class CardsActivity extends BaseActivity {
 
     private void changeExBtnStatus() {
 
-
         exButtonShow = !exButtonShow;
-
         SharedPreferences.Editor editor = appSettings.edit();
         editor.putBoolean("card_buttons_show", exButtonShow);
         editor.apply();
@@ -287,8 +267,6 @@ public class CardsActivity extends BaseActivity {
 
     private void applyExBtnStatus(Boolean btnStatus, Boolean animation) {
 
-
-
         LinearLayout btnBox = findViewById(R.id.btnBox);
 
         if (wordList.size() == 1) {
@@ -310,16 +288,12 @@ public class CardsActivity extends BaseActivity {
         }
 
         exShowBtnRadio.setChecked(btnStatus);
-        //Toast.makeText(this, "Buttons: " + exButtonShow, Toast.LENGTH_SHORT).show();
     }
 
 
     private void startFlashcard(Boolean animation) {
         getWordlist();
         showPage(0);
-
-        // final Context context = this;
-
 
         if (animation) {
 
@@ -373,7 +347,6 @@ public class CardsActivity extends BaseActivity {
             viewPager.setCurrentItem(current, false);
         }
 
-
     }
 
 
@@ -404,11 +377,9 @@ public class CardsActivity extends BaseActivity {
     {
         wordList = new ArrayList<>();
 
-
         for (DataItem word: originWordsList ) {
             wordList.add(word);
         }
-
 
         if (fMixWords) {
             Collections.shuffle(wordList);

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.ContentAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.Category;
 import com.online.languages.study.studymaster.data.DataItem;
@@ -56,10 +57,11 @@ public class SectionTestActivity extends BaseActivity {
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
 
+    OpenActivity openActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(this);
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
@@ -73,37 +75,28 @@ public class SectionTestActivity extends BaseActivity {
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new DataModeDialog(this);
 
-
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         tSectionID = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
 
         dbHelper = new DBHelper(this);
         dataSelect = appSettings.getString("data_select", "dates");
 
-
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         setTitle(R.string.section_tests_titile);
 
         getAllDataFromJson();
-
-
-       // Toast.makeText(this, "Len: "+ allData.size(), Toast.LENGTH_SHORT).show();
 
         testOneBox = findViewById(R.id.testOne);
         testTwoBox = findViewById(R.id.testTwo);
         testAllBox = findViewById(R.id.testAll);
 
-
         showExtraTests();
-
 
         getTestsResults();
     }
@@ -122,7 +115,6 @@ public class SectionTestActivity extends BaseActivity {
         } else {
             testAllBox.setVisibility(View.GONE);
         }
-
 
     }
 
@@ -222,7 +214,7 @@ public class SectionTestActivity extends BaseActivity {
         i.putParcelableArrayListExtra("dataItems", basicData);
 
         startActivityForResult(i, 1);;
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -238,10 +230,8 @@ public class SectionTestActivity extends BaseActivity {
         i.putParcelableArrayListExtra("dataItems", extraData);
 
         startActivityForResult(i, 1);;
-        pageTransition();
+        openActivity.pageTransition();
     }
-
-
 
 
     @Override
@@ -251,22 +241,10 @@ public class SectionTestActivity extends BaseActivity {
     }
 
 
-
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
-
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -275,9 +253,7 @@ public class SectionTestActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.starred_del_results:
@@ -301,8 +277,5 @@ public class SectionTestActivity extends BaseActivity {
 
         return true;
     }
-
-
-
 
 }

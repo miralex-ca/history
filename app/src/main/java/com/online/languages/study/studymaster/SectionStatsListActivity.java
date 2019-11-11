@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.online.languages.study.studymaster.adapters.CustomSectionAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.CustomCatData;
 import com.online.languages.study.studymaster.data.NavSection;
@@ -66,6 +68,8 @@ public class SectionStatsListActivity extends BaseActivity {
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
 
+    OpenActivity openActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -84,9 +88,8 @@ public class SectionStatsListActivity extends BaseActivity {
 
         setContentView(R.layout.activity_cat_data_stats);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         tSectionID = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
@@ -138,9 +141,7 @@ public class SectionStatsListActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
 
@@ -161,9 +162,7 @@ public class SectionStatsListActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.easy_mode:
@@ -213,16 +212,13 @@ public class SectionStatsListActivity extends BaseActivity {
 
 
     public void onListItemClick(int position) {
-
             final int act = position;
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     openList (act);
                 }
             }, 50);
-
     }
 
 
@@ -237,15 +233,12 @@ public class SectionStatsListActivity extends BaseActivity {
 
         Intent intent = new Intent(this, CatActivity.class);
         intent.putExtra(Constants.EXTRA_FORCE_STATUS, "always");
-
         intent.putExtra(Constants.EXTRA_DATA_TYPE, dataType);
-
         intent.putExtra(Constants.EXTRA_CAT_SPEC, section.categories.get(position).spec);
-
         intent.putExtra(Constants.EXTRA_CAT_ID, section.categories.get(position).id);
         intent.putExtra("cat_title", section.categories.get(position).title);
         startActivityForResult(intent, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -258,7 +251,6 @@ public class SectionStatsListActivity extends BaseActivity {
             }
         }
 
-
         Intent intent = new Intent(this, CustomDataActivity.class);
         intent.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
         intent.putExtra(Constants.EXTRA_DATA_TYPE, dataType);
@@ -266,7 +258,7 @@ public class SectionStatsListActivity extends BaseActivity {
         intent.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
 
         startActivityForResult(intent, 1);
-        pageTransition();
+        openActivity.pageTransition();
 
     }
 
@@ -277,13 +269,6 @@ public class SectionStatsListActivity extends BaseActivity {
 
         Snackbar.make(recyclerView, Html.fromHtml("<font color=\"#ffffff\">"+inPro+"</font>"), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
-    }
-
-
-    public void pageTransition() {
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
     }
 
 

@@ -23,6 +23,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.online.languages.study.studymaster.adapters.CatViewPagerAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
@@ -52,13 +53,14 @@ public class CatActivity extends BaseActivity {
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
 
-
     ImageView placeholder;
     View adContainer;
     View adCard;
 
     Boolean showAd;
     AdView mAdView;
+
+    OpenActivity openActivity;
 
 
 
@@ -67,25 +69,19 @@ public class CatActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         appSettings = PreferenceManager.getDefaultSharedPreferences(this);
         themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
 
-
         setContentView(R.layout.activity_cat);
-
 
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new DataModeDialog(this);
 
-
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         categoryID = getIntent().getStringExtra(Constants.EXTRA_CAT_ID);
         catSpec = getIntent().getStringExtra(Constants.EXTRA_CAT_SPEC);
@@ -139,11 +135,9 @@ public class CatActivity extends BaseActivity {
         adContainer = findViewById(R.id.adContainer);
         adCard = findViewById(R.id.adCard);
 
-
         showAd =false;
 
         mAdView = findViewById(R.id.adView);
-
 
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -157,8 +151,6 @@ public class CatActivity extends BaseActivity {
         });
 
         checkAdShow();
-
-
 
     }
 
@@ -177,7 +169,6 @@ public class CatActivity extends BaseActivity {
         String id = view.getTag().toString();
 
         if (id.equals("divider")) return;
-
 
         Intent intent = new Intent(CatActivity.this, ScrollingActivity.class);
 
@@ -205,18 +196,14 @@ public class CatActivity extends BaseActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
-
             case R.id.easy_mode:
                 dataModeDialog.openDialog();
                 return true;
@@ -236,9 +223,7 @@ public class CatActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -288,16 +273,9 @@ public class CatActivity extends BaseActivity {
         }
 
         startActivityForResult(i,2);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
-
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
 
 
     private void checkAdShow() {
@@ -396,9 +374,6 @@ public class CatActivity extends BaseActivity {
         }
         super.onPause();
     }
-
-
-
 
 
 }

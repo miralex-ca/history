@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.online.languages.study.studymaster.adapters.CatsListAdapter;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
@@ -38,10 +39,9 @@ public class SubSectionActivity extends BaseActivity {
     String tCatID = "01010";
 
     ViewSection viewSection;
-
     NavSection navSection;
-
     Boolean full_version;
+    OpenActivity openActivity;
 
 
     @Override
@@ -59,10 +59,8 @@ public class SubSectionActivity extends BaseActivity {
 
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
-
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -145,14 +143,9 @@ public class SubSectionActivity extends BaseActivity {
         // i.putExtra("show_ad", showAd);
 
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
-    public void pageTransition() {
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -162,9 +155,7 @@ public class SubSectionActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -173,9 +164,7 @@ public class SubSectionActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
         }

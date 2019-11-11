@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.MapListAdapter;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.ImageData;
 import com.online.languages.study.studymaster.data.ImageMapsData;
@@ -65,6 +66,8 @@ public class MapListActivity extends BaseActivity {
 
     int listType;
 
+    OpenActivity openActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,16 +87,14 @@ public class MapListActivity extends BaseActivity {
 
         listType = appSettings.getInt("maps_list_layout", 2);
 
-
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle("Карты");
+        setTitle(R.string.maps_list_title);
 
         itemsList = findViewById(R.id.items_list);
         cardsList = findViewById(R.id.cards_list);
@@ -142,9 +143,6 @@ public class MapListActivity extends BaseActivity {
             cat.image  = image.image;
         }
     }
-
-
-
 
 
     private void changeLayoutStatus() {
@@ -222,14 +220,10 @@ public class MapListActivity extends BaseActivity {
         // i.putExtra("show_ad", showAd);
 
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
-    public void pageTransition() {
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -239,9 +233,7 @@ public class MapListActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -250,9 +242,7 @@ public class MapListActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.list_layout:

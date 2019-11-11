@@ -90,7 +90,6 @@ public class CatListActivity extends BaseActivity {
 
         listType = getIntent().getIntExtra(Constants.EXTRA_DATA_TYPE, 0); //
 
-
         sectionId = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
         catId = getIntent().getStringExtra(Constants.EXTRA_CAT_ID);
 
@@ -107,7 +106,6 @@ public class CatListActivity extends BaseActivity {
 
 
         emptyTxt = findViewById(R.id.emptyTxt);
-
 
         dataManager = new DataManager(this);
 
@@ -167,8 +165,6 @@ public class CatListActivity extends BaseActivity {
     }
 
 
-
-
     private void openView(final View view) {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -180,11 +176,9 @@ public class CatListActivity extends BaseActivity {
     }
 
 
-
     private void getDataList(String sectionId, int listType) {
         dataItems = dataManager.getCatDBList(catId);
     }
-
 
 
     private void onItemClick(final View view, final int position) {
@@ -264,31 +258,28 @@ public class CatListActivity extends BaseActivity {
 
     public void openCat () {
 
-        Intent intent = new Intent(CatListActivity.this, CatActivity.class);
+        Intent intent = new Intent(this, CatActivity.class);
         intent.putExtra(Constants.EXTRA_FORCE_STATUS, "always");
-
         intent.putExtra(Constants.EXTRA_CAT_SPEC, navCategory.spec);
-
         intent.putExtra(Constants.EXTRA_CAT_ID, navCategory.id);
         intent.putExtra("cat_title", navCategory.title);
         startActivityForResult(intent, 2);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
     public void openExercise() {
 
-        Intent i = new Intent(CatListActivity.this, ExerciseActivity.class) ;
+        Intent i = new Intent(this, ExerciseActivity.class) ;
         i.putParcelableArrayListExtra("dataItems", dataItems);
         if (sectionId.equals(Constants.ERRORS_CAT_TAG)) {
             i.putExtra(Constants.EXTRA_CAT_TAG, Constants.ERRORS_CAT_TAG);
-
         } else {
             i.putExtra(Constants.EXTRA_CAT_TAG, "custom");
         }
 
         startActivityForResult(i, 2);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -311,9 +302,7 @@ public class CatListActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -322,9 +311,7 @@ public class CatListActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.open_test:
@@ -348,13 +335,6 @@ public class CatListActivity extends BaseActivity {
         dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
     }
 
-
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
 
 
 

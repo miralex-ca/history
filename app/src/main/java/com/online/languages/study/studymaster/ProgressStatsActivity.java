@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ProgressDataAdapter;
 import com.online.languages.study.studymaster.adapters.SearchDataAdapter;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
@@ -41,14 +42,12 @@ import java.util.ArrayList;
 
 public class ProgressStatsActivity extends BaseActivity {
 
-
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
     public String themeTitle;
 
     NavStructure navStructure;
     UserStats userStats;
-
 
     ProgressDataAdapter adapter;
     RecyclerView recyclerView;
@@ -59,6 +58,7 @@ public class ProgressStatsActivity extends BaseActivity {
     Boolean easy_mode;
     DataModeDialog dataModeDialog;
 
+    OpenActivity openActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,17 +69,14 @@ public class ProgressStatsActivity extends BaseActivity {
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress_stats);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new DataModeDialog(this);
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -91,13 +88,11 @@ public class ProgressStatsActivity extends BaseActivity {
 
         userStats = new UserStats(this, navStructure);
 
-
         knownProgress = findViewById(R.id.knownProgress);
         studiedProgress = findViewById(R.id.studiedProgress);
 
         knownProgressTxt = findViewById(R.id.knonwnProgressTxt);
         studiedProgressTxt = findViewById(R.id.studiedProgressTxt);
-
 
         recyclerView = findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -106,11 +101,9 @@ public class ProgressStatsActivity extends BaseActivity {
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
         recyclerView.setSelected(true);
 
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
-
 
         updateContent();
 
@@ -139,25 +132,19 @@ public class ProgressStatsActivity extends BaseActivity {
     }
 
 
-
     public void openSectionStats(int position) {
         Intent i = new Intent(ProgressStatsActivity.this, SectionStatsActivity.class);
-
-
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, navStructure.sections.get(position).id);
-
         i.putExtra(Constants.EXTRA_SECTION_NUM, position);
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         updateContent();
-
     }
 
 
@@ -178,15 +165,6 @@ public class ProgressStatsActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
     }
 
-
-
-
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
 
 
     public void showInfoDialog() {
@@ -211,13 +189,10 @@ public class ProgressStatsActivity extends BaseActivity {
 
 
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -226,9 +201,7 @@ public class ProgressStatsActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
             case R.id.stats_info:
                 showInfoDialog();
@@ -245,7 +218,6 @@ public class ProgressStatsActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_section_stats, menu);
 
-
         MenuItem modeMenuItem = menu.findItem(R.id.easy_mode);
         MenuItem infoMenuItem = menu.findItem(R.id.stats_info);
 
@@ -253,7 +225,6 @@ public class ProgressStatsActivity extends BaseActivity {
             modeMenuItem.setVisible(true);
             infoMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         }
-
 
         return true;
 

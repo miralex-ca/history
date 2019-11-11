@@ -87,7 +87,6 @@ public class CustomDataActivity extends BaseActivity {
         setContentView(R.layout.activity_custom_data_tabs);
 
         openActivity = new OpenActivity(this);
-
         openActivity.setOrientation();
 
         adapterListType = -1;

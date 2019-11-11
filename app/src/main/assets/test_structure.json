@@ -1,8 +1,8 @@
 {
   "params": {
     "simplified": true,
-    "homecards": false,
-    "gallery": true
+    "homecards": true,
+    "gallery": false
   },
 
   "sections":

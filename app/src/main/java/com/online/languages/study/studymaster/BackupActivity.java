@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.online.languages.study.studymaster.adapters.InfoDialog;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.files.DBExport;
 import com.online.languages.study.studymaster.files.DBImport;
@@ -50,7 +51,6 @@ public class BackupActivity extends BaseActivity {
     final static int MY_PERMISSIONS_REQUEST_READ_STORAGE = 2;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,22 +62,18 @@ public class BackupActivity extends BaseActivity {
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
 
-
         setContentView(R.layout.activity_backup);
 
         setTitle(R.string.backup_page_title);
 
         infoDialog = new InfoDialog(this);
 
-
         mLaunches = getSharedPreferences(APP_LAUNCHES, Context.MODE_PRIVATE);
 
+        OpenActivity openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -158,14 +154,6 @@ public class BackupActivity extends BaseActivity {
                 .withHiddenFiles(false)
                 .withPath(uri.getPath())
                 .start();
-
-
-        /// find the file with a Files app
-        // Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        // intent.addCategory(Intent.CATEGORY_OPENABLE);
-       // intent.setDataAndType(uri,"*/*");
-        //startActivityForResult(Intent.createChooser(intent, "Open CSV"), 10);
-
     }
 
 
@@ -178,9 +166,6 @@ public class BackupActivity extends BaseActivity {
                 String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
                 proImportCSV( Uri.fromFile(new File(filePath)) );
 
-
-                /// find the file with a Files app
-                //proImportCSV( data.getData() );
             }
         }
     }
@@ -207,9 +192,6 @@ public class BackupActivity extends BaseActivity {
         mLaunches.edit().putString("last_import", date).apply();
         lastImportTxt.setText(String.format(getString(R.string.last_import_dat), date));
     }
-
-
-
 
 
 
@@ -249,7 +231,6 @@ public class BackupActivity extends BaseActivity {
         }
 
     }
-
 
 
 

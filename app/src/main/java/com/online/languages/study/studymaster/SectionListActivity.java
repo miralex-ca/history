@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.SectionListAdapter;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
@@ -51,6 +52,8 @@ public class SectionListActivity extends BaseActivity {
 
     boolean fullVersion;
 
+    OpenActivity openActivity;
+
 
 
     @Override
@@ -76,9 +79,8 @@ public class SectionListActivity extends BaseActivity {
         fullVersion = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -152,7 +154,6 @@ public class SectionListActivity extends BaseActivity {
 
         checkStarred(position);
 
-
         assert v != null;
         v.vibrate(vibLen);
     }
@@ -163,7 +164,6 @@ public class SectionListActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 view.setVisibility(View.VISIBLE);
             }
         }, 80);
@@ -185,14 +185,11 @@ public class SectionListActivity extends BaseActivity {
 
         Intent intent = new Intent(SectionListActivity.this, ScrollingActivity.class);
 
-
         intent.putExtra("starrable", navSection.unlocked);
 
         String id = view.getTag(R.id.item_id).toString();
         intent.putExtra("id", id );
         intent.putExtra("position", position);
-
-
 
         intent.putExtra("item", data.get(position));
 
@@ -234,18 +231,14 @@ public class SectionListActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.stats_mode_info, menu);
         MenuItem modeMenuItem = menu.findItem(R.id.easy_mode);
-
         if (easy_mode) modeMenuItem.setVisible(true);
-
         return true;
     }
 
@@ -256,9 +249,7 @@ public class SectionListActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
             case R.id.easy_mode:
                 dataModeDialog.openDialog();

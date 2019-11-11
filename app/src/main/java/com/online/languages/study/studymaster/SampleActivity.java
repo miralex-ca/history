@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 
 public class SampleActivity extends BaseActivity {
@@ -17,6 +18,8 @@ public class SampleActivity extends BaseActivity {
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
     public String themeTitle;
+
+    OpenActivity openActivity;
 
 
 
@@ -28,6 +31,8 @@ public class SampleActivity extends BaseActivity {
 
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
+
+        openActivity = new OpenActivity(this);
 
 
         super.onCreate(savedInstanceState);
@@ -54,9 +59,7 @@ public class SampleActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -65,9 +68,7 @@ public class SampleActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
         }

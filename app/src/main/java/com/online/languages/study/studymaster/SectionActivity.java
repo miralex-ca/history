@@ -49,19 +49,13 @@ public class SectionActivity extends BaseActivity {
     TextView sectionTitle, sectionDesc;
     ImageView placePicutre;
 
-    Section section;
-
-
     RecyclerView recyclerView;
 
     CatsListAdapter mAdapter;
 
     NavStructure navStructure;
 
-    ArrayList<NavCategory> sectionCatList;
-
     NavSection navSection;
-
 
     String parent = "root";
     String tSectionID = "01010";
@@ -92,9 +86,7 @@ public class SectionActivity extends BaseActivity {
         dataModeDialog = new InfoDialog(this);
         openActivity = new OpenActivity(this);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity.setOrientation();
 
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
@@ -103,11 +95,9 @@ public class SectionActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         parent = getIntent().getStringExtra(Constants.EXTRA_SECTION_PARENT);
         tSectionID = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
-
 
         navSection = navStructure.getNavSectionByID(tSectionID);
 
@@ -118,7 +108,6 @@ public class SectionActivity extends BaseActivity {
         sectionDesc = findViewById(R.id.sectionDesc);
 
         placePicutre = findViewById(R.id.catImage);
-
 
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -161,15 +150,11 @@ public class SectionActivity extends BaseActivity {
 
     }
 
-
-
     private void updateContent() {
         viewSection.getProgress();
         mAdapter = new CatsListAdapter(this, viewSection.categories, full_version);
         recyclerView.setAdapter(mAdapter);
-
     }
-
 
 
     @Override
@@ -192,16 +177,12 @@ public class SectionActivity extends BaseActivity {
             }
         }
 
-
         Intent i = new Intent(SectionActivity.this, CatActivity.class);
         i.putExtra(Constants.EXTRA_CAT_ID, navCategory.id);
         i.putExtra("cat_title", navCategory.title);
 
-
-        // i.putExtra("show_ad", showAd);
-
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -234,11 +215,11 @@ public class SectionActivity extends BaseActivity {
 
 
     public void notifyLocked() {
-        Snackbar.make(recyclerView, Html.fromHtml("<font color=\"#ffffff\">Доступно в полной версии</font>"), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+        String proContent = getString(R.string.pro_content);
+        Snackbar.make(recyclerView, Html.fromHtml("<font color=\"#ffffff\">"+proContent+"</font>"), Snackbar.LENGTH_SHORT).setAction("Action", null).show();
 
 
     }
-
 
 
     public void openSectionList(View view) {
@@ -248,11 +229,10 @@ public class SectionActivity extends BaseActivity {
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
 
-
         // i.putExtra("show_ad", showAd);
 
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
     public void openSectionTest(View view) {
@@ -269,22 +249,14 @@ public class SectionActivity extends BaseActivity {
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
-
-    public void pageTransition() {
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
 
@@ -304,9 +276,7 @@ public class SectionActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.easy_mode:

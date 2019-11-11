@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.CustomSectionAdapter;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.SearchDataAdapter;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
@@ -83,14 +84,9 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
 
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
-
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         navStructure.getUniqueCats();
 
-
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -114,7 +110,6 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
 
         recyclerView.setSelected(true);
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
-
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new ClickListener() {
             @Override
@@ -178,7 +173,6 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
         v.vibrate(vibLen);
     }
 
-
     public void checkStarred(final int result){   /// check just one item
 
         data = dbHelper.checkStarredList(data);
@@ -190,8 +184,6 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
             }
         }, 200);
     }
-
-
 
     private void onItemClick(final View view, final int position) {
         new Handler().postDelayed(new Runnable() {

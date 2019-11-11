@@ -98,7 +98,6 @@ public class MainActivity extends BaseActivity
     SectionFragment sectionFragment;
     GalleryFragment galleryFragment;
 
-
     FragmentTransaction fPages;
     FragmentManager fragmentManager;
 
@@ -117,10 +116,7 @@ public class MainActivity extends BaseActivity
     public static ArrayList<DataItem> allDataList;
     public static ArrayList<DataItem> oldestDataList;
 
-
-
     private Boolean PRO_VERSION;
-
 
     Boolean fullVersion;
 
@@ -155,9 +151,7 @@ public class MainActivity extends BaseActivity
         openActivity = new OpenActivity(this);
         dataManager = new DataManager(this, true);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);  ///
-        }
+        openActivity.setOrientation();
 
         if (multipane) {
             setContentView(R.layout.main_multipane);
@@ -304,7 +298,6 @@ public class MainActivity extends BaseActivity
         statsFragment.setArguments(bundle);
         galleryFragment.setArguments(bundle);
 
-
     }
 
     public void bottomNavDisplay() {
@@ -402,8 +395,6 @@ public class MainActivity extends BaseActivity
             else {
                 Log.d("Inapp", "Success inventory.");
 
-                // Toast.makeText(getApplicationContext(), "Premium: " + inventory.hasPurchase(SKU_PREMIUM), Toast.LENGTH_SHORT).show();
-
                 if (inventory.hasPurchase(SKU_PREMIUM)) {
                     changeVersion(true);
                     changeShowAd(false);
@@ -411,15 +402,12 @@ public class MainActivity extends BaseActivity
                     changeShowAd(true);
                 }
 
-                // Toast.makeText(getApplicationContext(), "Done: " + inventory.hasPurchase(SKU_PREMIUM), Toast.LENGTH_SHORT).show();
-
                 updateMenuList(menuActiveItem);
             }
         }
     };
 
-
-
+    
     public Boolean checkPrivilege() {
         SharedPreferences mLaunches = getSharedPreferences(AppStart.APP_LAUNCHES, Context.MODE_PRIVATE);
         int launchesNum = mLaunches.getInt(AppStart.LAUNCHES_NUM, 0);
@@ -429,7 +417,6 @@ public class MainActivity extends BaseActivity
         }
         return hasPrivilege;
     }
-
 
     //////// dealing with fragments
 
@@ -540,8 +527,6 @@ public class MainActivity extends BaseActivity
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
 
-
-
             fullVersion = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
             if (fullVersion) {
                 findViewById(R.id.nav_footer).setVisibility(View.GONE);
@@ -577,13 +562,6 @@ public class MainActivity extends BaseActivity
     }
 
 
-    public void pageTransition() {
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
-
-
     public void openCatActivity(View view, int position) {
 
         NavSection navSection = navStructure.sections.get(position);
@@ -610,25 +588,22 @@ public class MainActivity extends BaseActivity
     public void openGallery(NavSection navSection) {
         Intent i;
         i = new Intent(MainActivity.this, GalleryActivity.class);
-
         i.putExtra(Constants.EXTRA_CAT_ID, "root");
         i.putExtra(Constants.EXTRA_SECTION_ID, navSection.id);
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         startActivityForResult(i, 1);
-        pageTransition();
+        openActivity.pageTransition();
 
     }
 
 
     public void openSectionStats(View view, int position) {
         Intent i = new Intent(MainActivity.this, SectionStatsActivity.class);
-
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, navStructure.sections.get(position).id);
         i.putExtra(Constants.EXTRA_SECTION_NUM, position);
         startActivity(i);
-        pageTransition();
-
+        openActivity.pageTransition();
     }
 
 
@@ -636,10 +611,8 @@ public class MainActivity extends BaseActivity
         Intent i = new Intent(MainActivity.this, ProgressStatsActivity.class);
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         startActivity(i);
-        pageTransition();
-
+        openActivity.pageTransition();
     }
-
 
     public void openStudiedBySections (View view) {
         openDataTypeBySections (0);
@@ -658,7 +631,7 @@ public class MainActivity extends BaseActivity
         Intent i = new Intent(MainActivity.this, SectionStatsListActivity.class);
         i.putExtra(Constants.EXTRA_DATA_TYPE, type);
         startActivity(i);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -668,7 +641,7 @@ public class MainActivity extends BaseActivity
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
         i.putExtra(Constants.EXTRA_SECTION_ID, "errors");
         startActivity(i);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -679,10 +652,8 @@ public class MainActivity extends BaseActivity
         i.putExtra(Constants.EXTRA_CAT_TAG, "all");
         i.putParcelableArrayListExtra("dataItems", allDataList);
         startActivity(i);
-        pageTransition();
+        openActivity.pageTransition();
     }
-
-
 
     public void testOldstPage(View view) {
         if (oldestDataList.size() < 1) {
@@ -693,26 +664,17 @@ public class MainActivity extends BaseActivity
     }
 
     public void displayEmtySection() {
-        //Snackbar.make(toolbar, Html.fromHtml("<font color=\"#ffffff\">Нет записей</font>"), Snackbar.LENGTH_SHORT).show();
-        Toast.makeText(this, "Нет записей", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.no_data_msg, Toast.LENGTH_SHORT).show();
     }
 
-
     private void openOldPage() {
-
         Intent i = new Intent(MainActivity.this, ExerciseActivity.class) ;
-
-        //  i = new Intent(MainActivity.this, CardsActivity.class);
-
         i.putExtra("ex_type", 1);
         i.putExtra(Constants.EXTRA_CAT_TAG, Constants.REVISE_CAT_TAG);
         i.putParcelableArrayListExtra("dataItems", oldestDataList);
         startActivity(i);
-        pageTransition();
-
+        openActivity.pageTransition();
     }
-
-
 
     public void openCatFromGallery(final View view) {
         ViewGroup v = (ViewGroup) view.getParent();
@@ -729,14 +691,6 @@ public class MainActivity extends BaseActivity
         }, 50);
     }
 
-
-    public void openCatDataStats(View view) {
-        Intent i = new Intent(MainActivity.this, SectionStatsListActivity.class);
-        startActivity(i);
-        pageTransition();
-
-
-    }
 
 
     @Override
@@ -832,7 +786,6 @@ public class MainActivity extends BaseActivity
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -880,14 +833,14 @@ public class MainActivity extends BaseActivity
     public void openTestAct(View view) {
         Intent i = new Intent(MainActivity.this, SampleActivity.class);
         startActivity(i);
-        pageTransition();
+        openActivity.pageTransition();
 
     }
 
     public void openStarred(View view) {
         Intent i = new Intent(MainActivity.this, UserListActivity.class);
         startActivity(i);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
     public void openStarredGallery(View view) {
@@ -895,23 +848,21 @@ public class MainActivity extends BaseActivity
         i.putExtra(Constants.EXTRA_CAT_ID, "01010");
         i.putExtra(Constants.EXTRA_SECTION_ID, "01010");
         i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
-
         startActivity(i);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
 
     public void openReference(View view) {
         Intent i = new Intent(MainActivity.this, ReferenceActivity.class);
         startActivity(i);
-        pageTransition();
+        openActivity.pageTransition();
     }
 
     public void openGetPremium(View view) {
         Intent i = new Intent(MainActivity.this, GetPremium.class);
         startActivityForResult(i, 1);
     }
-
 
     public void sendFeedback(View view) {
         sendMail(0);
@@ -979,7 +930,6 @@ public class MainActivity extends BaseActivity
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -993,9 +943,7 @@ public class MainActivity extends BaseActivity
             }
         }
 
-
         if (requestCode == 10) {
-
             Fragment fragment = fragmentManager.findFragmentByTag("starred");
             if (fragment != null) {
                 fragment.onActivityResult(requestCode, resultCode, data);

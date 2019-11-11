@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.online.languages.study.studymaster.adapters.CustomDataListAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
@@ -64,6 +65,8 @@ public class CustomDataListActivity extends BaseActivity {
 
     int adapterListType;
 
+    OpenActivity openActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +82,8 @@ public class CustomDataListActivity extends BaseActivity {
 
         setContentView(R.layout.activity_custom_data_list);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         adapterListType = -1;
 
@@ -172,7 +174,6 @@ public class CustomDataListActivity extends BaseActivity {
 
 
 
-
     private void setPageTitle(int listType) { // 0 - studied, 1 - familiar, 2 - unknown;
 
         String title = " (список)";
@@ -227,7 +228,6 @@ public class CustomDataListActivity extends BaseActivity {
     }
 
 
-
     private void onItemClick(final View view, final int position) {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -246,7 +246,6 @@ public class CustomDataListActivity extends BaseActivity {
         intent.putExtra("starrable", navSection.unlocked);
         intent.putExtra("id", id );
         intent.putExtra("position", position);
-
         startActivityForResult(intent,1);
 
         overridePendingTransition(R.anim.slide_in_down, 0);
@@ -270,9 +269,7 @@ public class CustomDataListActivity extends BaseActivity {
                 updateContent();
             }
 
-
         }
-
 
     }
 
@@ -296,7 +293,6 @@ public class CustomDataListActivity extends BaseActivity {
     }
 
 
-
     public void checkStarred(final int result){
 
         dataItems = dataManager.checkDataItemsData(dataItems);
@@ -315,13 +311,12 @@ public class CustomDataListActivity extends BaseActivity {
         Intent intent = new Intent(CustomDataListActivity.this, CatActivity.class);
         intent.putExtra(Constants.EXTRA_FORCE_STATUS, "always");
 
-
         intent.putExtra(Constants.EXTRA_CAT_SPEC, navCategory.spec);
 
         intent.putExtra(Constants.EXTRA_CAT_ID, navCategory.id);
         intent.putExtra("cat_title", navCategory.title);
         startActivityForResult(intent, 2);
-        pageTransition();
+        openActivity.pageBackTransition();
     }
 
 
@@ -337,7 +332,7 @@ public class CustomDataListActivity extends BaseActivity {
         }
 
         startActivityForResult(i, 2);
-        pageTransition();
+        openActivity.pageBackTransition();
     }
 
 
@@ -362,9 +357,7 @@ public class CustomDataListActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -373,9 +366,7 @@ public class CustomDataListActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.open_test:
@@ -388,21 +379,9 @@ public class CustomDataListActivity extends BaseActivity {
             case R.id.info_from_menu:
                 dataModeDialog.modeInfoDialog();
                 return true;
-
-
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-    }
-
-
-
 
 
 
@@ -451,8 +430,6 @@ public class CustomDataListActivity extends BaseActivity {
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         }
     }
-
-
 
 
 

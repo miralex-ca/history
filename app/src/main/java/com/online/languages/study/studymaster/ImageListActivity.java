@@ -41,6 +41,7 @@ import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.ImageListAdapter;
 import com.online.languages.study.studymaster.adapters.MapListAdapter;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ResizeHeight;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
@@ -103,6 +104,8 @@ public class ImageListActivity extends BaseActivity {
     final String STARRED = "starred";
     final String PIC_LIST = "pic_list";
 
+    OpenActivity openActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,9 +125,9 @@ public class ImageListActivity extends BaseActivity {
         listType = appSettings.getInt(IMG_LIST_LAYOUT, 3); /// default - 3 image grid
 
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -138,7 +141,7 @@ public class ImageListActivity extends BaseActivity {
         imagesList = findViewById(R.id.images_list);
 
 
-        dataManager = new DataManager(this);
+        dataManager = new DataManager(this, 1);
         dbHelper = dataManager.dbHelper;
 
         imageMapsData = new ImageMapsData(this);
@@ -530,24 +533,13 @@ public class ImageListActivity extends BaseActivity {
          startActivityForResult(intent, 1);
          overridePendingTransition(R.anim.slide_in_down, 0);
 
-
-    }
-
-
-
-    public void pageTransition() {
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
     }
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
     @Override
@@ -556,9 +548,7 @@ public class ImageListActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.list_layout:

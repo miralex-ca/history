@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.CatViewPagerAdapter;
+import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.adapters.UserListViewPagerAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
@@ -50,10 +51,11 @@ public class UserListActivity extends BaseActivity {
 
     public static Boolean showRes;
 
+    OpenActivity openActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
 
@@ -63,26 +65,21 @@ public class UserListActivity extends BaseActivity {
         themeAdapter = new ThemeAdapter(this, themeTitle, false);
         themeAdapter.getTheme();
 
-
         setContentView(R.layout.activity_user_list);
 
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         showRes = appSettings.getBoolean("show_starred_results", true);
 
-
-        dataManager = new DataManager(this);
+        dataManager = new DataManager(this, 1);
 
         dbHelper = new DBHelper(this);
         getVocab();
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -154,9 +151,7 @@ public class UserListActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
+        openActivity.pageBackTransition();
     }
 
 
@@ -178,15 +173,7 @@ public class UserListActivity extends BaseActivity {
         i.putExtra(Constants.EXTRA_CAT_TAG, Constants.STARRED_CAT_TAG);
 
         startActivity(i);
-        pageTransition();
-    }
-
-
-    public void pageTransition() {
-
-        if ( !getResources().getBoolean(R.bool.wide_width)) {
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
+        openActivity.pageTransition();
     }
 
 
@@ -212,9 +199,7 @@ public class UserListActivity extends BaseActivity {
         switch(id) {
             case android.R.id.home:
                 finish();
-                if ( !getResources().getBoolean(R.bool.wide_width)) {
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                }
+                openActivity.pageBackTransition();
                 return true;
 
             case R.id.starred_del_results:
@@ -227,7 +212,6 @@ public class UserListActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_starred, menu);
-
         return true;
     }
 
