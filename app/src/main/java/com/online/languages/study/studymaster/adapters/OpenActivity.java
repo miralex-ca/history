@@ -11,6 +11,7 @@ import com.online.languages.study.studymaster.CatListActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.GalleryActivity;
 import com.online.languages.study.studymaster.ImageListActivity;
+import com.online.languages.study.studymaster.InfoListActivity;
 import com.online.languages.study.studymaster.MapActivity;
 import com.online.languages.study.studymaster.MapListActivity;
 import com.online.languages.study.studymaster.R;
@@ -32,7 +33,7 @@ public class OpenActivity  {
 
 
 
-    int requestCode = 1;
+    private int requestCode = 1;
 
     public OpenActivity(Context _context) {
         context = _context;
@@ -45,13 +46,10 @@ public class OpenActivity  {
     }
 
 
-
-
     public void openCat(String cat_id, String spec, String title) {
         Intent i = createIntent(context, CatActivity.class);
         callActivity( catIntent(i, cat_id, title, spec) );
     }
-
 
 
     private Intent catIntent(Intent intent, String cat_id, String title, String spec) {
@@ -135,7 +133,7 @@ public class OpenActivity  {
     }
 
     public void openCatList(NavStructure navStructure, String sectionID, String catID, String title) {
-        Intent i = createIntent(context, CatListActivity.class);
+        Intent i = createIntent(context, InfoListActivity.class);
         i.putExtra("title", title);
         callSubActivity(i, navStructure, sectionID, catID);
     }

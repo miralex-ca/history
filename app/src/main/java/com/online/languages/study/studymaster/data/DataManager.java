@@ -24,7 +24,7 @@ public class DataManager {
     private Context context;
 
     public DBHelper dbHelper;
-    private ArrayList<NavCategory> navCategories;
+    public ArrayList<NavCategory> navCategories;
 
 
     public DataManager(Context _context) {

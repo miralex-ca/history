@@ -161,6 +161,10 @@
 
         <activity android:name=".BaseActivity" />
 
+        <activity android:name=".InfoListActivity"
+            android:theme="@style/AppTheme"
+            />
+
 
     </application>
 

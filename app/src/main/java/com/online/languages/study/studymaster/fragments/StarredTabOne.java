@@ -106,6 +106,7 @@ public class StarredTabOne extends Fragment {
 
         String count = String.format("%d / %d", words.size(), limit);
 
+        if (words.size()  > limit) count = String.valueOf(words.size());
 
         String zero = "0 / " + limit;
 
@@ -119,7 +120,6 @@ public class StarredTabOne extends Fragment {
         if (words.size() < displayLimit) displayLimit = words.size();
 
         words = new ArrayList<>(words.subList(0, displayLimit));
-
 
         return words;
 

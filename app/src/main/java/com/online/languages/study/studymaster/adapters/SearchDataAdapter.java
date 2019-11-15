@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+import static com.online.languages.study.studymaster.Constants.INFO_TAG;
 
 
 public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.MyViewHolder> {
@@ -29,7 +30,7 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, desc;
-        ImageView image, star, gIcon;
+        ImageView image, star, gIcon, iIcon;
 
         public MyViewHolder(View view) {
             super(view);
@@ -39,6 +40,7 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
             image = view.findViewById(R.id.image);
             star = view.findViewById(R.id.listStarIcon);
             gIcon = view.findViewById(R.id.gIcon);
+            iIcon = view.findViewById(R.id.iIcon);
         }
     }
 
@@ -83,6 +85,9 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
 
         if (dataItem.filter.contains(GALLERY_TAG)) {
             holder.gIcon.setVisibility(View.VISIBLE);
+        } if (dataItem.filter.contains(INFO_TAG)) {
+            holder.iIcon.setVisibility(View.VISIBLE);
+            holder.star.setVisibility(View.INVISIBLE);
         } else {
             holder.gIcon.setVisibility(View.INVISIBLE);
         }

@@ -13,6 +13,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.online.languages.study.studymaster.Constants.CAT_SPEC_ITEMS_LIST;
+
 public class Section {
 
     public String title;
@@ -93,14 +95,16 @@ public class Section {
 
             if (navCategory.type.equals(Constants.CAT_TYPE_EXTRA)) haveExtra = true;
 
+            if (navCategory.spec.equals(CAT_SPEC_ITEMS_LIST)) continue;
+
             if (dataSelect.equals("dates")) {
                 if (!navCategory.type.equals(Constants.CAT_TYPE_EXTRA)) {
                     categories.add(new Category(navCategory));
                     checkCatIds.add(navCategory.id);
                 }
             } else {
-                categories.add(new Category(navCategory));
-                checkCatIds.add(navCategory.id);
+                    categories.add(new Category(navCategory));
+                    checkCatIds.add(navCategory.id);
             }
         }
 

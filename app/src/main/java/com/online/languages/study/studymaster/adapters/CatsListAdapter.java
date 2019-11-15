@@ -175,9 +175,6 @@ public class CatsListAdapter extends RecyclerView.Adapter<CatsListAdapter.MyView
         }
 
 
-
-
-
         if (!full_version) {
             if (!category.unlocked) {
                 holder.catGroupCountBox.setVisibility(View.GONE);

@@ -43,6 +43,7 @@ import com.online.languages.study.studymaster.data.NavStructure;
 import java.util.ArrayList;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+import static com.online.languages.study.studymaster.Constants.INFO_TAG;
 
 
 public class SearchActivity extends BaseActivity implements SearchView.OnQueryTextListener {
@@ -154,6 +155,8 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
 
         String filter = "";
         if (dataItem.filter.contains(GALLERY_TAG)) filter = GALLERY_TAG;
+
+        if (dataItem.filter.contains(INFO_TAG)) return;
 
         Boolean starred = dbHelper.checkStarred(id );
 

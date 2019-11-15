@@ -407,7 +407,7 @@ public class MainActivity extends BaseActivity
         }
     };
 
-    
+
     public Boolean checkPrivilege() {
         SharedPreferences mLaunches = getSharedPreferences(AppStart.APP_LAUNCHES, Context.MODE_PRIVATE);
         int launchesNum = mLaunches.getInt(AppStart.LAUNCHES_NUM, 0);
@@ -463,7 +463,6 @@ public class MainActivity extends BaseActivity
 
         fPages.commit();
 
-        // setToolbarTitle(position);
     }
 
 
@@ -586,6 +585,7 @@ public class MainActivity extends BaseActivity
     }
 
     public void openGallery(NavSection navSection) {
+
         Intent i;
         i = new Intent(MainActivity.this, GalleryActivity.class);
         i.putExtra(Constants.EXTRA_CAT_ID, "root");
@@ -690,7 +690,6 @@ public class MainActivity extends BaseActivity
             }
         }, 50);
     }
-
 
 
     @Override
@@ -830,12 +829,6 @@ public class MainActivity extends BaseActivity
         onMenuItemClicker(i);
     }
 
-    public void openTestAct(View view) {
-        Intent i = new Intent(MainActivity.this, SampleActivity.class);
-        startActivity(i);
-        openActivity.pageTransition();
-
-    }
 
     public void openStarred(View view) {
         Intent i = new Intent(MainActivity.this, UserListActivity.class);

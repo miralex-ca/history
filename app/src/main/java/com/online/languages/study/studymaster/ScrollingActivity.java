@@ -34,11 +34,13 @@ import com.online.languages.study.studymaster.data.DetailItem;
 import com.squareup.picasso.Picasso;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+import static com.online.languages.study.studymaster.Constants.INFO_TAG;
 
 public class ScrollingActivity extends BaseActivity {
 
 
     DetailItem detailItem;
+    DataItem dataItem;
 
     ThemeAdapter themeAdapter;
     SharedPreferences appSettings;
@@ -88,9 +90,11 @@ public class ScrollingActivity extends BaseActivity {
         String tag = getIntent().getStringExtra("id");
 
 
-        DataManager dataManager = new DataManager(this);
+        final DataManager dataManager = new DataManager(this);
 
         detailItem = dataManager.getDetailFromDB(tag);
+
+        dataItem = dbHelper.getDataItemById(tag);
 
 
         if (detailItem.title.equals("not found")) {
@@ -124,16 +128,18 @@ public class ScrollingActivity extends BaseActivity {
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.toolbar_layout);
 
 
-
         floatingActionButton = findViewById(R.id.fab);
 
+        final boolean inStarred = checkStarred(tag);
 
 
         if (starrable) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    floatingActionButton.show();
+
+                    if ( dataItem.filter.contains(INFO_TAG) && !inStarred ) { }
+                    else  floatingActionButton.show();
                 }
             }, 350);
         }
@@ -267,9 +273,6 @@ public class ScrollingActivity extends BaseActivity {
     private void changeStarStatus(String tag, FloatingActionButton button) {
 
         Boolean starred = checkStarred(tag);
-
-
-        DataItem dataItem = dbHelper.getDataItemById(tag);
 
         String filter = "";
         if (dataItem.filter.contains(GALLERY_TAG)) filter = GALLERY_TAG;

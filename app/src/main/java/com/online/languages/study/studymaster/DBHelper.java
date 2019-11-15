@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.online.languages.study.studymaster.data.Category;
 import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
+import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.DetailFromJson;
 import com.online.languages.study.studymaster.data.DetailItem;
 import com.online.languages.study.studymaster.data.NavCategory;
@@ -629,21 +630,56 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private int starredGroupSize(SQLiteDatabase db, String id, String _filter) {
 
-        String idPrefix = "10%";
 
-        if (id.matches("20.*")  ) {
-            idPrefix = "20%";
+        DataManager dataManager = new DataManager(cntx, 1);
+
+
+        StringBuilder conditionLike = new StringBuilder("");
+
+        for (int i = 0; i < dataManager.navCategories.size(); i++) {
+
+            String like = "a."+KEY_USER_ITEM_ID + " LIKE '" + dataManager.navCategories.get(i).id + "%' ";
+
+            if (i != 0) {
+                like = "OR " + like;
+            }
+            conditionLike.append(like);
         }
 
+
+        String query = "SELECT * FROM "
+                +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
+                +" b ON a.user_item_id=b.item_id"
+
+                +" WHERE ("+conditionLike+") AND a." + KEY_ITEM_STARRED +" > ? AND a." + KEY_ITEM_INFO +" NOT LIKE ?";
+
+        Cursor checkCursor = db.rawQuery(query, new String[]{"0", GALLERY_TAG});
+
+
+        /*
         Cursor checkCursor = db.query(TABLE_USER_DATA,  null,
                 KEY_USER_ITEM_ID + " LIKE ? AND " + KEY_ITEM_STARRED +" > ? AND " + KEY_ITEM_INFO +" NOT LIKE ?",
                 new String[] {idPrefix, "0", GALLERY_TAG}, null, null, null);
+*/
+
 
         if (_filter.contains(GALLERY_TAG)) {
 
+            query = "SELECT * FROM "
+                    +TABLE_USER_DATA +" a INNER JOIN "+TABLE_ITEMS_DATA
+                    +" b ON a.user_item_id=b.item_id"
+
+                    +" WHERE a."+KEY_ITEM_STARRED +" > ? AND a." + KEY_ITEM_INFO +" LIKE ?";
+
+            checkCursor = db.rawQuery(query, new String[]{"0", GALLERY_TAG});
+
+
+            /*
             checkCursor = db.query(TABLE_USER_DATA,  null,
                     KEY_USER_ITEM_ID + " LIKE ? AND " + KEY_ITEM_STARRED +" > ? AND " + KEY_ITEM_INFO +" LIKE ?",
                     new String[] {idPrefix, "0", GALLERY_TAG}, null, null, null);
+            */
+
         }
 
 
@@ -821,9 +857,7 @@ public class DBHelper extends SQLiteOpenHelper {
             } finally {
                 cursor.close();
             }
-
         }
-
 
         return items;
     }

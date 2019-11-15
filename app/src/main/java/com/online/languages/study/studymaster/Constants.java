@@ -1,12 +1,6 @@
 package com.online.languages.study.studymaster;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import com.online.languages.study.studymaster.data.DataFromJson;
-import java.util.Map;
-
 public class Constants {
 
     public static final boolean PRO = true;  // TODO change in PRO
@@ -50,6 +44,7 @@ public class Constants {
     public static final String CAT_SPEC_PERS = "pers";
     public static final String CAT_SPEC_TERM = "term";
     public static final String CAT_SPEC_MISC = "misc";
+    public static final String CAT_SPEC_ITEMS_LIST = "items_list";
 
     public static final String EXTRA_NAV_STRUCTURE = "nav_structure";
 
@@ -87,6 +82,7 @@ public class Constants {
     public static final String REVISE_CAT_TAG = "revise";
     public static final int EXPAND_TIME = 920;
 
+    public static final String INFO_TAG = "#info";
     public static final String GALLERY_TAG = "#gallery";
     public static final String NAV_GALLERY_SPEC = "nav_gallery";
 
