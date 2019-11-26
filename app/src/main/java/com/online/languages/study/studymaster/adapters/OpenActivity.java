@@ -16,6 +16,7 @@ import com.online.languages.study.studymaster.MapActivity;
 import com.online.languages.study.studymaster.MapListActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.SubSectionActivity;
+import com.online.languages.study.studymaster.TextActivity;
 import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.ViewCategory;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.online.languages.study.studymaster.Constants.CAT_SPEC_TEXT;
 import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCODE;
 
 public class OpenActivity  {
@@ -125,7 +127,6 @@ public class OpenActivity  {
         callActivity(intent);
     }
 
-
     public void openMap(String catID) {
         Intent intent = createIntent(context, MapActivity.class);
         intent.putExtra("page_id", catID);
@@ -134,6 +135,12 @@ public class OpenActivity  {
 
     public void openCatList(NavStructure navStructure, String sectionID, String catID, String title) {
         Intent i = createIntent(context, InfoListActivity.class);
+        i.putExtra("title", title);
+        callSubActivity(i, navStructure, sectionID, catID);
+    }
+
+    public void openTextPage(NavStructure navStructure, String sectionID, String catID, String title) {
+        Intent i = createIntent(context, TextActivity.class);
         i.putExtra("title", title);
         callSubActivity(i, navStructure, sectionID, catID);
     }
@@ -159,14 +166,22 @@ public class OpenActivity  {
                 openSubSection(navStructure, tSectionID, viewCategory.id);
             }
         } else {
-            if (viewCategory.spec.equals("map")) {
-                openMap(viewCategory.id);
-            }  else if (viewCategory.spec.equals("image_list")) {
-                openImageList(navStructure, tSectionID, viewCategory.id, viewCategory.title);
-            } else if (viewCategory.spec.equals("items_list")) {
-                openCatList(navStructure, tSectionID, viewCategory.id, viewCategory.title);
-            } else {
-                openCat(viewCategory.id, viewCategory.spec, viewCategory.title);
+            switch (viewCategory.spec) {
+                case "map":
+                    openMap(viewCategory.id);
+                    break;
+                case "image_list":
+                    openImageList(navStructure, tSectionID, viewCategory.id, viewCategory.title);
+                    break;
+                case "items_list":
+                    openCatList(navStructure, tSectionID, viewCategory.id, viewCategory.title);
+                    break;
+                case CAT_SPEC_TEXT:
+                    openTextPage(navStructure, tSectionID, viewCategory.id, viewCategory.title);
+                    break;
+                default:
+                    openCat(viewCategory.id, viewCategory.spec, viewCategory.title);
+                    break;
             }
         }
 

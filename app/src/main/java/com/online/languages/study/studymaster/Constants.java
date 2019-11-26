@@ -45,6 +45,7 @@ public class Constants {
     public static final String CAT_SPEC_TERM = "term";
     public static final String CAT_SPEC_MISC = "misc";
     public static final String CAT_SPEC_ITEMS_LIST = "items_list";
+    public static final String CAT_SPEC_TEXT = "text";
 
     public static final String EXTRA_NAV_STRUCTURE = "nav_structure";
 
@@ -90,7 +91,7 @@ public class Constants {
 
     public static final int GALLERY_REQUESTCODE = 100;
 
-    public static final int TEST_OPTIONS_RANGE = 8;
+    public static final int TEST_OPTIONS_RANGE = 10;
 
 
     public enum Status {

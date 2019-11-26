@@ -95,10 +95,11 @@ public class InfoListActivity extends BaseActivity {
 
         setTitle(R.string.title_custom_txt);
 
-
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         navSection = navStructure.getNavSectionByID(sectionId);
+        navCategory = navStructure.getNavCatFromSection(sectionId, catId);
 
+        setTitle(navCategory.title);
 
         emptyTxt = findViewById(R.id.emptyTxt);
 
@@ -137,7 +138,6 @@ public class InfoListActivity extends BaseActivity {
     }
 
 
-
     private void openView(final View view) {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -152,7 +152,6 @@ public class InfoListActivity extends BaseActivity {
     private void getDataList(String sectionId, int listType) {
         dataItems = dataManager.getCatDBList(catId);
     }
-
 
     private void onItemClick(final View view, final int position) {
         new Handler().postDelayed(new Runnable() {
@@ -187,12 +186,7 @@ public class InfoListActivity extends BaseActivity {
             }
         } else {
 
-            if (sectionId.equals("errors") ) {
-                dataItems = dataManager.checkDataItemsData(dataItems);
-                adapter.notifyDataSetChanged();
-            } else {
-                updateContent();
-            }
+           updateContent();
         }
     }
 
@@ -227,44 +221,14 @@ public class InfoListActivity extends BaseActivity {
     }
 
 
-    public void openCat () {
-
-        Intent intent = new Intent(this, CatActivity.class);
-        intent.putExtra(Constants.EXTRA_FORCE_STATUS, "always");
-        intent.putExtra(Constants.EXTRA_CAT_SPEC, navCategory.spec);
-        intent.putExtra(Constants.EXTRA_CAT_ID, navCategory.id);
-        intent.putExtra("cat_title", navCategory.title);
-        startActivityForResult(intent, 2);
-        openActivity.pageTransition();
-    }
-
-
-    public void openExercise() {
-
-        Intent i = new Intent(this, ExerciseActivity.class) ;
-        i.putParcelableArrayListExtra("dataItems", dataItems);
-        if (sectionId.equals(Constants.ERRORS_CAT_TAG)) {
-            i.putExtra(Constants.EXTRA_CAT_TAG, Constants.ERRORS_CAT_TAG);
-        } else {
-            i.putExtra(Constants.EXTRA_CAT_TAG, "custom");
-        }
-
-        startActivityForResult(i, 2);
-        openActivity.pageTransition();
-    }
-
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (sectionId.equals(Constants.ERRORS_CAT_TAG)) {
-            getMenuInflater().inflate(R.menu.menu_custom_list, menu);
-        } else {
-            getMenuInflater().inflate(R.menu.stats_mode_info, menu);
-            MenuItem modeMenuItem = menu.findItem(R.id.easy_mode);
-            if (easy_mode) modeMenuItem.setVisible(true);
 
-        }
+        getMenuInflater().inflate(R.menu.stats_mode_info, menu);
+        MenuItem modeMenuItem = menu.findItem(R.id.easy_mode);
+        if (easy_mode) modeMenuItem.setVisible(true);
 
         return true;
     }
@@ -285,17 +249,9 @@ public class InfoListActivity extends BaseActivity {
                 openActivity.pageBackTransition();
                 return true;
 
-            case R.id.open_test:
-                openExercise();
-                return true;
-
-            case R.id.easy_mode:
-                dataModeDialog.openDialog();
-                return true;
             case R.id.info_from_menu:
                 openInfo();
                 return true;
-
 
         }
         return super.onOptionsItemSelected(item);
@@ -303,10 +259,8 @@ public class InfoListActivity extends BaseActivity {
 
 
     public void openInfo() {
-        dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_star_txt));
+        dataModeDialog.createDialog(getString(R.string.info_txt), getString(R.string.info_list_txt));
     }
-
-
 
 
     public interface ClickListener{

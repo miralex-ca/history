@@ -873,7 +873,13 @@ public class MainActivity extends BaseActivity
         String subject = getResources().getString(R.string.msg_mail_subject);
         if (type == 1 ) subject = getResources().getString(R.string.msg_mail_subject_error);
 
-        i.putExtra(Intent.EXTRA_SUBJECT, subject);
+
+
+        String version = String.format(getString(R.string.masg_version_name), BuildConfig.VERSION_NAME);
+
+        String mailSubject = subject + " " +version;
+
+        i.putExtra(Intent.EXTRA_SUBJECT, mailSubject);
         i.putExtra(Intent.EXTRA_TEXT   , "");
 
         try {

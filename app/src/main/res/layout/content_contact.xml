@@ -96,6 +96,7 @@
             android:orientation="horizontal"
             android:focusable="true"
             android:clickable="true"
+            android:id="@+id/rateAppLink"
             android:background="?android:attr/selectableItemBackground"
             style="@style/ContactItem"
             android:onClick="rateApp"

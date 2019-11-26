@@ -276,8 +276,8 @@
 
     <string name="msg_sending_mail">Отправка сообщения &#8230;</string>
     <string name="msg_no_mail_client">Почтовый клиент не установлен.</string>
-    <string name="msg_mail_subject">Отзыв по приложению История России</string>
-    <string name="msg_mail_subject_error">Сообщение об ошибке в приложении (ИР)</string>
+    <string name="msg_mail_subject">Отзыв по приложению</string>
+    <string name="msg_mail_subject_error">Сообщение об ошибке в приложении</string>
     <string name="msg_no_browser">Браузер не установлен.</string>
     <string name="no_data_msg">Нет данных</string>
     <string name="nav_header_txt">История России</string>
@@ -408,6 +408,8 @@
 
     <string name="info_star_txt">\nДля дополнительной работы отдельные записи можно добавить в избранное. В избранное можно добавить, выбрав запись в списке и нажав на иконку со звездочкой в появившемся окне, а также долгим нажатием на элемент списка. Максимально в избранное можно добавить 30 записей.\n</string>
 
+    <string name="info_list_txt">\nЗаписи в данной теме не могут быть добавлены в избранное , а также не включены в тесты и упражнения.\n</string>
+
     <string name="starred_menu_info">Справка</string>
     <string name="starred_words_info">В избранное можно добавить в списке раздела или темы (не более %1$d записей).</string>
     <string name="starred_gallery_info">В избранное можно добавить в разделе Галерея (не более %1$d записей).</string>
@@ -522,6 +524,8 @@
     <string name="starrd_tab_gallery_count">Галерея (%d)</string>
     <string name="number_percent">%d%%</string>
     <string name="maps_list_title">Карты</string>
+
+    <string name="masg_version_name">(ИР, версия %s)</string>
 
 
 </resources>

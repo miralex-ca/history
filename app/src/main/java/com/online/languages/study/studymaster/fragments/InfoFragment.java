@@ -50,6 +50,11 @@ public class InfoFragment extends Fragment {
 
         View rootview = inflater.inflate(R.layout.fragment_info, container, false);
 
+
+        appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
+
+
         WebView webView = rootview.findViewById(R.id.webView);
 
         DataManager dataManager  = new DataManager(getActivity(), true);
@@ -88,6 +93,8 @@ public class InfoFragment extends Fragment {
 
     }
 
+
+
     public static String readRawTextFile(Context context, int resId)
     {
         InputStream inputStream = context.getResources().openRawResource(resId);
@@ -109,9 +116,6 @@ public class InfoFragment extends Fragment {
     }
 
     private String getThemeFont () {
-
-        appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
         String color = "body {color: #111;}";
 

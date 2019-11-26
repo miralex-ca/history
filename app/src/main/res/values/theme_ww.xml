@@ -16,12 +16,8 @@
     <color name="colorBannerBg_ww">#1B1B29</color>
     <color name="colorBtmNavBg_ww">#1B1B29</color>
 
-
-
     <color name="colorAccent_ww">#00E5FF</color>
     <color name="colorBtmNav_inactive_ww">#B700E5FF</color>
-
-
 
     <color name="colorMainText_ww">#90ffff</color>
     <color name="colorMainTextDisabled_ww">#7990ffff</color>

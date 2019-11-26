@@ -165,6 +165,10 @@
             android:theme="@style/AppTheme"
             />
 
+        <activity android:name=".TextActivity"
+            android:theme="@style/AppTheme"
+            />
+
 
     </application>
 

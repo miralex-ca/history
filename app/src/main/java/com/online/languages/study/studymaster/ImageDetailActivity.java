@@ -317,8 +317,7 @@ public class ImageDetailActivity extends BaseActivity {
 
     private Boolean checkStarred(String text) {
 
-        Boolean starred = dbHelper.checkStarred(text);
-        return starred;
+        return dbHelper.checkStarred(text);
 
     }
 

@@ -1,4 +1,10 @@
 {
+  "params": {
+    "simplified": false,
+    "homecards": false,
+    "gallery": true
+  },
+
   "sections":
   [
     {"tag": "dates1", "title": "IX-XIII века", "id": "10010",

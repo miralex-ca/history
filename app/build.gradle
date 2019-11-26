@@ -34,7 +34,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 41
-        versionName '5.0.1'
+        versionName '5.2.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.config
@@ -57,6 +57,7 @@ android {
     productFlavors {
         master {
             dimension "mode"
+            resConfigs 'ru'
         }
         history {
             dimension "mode"
@@ -64,7 +65,7 @@ android {
             resValue("string", "applicationId", applicationId)
             signingConfig signingConfigs.config
             buildConfigField ("boolean", "GALLERY", "true")
-
+            resConfigs 'ru'
         }
 
         simplified {

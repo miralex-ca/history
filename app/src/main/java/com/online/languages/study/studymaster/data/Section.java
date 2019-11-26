@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.online.languages.study.studymaster.Constants.CAT_SPEC_ITEMS_LIST;
+import static com.online.languages.study.studymaster.Constants.CAT_SPEC_TEXT;
 
 public class Section {
 
@@ -95,7 +96,7 @@ public class Section {
 
             if (navCategory.type.equals(Constants.CAT_TYPE_EXTRA)) haveExtra = true;
 
-            if (navCategory.spec.equals(CAT_SPEC_ITEMS_LIST)) continue;
+            if (navCategory.spec.equals(CAT_SPEC_ITEMS_LIST) || navCategory.spec.equals(CAT_SPEC_TEXT)) continue;
 
             if (dataSelect.equals("dates")) {
                 if (!navCategory.type.equals(Constants.CAT_TYPE_EXTRA)) {

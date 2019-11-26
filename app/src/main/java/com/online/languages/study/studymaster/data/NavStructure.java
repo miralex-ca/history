@@ -15,7 +15,6 @@ public class NavStructure implements Parcelable {
     public ArrayList<NavCategory> categories;
 
 
-
     public NavStructure(Context context) {
        sections = new ArrayList<>();
        categories = new ArrayList<>();
@@ -81,9 +80,22 @@ public class NavStructure implements Parcelable {
     public NavStructure(Parcel parcel){
 
         sections = new ArrayList<>();
-
         parcel.readTypedList(sections, NavSection.CREATOR);
 
+    }
+
+
+    public NavCategory getNavCatFromSection(String sectionId, String catId) {
+
+        NavSection navSection = getNavSectionByID(sectionId);
+
+        NavCategory navCategory = new NavCategory();
+
+        for (NavCategory category: navSection.navCategories){
+            if (category.id.equals(catId)) navCategory = category;
+        }
+
+        return  navCategory;
     }
 
     @Override

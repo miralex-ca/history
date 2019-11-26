@@ -49,12 +49,13 @@ public class CustomDataListActivity extends BaseActivity {
     DataManager dataManager;
 
     String sectionId;
+    String catId;
     NavStructure navStructure;
     NavSection navSection;
 
     View emptyTxt;
 
-    String catId;
+
 
     int listType;
 

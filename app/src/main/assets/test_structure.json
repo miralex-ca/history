@@ -20,8 +20,8 @@
           {"parent": "root", "type": "simple", "id": "10010030", "title": "Тема: Зелёные объекты", "desc": "", "review":  "false"},
           {"parent": "root", "type": "simple", "spec": "items_list", "id": "10010040", "title": "Тема: Серые объекты", "desc": "", "review":  "false"},
           {"parent": "root", "type": "group", "id": "group_1_1", "title": "Группа: Термины объектов", "desc": ""},
-          {"parent": "group_1_1", "type": "simple", "spec": "term", "id": "10010110", "title": "Тема: Термины объектов", "desc": "Описание темы", "review": "false"}
-
+          {"parent": "group_1_1", "type": "simple", "spec": "term", "id": "10010110", "title": "Тема: Термины объектов", "desc": "Описание темы", "review": "false"},
+          {"parent": "root", "type": "simple", "spec": "text", "id": "reference", "title": "Текстовая страница", "desc": "", "review":  "false"}
         ]
 	},
 
