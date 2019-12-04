@@ -10,9 +10,7 @@
 
     <dimen name="_home_card_image_width">100dp</dimen>
 
-
     <dimen name="nav_header_height">130dp</dimen>
-
 
     <dimen name="_detail_image_height">420dp</dimen>
     <dimen name="_detail_image_appbar_height">260dp</dimen>
@@ -73,7 +71,6 @@
     <integer name="f_item_txt_size_small">23</integer>
 
 
-
     <!-- exercise -->
 
 
@@ -81,8 +78,7 @@
     <integer name="_ex_card_wrap">322</integer>
     <integer name="_ex_card_wrap_high">360</integer>
 
-
-
+    
     <integer name="_ex_text_wrap">95</integer>
     <integer name="_ex_text_wrap_high">135</integer>
 
@@ -93,11 +89,6 @@
     <dimen name="_ex_opt_short_txt_size_norm">18sp</dimen>
     <dimen name="_ex_opt_short_txt_min_height">45dp</dimen>
 
-
-    <integer name="_ex_text_wrap_ex1_opt">95</integer>
-    <integer name="_ex_text_wrap_ex1_opt_high">130</integer>
-    <integer name="_ex_text_wrap_ex2">80</integer>
-    <integer name="_ex_text_wrap_ex2_high">110</integer>
 
     <integer name="_ex_quest_txt_size_norm">18</integer>
     <integer name="_ex_quest_short_txt_size_norm">20</integer>   <!-- ex1 opt -->
@@ -116,8 +107,6 @@
     <dimen name="_ex_quest_wrap_padding_side">16dp</dimen>
 
 
-
-    <dimen name="_ex_rslt_txt_size">21sp</dimen>
 
     <dimen name="_ex_link_padding_top">12dp</dimen>
     <dimen name="_ex_link_padding_btm">13dp</dimen>

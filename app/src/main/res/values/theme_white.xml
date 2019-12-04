@@ -163,6 +163,9 @@
         <item name="colorPrimary">@color/colorDetailBar_white</item>
     </style>
 
+    <style name="WhiteThemeModes" parent="WhiteTheme" />
+    <style name="WhiteThemeModes.Detail" parent="WhiteTheme.Detail" />
+
 
 
 </resources>

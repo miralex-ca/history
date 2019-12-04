@@ -210,7 +210,7 @@
     </style>
 
 
-    <style name="ToolBarStyle"></style>
+    <style name="ToolBarStyle" />
 
 
     <style name="MapToolBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -338,6 +338,10 @@
         <item name="colorBtmNav_inactive">@color/colorBtmNav_inactive</item>
 
     </style>
+
+    <!--  Styles for night mode  -->
+    <style name="DefaultThemeModes" parent="DefaultTheme" />
+    <style name="DefaultThemeModes.Detail" parent="DefaultTheme.UserDialog" />
 
 
 

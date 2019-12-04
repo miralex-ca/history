@@ -5,13 +5,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.LocaleChangedReceiver;
 import com.online.languages.study.studymaster.R;
 
@@ -22,7 +25,6 @@ public class ThemeAdapter {
 
     private Context context;
 
-
     public int styleTheme;
 
     private int colorListTxt;
@@ -30,18 +32,21 @@ public class ThemeAdapter {
 
     private Boolean dialog = false;
 
+    SharedPreferences appSettings;
+
     public ThemeAdapter() {
 
     }
 
     public ThemeAdapter(Context _context, String _theme, int layout) {
 
+        appSettings = PreferenceManager.getDefaultSharedPreferences(_context);
         setTheme(_context, _theme, false, true);
     }
 
 
     public ThemeAdapter(Context _context, String _theme, Boolean transparent) {
-
+        appSettings = PreferenceManager.getDefaultSharedPreferences(_context);
         setTheme(_context, _theme, transparent, false);
 
     }
@@ -50,6 +55,7 @@ public class ThemeAdapter {
 
         context = _context;
         transparentStatus = transparent;
+        appSettings = PreferenceManager.getDefaultSharedPreferences(_context);
 
         dialog = _dialog;
 
@@ -68,22 +74,48 @@ public class ThemeAdapter {
     private int getThemeStyleName(String theme) {
         int themeStyle = R.style.DefaultTheme;
 
+        boolean nightMode = appSettings.getBoolean("night_mode", false);
+
         switch (theme) {
+
             case "default":
                 themeStyle =  R.style.DefaultTheme;
                 if (transparentStatus) themeStyle =  R.style.DefaultTheme;
                 if (dialog) themeStyle =  R.style.DefaultTheme_UserDialog;
+
+                if (nightMode) {
+                    themeStyle =  R.style.DefaultThemeModes;
+                    if (transparentStatus) themeStyle =  R.style.DefaultThemeModes;
+                    if (dialog) themeStyle =  R.style.DefaultThemeModes_Detail;
+                }
+
                 break;
 
             case "red":
                     themeStyle =  R.style.RedTheme;
                     if (transparentStatus) themeStyle =  R.style.RedTheme;
                     if (dialog) themeStyle =  R.style.RedTheme_Detail;
+
+                    if (nightMode) {
+                        themeStyle =  R.style.RedThemeModes;
+                        if (transparentStatus) themeStyle =  R.style.RedThemeModes;
+                        if (dialog) themeStyle =  R.style.RedThemeModes_Detail;
+                    }
+
                     break;
             case "white":
+
                 themeStyle =  R.style.WhiteTheme;
                 if (transparentStatus) themeStyle = R.style.WhiteTheme;
                 if (dialog) themeStyle =  R.style.WhiteTheme_Detail;
+
+                if (nightMode) {
+                    themeStyle =  R.style.WhiteThemeModes;
+                    if (transparentStatus) themeStyle = R.style.WhiteThemeModes;
+                    if (dialog) themeStyle =  R.style.WhiteThemeModes_Detail;
+                }
+
+
                 break;
 
             case "white_map":

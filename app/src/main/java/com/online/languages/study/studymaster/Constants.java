@@ -7,9 +7,6 @@ public class Constants {
     public static final boolean DEBUG = true;  /// should be true to see ads in debug
     public static final boolean SCREEN_SHOW = false;
 
-    public static final Boolean HOME_CARDS = BuildConfig.HOMECARDS;
-    public static final Boolean GALLERY_SECTION = BuildConfig.GALLERY;
-
     public static final String SET_VERSION_TXT = "full_version"; /// check text in settings
     public static final String SET_SHOW_AD= "show_ad"; /// check text in settings
 

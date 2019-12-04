@@ -88,6 +88,35 @@ public class PrefsFragment extends PreferenceFragmentCompat {
             }
         });
 
+
+
+        final SwitchPreferenceCompat nightModePref = (SwitchPreferenceCompat) getPreferenceManager().findPreference("night_mode");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+            nightModePref.setVisible(true);
+        } else {
+            nightModePref.setVisible(false);
+        }
+
+
+        nightModePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            public void run() {
+                                Intent intent = getActivity().getIntent();
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                getActivity().startActivity(intent);
+                            }
+                        }, 600);
+                        return true;
+                    }
+                });
+
+
+
+
+
+
         final ListPreference list = (ListPreference) getPreferenceManager().findPreference("theme");
 
         list.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

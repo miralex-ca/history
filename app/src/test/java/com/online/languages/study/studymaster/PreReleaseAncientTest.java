@@ -36,21 +36,14 @@ public class PreReleaseAncientTest {
         assertFalse(Constants.DEBUG);
     }
 
-    @Test
-    public void gallery_isCorrect() throws Exception {
-        assertFalse(Constants.GALLERY_SECTION);
-    }
-
-    @Test
-    public void homeCards_isCorrect() throws Exception {
-        assertFalse(Constants.HOME_CARDS);
-    }
 
     @Test
     public void simplified_isCorrect() throws Exception {
 
         //assertTrue(Constants.APP_SIMPLIFIED);
     }
+
+
 
 
     @Test

@@ -173,7 +173,6 @@
     <style name="ToolBarStyle_ww">
         <item name="android:textColorPrimary">@color/colorToolbarText_ww</item>
         <item name="android:textColorSecondary">@color/colorToolbarSecText_ww</item>
-
     </style>
 
     <style name="NavigationWW">

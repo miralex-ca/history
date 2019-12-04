@@ -161,7 +161,6 @@
     <string name="starred_lessons_results">Показать результаты теста </string>
     <string name="set_starred_result_summary">Отображение результатов</string>
 
-
     <string name="set_interface">ИНТЕРФЕЙС</string>
     <string name="set_app_theme_title">Тема приложения</string>
 
@@ -172,11 +171,15 @@
     <string name="set_theme_white_name">Белая</string>
     <string name="set_theme_ww_name">Контрастная</string>
 
+
+    <string name="set_night_theme">Ночной режим для светлых тем</string>
+    <string name="set_night_theme_on">Активирован</string>
+    <string name="set_night_theme_off">Отключен</string>
+
     <string name="set_starred_sort_title">Сортировка списка избранных</string>
     <string name="set_starred_sort_sum">Текущая: %s</string>
     <string name="set_starred_sort_title_dialog">Выберите сортировку</string>
     <string name="set_starred_section">ИЗБРАННОЕ</string>
-
 
     <string-array name="starred_list_sort">
         <item>Новые в начале </item>
@@ -201,7 +204,6 @@
         <item>0</item>
         <item>1</item>
     </string-array>
-
 
     <string name="set_control_title">Результат тестов раздела</string>
     <string name="set_control_summary">Учет в статистике: %s</string>
@@ -277,7 +279,7 @@
     <string name="msg_sending_mail">Отправка сообщения &#8230;</string>
     <string name="msg_no_mail_client">Почтовый клиент не установлен.</string>
     <string name="msg_mail_subject">Отзыв по приложению</string>
-    <string name="msg_mail_subject_error">Сообщение об ошибке в приложении</string>
+    <string name="msg_mail_subject_error">Сообщение об ошибке </string>
     <string name="msg_no_browser">Браузер не установлен.</string>
     <string name="no_data_msg">Нет данных</string>
     <string name="nav_header_txt">История России</string>

@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name_spec" translatable="false">apptest-</string>
-    <string name="backup_file_name">Backup_test.csv</string>
+    <string name="backup_file_name" translatable="false">Backup_test.csv</string>
 
     <string name="app_name">Тест История</string>
 
@@ -85,6 +85,10 @@
     <color name="colorExActiveTxt">#757575</color>
 
     <color name="colorContactIcon">#8e8d8d</color>
+
+
+    <style name="DefaultNightThemeModes" parent="NightTheme" />
+
 
 
 

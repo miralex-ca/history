@@ -201,5 +201,38 @@
 
 
 
+    <color name="colorToolbarText_n">@color/colorToolbarText_blue_n</color>
+    <color name="colorToolbarSecText_n">@color/colorToolbarSecText_blue_n</color>
+    <color name="colorAccent_n">@color/colorAccent_blue_n</color>
+    <color name="colorBtmNav_active_n">@color/colorBtmNav_active_blue_n</color>
+    <color name="colorBtmNav_inactive_n">@color/colorBtmNav_inactive_blue_n</color>
+
+    <color name="colorNavBgStart_n">@color/colorNavBgStart_blue_n</color>
+    <color name="colorNavBgCenter_n">@color/colorNavBgCenter_blue_n</color>
+    <color name="colorNavBgEnd_n">@color/colorNavBgEnd_blue_n</color>
+
+    <color name="colorToolbarText_blue_n">#64b5f6</color>
+    <color name="colorToolbarSecText_blue_n">#C664B5F6</color>
+    <color name="colorAccent_blue_n">#4DC7FF</color>
+    <color name="colorBtmNav_active_blue_n">#8BCFFD</color>
+    <color name="colorBtmNav_inactive_blue_n">#BEFFFFFF</color>
+
+    <color name="colorNavBgStart_blue_n">#004B86</color>
+    <color name="colorNavBgCenter_blue_n">#004072</color>
+    <color name="colorNavBgEnd_blue_n">#013055</color>
+
+    <color name="colorToolbarText_red_n">#FF8181</color>
+    <color name="colorToolbarSecText_red_n">#B5FF8181</color>
+
+    <color name="colorAccent_red_n">#FF6C5F</color>
+    <color name="colorBtmNav_active_red_n">#FD8585</color>
+    <color name="colorBtmNav_inactive_red_n">#BEFFFFFF</color>
+
+    <color name="colorNavBgStart_red_n">#9C1414</color>
+    <color name="colorNavBgCenter_red_n">#860F0F</color>
+    <color name="colorNavBgEnd_red_n">#740B0B</color>
+
+
+
 
 </resources>

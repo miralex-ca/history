@@ -85,12 +85,13 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
 
         if (dataItem.filter.contains(GALLERY_TAG)) {
             holder.gIcon.setVisibility(View.VISIBLE);
-        } if (dataItem.filter.contains(INFO_TAG)) {
+        } else if (dataItem.filter.contains(INFO_TAG)) {
             holder.iIcon.setVisibility(View.VISIBLE);
             holder.star.setVisibility(View.INVISIBLE);
         } else {
             holder.gIcon.setVisibility(View.INVISIBLE);
         }
+
 
 
         if (theme.equals("westworld")) {

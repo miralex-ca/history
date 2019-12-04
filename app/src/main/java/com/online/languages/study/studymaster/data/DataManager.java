@@ -25,23 +25,26 @@ public class DataManager {
 
     public DBHelper dbHelper;
     public ArrayList<NavCategory> navCategories;
+    public SharedPreferences appSettings;
 
 
     public DataManager(Context _context) {
         context = _context;
         dbHelper = new DBHelper(context);
+        appSettings = PreferenceManager.getDefaultSharedPreferences(context);
         getParams();
     }
 
     public DataManager(Context _context, Boolean getParams) {
         context = _context;
+        appSettings = PreferenceManager.getDefaultSharedPreferences(context);
         if (getParams) getParams();
     }
 
     public DataManager(Context _context, int type) {
         context = _context;
         dbHelper = new DBHelper(context);
-
+        appSettings = PreferenceManager.getDefaultSharedPreferences(context);
         if (type == 1) getUniquesCats();
     }
 
@@ -206,7 +209,7 @@ public class DataManager {
     public boolean homecards = false;
     public boolean gallerySection = false;
 
-    private void getParamsFromJSON() {
+    public void getParamsFromJSON() {
 
         DataFromJson dataFromJson = new DataFromJson(context);
         Map<String, Boolean> paramsList = dataFromJson.getParams();
@@ -217,7 +220,6 @@ public class DataManager {
     }
 
     private void saveParams() {
-        SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = appSettings.edit();
         editor.putBoolean(SET_SIMPLIFIED, simplified);
         editor.putBoolean(SET_HOMECARDS, homecards);
@@ -226,7 +228,6 @@ public class DataManager {
     }
 
     public void getParams() {
-        SharedPreferences appSettings = PreferenceManager.getDefaultSharedPreferences(context);
         simplified = appSettings.getBoolean(SET_SIMPLIFIED, false);
         homecards = appSettings.getBoolean(SET_HOMECARDS, false);
         gallerySection = appSettings.getBoolean(SET_GALLERY, false);

@@ -2,7 +2,7 @@
   "params": {
     "simplified": true,
     "homecards": true,
-    "gallery": false
+    "gallery": true
   },
 
   "sections":
@@ -78,8 +78,6 @@
 
         {"parent": "group_4_1", "type": "simple", "spec": "image_list", "id": "10040040", "title": "Тема: Серые изображения", "desc": "Описание темы", "image":  "picto/image_gray_l.png"},
         {"parent": "group_4_1", "type": "simple", "spec": "image_list", "id": "10040050", "title": "Тема: Черные изображения", "desc": "Описание темы", "image":  "picto/image_black_l.png"},
-
-
 
         {"parent": "root", "type": "group", "id": "group_4_2", "spec": "maps", "title": "Группа карт", "desc": "Разные карты", "image":  "picto/image_green_l.png"},
 

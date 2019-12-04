@@ -52,7 +52,7 @@ public class InfoFragment extends Fragment {
 
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        themeTitle= appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
+        themeTitle = appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
 
 
         WebView webView = rootview.findViewById(R.id.webView);
@@ -121,6 +121,11 @@ public class InfoFragment extends Fragment {
 
         if (themeTitle.contains("dark") || themeTitle.contains("smoky")|| themeTitle.contains("westworld")) {
             color= "body {color: #fff;}";
+        }
+
+        if ( themeTitle.contains("default") || themeTitle.contains("red")|| themeTitle.contains("white") ) {
+            if (appSettings.getBoolean("night_mode", false) && getResources().getBoolean(R.bool.night_mode))
+             color= "body {color: #fff;}";
         }
 
         return color;

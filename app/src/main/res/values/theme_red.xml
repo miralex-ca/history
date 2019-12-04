@@ -77,5 +77,10 @@
     </style>
 
 
+    <!--  Styles for night mode  -->
+    <style name="RedThemeModes" parent="RedTheme" />
+    <style name="RedThemeModes.Detail" parent="RedTheme.Detail" />
+
+
 
 </resources>

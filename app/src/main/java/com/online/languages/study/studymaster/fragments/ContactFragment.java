@@ -18,7 +18,7 @@ public class ContactFragment extends Fragment {
 
 
     public ContactFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -30,10 +30,8 @@ public class ContactFragment extends Fragment {
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-
         View rateView = rootview.findViewById(R.id.rateAppLink);
         checkRateDisplay(rateView);
-
 
         return rootview;
     }
@@ -44,7 +42,6 @@ public class ContactFragment extends Fragment {
 
         boolean full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
 
-
         if (full_version) {
             rateView.setVisibility(View.VISIBLE);
         } else {
@@ -52,7 +49,6 @@ public class ContactFragment extends Fragment {
         }
 
     }
-
 
 
 }

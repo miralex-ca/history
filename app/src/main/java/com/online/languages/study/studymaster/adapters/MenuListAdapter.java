@@ -16,8 +16,6 @@ import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.data.DataManager;
 
-import static com.online.languages.study.studymaster.Constants.GALLERY_SECTION;
-
 
 public class MenuListAdapter extends BaseAdapter {
 

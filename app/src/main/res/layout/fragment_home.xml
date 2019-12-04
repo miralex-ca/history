@@ -38,6 +38,7 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/home_list_wrapper"
                         android:layout_width="match_parent"
                         android:orientation="vertical"
                         android:layout_gravity="center_horizontal"
