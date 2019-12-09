@@ -280,7 +280,7 @@
     <string name="msg_no_mail_client">Почтовый клиент не установлен.</string>
     <string name="msg_mail_subject">Отзыв по приложению</string>
     <string name="msg_mail_subject_error">Сообщение об ошибке </string>
-    <string name="msg_no_browser">Браузер не установлен.</string>
+    <string name="msg_no_browser">Невозможно открыть ссылку.</string>
     <string name="no_data_msg">Нет данных</string>
     <string name="nav_header_txt">История России</string>
     <string name="correct_errors">Работа над ошибками</string>

@@ -218,9 +218,9 @@ public class UserListActivity extends BaseActivity {
 
     private  void deleteStarredExResults() {
 
-        String[] topic = new String[1];
+        String[] topic = new String[2];
         topic[0] = Constants.STARRED_CAT_TAG +"_1";
-        topic[0] = Constants.STARRED_CAT_TAG +"_2";
+        topic[1] = Constants.STARRED_CAT_TAG +"_2";
 
         dbHelper.deleteExData(topic);
 

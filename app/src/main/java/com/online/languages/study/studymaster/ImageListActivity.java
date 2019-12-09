@@ -489,8 +489,6 @@ public class ImageListActivity extends BaseActivity {
 
     public void openCat(final View view) {
 
-        ViewGroup p = (ViewGroup) view.getParent();
-
         View tagged = view.findViewById(R.id.tagged);
 
         final String id = (String) tagged.getTag();

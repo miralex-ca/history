@@ -127,7 +127,6 @@ public class SubSectionActivity extends BaseActivity {
 
         } else {
 
-
             if (viewCategory.spec.equals("map")) {
                 i = new Intent(SubSectionActivity.this, MapActivity.class);
                 i.putExtra("page_id", viewCategory.id);

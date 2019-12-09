@@ -7,6 +7,8 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import static com.online.languages.study.studymaster.Constants.CAT_SPEC_MAPS;
+
 public class NavStructure implements Parcelable {
 
 
@@ -31,7 +33,7 @@ public class NavStructure implements Parcelable {
 
             for (NavCategory cat: section.uniqueCategories) {
 
-                if (!cat.type.equals("group") && !cat.type.equals("set") ) {
+                if (!cat.type.equals("group") && !cat.type.equals("set") && !cat.spec.equals(CAT_SPEC_MAPS)) {
                     if (!set.contains(cat.id)) {
                         categories.add(cat);
                         set.add(cat.id);

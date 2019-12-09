@@ -21,7 +21,9 @@
           {"parent": "root", "type": "simple", "spec": "items_list", "id": "10010040", "title": "Тема: Серые объекты", "desc": "", "review":  "false"},
           {"parent": "root", "type": "group", "id": "group_1_1", "title": "Группа: Термины объектов", "desc": ""},
           {"parent": "group_1_1", "type": "simple", "spec": "term", "id": "10010110", "title": "Тема: Термины объектов", "desc": "Описание темы", "review": "false"},
-          {"parent": "root", "type": "simple", "spec": "text", "id": "reference", "title": "Текстовая страница", "desc": "", "review":  "false"}
+          {"parent": "root", "type": "set", "id": "set_1_3", "title": "none", "desc": ""},
+          {"parent": "root", "type": "simple", "spec": "text", "id": "reference", "title": "Текстовая страница", "desc": "", "review":  "false"},
+          {"parent": "root", "type": "simple", "spec": "maps_list", "id": "10010210", "title": "Карты", "desc": "", "review":  "false"}
         ]
 	},
 

@@ -21,7 +21,6 @@ public class ViewCategory {
     public int subgroup = 0;
 
 
-
     public ViewCategory() {
     }
 

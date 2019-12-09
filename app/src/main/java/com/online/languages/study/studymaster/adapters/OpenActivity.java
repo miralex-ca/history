@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 
 import com.online.languages.study.studymaster.CatActivity;
-import com.online.languages.study.studymaster.CatListActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.GalleryActivity;
 import com.online.languages.study.studymaster.ImageListActivity;
@@ -17,15 +16,10 @@ import com.online.languages.study.studymaster.MapListActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.SubSectionActivity;
 import com.online.languages.study.studymaster.TextActivity;
-import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.ViewCategory;
-import com.online.languages.study.studymaster.data.ViewSection;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import static com.online.languages.study.studymaster.Constants.CAT_SPEC_MAPS;
 import static com.online.languages.study.studymaster.Constants.CAT_SPEC_TEXT;
 import static com.online.languages.study.studymaster.Constants.GALLERY_REQUESTCODE;
 
@@ -178,6 +172,9 @@ public class OpenActivity  {
                     break;
                 case CAT_SPEC_TEXT:
                     openTextPage(navStructure, tSectionID, viewCategory.id, viewCategory.title);
+                    break;
+                case CAT_SPEC_MAPS:
+                    openMapList(navStructure, tSectionID, viewCategory.id);
                     break;
                 default:
                     openCat(viewCategory.id, viewCategory.spec, viewCategory.title);

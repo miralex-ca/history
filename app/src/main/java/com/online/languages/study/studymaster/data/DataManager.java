@@ -80,6 +80,10 @@ public class DataManager {
         return dbHelper.getDataItemById(id);
     }
 
+    int getMapsCount(String catId) {
+        ArrayList<DataItem> data = dbHelper.getCatByTag(catId);
+        return data.size();
+    }
 
     public ArrayList<DataItem> getStarredWords(Boolean sort) {
         return getStarredWords(1, sort);

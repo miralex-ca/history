@@ -1,21 +1,16 @@
 package com.online.languages.study.studymaster;
 
-import android.app.ActionBar;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,14 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.adapters.TouchImageView;
-import com.online.languages.study.studymaster.data.Category;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.DetailItem;
@@ -38,7 +30,7 @@ import com.online.languages.study.studymaster.data.ImageData;
 import com.online.languages.study.studymaster.data.ImageMapsData;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import static com.online.languages.study.studymaster.Constants.MAPS_FOLDER;
 
 public class MapActivity extends BaseActivity {
 
@@ -89,20 +81,27 @@ public class MapActivity extends BaseActivity {
 
         imageMapsData = new ImageMapsData(this);
 
-
         String mapId = getIntent().getStringExtra("page_id");
 
         picType = getIntent().getIntExtra("pic", 0);
 
         title = "";
 
-        String folder = "maps/";
-        if (picType != 1) {
+        String folder = "pics/";
+
+
+        if (picType == 0) {
             mapData = imageMapsData.getMapInfoById(mapId);
             title = mapData.title;
             mapData.title = String.format(getString(R.string.pic_name_label), mapData.title);
+
+        } else if (picType == 2) {
+
+            mapData = getDataFromDetail(mapId);
+            title = mapData.title;
+            mapData.title = String.format(getString(R.string.pic_name_label), mapData.title);
+
         } else {
-            folder = "pics/";
             mapData = getDataFromDetail(mapId);
         }
 
@@ -136,10 +135,19 @@ public class MapActivity extends BaseActivity {
         title = dataItem.item;
 
         dataItem.item = dataItem.item + "\n\n" + dataItem.info;
+        detailItem = new DetailItem(dataItem);
+        String link = "";
 
-        detailItem  = new DetailItem(dataItem);
+        if (picType == 2) {
+            detailItem  = dataManager.getDetailFromDB(id);
+            if (detailItem.title.equals("not found")) detailItem = new DetailItem(dataItem);
+            link = detailItem.img_info;
+        }
 
-        return new ImageData(detailItem.title, "", detailItem.id, detailItem.image);
+        //Toast.makeText(this, "Img: " + detailItem.image, Toast.LENGTH_SHORT).show();
+
+
+        return new ImageData(detailItem.title, link, detailItem.id, detailItem.image);
     }
 
     private void pageTransition() {

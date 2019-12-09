@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import static com.online.languages.study.studymaster.Constants.CAT_SPEC_MAPS;
+
 public class ViewSection {
 
     public String title;
@@ -66,6 +68,10 @@ public class ViewSection {
                 viewCategory.subgroup = countGroupByID(navSection, navCategory.id);
             }
 
+            if (navCategory.spec.equals(CAT_SPEC_MAPS)) {
+                viewCategory.subgroup = countMapsByCatID(navCategory.id);
+            }
+
             viewCategory.tag = "tag"+i;
 
             categories.add(viewCategory );
@@ -81,6 +87,12 @@ public class ViewSection {
                 count ++;
             }
         }
+        return count;
+    }
+
+    private int countMapsByCatID(String catID) {
+        int count = 0;
+        count = dataManager.getMapsCount(catID);
         return count;
     }
 

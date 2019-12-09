@@ -1,5 +1,6 @@
 package com.online.languages.study.studymaster;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,23 +17,30 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
+import com.online.languages.study.studymaster.adapters.ImageListAdapter;
 import com.online.languages.study.studymaster.adapters.MapListAdapter;
 import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
+import com.online.languages.study.studymaster.data.DataItem;
+import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.ImageData;
 import com.online.languages.study.studymaster.data.ImageMapsData;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.ViewCategory;
 import com.online.languages.study.studymaster.data.ViewSection;
+
+import java.util.ArrayList;
 
 
 public class MapListActivity extends BaseActivity {
@@ -44,8 +52,8 @@ public class MapListActivity extends BaseActivity {
 
     RecyclerView recyclerView;
     RecyclerView recyclerViewCards;
-    MapListAdapter mAdapter;
-    MapListAdapter cardsAdapter;
+    ImageListAdapter mAdapter;
+    ImageListAdapter cardsAdapter;
 
     NavStructure navStructure;
 
@@ -68,6 +76,12 @@ public class MapListActivity extends BaseActivity {
 
     OpenActivity openActivity;
 
+    ArrayList<DataItem> dataItems;
+    DBHelper dbHelper;
+    DataManager dataManager;
+
+    int groupType;  // 0 - images data, 2 - dataitems from data file
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +95,9 @@ public class MapListActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_list);
+
+        dataManager = new DataManager(this, 1);
+        dbHelper = dataManager.dbHelper;
 
 
         full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
@@ -99,6 +116,7 @@ public class MapListActivity extends BaseActivity {
         itemsList = findViewById(R.id.items_list);
         cardsList = findViewById(R.id.cards_list);
 
+        groupType = 2;
 
         imageMapsData = new ImageMapsData(this);
 
@@ -109,10 +127,11 @@ public class MapListActivity extends BaseActivity {
         navSection = navStructure.getNavSectionByID(tSectionID);
         viewSection = new ViewSection(this, navSection, tCatID);
 
+
         getImages();
 
         recyclerView = findViewById(R.id.recycler_view);
-        mAdapter = new MapListAdapter(this, viewSection.categories, 1, themeTitle);
+        mAdapter = new ImageListAdapter(this, dataItems, 1, themeTitle);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -122,9 +141,8 @@ public class MapListActivity extends BaseActivity {
         recyclerView.setAdapter(mAdapter);
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
-
         recyclerViewCards = findViewById(R.id.recycler_view_cards);
-        cardsAdapter = new MapListAdapter(this, viewSection.categories, 2, themeTitle);
+        cardsAdapter = new ImageListAdapter(this, dataItems, 2, themeTitle);
 
         recyclerViewCards.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerViewCards.setItemAnimator(new DefaultItemAnimator());
@@ -135,13 +153,45 @@ public class MapListActivity extends BaseActivity {
         ViewCompat.setNestedScrollingEnabled(recyclerViewCards, false);
 
 
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) { openCat(view); }
+            @Override
+            public void onLongClick(View view, int position) {  }
+        }));
+
+        recyclerViewCards.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerViewCards, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) { openCat(view);}
+            @Override
+            public void onLongClick(View view, int position) {  }
+        }));
+
+
     }
 
     public void getImages() {
-        for (ViewCategory cat: viewSection.categories) {
-            ImageData image = imageMapsData.getMapInfoById(cat.id);
-            cat.image  = image.image;
+
+        dataItems = getDataItems();
+
+        if (tCatID.contains("group")) {
+
+            dataItems = new ArrayList<>();
+            groupType = 0;
+
+            for (ViewCategory cat: viewSection.categories) {
+                ImageData image = imageMapsData.getMapInfoById(cat.id);
+                cat.image  = image.image;
+
+                dataItems.add(image.getDataItem());
+
+            }
         }
+    }
+
+    public ArrayList<DataItem> getDataItems() {
+        return dataManager.getCatDBList(tCatID);
     }
 
 
@@ -178,46 +228,29 @@ public class MapListActivity extends BaseActivity {
 
     public void openCat(final View view) {
 
-        final int position = (int) view.getTag();
+        View tagged = view.findViewById(R.id.tagged);
+        final String id = (String) tagged.getTag();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                openCatActivity(position);
+                openCatActivity(id);
             }
         }, 50);
     }
 
-    public void openCatActivity(int position) {
+    public void openCatActivity(String id) {
 
-        ViewCategory viewCategory = viewSection.categories.get(position);
+        int position = 0;
 
-        if (viewCategory.type.equals("set")) return;
-
-        Intent i;
-
-        if (viewCategory.type.equals("group")) {
-
-            i = new Intent(MapListActivity.this, SubSectionActivity.class);
-
-            i.putExtra(Constants.EXTRA_CAT_ID, viewCategory.id);
-            i.putExtra(Constants.EXTRA_SECTION_ID, tSectionID);
-            i.putExtra(Constants.EXTRA_NAV_STRUCTURE, navStructure);
-
-        } else {
-
-            if (viewCategory.spec.equals("map")) {
-                i = new Intent(MapListActivity.this, MapActivity.class);
-                i.putExtra("page_id", viewCategory.id);
-
-            } else {
-                i = new Intent(MapListActivity.this, CatActivity.class);
-                i.putExtra(Constants.EXTRA_CAT_ID, viewCategory.id);
-                i.putExtra(Constants.EXTRA_CAT_SPEC, viewCategory.spec);
-                i.putExtra("cat_title", viewCategory.title);
-            }
+        for (int i = 0; i < dataItems.size(); i++) {
+            if (dataItems.get(i).id.equals(id)) position  = i;
         }
 
-        // i.putExtra("show_ad", showAd);
+        Intent i;
+        i = new Intent(this, MapActivity.class);
+        i.putExtra("page_id", dataItems.get(position).id);
+        i.putExtra("pic", groupType);
 
         startActivityForResult(i, 1);
         openActivity.pageTransition();
@@ -282,6 +315,52 @@ public class MapListActivity extends BaseActivity {
         int drawableRes = typedValue.resourceId;
 
         return drawableRes;
+    }
+
+
+    public interface ClickListener {
+        void onClick(View view, int position);
+        void onLongClick(View view, int position);
+    }
+
+    class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
+        private ClickListener clicklistener;
+        private GestureDetector gestureDetector;
+
+        public RecyclerTouchListener(Context context, final RecyclerView recycleView, final ClickListener clicklistener){
+            this.clicklistener=clicklistener;
+            gestureDetector=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    View child=recycleView.findChildViewUnder(e.getX(),e.getY());
+                    if(child!=null && clicklistener!=null){
+                        clicklistener.onLongClick(child,recycleView.getChildAdapterPosition(child));
+                    }
+                }
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            View child=rv.findChildViewUnder(e.getX(),e.getY());
+            if(child!=null && clicklistener!=null && gestureDetector.onTouchEvent(e)){
+                clicklistener.onClick(child,rv.getChildAdapterPosition(child));
+            }
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+        }
     }
 
 }

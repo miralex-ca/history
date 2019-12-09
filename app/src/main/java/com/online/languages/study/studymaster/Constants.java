@@ -41,6 +41,7 @@ public class Constants {
     public static final String CAT_SPEC_PERS = "pers";
     public static final String CAT_SPEC_TERM = "term";
     public static final String CAT_SPEC_MISC = "misc";
+    public static final String CAT_SPEC_MAPS = "maps_list";
     public static final String CAT_SPEC_ITEMS_LIST = "items_list";
     public static final String CAT_SPEC_TEXT = "text";
 
@@ -83,6 +84,8 @@ public class Constants {
     public static final String INFO_TAG = "#info";
     public static final String GALLERY_TAG = "#gallery";
     public static final String NAV_GALLERY_SPEC = "nav_gallery";
+
+    public static final String MAPS_FOLDER= "pics/maps";
 
     public static final String STARRED_TAB_ACTIVE = "starred_tab_active";
 

@@ -28,4 +28,16 @@ public class ImageData {
         desc = _desc;
     }
 
+    public DataItem getDataItem() {
+        DataItem dataItem = new DataItem();
+
+        dataItem.id = id;
+        dataItem.item = title;
+        dataItem.info = desc;
+        dataItem.image = image;
+
+        return dataItem;
+
+    }
+
 }
