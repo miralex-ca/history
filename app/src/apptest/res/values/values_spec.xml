@@ -6,6 +6,10 @@
 
     <string name="app_name">Тест История</string>
 
+    <string-array name="data_files">
+        <item>test_data.json</item>
+        <item>test_data_en.json</item>
+    </string-array>
 
     <string name="app_structure_file">test_structure.json</string>
     <string name="app_data_file">test_data.json</string>

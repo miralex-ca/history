@@ -14,7 +14,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -424,7 +426,7 @@ public class DataFromJson {
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
@@ -435,8 +437,26 @@ public class DataFromJson {
 
 
     public ArrayList<DataItem> getAllItemsList() {
-
         return getListFromFile(categoryFile);
+    }
+
+    public ArrayList<DataItem> getItemsFromAllFiles() {
+
+        ArrayList<DataItem> items = new ArrayList<>();
+
+        String[] myArrayList = context.getResources().getStringArray(R.array.data_files);
+
+
+        for (String file: myArrayList) {
+
+            ArrayList<DataItem> itemArrayList  = getListFromFile(file);
+            items.addAll(itemArrayList);
+        }
+
+        Toast.makeText(context, "Items: " + items.size(), Toast.LENGTH_SHORT).show();
+
+
+        return items;
     }
 
 

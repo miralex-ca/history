@@ -276,6 +276,7 @@
     <string name="app_market_link" translatable="false">com.online.languages.study.ruhistory</string>
     <!-- string name="app_market_link">@string/app_market_link_pro</string -->
 
+    <string name="mail_address">study.languages.online@gmail.com</string>
     <string name="msg_sending_mail">Отправка сообщения &#8230;</string>
     <string name="msg_no_mail_client">Почтовый клиент не установлен.</string>
     <string name="msg_mail_subject">Отзыв по приложению</string>
@@ -527,7 +528,7 @@
     <string name="number_percent">%d%%</string>
     <string name="maps_list_title">Карты</string>
 
-    <string name="masg_version_name">(ИР, версия %s)</string>
+    <string name="msg_version_name">(ИР, версия %s)</string>
 
 
 </resources>

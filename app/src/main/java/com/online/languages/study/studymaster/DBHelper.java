@@ -1880,7 +1880,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private void sanitizeDB(SQLiteDatabase db) {
 
         DataFromJson dataFromJson= new DataFromJson(cntx);
-        ArrayList<DataItem> allItems = dataFromJson.getAllItemsList();
+        ArrayList<DataItem> allItems = dataFromJson.getItemsFromAllFiles();
 
         Cursor cursor = db.query(TABLE_USER_DATA, new String[]{KEY_USER_ITEM_ID}, null, null, null, null, null);
 

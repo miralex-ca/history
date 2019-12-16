@@ -55,8 +55,6 @@ public class CustomDataListActivity extends BaseActivity {
 
     View emptyTxt;
 
-
-
     int listType;
 
     NavCategory navCategory;
@@ -317,7 +315,7 @@ public class CustomDataListActivity extends BaseActivity {
         intent.putExtra(Constants.EXTRA_CAT_ID, navCategory.id);
         intent.putExtra("cat_title", navCategory.title);
         startActivityForResult(intent, 2);
-        openActivity.pageBackTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -333,7 +331,7 @@ public class CustomDataListActivity extends BaseActivity {
         }
 
         startActivityForResult(i, 2);
-        openActivity.pageBackTransition();
+        openActivity.pageTransition();
     }
 
 
@@ -348,7 +346,6 @@ public class CustomDataListActivity extends BaseActivity {
             getMenuInflater().inflate(R.menu.stats_mode_info, menu);
             MenuItem modeMenuItem = menu.findItem(R.id.easy_mode);
             if (easy_mode) modeMenuItem.setVisible(true);
-
         }
 
         return true;

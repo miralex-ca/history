@@ -5,8 +5,6 @@
     <integer name="section_id_length">8</integer>
 
 
-
-
     <style name="DefaultNightThemeModes" parent="NightTheme">
         <item name="ToolBarStyle">@style/ToolBarStyle_n</item>
         <item name="colorToolbarIcon">@color/colorToolbarText_n</item>
@@ -18,6 +16,13 @@
         <item name="colorNavBgCenter">@color/colorNavBgCenter_n</item>
         <item name="colorNavBgEnd">@color/colorNavBgEnd_n</item>
     </style>
+
+
+
+    <string-array name="data_files">
+        <item>data.json</item>
+        <!-- item>test_data.json</item -->
+    </string-array>
 
 
 </resources>

@@ -845,7 +845,6 @@ public class MainActivity extends BaseActivity
         openActivity.pageTransition();
     }
 
-
     public void openReference(View view) {
         Intent i = new Intent(MainActivity.this, ReferenceActivity.class);
         startActivity(i);
@@ -866,21 +865,27 @@ public class MainActivity extends BaseActivity
     }
 
     private void sendMail(int type) {
-        String recepientEmail = "study.languages.online@gmail.com"; // either set to destination email or leave empty
+
+        String recepientEmail = getString(R.string.mail_address);
+
+        String subject = getString(R.string.msg_mail_subject);
+        if (type == 1 ) subject = getString(R.string.msg_mail_subject_error);
+
+        String versionName = BuildConfig.VERSION_NAME;
+        if (fullVersion) versionName += "+";
+
+        String version = String.format(getString(R.string.msg_version_name), versionName);
+
+        String mailSubject = subject + " " + version;
+
         Intent i = new Intent(Intent.ACTION_SENDTO);
-        i.setData(Uri.parse("mailto:" + recepientEmail));
 
-        String subject = getResources().getString(R.string.msg_mail_subject);
-        if (type == 1 ) subject = getResources().getString(R.string.msg_mail_subject_error);
+        String mailto = "mailto:" + recepientEmail +
+                "?subject=" + Uri.encode(mailSubject) +
+                "&body=" + Uri.encode("");
 
 
-
-        String version = String.format(getString(R.string.masg_version_name), BuildConfig.VERSION_NAME);
-
-        String mailSubject = subject + " " +version;
-
-        i.putExtra(Intent.EXTRA_SUBJECT, mailSubject);
-        i.putExtra(Intent.EXTRA_TEXT   , "");
+        i.setData(Uri.parse(mailto));
 
         try {
             startActivity(Intent.createChooser(i, getString(R.string.msg_sending_mail)));
