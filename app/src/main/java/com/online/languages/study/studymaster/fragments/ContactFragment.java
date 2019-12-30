@@ -41,13 +41,18 @@ public class ContactFragment extends Fragment {
     public void checkRateDisplay(View rateView) {
 
         boolean full_version = appSettings.getBoolean(Constants.SET_VERSION_TXT, false);
+        boolean hideRate = getResources().getBoolean(R.bool.hide_rate);
 
-        if (full_version) {
-            rateView.setVisibility(View.VISIBLE);
+
+        if (hideRate) {
+            if (full_version) {
+                rateView.setVisibility(View.VISIBLE);
+            } else {
+                rateView.setVisibility(View.GONE);
+            }
         } else {
-            rateView.setVisibility(View.GONE);
+            rateView.setVisibility(View.VISIBLE);
         }
-
     }
 
 

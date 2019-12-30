@@ -426,7 +426,7 @@ public class DataFromJson {
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            json = new String(buffer, StandardCharsets.UTF_8);
+            json = new String(buffer, "UTF-8");
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
@@ -453,7 +453,7 @@ public class DataFromJson {
             items.addAll(itemArrayList);
         }
 
-        Toast.makeText(context, "Items: " + items.size(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "Items: " + items.size(), Toast.LENGTH_SHORT).show();
 
 
         return items;

@@ -26,6 +26,7 @@ public class PreReleaseAncientTest {
         mockContext = RuntimeEnvironment.application.getApplicationContext();
     }
 
+
     @Test
     public void pro_isCorrect() throws Exception {
         assertFalse(Constants.PRO);
@@ -36,51 +37,14 @@ public class PreReleaseAncientTest {
         assertFalse(Constants.DEBUG);
     }
 
-
     @Test
-    public void simplified_isCorrect() throws Exception {
-
-        //assertTrue(Constants.APP_SIMPLIFIED);
+    public void jsonParams_areCorrect() throws Exception {
+        DataManager dataManager = new DataManager(mockContext);
+        dataManager.getParamsFromJSON();
+        assertTrue(dataManager.simplified);
+        assertFalse(dataManager.homecards);
+        assertFalse(dataManager.gallerySection);
     }
-
-
-
-
-    @Test
-    public void sku_isCorrect() throws Exception {
-        assertEquals(MainActivity.SKU_PREMIUM, "premium_upgrade");
-    }
-
-    @Test
-    public void dbName_isCorrect() throws Exception {
-        assertEquals(DBHelper.DATABASE_NAME, "userProgress");
-    }
-
-    @Test
-    public void appId_isCorrect() throws Exception {
-        assertEquals(BuildConfig.APPLICATION_ID, "com.online.languages.study.ancienthistory");
-    }
-
-    @Test
-    public void appName_isCorrect() throws Exception {
-        assertEquals("История Древнего Мира", mockContext.getString(R.string.app_name));
-    }
-
-
-    @Test
-    public void exportFileName_isCorrect() throws Exception {
-        assertEquals("Backup_stats.ahdb", mockContext.getString(R.string.backup_file_name));
-    }
-
-    @Test
-    public void sectionIdLength_isCorrect() throws Exception {
-        assertEquals(5, mockContext.getResources().getInteger(R.integer.section_id_length));
-    }
-
-
-
-
-
 
 
 

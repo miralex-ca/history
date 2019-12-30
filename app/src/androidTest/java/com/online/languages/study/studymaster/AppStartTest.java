@@ -187,6 +187,7 @@ public class AppStartTest {
             waitTime(300);
 
 
+
             int listType = dataManager.appSettings.getInt(SET_GALLERY_LAYOUT, SET_GALLERY_LAYOUT_DEFAULT);
             if (listType == 1) {
                 actionMenuLayoutView.perform(click());

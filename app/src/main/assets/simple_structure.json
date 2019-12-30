@@ -1,4 +1,11 @@
 {
+  "params": {
+    "simplified": true,
+    "homecards": true,
+    "gallery": false
+  },
+
+
   "sections":
   [
 	{"tag": "cat1", "title": "Хронология", "id": "10010020",
@@ -25,29 +32,13 @@
       ]
     },
 
+
     {"tag": "cat3", "title": "Галерея", "id": "gallery",
       "desc": "Артефакты, предметы быта, науки, искусства",
-      "title_short": "Личности",
-      "desc_short": "Даты основных событий",
+      "title_short": "Галерея",
+      "desc_short": "Артефакты, предметы быта, науки, искусства",
       "image": "moskva_kreml.jpg",
       "type": "gallery",
-      "categories":
-      [
-
-        {"parent": "root", "type": "set", "id": "set_1_2", "title": "gone", "desc": ""},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020100", "title": "Архитектура", "desc": "Архитектура", "image":  "gallery/arch/sobor_blazhenniy.jpg"},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10020400", "title": "Памятники", "desc": "Памятники", "image":  "gallery/monument/medniy_vsadnik.jpg"}
-      ]
-    },
-
-
-    {"tag": "cat4", "title": "Галерея", "id": "nav_gallery",
-      "desc": "Артефакты, предметы быта, науки, искусства",
-      "title_short": "Личности",
-      "desc_short": "Даты основных событий",
-      "image": "moskva_kreml.jpg",
-      "type": "gallery",
-      "spec": "nav_gallery",
       "categories":
       [
 

@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_reference_file" translatable="false">reference</string>
+    <string name="backup_file_format" translatable="false">rhdb</string>
+
     <integer name="section_id_length">8</integer>
 
 

@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity
     public static Boolean hasPrivilege;
 
 
-    public static final String SKU_PREMIUM = "premium_version";
+    public static final String SKU_PREMIUM = BuildConfig.SKU;
 
     public static final String PUBLIC_KEY_1 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuHpMkp0RqQJ4CzsokYgM0kkzAXgffvRI9aQCS5KYGsSe6RIAZHqvZurxjWjQN";
     public static final String PUBLIC_KEY_2 = "kpKHwRa5IdDHZD7BUsA1+pooJtyPRZLEvCAlXf1XNY93clF9UEHz77fp29RuzTEGtlZysUk56Do5++FKKcwa4UEJkobyObTCzo6e+jVMy23";

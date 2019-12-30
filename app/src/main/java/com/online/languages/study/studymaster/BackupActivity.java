@@ -146,11 +146,13 @@ public class BackupActivity extends BaseActivity {
         Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
 
 
+        String fileFormat = getString(R.string.backup_file_format);
+
         new MaterialFilePicker()
                 .withActivity(this)
                 .withCustomActivity(FinderDialogActivity.class)
                 .withRequestCode(10)
-                .withFilter(Pattern.compile("(.*\\.rhdb$)|(.*\\.csv$)"))
+                .withFilter(Pattern.compile("(.*\\."+fileFormat+"$)|(.*\\.csv$)"))
                 .withHiddenFiles(false)
                 .withPath(uri.getPath())
                 .start();

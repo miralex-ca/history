@@ -118,7 +118,7 @@ public class TextActivity extends BaseActivity {
 
         if ( themeTitle.contains("default") || themeTitle.contains("red")|| themeTitle.contains("white") ) {
             if (appSettings.getBoolean("night_mode", false) && getResources().getBoolean(R.bool.night_mode))
-                color= "body {color: #fff;}";
+                color= "body {color: #fff;} a {color: #7eafff;}";
         }
 
         return color;

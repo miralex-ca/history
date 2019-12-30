@@ -9,5 +9,6 @@
     <bool name="tablet">false</bool>
     <bool name="multipane">false</bool>
     <bool name="bottom_nav_default">false</bool>
+    <bool name="hide_rate">true</bool>
 
 </resources>

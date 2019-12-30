@@ -38,11 +38,14 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.config
-
         resValue("string", "applicationId", applicationId)
+        buildConfigField ("String", "DBNAME", "\"userProgress\"")
+        buildConfigField ("String", "SKU", "\"premium_version\"")
+
         buildConfigField ("boolean", "SIMPLIFIED", "false")
         buildConfigField ("boolean", "HOMECARDS", "false")
         buildConfigField ("boolean", "GALLERY", "true")
+
 
     }
     buildTypes {
@@ -64,8 +67,11 @@ android {
             applicationId 'com.online.languages.study.ruhistory'
             resValue("string", "applicationId", applicationId)
             signingConfig signingConfigs.config
-            buildConfigField ("boolean", "GALLERY", "true")
+            buildConfigField ("String", "DBNAME", "\"userPrgress\"")
             resConfigs 'ru'
+
+            buildConfigField ("boolean", "GALLERY", "true")
+
         }
 
         simplified {
@@ -74,6 +80,15 @@ android {
             resValue("string", "applicationId", applicationId)
             buildConfigField ("boolean", "SIMPLIFIED", "true")
             buildConfigField ("boolean", "HOMECARDS", "true")
+        }
+
+        ancient {
+            dimension "mode"
+            applicationId 'com.online.languages.study.ancient.simple'
+            resValue("string", "applicationId", applicationId)
+            buildConfigField ("String", "SKU", "\"premium_upgrade\"")
+            resConfigs 'ru'
+            versionName 'debug'
         }
 
         apptest {

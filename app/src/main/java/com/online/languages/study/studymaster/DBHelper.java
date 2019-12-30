@@ -43,8 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
     SharedPreferences appSettings;
     private int MAX_SCORE = 4;
     private static final int DATABASE_VERSION = BuildConfig.VERSION_CODE;
-
-    public static final String DATABASE_NAME = "userPrgress";
+    public static final String DATABASE_NAME = BuildConfig.DBNAME;
 
     public static final String TABLE_CAT_DATA = "cat_data";
     public static final String TABLE_USER_DATA = "user_items_data";
