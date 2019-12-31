@@ -1929,7 +1929,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-
     private int countScore(int currentScore, int result) {
         int score = currentScore + result;
         if (score < 0) score = 0;
@@ -1959,10 +1958,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
     }
-
-
-
-
 
 
     private void insertImportedUserItem(SQLiteDatabase db, DBImport.UserItemData userItem) {
@@ -1995,7 +1990,6 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
 
             for (DBImport.CatDataLine item: list) {
-
                 insertImportedCatData(db, item);
             }
 

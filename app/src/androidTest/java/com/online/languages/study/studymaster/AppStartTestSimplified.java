@@ -44,7 +44,7 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
 
-//@Ignore
+@Ignore
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AppStartTestSimplified {

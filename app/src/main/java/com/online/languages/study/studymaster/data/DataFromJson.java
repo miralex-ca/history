@@ -448,7 +448,6 @@ public class DataFromJson {
 
 
         for (String file: myArrayList) {
-
             ArrayList<DataItem> itemArrayList  = getListFromFile(file);
             items.addAll(itemArrayList);
         }

@@ -92,8 +92,6 @@ public class DetailFromJson {
     }
 
 
-
-
     private DetailItem getDataInfoFromJson(JSONObject detailInfo) {
         DetailItem detailItem = new DetailItem();
 
@@ -112,9 +110,6 @@ public class DetailFromJson {
 
         return detailItem;
     }
-
-
-
 
 
 

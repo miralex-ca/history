@@ -471,7 +471,7 @@
     <string name="no_access">Нет доступа</string>
     <string name="errors_label">Ошибки: %d</string>
     <string name="section_errors_label">Ошибки: %d</string>
-    <string name="cats_studied">Пройдено тем:</string>
+    <string name="cats_studied">"Пройдено тем: "</string>
     <string name="result_task_count">Заданий: %d</string>
     <string name="result_incorrect_count">Неправильно: %d</string>
     <string name="item_status_unknown">Статус: не пройдено</string>
@@ -479,9 +479,9 @@
     <string name="item_status_studied">Статус: изучено</string>
     <string name="cats_data_list_title">Информация по темам</string>
     <string name="loading">Загрузка</string>
-    <string name="stats_test_result">Результат тестов:</string>
-    <string name="stats_familiar_label">Пройдено:</string>
-    <string name="stats_studied_label">Изучено:</string>
+    <string name="stats_test_result">"Результат тестов: "</string>
+    <string name="stats_familiar_label">"Пройдено: "</string>
+    <string name="stats_studied_label">"Изучено: "</string>
     <string name="stats_general_result">Общий результат</string>
     <string name="studied_btn_txt">Изучено</string>
     <string name="familiar_btn_txt">Пройдено</string>
@@ -506,7 +506,7 @@
     <string name="image_info_title">Изображение</string>
     <string name="image_info_desc">Описание</string>
     <string name="cat_stats_title">Статистика темы</string>
-    <string name="cat_stats_total_items">Всего записей:</string>
+    <string name="cat_stats_total_items">"Всего записей: "</string>
     <string name="cat_stats_familliar_count">Пройдено</string>
     <string name="cat_stats_studied_count">Изучено</string>
     <string name="reference_title">Используемые материалы</string>
