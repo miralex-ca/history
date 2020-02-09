@@ -3,7 +3,7 @@ package com.online.languages.study.studymaster;
 
 public class Constants {
 
-    public static final boolean PRO = true;  // TODO change in PRO
+    public static final boolean PRO = false;  // TODO change in PRO
     public static final boolean DEBUG = true;  /// should be true to see ads in debug
     public static final boolean SCREEN_SHOW = false;
 
@@ -62,6 +62,9 @@ public class Constants {
     public static final int DATA_MODE = 1;
 
     public static final String EXTRA_DATA_TYPE = "data_type";
+
+
+    public static final int EX_IMG_TYPE = 3;
 
     public static final String CAT_TYPE_EXTRA = "extra";
 

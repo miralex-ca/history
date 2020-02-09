@@ -6,7 +6,6 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="preferenceTheme">@style/AppTheme.CustomPreferenceThemeOverlay</item>
-
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -443,7 +442,7 @@
     </style>
 
     <style name="cat_list_item_title">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/cat_item_title_txt_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginBottom">5dp</item>
     </style>
@@ -781,14 +780,15 @@
         <item name="android:textColor">?attr/colorBtnText</item>
     </style>
 
+    <style name="exImageWrapper">
+        <item name="android:layout_width">match_parent</item>
+    </style>
 
     <style name="exBtns" parent="buttonControl">
         <item name="android:paddingTop">@dimen/ex_btn_padding</item>
         <item name="android:paddingBottom">@dimen/ex_btn_padding</item>
         <item name="android:layout_marginTop">@dimen/ex_btn_container_padding</item>
         <item name="android:layout_marginBottom">@dimen/ex_btn_container_padding</item>
-
-
     </style>
 
     <style name="exBtns.Left">

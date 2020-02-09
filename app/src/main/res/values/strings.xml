@@ -529,6 +529,7 @@
     <string name="maps_list_title">Карты</string>
 
     <string name="msg_version_name">(ИР, версия %s)</string>
+    <string name="menu_img_test">Пройти тест</string>
 
 
 </resources>

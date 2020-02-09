@@ -56,6 +56,7 @@ import com.online.languages.study.studymaster.data.ViewSection;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.Constants.EX_IMG_TYPE;
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 import static com.online.languages.study.studymaster.Constants.IMG_LIST_LAYOUT;
 
@@ -557,6 +558,10 @@ public class ImageListActivity extends BaseActivity {
                 showInfoDialog();
                 return true;
 
+            case R.id.test_from_menu:
+                openTest();
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -568,6 +573,15 @@ public class ImageListActivity extends BaseActivity {
 
         changeLayoutBtn =  menu.findItem(R.id.list_layout);
 
+
+        String param = navStructure.getNavCatFromSection(tSectionID, tCatID).param;
+
+        if (param.equals("img_test")) {
+            MenuItem testMenu = menu.findItem(R.id.test_from_menu);
+            testMenu.setVisible(true);
+        }
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -576,6 +590,21 @@ public class ImageListActivity extends BaseActivity {
         }, 80);
 
         return true;
+    }
+
+
+    public void openTest() {
+
+        Intent i = new Intent(this, ExerciseActivity.class) ;
+
+        i.putExtra("ex_type", EX_IMG_TYPE);
+
+        i.putExtra(Constants.EXTRA_CAT_TAG, tCatID);
+
+        i.putParcelableArrayListExtra("dataItems", dataItems);
+
+        startActivityForResult(i,2);
+        openActivity.pageTransition();
     }
 
 
@@ -596,8 +625,6 @@ public class ImageListActivity extends BaseActivity {
         int drawableRes = typedValue.resourceId;
         return drawableRes;
     }
-
-
 
 
     public interface ClickListener {

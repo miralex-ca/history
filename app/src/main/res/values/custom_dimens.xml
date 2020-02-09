@@ -96,6 +96,7 @@
     <dimen name="_cat_item_txt_left_nopic">0dp</dimen>
     <dimen name="_cat_item_star_right">4dp</dimen>
     <dimen name="_cat_item_info_txt_size">12sp</dimen>
+    <dimen name="_cat_item_title_txt_size">16sp</dimen>
 
     <dimen name="_cat_item_padding_top">12dp</dimen>
     <dimen name="_cat_item_padding_bottom">14dp</dimen>
@@ -174,7 +175,6 @@
 
     <dimen name="_flash_txt_padding_side">2dp</dimen>
 
-
     <!-- card text sizes -->
     <integer name="f_item_txt_size_norm">24</integer>
     <integer name="f_item_txt_size_medium">23</integer>
@@ -192,15 +192,22 @@
     <dimen name="_f_btn_padding_top_btm">15dp</dimen>
     <dimen name="_f_btn_margin_side">15dp</dimen>
 
+    <dimen name="_test_img_max_width">300dp</dimen>
+
+    <dimen name="_ex_card_field_minheight">420dp</dimen>
 
 
-    <dimen name="_ex_card_field_minheight">366dp</dimen>
+
+    <dimen name="test_img_width_tablet">280dp</dimen>
+
+    <dimen name="_test_img_size">120dp</dimen>
+
+    <integer name="_ex_text_wrap">140</integer>
+    <integer name="_ex_text_wrap_high">170</integer>
+
+
     <integer name="_ex_card_wrap">300</integer>
     <integer name="_ex_card_wrap_high">338</integer>
-
-    <integer name="_ex_text_wrap">90</integer>
-    <integer name="_ex_text_wrap_high">130</integer>
-
 
 
     <integer name="_ex_ph_txt_size">24</integer>

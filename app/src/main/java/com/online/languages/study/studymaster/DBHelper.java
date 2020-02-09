@@ -60,6 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_ITEM_TITLE = "item_title";
     private static final String KEY_ITEM_DESC = "item_desc";
     private static final String KEY_ITEM_IMAGE = "item_image";
+    private static final String KEY_ITEM_INFO_1 = "item_info_1";
     private static final String KEY_ITEM_DIVIDER = "item_divider";
     private static final String KEY_ITEM_FILTER = "item_filter";
     private static final String KEY_ITEM_MODE = "item_mode";
@@ -102,6 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + KEY_ITEM_TITLE + " TEXT,"
             + KEY_ITEM_DESC + " TEXT,"
             + KEY_ITEM_IMAGE + " TEXT,"
+            + KEY_ITEM_INFO_1+ " TEXT,"
             + KEY_ITEM_FILTER + " TEXT,"
             + KEY_ITEM_MODE + "  INTEGER DEFAULT 0,"
             + KEY_ITEM_DIVIDER + " TEXT"
@@ -228,11 +230,13 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_ITEMS_TABLE_IF_EXISTS);
 
             for (DataItem item: allItems) {
+
                 ContentValues values = new ContentValues();
                 values.put(KEY_ITEM_ID, item.id);
                 values.put(KEY_ITEM_TITLE, item.item);
                 values.put(KEY_ITEM_DESC, item.info);
                 values.put(KEY_ITEM_IMAGE, item.image);
+                values.put(KEY_ITEM_INFO_1, item.item_info_1);
                 values.put(KEY_ITEM_DIVIDER, item.divider);
                 values.put(KEY_ITEM_FILTER, item.filter);
                 values.put(KEY_ITEM_MODE, item.mode);
@@ -874,7 +878,7 @@ public class DBHelper extends SQLiteOpenHelper {
             limit = "ORDER BY RANDOM() LIMIT 15";
         }
 
-        String columns = KEY_ITEM_ID +", "+ KEY_ITEM_TITLE + ", "+ KEY_ITEM_DESC;
+        String columns = KEY_ITEM_ID +", "+ KEY_ITEM_TITLE + ", "+ KEY_ITEM_DESC+ ", "+ KEY_ITEM_INFO_1;
 
 
         db.beginTransaction();
@@ -898,6 +902,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     dataItem.id = cursor.getString(cursor.getColumnIndex(KEY_ITEM_ID));
                     dataItem.item = cursor.getString(cursor.getColumnIndex(KEY_ITEM_TITLE));
                     dataItem.info = cursor.getString(cursor.getColumnIndex(KEY_ITEM_DESC));
+                    dataItem.item_info_1 = cursor.getString(cursor.getColumnIndex(KEY_ITEM_INFO_1));
 
                     items.add(dataItem);
                 }
@@ -1814,6 +1819,7 @@ public class DBHelper extends SQLiteOpenHelper {
         dataItem.item = cursor.getString(cursor.getColumnIndex(KEY_ITEM_TITLE));
         dataItem.info = cursor.getString(cursor.getColumnIndex(KEY_ITEM_DESC));
         dataItem.image = cursor.getString(cursor.getColumnIndex(KEY_ITEM_IMAGE));
+        dataItem.item_info_1 = cursor.getString(cursor.getColumnIndex(KEY_ITEM_INFO_1));
         dataItem.divider = cursor.getString(cursor.getColumnIndex(KEY_ITEM_DIVIDER));
         dataItem.filter = cursor.getString(cursor.getColumnIndex(KEY_ITEM_FILTER));
 

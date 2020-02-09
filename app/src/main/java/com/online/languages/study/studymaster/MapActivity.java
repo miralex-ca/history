@@ -129,6 +129,12 @@ public class MapActivity extends BaseActivity {
 
         DataManager dataManager = new DataManager(this);
 
+
+
+
+
+
+
         // detailItem = dataManager.getDetailFromDB(id);
 
         DataItem dataItem =  dataManager.getDataItemFromDB(id);
@@ -136,6 +142,9 @@ public class MapActivity extends BaseActivity {
 
         dataItem.item = dataItem.item + "\n\n" + dataItem.info;
         detailItem = new DetailItem(dataItem);
+
+
+
         String link = "";
 
         if (picType == 2) {
@@ -143,6 +152,19 @@ public class MapActivity extends BaseActivity {
             if (detailItem.title.equals("not found")) detailItem = new DetailItem(dataItem);
             link = detailItem.img_info;
         }
+
+
+        if (picType == 1) {
+            DetailItem newDetailItem = dataManager.getDetailFromDB(id);
+
+
+            if (!newDetailItem.title.equals("not found")) {
+                detailItem.image = newDetailItem.image;
+
+            }
+        }
+
+
 
         //Toast.makeText(this, "Img: " + detailItem.image, Toast.LENGTH_SHORT).show();
 

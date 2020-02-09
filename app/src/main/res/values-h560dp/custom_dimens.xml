@@ -70,18 +70,21 @@
     <integer name="f_item_txt_size_medium">24</integer>
     <integer name="f_item_txt_size_small">23</integer>
 
-
     <!-- exercise -->
+    <dimen name="_test_img_max_width">150dp</dimen>
+
+    <dimen name="test_img_width_tablet">300dp</dimen>
+
+    <dimen name="_ex_card_field_minheight">440dp</dimen>
+    <dimen name="_test_img_size">140dp</dimen>
+
+    <integer name="_ex_text_wrap">150</integer>
+    <integer name="_ex_text_wrap_high">180</integer>
 
 
-    <dimen name="_ex_card_field_minheight">386dp</dimen>
+
     <integer name="_ex_card_wrap">322</integer>
     <integer name="_ex_card_wrap_high">360</integer>
-
-    
-    <integer name="_ex_text_wrap">95</integer>
-    <integer name="_ex_text_wrap_high">135</integer>
-
 
     <integer name="_ex_text_wrap_ex1">120</integer>
     <integer name="_ex_text_wrap_ex1_high">160</integer>

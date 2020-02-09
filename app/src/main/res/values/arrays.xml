@@ -85,10 +85,10 @@
 
 
     <string-array name="set_btm_nav_list">
-        <item>@string/set_btm_nav_1</item>
-        <item>@string/set_btm_nav_2</item>
-        <item>@string/set_btm_nav_3</item>
-    </string-array>
+    <item>@string/set_btm_nav_1</item>
+    <item>@string/set_btm_nav_2</item>
+    <item>@string/set_btm_nav_3</item>
+</string-array>
 
     <string-array name="set_btm_nav_values">
         <item>@string/set_btm_nav_value_1</item>

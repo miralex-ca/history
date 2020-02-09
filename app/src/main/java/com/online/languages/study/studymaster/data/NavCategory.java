@@ -17,7 +17,7 @@ public class NavCategory implements Parcelable {
     public String type;    /// group or simple or set
     public String spec;
     public String image;
-
+    public String param = "";
 
     public ArrayList<Integer> tests = new ArrayList<>();
 
@@ -41,6 +41,7 @@ public class NavCategory implements Parcelable {
         this.type = parcel.readString();
         this.spec = parcel.readString();
         this.image = parcel.readString();
+        this.param = parcel.readString();
 
         this.review = parcel.readInt() == 1;
         this.unlocked = parcel.readInt() == 1;
@@ -62,6 +63,7 @@ public class NavCategory implements Parcelable {
         dest.writeString(type);
         dest.writeString(spec);
         dest.writeString(image);
+        dest.writeString(param);
 
         dest.writeInt(review ? 1 : 0);
         dest.writeInt(unlocked ? 1 : 0);

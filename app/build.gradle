@@ -33,8 +33,8 @@ android {
         applicationId "com.online.languages.study.studymaster2"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 53
-        versionName '5.2.8'
+        versionCode 54
+        versionName '5.3.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         signingConfig signingConfigs.config
@@ -82,12 +82,13 @@ android {
 
         ancient {
             dimension "mode"
-            applicationId 'com.online.languages.study.ancienthistory'
-            //applicationId 'com.online.languages.study.ancient.simple'
+            //applicationId 'com.online.languages.study.ancienthistory'
+            applicationId 'com.online.languages.study.ancient.simple'
+            versionName 'debug'
             resValue("string", "applicationId", applicationId)
             buildConfigField ("String", "SKU", "\"premium_upgrade\"")
             resConfigs 'ru'
-            //versionName 'debug'
+
         }
 
         apptest {

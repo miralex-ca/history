@@ -88,6 +88,8 @@ public class BackupActivity extends BaseActivity {
         String exportDescTxt = String.format(getString(R.string.export_desc), getString(R.string.backup_file_name));
         exportDesc.setText(Html.fromHtml(exportDescTxt));
 
+        exportDescTxt.matches("");
+
     }
 
 

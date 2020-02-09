@@ -83,6 +83,7 @@
     <dimen name="cat_item_txt_left_nopic">@dimen/_cat_item_txt_left_nopic</dimen>
 
 
+    <dimen name="cat_item_title_txt_size">@dimen/_cat_item_title_txt_size</dimen>
     <dimen name="cat_item_info_txt_size">@dimen/_cat_item_info_txt_size</dimen>
 
 
@@ -225,6 +226,9 @@
 
     <!-- exercise -->
 
+
+    <dimen name="test_img_size">@dimen/_test_img_size</dimen>
+    <dimen name="test_img_max_width">@dimen/_test_img_max_width</dimen>
 
     <integer name="ex_text_wrap">@integer/_ex_text_wrap</integer>
     <integer name="ex_text_wrap_high">@integer/_ex_text_wrap_high</integer>

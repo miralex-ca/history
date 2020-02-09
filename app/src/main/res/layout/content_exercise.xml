@@ -43,18 +43,14 @@
                 android:gravity="center_horizontal">
 
 
-                <TextView
-                    android:id="@+id/testInfoBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/fCountInfoBox"  />
-                
 
                     <android.support.constraint.ConstraintLayout
 
                         android:id="@+id/exField"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,6 +78,25 @@
 
 
                 </LinearLayout>
+
+                        <RelativeLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:elevation="10dp"
+                            android:visibility="visible"
+                            android:id="@+id/testInfoBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/fCountInfoBox"  />
+
+
+
+
+                        </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/btnContainer"

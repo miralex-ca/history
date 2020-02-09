@@ -301,6 +301,8 @@ public class ImageDetailActivity extends BaseActivity {
                 d = VectorDrawableCompat.create(this.getResources(), R.drawable.ic_star_dialog_older, null);
             }
 
+            button.setTag("starred");
+
         } else {
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -312,6 +314,7 @@ public class ImageDetailActivity extends BaseActivity {
         }
 
         button.setImageDrawable(d);
+        button.setTag("not");
     }
 
 

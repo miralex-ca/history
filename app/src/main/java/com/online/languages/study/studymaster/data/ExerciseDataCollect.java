@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import static com.online.languages.study.studymaster.Constants.EX_IMG_TYPE;
 import static com.online.languages.study.studymaster.Constants.TEST_OPTIONS_RANGE;
 
 
@@ -203,6 +204,8 @@ public class ExerciseDataCollect {
     private ExerciseTask createTaskWithOption (DataItem dataItem, ArrayList<DataItem> _optionsList) {
         ArrayList<DataItem> options = new ArrayList<>();
         options.add(dataItem);
+
+
         return createTask (dataItem,  _optionsList, options);
     }
 
@@ -231,23 +234,32 @@ public class ExerciseDataCollect {
 
 
         for (DataItem dataItem1: options) {
-
             String txt = getTextByExType(dataItem1, 2);; /// TODO  getting data for the task
-
             optionsTxt.add(txt);
         }
 
-
-
-
         int correctOptionIndex = 0;
-
 
         String quest = getTextByExType(dataItem, 1);
 
-        return new ExerciseTask(quest, quest, optionsTxt, correctOptionIndex, dataItem.id);
+        String questInfo = dataItem.image;
+
+        ExerciseTask exerciseTask = new ExerciseTask(quest, questInfo, optionsTxt, correctOptionIndex, dataItem.id);
+        exerciseTask.data = dataItem;
+
+        return exerciseTask ;
 
     }
+
+
+    private String getValueForUnique(DataItem dataItem) {
+        String value = dataItem.item;
+        if (exType == 2) value = dataItem.info;
+        if (exType == EX_IMG_TYPE) value = dataItem.item_info_1;
+        return value;
+    }
+
+
 
     private String getTextByExType(DataItem dataItem, int taskDataType) {
 
@@ -262,6 +274,17 @@ public class ExerciseDataCollect {
                     txt = dataItem.info;
                     break;
             }
+        } else if (exType == EX_IMG_TYPE) {
+
+            switch (taskDataType) {
+                case 1:
+                    txt = dataItem.image;
+                    break;
+                case 2: // option text
+                    txt = dataItem.item_info_1;
+                    break;
+            }
+
         } else {
 
             switch (taskDataType) {
@@ -273,7 +296,6 @@ public class ExerciseDataCollect {
                     break;
             }
         }
-
 
 
         return txt;
@@ -311,10 +333,15 @@ public class ExerciseDataCollect {
 
 
     private Boolean checkOptions(DataItem option, ArrayList<DataItem> optionsList) {
-        Boolean foundSame = false;
+
+        boolean foundSame = false;
 
         for (int i=0; i<optionsList.size(); i++) {
-            if ( option.item.equals(optionsList.get(i).item) ) {
+            if (
+             option.item.equals(optionsList.get(i).item)
+            ||  option.info.equals(optionsList.get(i).info)
+             ||  option.item_info_1.equals(optionsList.get(i).item_info_1)
+            ) {
                 foundSame = true;
 
                 break;
@@ -356,18 +383,15 @@ public class ExerciseDataCollect {
                         optionsCat.options.add(item);
                         break;
                     }
-
                 }
-
             }
     }
+
 
 
     private ArrayList<DataItem> getDataItemOptions(String id) {
 
         ArrayList<DataItem> tOptions = new ArrayList<>();
-
-
 
         for (OptionsCatData optionsCat: optionsCatData) {
             if (id.matches(optionsCat.id + ".*")) {
@@ -376,7 +400,7 @@ public class ExerciseDataCollect {
 
               //  if (tOptions.size() < 1) Toast.makeText(context, "0: " + id, Toast.LENGTH_SHORT).show();
 
-                if (tOptions.size() < 1)  tOptions = optionsCat.options; // TODO improve to collect neighbors
+                if (tOptions.size() < 4)  tOptions = checkUniqueData(optionsCat.options); // TODO improve to collect neighbors
 
                //
 
@@ -388,6 +412,27 @@ public class ExerciseDataCollect {
         return tOptions;
     }
 
+
+    private ArrayList<DataItem> checkUniqueData(ArrayList<DataItem> items) {
+
+        ArrayList<DataItem> newData = new ArrayList<>();
+
+        HashSet<String> set = new HashSet<>();
+
+        for (DataItem item: items) {
+            String checkedValue = getValueForUnique(item);
+
+            if (!set.contains(checkedValue )) {
+                newData.add(item);
+                set.add(checkedValue);
+            }
+        }
+
+        return newData;
+    }
+
+
+
     private ArrayList<DataItem> getNeighborOptions (ArrayList<DataItem> options, String id) {
 
 
@@ -395,10 +440,14 @@ public class ExerciseDataCollect {
         int target = -1;
         ArrayList<Integer> indexesArray = new ArrayList<>();
 
+
         for (int i = 0; i < options.size(); i ++ ) {
             if (options.get(i).id.equals(id)) target = i;
+
             indexesArray.add(i);
         }
+
+
 
         ArrayList<Integer> targetArray = new ArrayList<>();
         boolean toLeft = true;
@@ -444,6 +493,9 @@ public class ExerciseDataCollect {
         for (Integer index: targetArray) {
             newOptions.add(options.get(index));
         }
+
+
+        newOptions = checkUniqueData(newOptions);
 
        // if (newOptions.size() < 1) Toast.makeText(context, "0: " + id, Toast.LENGTH_SHORT).show();
 

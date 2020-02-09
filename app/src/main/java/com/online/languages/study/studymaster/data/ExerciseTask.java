@@ -13,6 +13,7 @@ public class ExerciseTask implements Parcelable {
     public ArrayList<String> options;
     public int correct;
     public String savedInfo;
+    public DataItem data = new DataItem();
 
     public ExerciseTask(ExerciseTask newTask) {
         quest = newTask.quest;
@@ -20,6 +21,7 @@ public class ExerciseTask implements Parcelable {
         options = new ArrayList<>(newTask.options);
         correct = newTask.correct;
         savedInfo = newTask.savedInfo;
+        data = newTask.data;
     }
 
     public ExerciseTask(String _quest, String _info, ArrayList<String> _options, int _correct) {
@@ -45,6 +47,7 @@ public class ExerciseTask implements Parcelable {
         this.questInfo = parcel.readString();
         this.savedInfo = parcel.readString();
         this.correct = parcel.readInt();
+        this.data = parcel.readParcelable(DataItem.class.getClassLoader());
         parcel.readList(options, null);
 
     }
@@ -60,6 +63,7 @@ public class ExerciseTask implements Parcelable {
         dest.writeString(questInfo);
         dest.writeString(savedInfo);
         dest.writeInt(correct);
+        dest.writeParcelable(data, flags);
         dest.writeList(options);
     }
 

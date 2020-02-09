@@ -5,16 +5,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.TypedValue;
@@ -36,18 +33,16 @@ import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ResizeHeight;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
-import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
-import com.online.languages.study.studymaster.data.ExDataConverter;
-import com.online.languages.study.studymaster.data.ExDataItem;
 import com.online.languages.study.studymaster.data.ExerciseController;
-import com.online.languages.study.studymaster.data.ExerciseData;
 import com.online.languages.study.studymaster.data.ExerciseDataCollect;
 import com.online.languages.study.studymaster.data.ExerciseTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static com.online.languages.study.studymaster.Constants.EX_IMG_TYPE;
 
 public class ExerciseActivity extends BaseActivity {
 
@@ -62,7 +57,7 @@ public class ExerciseActivity extends BaseActivity {
 
     ArrayList<DataItem> originWordsList;
 
-    TextView fCounterInfoBox;
+    static TextView fCounterInfoBox;
     static TextView exResultTxt;
     static TextView exMarkTxt;
     static Button checkButton;
@@ -209,7 +204,8 @@ public class ExerciseActivity extends BaseActivity {
 
         saveStats = appSettings.getBoolean("test_all_save", true);
 
-                exShowTranscript = showTranscript;
+
+        exShowTranscript = showTranscript;
 
 
         fCounterInfoBox = findViewById(R.id.testInfoBox);
@@ -574,6 +570,9 @@ public class ExerciseActivity extends BaseActivity {
 
     }
 
+
+
+
     public void changeHeight(int height) {
 
         int h = convertDimen(height);
@@ -811,6 +810,12 @@ public class ExerciseActivity extends BaseActivity {
 
 
     private void setSaveStatsForAll () {
+
+        if (exType == EX_IMG_TYPE) {
+            saveStats = false;
+            exSaveStatsRadio.setVisible(false);
+            return;
+        }
 
         if (appSettings.getBoolean(Constants.SET_VERSION_TXT, false))  return;
 

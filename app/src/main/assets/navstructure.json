@@ -281,10 +281,10 @@
       [
 
         {"parent": "root", "type": "set", "id": "set_1_2", "title": "gone", "desc": ""},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100100", "title": "Архитектура", "desc": "Храмы, дворцы, исторические сооружения и т.п.", "image":  "gallery/arch/sobor_blazhenniy.jpg"},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100200", "title": "Памятники", "desc": "Самые знаменитые памятники и монументы.", "image":  "gallery/monument/medniy_vsadnik.jpg"},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100300", "title": "Изобразительное искусство", "desc": "Наиболее известные работы русских художников.", "image":  "gallery/paint/utro_v_lesu.jpg"},
-        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100500", "title": "Выдающиеся личности", "desc": "Видные деятели науки, культуры и искусства.", "image":  "gallery/pers/pers_chekhov.jpg"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100100", "title": "Архитектура", "desc": "Храмы, дворцы, исторические сооружения и т.п.", "image":  "gallery/arch/sobor_blazhenniy.jpg", "param":  "img_test"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100200", "title": "Памятники", "desc": "Самые знаменитые памятники и монументы.", "image":  "gallery/monument/medniy_vsadnik.jpg", "param":  "img_test"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100300", "title": "Изобразительное искусство", "desc": "Наиболее известные работы русских художников.", "image":  "gallery/paint/utro_v_lesu.jpg", "param":  "img_test"},
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100500", "title": "Выдающиеся личности", "desc": "Видные деятели науки, культуры и искусства.", "image":  "gallery/pers/pers_chekhov.jpg", "param":  "img_test"},
         {"parent": "root", "type": "simple", "spec": "image_list", "id": "10100600", "title": "Гербы и флаги", "desc": "Стяги, знамена, гербы, флаги.", "image":  "russia_gerb_1.jpg"},
 
         {"parent": "root", "type": "group", "id": "group_1_5", "spec": "maps", "title": "Карты", "desc": "Карты русских княжеств, российского государства, СССР.", "image":  "map_ussr.jpg"},

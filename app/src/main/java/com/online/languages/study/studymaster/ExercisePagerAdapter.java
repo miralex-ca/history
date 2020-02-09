@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
@@ -13,6 +14,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,12 +23,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.online.languages.study.studymaster.adapters.RoundedCornersTransformation;
+import com.online.languages.study.studymaster.adapters.RoundedTransformation;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.ExerciseTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+
+import static com.online.languages.study.studymaster.Constants.EX_IMG_TYPE;
+import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 
 class ExercisePagerAdapter extends PagerAdapter {
 
@@ -114,19 +123,17 @@ class ExercisePagerAdapter extends PagerAdapter {
 
         TextView text = itemView.findViewById(R.id.fCardText);
         TextView transcript = itemView.findViewById(R.id.fTranscriptBox);
+
         final RadioGroup radioGroup = itemView.findViewById(R.id.radioGroup1);
 
-
         radioGroup.removeAllViews();
-
 
         int paddingDp = 10;
         float density = context.getResources().getDisplayMetrics().density;
         int paddingPixel = (int)(paddingDp * density);
 
 
-        if (type ==1 ) radioGroup.setPadding(paddingPixel,0,0,0);
-
+        if (type == 1 ) radioGroup.setPadding(paddingPixel,0,0,0);
 
         lessOptions = false;
         int longCount = 0;
@@ -169,12 +176,13 @@ class ExercisePagerAdapter extends PagerAdapter {
         
 
         text.setText( exerciseTask.quest);
-
         setTextStyle(text, exerciseTask.quest);
-
 
         transcript.setText( exerciseTask.questInfo );
 
+        if (type == EX_IMG_TYPE ) {
+            insertImage(exerciseTask, itemView, position);
+        }
 
         setExOptions(radioGroup, exerciseTask);
 
@@ -209,6 +217,9 @@ class ExercisePagerAdapter extends PagerAdapter {
         return itemView;
     }
 
+
+
+
     private void changeHeight(LinearLayout quest, int height) {
         quest.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, context.getResources().getDisplayMetrics());
         quest.setLayoutParams(quest.getLayoutParams());
@@ -237,7 +248,7 @@ class ExercisePagerAdapter extends PagerAdapter {
 
         RadioButton radio;
 
-        if (type == 1) {
+        if (type == 1 || type == EX_IMG_TYPE) {
             exOpt = exOptTitleShort;
         } else {
             exOpt = exOptTitleLong;
@@ -317,7 +328,7 @@ class ExercisePagerAdapter extends PagerAdapter {
 
             RadioButton radio = (RadioButton) radiogroup.getChildAt(i);
 
-            if (type == 1) {
+            if ( type == 1 || type == EX_IMG_TYPE ) {
                 radio.setTypeface(null, Typeface.BOLD);
                 if (optionTxt.length() > 20)
                     radio.setTextSize(context.getResources().getInteger(R.integer.ex_opt_short_txt_size_small));
@@ -437,6 +448,37 @@ class ExercisePagerAdapter extends PagerAdapter {
 
 
         }
+    }
+
+
+
+    private void insertImage (ExerciseTask task, View itemView, int position) {
+
+        ImageView image = itemView.findViewById(R.id.exImage);
+
+
+        ExerciseActivity.fCounterInfoBox.setVisibility(View.GONE);
+
+        TextView exImgCounter = itemView.findViewById(R.id.exImgCounter);
+
+        View textWrapper = itemView.findViewById(R.id.exTextWrapper);
+        View imageWrapper = itemView.findViewById(R.id.exImageWrapper);
+
+        textWrapper.setVisibility(View.GONE);
+        imageWrapper.setVisibility(View.VISIBLE);
+
+
+        String counter = (position+1) + "/" +tasks.size();
+
+        exImgCounter.setText(counter);
+
+        Picasso.with(context )
+                .load("file:///android_asset/pics/"+ task.quest )
+                .transform(new RoundedCornersTransformation(20,0))
+                .fit()
+                .centerCrop()
+                .into(image);
+
     }
 
     private void saveCompleted(String id, int result) {

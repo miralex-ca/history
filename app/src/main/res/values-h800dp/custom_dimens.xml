@@ -13,12 +13,18 @@
 
 
 
-    <dimen name="_ex_card_field_minheight">606dp</dimen>
+    <dimen name="_ex_card_field_minheight">670dp</dimen>
+
+    <integer name="_ex_text_wrap">280</integer>
+    <integer name="_ex_text_wrap_high">310</integer>
+
+    <dimen name="_test_img_size">240dp</dimen>
+    <dimen name="test_img_width_tablet">360dp</dimen>
+
+
     <integer name="_ex_card_wrap">540</integer>
     <integer name="_ex_card_wrap_high">578</integer>
 
-    <integer name="_ex_text_wrap">190</integer>
-    <integer name="_ex_text_wrap_high">220</integer>
 
     <dimen name="_ex_opt_short_txt_min_height">55dp</dimen>
 

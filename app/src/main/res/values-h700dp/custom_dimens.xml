@@ -44,7 +44,8 @@
     <integer name="detail_text_size_medium" >16</integer>
     <integer name="detail_text_size_large" >18</integer>
 
-    <dimen name="_cat_item_info_txt_size">14sp</dimen>
+    <dimen name="_cat_item_title_txt_size">17sp</dimen>
+    <dimen name="_cat_item_info_txt_size">15sp</dimen>
 
     <dimen name="_flash_card_height">410dp</dimen>
     <dimen name="_flash_text_box_height">160dp</dimen>
@@ -72,16 +73,24 @@
 
 
 
-    <dimen name="_ex_card_field_minheight">500dp</dimen>
+    <dimen name="_ex_card_field_minheight">560dp</dimen>
+
+
+
+
+    <integer name="_ex_text_wrap">210</integer>
+    <integer name="_ex_text_wrap_high">240</integer>
+
+    <dimen name="_test_img_size">190dp</dimen>
+    <dimen name="test_img_width_tablet">350dp</dimen>
+
+
     <integer name="_ex_card_wrap">407</integer>
     <integer name="_ex_card_wrap_high">447</integer>
-
-
-    <integer name="_ex_text_wrap">140</integer>
-    <integer name="_ex_text_wrap_high">170</integer>
-
     <integer name="_ex_text_wrap_ex1">120</integer>
     <integer name="_ex_text_wrap_ex1_high">160</integer>
+
+
 
     <integer name="_ex_quest_short_txt_size_norm">24</integer>
     <integer name="_ex_quest_short_txt_size_small">27</integer>

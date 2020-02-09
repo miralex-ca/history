@@ -239,6 +239,9 @@ public class DataFromJson {
                     if (category.has("image")) cat.image = category.getString("image");
                     else cat.image = "";
 
+                    if (category.has("param")) cat.param = category.getString("param");
+                    else cat.param = "";
+
                     if (!cat.type.equals("group") && !cat.type.equals("set") && !cat.type.equals("page")) {
                         if (!set.contains(cat.id)) {
                             section.uniqueCategories.add(cat);
@@ -383,6 +386,16 @@ public class DataFromJson {
                 }
             } else {
                 dataItem.image = dataItem.id+".jpg";
+            }
+
+            if (itemInfo.has("item_info_1")) {
+                if (itemInfo.getString("item_info_1").equals("none")) {
+                    dataItem.item_info_1 = dataItem.item;
+                } else {
+                    dataItem.item_info_1 = itemInfo.getString("item_info_1");
+                }
+            } else {
+                dataItem.item_info_1 = dataItem.item;
             }
 
             if (itemInfo.has("mode")) {

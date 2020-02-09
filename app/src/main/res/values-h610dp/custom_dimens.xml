@@ -19,7 +19,6 @@
     <integer name="_search_dialog_height">430</integer>
     <integer name="_search_dialog_img_height">260</integer>
 
-
     <dimen name="_flash_card_height">340dp</dimen>
     <dimen name="_flash_text_box_height">120dp</dimen>
     <dimen name="_flash_translate_box_height">160dp</dimen>
@@ -27,14 +26,17 @@
     <dimen name="_flash_text_box_mirror_height">110dp</dimen>
     <dimen name="_flash_text_wrap_mirror_height">0dp</dimen>
 
+    <dimen name="_ex_card_field_minheight">475dp</dimen>
+
+    <dimen name="_test_img_size">170dp</dimen>
+    <integer name="_ex_text_wrap">185</integer>
+    <integer name="_ex_text_wrap_high">215</integer>
 
 
-    <dimen name="_ex_card_field_minheight">406dp</dimen>
+    <dimen name="test_img_width_tablet">320dp</dimen>
+
     <integer name="_ex_card_wrap">337</integer>
     <integer name="_ex_card_wrap_high">375</integer>
-
-    <integer name="_ex_text_wrap">115</integer>
-    <integer name="_ex_text_wrap_high">145</integer>
 
     <dimen name="_ex_opt_short_txt_min_height">42dp</dimen>
 

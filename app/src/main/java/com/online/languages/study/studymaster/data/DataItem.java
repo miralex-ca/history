@@ -13,6 +13,7 @@ public class DataItem implements Parcelable {
     public String divider = "";
     public int mode = 0;
 
+    public String item_info_1 = "";
 
     public int starred = 0;
     public long starred_time = 0;
@@ -62,6 +63,7 @@ public class DataItem implements Parcelable {
         this.info = parcel.readString();
         this.id = parcel.readString();
         this.image = parcel.readString();
+        this.item_info_1 = parcel.readString();
         this.filter = parcel.readString();
         this.db_filter = parcel.readString();
         this.starred = parcel.readInt();
@@ -81,6 +83,7 @@ public class DataItem implements Parcelable {
         dest.writeString(info);
         dest.writeString(id);
         dest.writeString(image);
+        dest.writeString(item_info_1);
         dest.writeString(filter);
         dest.writeString(db_filter);
         dest.writeInt(starred);

@@ -30,6 +30,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -37,6 +38,8 @@ import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withTagValue;
+import static com.online.languages.study.studymaster.Constants.IMG_LIST_LAYOUT;
 import static com.online.languages.study.studymaster.Constants.SET_GALLERY_LAYOUT;
 import static com.online.languages.study.studymaster.Constants.SET_GALLERY_LAYOUT_DEFAULT;
 import static org.hamcrest.Matchers.allOf;
@@ -117,6 +120,21 @@ public class AppStartTest {
         waitTime(800);
         pressBack(); // back to category
 
+
+        waitTime(100);
+        onView(ViewMatchers.withId(R.id.my_recycler_view))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
+
+        waitTime(100);
+        onView(ViewMatchers.withId(R.id.my_recycler_view))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
+
+        waitTime(100);
+        onView(ViewMatchers.withId(R.id.my_recycler_view))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(2, longClick()));
+
+
+
         /// swipe to exercises list
         waitTime(500);
         ViewInteraction viewPager = onView(
@@ -154,7 +172,7 @@ public class AppStartTest {
 
         boolean display = btmSetting.equals(context.getString(R.string.set_btm_nav_value_1)) || btmSetting.equals(context.getString(R.string.set_btm_nav_value_2));
 
-        if (display) {
+        if (display) { // bottom navigation displayed
 
             // open gallery
             waitTime(500);
@@ -183,10 +201,9 @@ public class AppStartTest {
 
             // waitTime(500);
             // actionMenuLayoutView.perform(click());
-            // open gallery category
+
+
             waitTime(300);
-
-
 
             int listType = dataManager.appSettings.getInt(SET_GALLERY_LAYOUT, SET_GALLERY_LAYOUT_DEFAULT);
             if (listType == 1) {
@@ -197,13 +214,23 @@ public class AppStartTest {
                 actionMenuLayoutView.perform(click());
             }
 
+
+            // open gallery category
             waitTime(300);
             ViewInteraction item = onView(
                     childAtPosition(withIndex(withId(R.id.recycler_view), 0), 0)
             );
             item.perform(click());
 
+
+
+
+
             waitTime(300);
+
+
+            int imgListType = dataManager.appSettings.getInt(IMG_LIST_LAYOUT, 3);
+
 
             ViewInteraction actionMenuLayoutView1 = onView(
                     allOf(withId(R.id.list_layout),
@@ -216,6 +243,47 @@ public class AppStartTest {
             actionMenuLayoutView1.perform(click());
             waitTime(300);
 
+
+            for (int i = 0; i < 3; i++) {
+
+                imgListType = dataManager.appSettings.getInt(IMG_LIST_LAYOUT, 3);
+
+                if (imgListType == 1) break;
+
+                waitTime(100);
+                actionMenuLayoutView1.perform(click());
+
+            }
+
+
+            waitTime(100);
+            ViewInteraction catItem1 = onView(
+                    childAtPosition(withIndex(withId(R.id.recycler_view), 0), 0)
+            );
+            catItem1.perform(longClick());
+            waitTime(500);
+
+
+            ViewInteraction catItem12 = onView(
+                    childAtPosition(withIndex(withId(R.id.recycler_view), 0), 0)
+            );
+
+            catItem12.perform(click());
+
+            waitTime(400);
+
+            ViewInteraction starBtn2 = onView(
+                    allOf(withId(R.id.fab),
+                            isDisplayed()));
+            starBtn2.perform(click());
+
+
+            waitTime(500);
+            pressBack();
+
+
+
+            waitTime(300);
             pressBack(); // back to gallery fragment
 
             // open starred fragment
@@ -298,8 +366,6 @@ public class AppStartTest {
             waitTime(300);
 
             pressBack(); // back to gallery fragment
-
-
 
             // open starred fragment in navigation
             waitTime(500);

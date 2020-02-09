@@ -13,12 +13,10 @@
     <LinearLayout
         android:focusableInTouchMode="true"
         android:layout_height="wrap_content"
-
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/main_card_top"
-
         style="@style/CardWrapper.Width"
         >
 
