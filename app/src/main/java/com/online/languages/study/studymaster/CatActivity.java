@@ -1,6 +1,7 @@
 package com.online.languages.study.studymaster;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -10,12 +11,14 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -61,6 +64,8 @@ public class CatActivity extends BaseActivity {
     AdView mAdView;
 
     OpenActivity openActivity;
+
+    MenuItem sortMenuItem;
 
 
 
@@ -155,13 +160,76 @@ public class CatActivity extends BaseActivity {
     }
 
     private void getDataItems() {
-
         DataManager dataManager = new DataManager(this);
         ArrayList<DataItem> data = dataManager.getCatDBList(categoryID);
-
         exerciseData = data;
         cardData = data;
     }
+
+
+    private void sortDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        String sort = appSettings.getString("sort_pers", getString(R.string.set_sort_pers_default));
+
+        int checkedItem = 0;
+
+        if (sort.equals("alphabet"))  checkedItem = 1;
+
+        builder.setTitle(getString(R.string.sort_pers_dialog_title))
+
+                .setSingleChoiceItems(R.array.set_sort_pers_list, checkedItem, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        showSort(which);
+                        dialog.dismiss();
+                    }
+                })
+
+                .setCancelable(true)
+
+                .setNegativeButton(R.string.dialog_close_txt,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
+    private void showSort(int num) {
+
+        String orderValue = getResources().getStringArray(R.array.set_sort_pers_values)[0];
+        if (num == 1) orderValue  = getResources().getStringArray(R.array.set_sort_pers_values)[1];
+
+        SharedPreferences.Editor editor = appSettings.edit();
+        editor.putString("sort_pers", orderValue);
+        editor.apply();
+
+
+        CatTabFragment1 fragment = (CatTabFragment1) adapter.getFragmentOne();
+        if (fragment != null) {
+            fragment.updateSort();
+        }
+
+        chekMenuItem();
+    }
+
+    private void chekMenuItem() {
+
+        String sort = appSettings.getString("sort_pers", getString(R.string.set_sort_pers_default));
+        if (sort.contains("alphabet")) {
+            sortMenuItem.setIcon(R.drawable.ic_sort_alphabet);
+        } else {
+            sortMenuItem.setIcon(R.drawable.ic_sort);
+        }
+    }
+
 
 
     public void showAlertDialog(View view, int position) {
@@ -173,11 +241,8 @@ public class CatActivity extends BaseActivity {
         Intent intent = new Intent(CatActivity.this, ScrollingActivity.class);
 
         intent.putExtra("starrable", true);
-
         intent.putExtra("id", id );
         intent.putExtra("position", position);
-
-        intent.putExtra("item", exerciseData.get(position));
 
         startActivityForResult(intent,1);
 
@@ -185,12 +250,22 @@ public class CatActivity extends BaseActivity {
 
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.stats_mode_info, menu);
+        getMenuInflater().inflate(R.menu.menu_category, menu);
         MenuItem modeMenuItem = menu.findItem(R.id.easy_mode);
+        sortMenuItem = menu.findItem(R.id.sort_from_menu);
 
         if (easy_mode) modeMenuItem.setVisible(true);
+
+        if (catSpec.equals("pers")) {
+            chekMenuItem();
+            sortMenuItem.setVisible(true);
+        }
+
+
 
         return true;
     }
@@ -206,6 +281,9 @@ public class CatActivity extends BaseActivity {
                 return true;
             case R.id.easy_mode:
                 dataModeDialog.openDialog();
+                return true;
+            case R.id.sort_from_menu:
+                sortDialog();
                 return true;
             case R.id.info_from_menu:
                 infoMessage();

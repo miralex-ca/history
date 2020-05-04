@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
+import static com.online.languages.study.studymaster.Constants.FILTER_CHRONO;
 import static com.online.languages.study.studymaster.Constants.SET_GALLERY;
 import static com.online.languages.study.studymaster.Constants.SET_HOMECARDS;
 import static com.online.languages.study.studymaster.Constants.SET_SIMPLIFIED;
@@ -188,6 +189,38 @@ public class DataManager {
         return dbHelper.checkCatProgressDB(catIds);
     }
 
+    public ArrayList<DataItem> chronoOrder(ArrayList<DataItem> dataItems) {
+
+        for (DataItem dataItem: dataItems) {
+            String orderTxt = getFilterValue(dataItem, FILTER_CHRONO);
+            dataItem.order = Integer.parseInt(orderTxt);
+        }
+
+        Collections.sort(dataItems, new OrderComparator());
+
+        return dataItems;
+    }
+
+    private String getFilterValue(DataItem dataItem, String filterTag) {
+
+        String dataFilter = dataItem.filter;
+
+        String filterValue = "3000";
+
+        String[] filters = dataFilter.split("&");
+
+        for (String filter: filters) {
+
+            if (filter.contains(filterTag)) {
+                String[] filterSplit = filter.split("=");
+               if (filterSplit.length >1) filterValue = filterSplit[1];
+            }
+
+        }
+
+        return filterValue;
+    }
+
 
     private class TimeStarredComparator implements Comparator<DataItem> {
         @Override
@@ -200,6 +233,13 @@ public class DataManager {
         @Override
         public int compare(DataItem o1, DataItem o2) {
             return (o1.rate - o2.rate);
+        }
+    }
+
+    private class OrderComparator implements Comparator<DataItem> {
+        @Override
+        public int compare(DataItem o1, DataItem o2) {
+            return (o1.order - o2.order);
         }
     }
 

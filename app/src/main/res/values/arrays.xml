@@ -64,6 +64,18 @@
     <string name="set_test_all_limit_default">30</string>
 
 
+    <string-array name="set_sort_pers_list">
+        <item>@string/set_sort_pers_1</item>
+        <item>@string/set_sort_pers_2</item>
+    </string-array>
+
+    <string-array name="set_sort_pers_values">
+        <item>@string/set_sort_pers_default</item>
+        <item>alphabet</item>
+    </string-array>
+
+    <string name="set_sort_pers_default">chrono</string>
+
 
     <string-array name="data_control_tests_list_values">
         <item>dates</item>

@@ -348,6 +348,7 @@ This will allow to restore your data from a previous backup. Note that this will
     <string name="menu_layout">Layout</string>
     <string name="menu_fullscreen">Fullscreen</string>
     <string name="menu_open_cat">Open the category</string>
+    <string name="menu_sort">Sort list</string>
     <string name="stats_page_activity">Section stats</string>
     <string name="stats_total">TOTAL: %d%%</string>
     <string name="stats_tests">TESTS:   %d%% * 0.5</string>

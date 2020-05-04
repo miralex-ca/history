@@ -209,7 +209,10 @@
     </style>
 
 
-    <style name="ToolBarStyle" />
+    <style name="ToolBarStyle">
+
+    </style>
+
 
 
     <style name="MapToolBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

@@ -46,16 +46,21 @@ public class CatTabFragment1 extends Fragment {
 
     SharedPreferences appSettings;
 
+    RecyclerView recyclerView;
+    int showStatus;
+    String theme;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_cat_1, container, false);
 
+        appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        theme = appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
+        showStatus = Integer.valueOf(appSettings.getString("show_status", Constants.STATUS_SHOW_DEFAULT));
 
         dataManager = new DataManager(getActivity());
-        appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        int showStatus = Integer.valueOf(appSettings.getString("show_status", Constants.STATUS_SHOW_DEFAULT));
 
         String forceStatus = "no";
         if (getActivity().getIntent().hasExtra(Constants.EXTRA_FORCE_STATUS)) {
@@ -64,32 +69,29 @@ public class CatTabFragment1 extends Fragment {
 
         if (forceStatus.equals("always")) showStatus = 2;
 
-        String id = CatActivity.categoryID;
 
-        data = dataManager.getCatDBList(id);
 
-        data = insertDivider(data);
 
         //DataItem d = data.get(0);
         // String s  = "ID: " + d.id + "; item: " + d.item + " ; desc: "+ d.info;
         // Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
 
 
-        String theme = appSettings.getString("theme", Constants.SET_THEME_DEFAULT);
+        recyclerView = rootView.findViewById(R.id.my_recycler_view);
 
-        RecyclerView recyclerView = rootView.findViewById(R.id.my_recycler_view);
-        adapter = new ContentAdapter(getActivity(), data, showStatus, theme);
+
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration( new DividerItemDecoration(getActivity()) );
-        recyclerView.setAdapter(adapter);
+
+        updateList();
 
         openView(recyclerView);
 
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
+        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
@@ -113,16 +115,55 @@ public class CatTabFragment1 extends Fragment {
     }
 
 
+    private void updateList() {
+
+        getDataList();
+
+        adapter = new ContentAdapter(getActivity(), data, showStatus, theme);
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    public void updateSort() {
+
+        recyclerView.animate().alpha(0f).setDuration(100);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                updateList();
+                recyclerView.animate().alpha(1.0f).setDuration(150);
+            }
+        }, 150);
+
+
+    }
+
+
+
+    public void getDataList() {
+
+        String id = CatActivity.categoryID;
+
+        String sort = appSettings.getString("sort_pers", getString(R.string.set_sort_pers_default));
+
+        data = dataManager.getCatDBList(id);
+
+        if (sort.equals("chrono") && CatActivity.catSpec.contains("pers")) data = dataManager.chronoOrder(data);
+
+        data = insertDivider(data);
+
+    }
+
 
 
     public void changeStarred(int position) {   /// check just one item
 
         String id = data.get(position).id;
-        Boolean starred = dataManager.checkStarStatusById(id );
-
+        boolean starred = dataManager.checkStarStatusById(id );
 
         int status = dataManager.dbHelper.setStarred(id, !starred); // id to id
-
 
         Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -158,11 +199,12 @@ public class CatTabFragment1 extends Fragment {
             }
 
             list.add(dataItem);
-
         }
 
         return list;
     }
+
+
 
 
 
@@ -183,7 +225,6 @@ public class CatTabFragment1 extends Fragment {
             }
         }, 50);
     }
-
 
 
     @Override

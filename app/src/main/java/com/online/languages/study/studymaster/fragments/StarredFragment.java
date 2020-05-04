@@ -53,9 +53,6 @@ public class StarredFragment extends Fragment {
     View infoBox;
     TextView countZero, desc;
 
-    StarredAdapter adapter;
-    RecyclerView recyclerView;
-
     ArrayList<DataItem> words;
 
     LinearLayout previewList;
@@ -130,7 +127,6 @@ public class StarredFragment extends Fragment {
         SharedPreferences.Editor editor = appSettings.edit();
         editor.putInt(STARRED_TAB_ACTIVE, tab);
         editor.apply();
-
     }
 
 

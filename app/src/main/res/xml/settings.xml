@@ -176,11 +176,23 @@
             android:title="@string/set_test_all_limit_title"
             android:summary="@string/set_test_all_limit_summary"
             android:dialogTitle="@string/set_test_all_limit_dialog_title"
-
             android:entries="@array/set_test_all_limit_list"
             android:entryValues="@array/set_test_all_limit_values"
             android:defaultValue="@string/set_test_all_limit_default"
             />
+
+        <ListPreference
+            app:iconSpaceReserved="false"
+            android:key="sort_pers"
+            android:title="@string/set_sort_pers_title"
+            android:summary="@string/set_sort_pers_summary"
+            android:dialogTitle="@string/set_sort_pers_dialog_title"
+
+            android:entries="@array/set_sort_pers_list"
+            android:entryValues="@array/set_sort_pers_values"
+            android:defaultValue="@string/set_sort_pers_default"
+            />
+
 
         <ListPreference
             app:iconSpaceReserved="false"

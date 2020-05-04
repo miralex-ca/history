@@ -21,7 +21,6 @@
 
         {"parent": "root", "type": "set", "id": "set_1_2", "title": "none", "desc": ""},
 
-
         {"parent": "root", "type": "extra", "spec": "pers", "id": "10010200", "title": "Исторические личности", "desc": "", "review": "false"},
 
         {"parent": "root", "type": "group", "id": "group_1_1", "title": "Термины и понятия", "desc": ""},
@@ -57,7 +56,6 @@
         {"parent": "root", "type": "extra", "spec": "pers", "id": "10020200", "title": "Исторические личности", "desc": "", "review": "false"},
 
         {"parent": "root", "type": "extra", "spec": "term", "id": "10020300", "title": "Термины и понятия", "desc": "", "review": "false"},
-
 
         {"parent": "root", "type": "group", "id": "group_2_1", "spec": "maps", "title": "Карты", "desc": ""},
         {"parent": "group_2_1", "type": "page", "spec": "map", "id": "10020510", "title": "Русь в 1-й пол. XIII в.", "desc": "Карта Киевской Руси в 1237 г."},

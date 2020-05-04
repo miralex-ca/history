@@ -23,6 +23,8 @@ public class DataItem implements Parcelable {
     public String filter = "";
     public String db_filter = "";
 
+    public int order = 0;
+
     public long time = 0;
     public long time_errors = 0;
 

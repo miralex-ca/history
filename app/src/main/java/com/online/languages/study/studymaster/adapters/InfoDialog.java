@@ -113,6 +113,7 @@ public class InfoDialog {
 
 
 
+
     private void showCustomDialog(String title, String text) {
 
 
@@ -146,7 +147,6 @@ public class InfoDialog {
 
         AlertDialog alert = builder.create();
         alert.show();
-
 
 
 

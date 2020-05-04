@@ -221,6 +221,14 @@
     <string name="set_test_all_limit_2">60 заданий</string>
     <string name="set_test_all_limit_3">100 заданий</string>
 
+
+    <string name="set_sort_pers_title">Сортировка личностей</string>
+    <string name="set_sort_pers_summary">Текущая: %s</string>
+    <string name="set_sort_pers_dialog_title">Сортировка</string>
+
+    <string name="set_sort_pers_1">по хронологии</string>
+    <string name="set_sort_pers_2">по алфавиту</string>
+
     <string name="set_btm_nav_title">Нижняя панели навигации</string>
     <string name="set_btm_nav_summary">%s</string>
     <string name="set_btm_nav_dialog_title">Нижняя навигация</string>
@@ -530,6 +538,8 @@
 
     <string name="msg_version_name">(ИР, версия %s)</string>
     <string name="menu_img_test">Пройти тест</string>
+    <string name="menu_sort">Сортировка</string>
+    <string name="sort_pers_dialog_title">Сортировка личностей</string>
 
 
 </resources>
