@@ -317,7 +317,6 @@ public class AppStartTest {
                     .perform(NavigationViewActions.navigateTo(R.id.nav_gallery));
 
 
-
             /// change gallery layout
             waitTime(200);
 

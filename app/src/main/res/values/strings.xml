@@ -57,6 +57,7 @@
         <item>@string/title_contact_txt</item>
     </string-array>
 
+    <string name="title_main_txt">@string/app_name</string>
     <string name="title_home_txt">Главная</string>
     <string name="title_gallery_txt">Галерея</string>
     <string name="title_starred_txt">Избранное</string>
@@ -236,11 +237,13 @@
     <string name="set_btm_nav_1">Отображать, убрать пункты из меню</string>
     <string name="set_btm_nav_2">Отображать, оставить пункты в меню</string>
     <string name="set_btm_nav_3">Не отображать</string>
+    <string name="set_btm_nav_4">Отображать и убрать меню</string>
 
     <string name="set_btm_nav_value_default">@string/set_btm_nav_value_3</string>
     <string name="set_btm_nav_value_1">bottom</string>
     <string name="set_btm_nav_value_2">bottom_menu</string>
     <string name="set_btm_nav_value_3">never</string>
+    <string name="set_btm_nav_value_4">bottom_only</string>
 
 
     <string name="set_data_control_title">Выбор данных раздела</string>
@@ -540,6 +543,7 @@
     <string name="menu_img_test">Пройти тест</string>
     <string name="menu_sort">Сортировка</string>
     <string name="sort_pers_dialog_title">Сортировка личностей</string>
+    <string name="nav_more">Ещё</string>
 
 
 </resources>

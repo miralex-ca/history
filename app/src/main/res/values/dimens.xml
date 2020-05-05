@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -287,5 +287,28 @@
 
     <dimen name="heightTabIndicator">3dp</dimen>
 
+    <dimen name="design_bottom_navigation_text_size" tools:override="true">11sp</dimen>
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">13sp</dimen>
+
+
+    <!-- inactive tab icon style -->
+    <style name="BottomNav"/>
+    <style name="BottomNav.Inactive">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomNav.Active">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+
+    <dimen name="nav_icon_dialog_size">32dp</dimen>
+
+    <style name="NavDialogItem" >
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
 
 </resources>

@@ -231,8 +231,7 @@
     <color name="colorNavBgStart_red_n">#9C1414</color>
     <color name="colorNavBgCenter_red_n">#860F0F</color>
     <color name="colorNavBgEnd_red_n">#740B0B</color>
-
-
+    <color name="colorDialogBg_lite">#fff</color>
 
 
 </resources>

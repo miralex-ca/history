@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -15,6 +17,8 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -35,10 +39,13 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.online.languages.study.studymaster.adapters.InfoDialog;
 import com.online.languages.study.studymaster.adapters.MenuListAdapter;
+import com.online.languages.study.studymaster.adapters.NavigationDialog;
 import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataFromJson;
@@ -112,6 +119,9 @@ public class MainActivity extends BaseActivity
     DataManager dataManager;
 
     Toolbar toolbar;
+
+    String btmNavState = "";
+    boolean btmOnly = false;
 
 
     public static ArrayList<DataItem> errorsList;
@@ -229,6 +239,7 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
 
 
+
         if (multipane) {
             listView = findViewById(R.id.menu_list);
             mMenuListAdapter = new MenuListAdapter(this, menuTitles, menuActiveItem);
@@ -242,23 +253,12 @@ public class MainActivity extends BaseActivity
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
             drawer.addDrawerListener(toggle);
             toggle.syncState();
+
             navigationView = findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-            bottomNav = findViewById(R.id.navigation);
-
-            if (dataManager.gallerySection) {
-                bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
-            } else {
-                bottomNav.inflateMenu(R.menu.bottom_nav);
-            }
-
-            checkGalleryNavItem(navigationView);
-
-            bottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-            bottomNavBox = findViewById(R.id.bottomNavBox);
-
             if (Build.VERSION.SDK_INT >= 21) bottomNavDisplay();
+
         }
 
         fragmentManager = getSupportFragmentManager();
@@ -278,6 +278,7 @@ public class MainActivity extends BaseActivity
 
             fPages = fragmentManager.beginTransaction();
             fPages.replace(R.id.content_fragment, homeFragment, "home");
+            fPages.disallowAddToBackStack();
             fPages.commit();
         }
 
@@ -329,7 +330,62 @@ public class MainActivity extends BaseActivity
 
         String btmSetting = appSettings.getString("btm_nav", getString(R.string.set_btm_nav_value_default));
 
-        Boolean display = btmSetting.equals(getResources().getString(R.string.set_btm_nav_value_1)) || btmSetting.equals(getString(R.string.set_btm_nav_value_2));
+        btmOnly = btmSetting.equals(getString(R.string.set_btm_nav_value_4));
+
+        boolean sameTypeWithMenu = false;
+
+        sameTypeWithMenu =  (btmNavState.equals(getString(R.string.set_btm_nav_value_1)) || btmNavState.equals(getString(R.string.set_btm_nav_value_2)) )
+                        &&
+                        ( btmSetting.equals(getString(R.string.set_btm_nav_value_1)) || btmSetting.equals(getString(R.string.set_btm_nav_value_2)));
+
+
+
+        if ( !btmNavState.equals(btmSetting)  && !sameTypeWithMenu )  {
+
+
+          //  bottomNav = new BottomNavigationView(this);
+
+                setTitle("");
+
+                if (btmOnly) {
+
+                    bottomNav = findViewById(R.id.navigation1);
+                    bottomNav.setVisibility(View.VISIBLE);
+                    findViewById(R.id.navigation).setVisibility(View.GONE);
+                    setDrawerState(false);
+
+                } else {
+                    bottomNav = findViewById(R.id.navigation);
+                    bottomNav.setVisibility(View.VISIBLE);
+                    findViewById(R.id.navigation1).setVisibility(View.GONE);
+                    setDrawerState(true);
+
+
+                }
+
+                setToolbarTitle(menuActiveItem);
+
+
+              bottomNav.getMenu().clear();
+
+                if (dataManager.gallerySection) {
+                    if (btmOnly) bottomNav.inflateMenu(R.menu.bottom_nav_gallery_more);
+                    else bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
+
+                } else {
+                    bottomNav.inflateMenu(R.menu.bottom_nav);
+                }
+
+                btmNavState = btmSetting;
+
+
+        }
+
+        bottomNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomNavBox = findViewById(R.id.bottomNavBox);
+
+
+        Boolean display = btmSetting.equals(getResources().getString(R.string.set_btm_nav_value_1)) || btmSetting.equals(getString(R.string.set_btm_nav_value_2)) || btmSetting.equals(getString(R.string.set_btm_nav_value_4));
 
         if (Build.VERSION.SDK_INT < 21) display = false;
 
@@ -368,6 +424,7 @@ public class MainActivity extends BaseActivity
         }
 
         checkGalleryNavItem(navigationView);
+        updateMenuList(menuActiveItem);
     }
 
 
@@ -484,7 +541,7 @@ public class MainActivity extends BaseActivity
             fPages.replace(R.id.content_fragment, contactFragment, tag);
         }
 
-        if (position !=0 ) fPages.addToBackStack(tag);
+        fPages.disallowAddToBackStack();
 
         fPages.commit();
 
@@ -541,13 +598,13 @@ public class MainActivity extends BaseActivity
 
                 //// enable drawer indicator
                 shouldBack = false;
-                toggle.setDrawerIndicatorEnabled(true);
+                //toggle.setDrawerIndicatorEnabled(true);
 
             } else {
                 shouldBack=true;
                 /// change drawer indicator to arrow up
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                toggle.setDrawerIndicatorEnabled(false);
+                //toggle.setDrawerIndicatorEnabled(false);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
 
@@ -558,14 +615,44 @@ public class MainActivity extends BaseActivity
                 findViewById(R.id.nav_footer).setVisibility(View.VISIBLE);
             }
         }
+
+
+    }
+
+
+    public void setDrawerState(boolean isEnabled) {
+
+        if ( isEnabled ) {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            toggle.onDrawerStateChanged(DrawerLayout.LOCK_MODE_UNLOCKED);
+            toggle.setDrawerIndicatorEnabled(true);
+            toggle.syncState();
+        }
+        else {
+
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            toggle.onDrawerStateChanged(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            toggle.setDrawerIndicatorEnabled(false);
+            toggle.syncState();
+
+           /// setTitle("    " + menuTitles[menuActiveItem]);
+
+        }
     }
 
 
     public void setToolbarTitle(int position) {
-        setTitle(menuTitles[position]);
+
+        String title = menuTitles[position];
+
+        if (position==0) title = getString(R.string.title_main_txt);
+
+        if (btmOnly) title = "   " + title;
+
+        setTitle(title);
     }
 
-    private void onMenuItemClicker(int position) {
+    public void onMenuItemClicker(int position) {
         openPageFromMenu(position);
         updateMenuList(position);
     }
@@ -760,6 +847,8 @@ public class MainActivity extends BaseActivity
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+            updateMenuList(menuActiveItem);
+
             int id = item.getItemId();
             int position = 0;
 
@@ -769,14 +858,32 @@ public class MainActivity extends BaseActivity
                 position  = 2;
             } else if (id == R.id.nav_statistic) {
                 position  = 3;
+            } else if (id == R.id.nav_more) {
+                position  = 100;
             }
 
-            onMenuItemClicker(position);
 
-            return true;
+            if (position == 100) {
+
+                openNavDialog();
+                return false;
+
+            } else {
+                onMenuItemClicker(position);
+                return true;
+            }
+
+
         }
     };
 
+
+    public void openNavDialog() {
+
+        NavigationDialog navDialog = new NavigationDialog(this, MainActivity.this);
+        navDialog.openInfoDialog("Navigation");
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -795,18 +902,15 @@ public class MainActivity extends BaseActivity
 
 
     private void goBack() {
-        String t= "x";
-        String t2 = "z";
-        if (fragmentManager.getBackStackEntryCount() > 1) {
-            int index = fragmentManager.getBackStackEntryCount() - 2;
-            t = fragmentManager.getBackStackEntryAt(index).getName();
 
+        if (menuActiveItem!=0) {
+            openPage(0);
+            updateMenuList(0);
+
+        } else {
+            super.onBackPressed();
         }
-        if (fragmentManager.getBackStackEntryCount() > 0)
-            t2 = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
 
-        updateMenuList(0);
-        super.onBackPressed();
     }
 
 

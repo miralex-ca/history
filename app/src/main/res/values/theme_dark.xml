@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorDialogBg">#252525</color>
+
     <color name="colorPrimary_dark">#151515</color>
     <color name="colorPrimaryDark_dark">#000</color>
 
-    <color name="colorMenu_dark">#252525</color>
+    <color name="colorDialogBg">#3D3D3D</color>
+    <color name="colorMenu_dark">#313131</color>
 
     <color name="colorAccent_dk">#fcfcfc</color>    <!-- used for star button -->
 
     <color name="colorBtmNav_inactive_dark">#A1FCFCFC</color>
-
 
 
     <color name="colorExAccent_dk">#B0BEC5</color>

@@ -103,7 +103,7 @@ public class GalleryFragment extends Fragment {
 
         navSection = navStructure.getNavSectionByID(tSectionID);
 
-        getActivity().setTitle(navSection.title);
+        //getActivity().setTitle(navSection.title);
 
         openActivity = new OpenActivity(getActivity());
 

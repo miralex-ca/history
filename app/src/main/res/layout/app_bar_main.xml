@@ -47,6 +47,7 @@
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorBtmNavBg"
@@ -56,9 +57,23 @@
             app:labelVisibilityMode="labeled"
              />
 
+
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/navigation1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorBtmNavBg"
+                android:foreground="?attr/selectableItemBackground"
+                app:itemIconTint="@color/color_nav_btm_item"
+                app:itemTextColor="@color/color_nav_btm_item"
+                app:labelVisibilityMode="labeled"
+                app:itemTextAppearanceInactive="@style/BottomNav.Inactive"
+                app:itemTextAppearanceActive="@style/BottomNav.Active"
+                />
+
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
 
 
 

@@ -148,8 +148,6 @@ public class InfoDialog {
         AlertDialog alert = builder.create();
         alert.show();
 
-
-
     }
 
 

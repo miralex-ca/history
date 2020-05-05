@@ -73,7 +73,6 @@ public class PrefsFragment extends PreferenceFragmentCompat {
         if (full_version)  versionItem.setVisible(false);
 
 
-
         final ListPreference btm = (ListPreference) getPreferenceManager().findPreference("btm_nav");
         if (Build.VERSION.SDK_INT < 21) btm.setVisible(false);
 
@@ -111,9 +110,6 @@ public class PrefsFragment extends PreferenceFragmentCompat {
                         return true;
                     }
                 });
-
-
-
 
 
 
