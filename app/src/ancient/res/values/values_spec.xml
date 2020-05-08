@@ -3,8 +3,8 @@
 
     <string name="encoded_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4PHy7G/IfsZAvQSQopLsbKmp0vXJdmDxsvVm2fD/GgGDgwn/d38qgZWZVrvMtg5o7toenLn9Naxu0NXt6KIYLH0nFzImNsNqewvrsleaDn/XMaDRzJ/3ZArS8uM5GdTX2DinPSWG6wgkyyRjZ8EGrg52pabV0qm1md0HonWuZhELZPWp1vYgVk2O3oKEeG9QnBDqFpRv2GZm9qAQ0INiP0BCH89X7cxOfcKktr4c+/k5ReFX4+J1uymYtJGIj/FfoHvwILfi2++BCdfq6UkEX3p/neiRfP0Bg6FaeNyQjyI9kCjJZ2d1UescJg0pSr2GFm6RXZKM+ySLuCG5p33yIQIDAQAB</string>
 
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4215105690061587/7707206650</string>
-    <string name="admob_ap_id" translatable="false">ca-app-pub-4215105690061587~1169718468</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4215105690061587/3049349159</string>
+    <string name="admob_ap_id" translatable="false">ca-app-pub-4215105690061587~1572615954</string>
 
     <string name="app_name">История Древнего Мира</string>
     <color name="ic_launcher_background">#F7BF33</color>
