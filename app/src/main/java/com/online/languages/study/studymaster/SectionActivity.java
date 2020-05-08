@@ -148,6 +148,9 @@ public class SectionActivity extends BaseActivity {
         sectionTitle.setText(navSection.title_short);
         sectionDesc.setText(navSection.desc);
 
+
+
+
     }
 
     private void updateContent() {

@@ -287,11 +287,10 @@
 
     <dimen name="heightTabIndicator">3dp</dimen>
 
-    <dimen name="design_bottom_navigation_text_size" tools:override="true">11sp</dimen>
-    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">13sp</dimen>
+    <!-- dimen name="design_bottom_navigation_text_size" tools:override="true">11sp</dimen -->
+    <!-- dimen name="design_bottom_navigation_active_text_size" tools:override="true">13sp</dimen -->
 
 
-    <!-- inactive tab icon style -->
     <style name="BottomNav"/>
     <style name="BottomNav.Inactive">
         <item name="android:textSize">10sp</item>

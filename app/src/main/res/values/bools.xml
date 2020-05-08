@@ -10,5 +10,6 @@
     <bool name="multipane">false</bool>
     <bool name="bottom_nav_default">false</bool>
     <bool name="hide_rate">true</bool>
+    <bool name="wide">false</bool>
 
 </resources>

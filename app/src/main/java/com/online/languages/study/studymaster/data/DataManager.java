@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -275,6 +276,15 @@ public class DataManager {
         simplified = appSettings.getBoolean(SET_SIMPLIFIED, false);
         homecards = appSettings.getBoolean(SET_HOMECARDS, false);
         gallerySection = appSettings.getBoolean(SET_GALLERY, false);
+    }
+
+    public void getScreenSize() {
+
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+
+        Toast.makeText(context, "H: " + dpHeight + ": W"+ dpWidth, Toast.LENGTH_SHORT).show();
     }
 
 }

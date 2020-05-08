@@ -257,7 +257,7 @@ public class MainActivity extends BaseActivity
             navigationView = findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-            if (Build.VERSION.SDK_INT >= 21) bottomNavDisplay();
+             bottomNavDisplay();
 
         }
 
@@ -303,6 +303,7 @@ public class MainActivity extends BaseActivity
         homeFragment.setArguments(bundle);
         statsFragment.setArguments(bundle);
         galleryFragment.setArguments(bundle);
+
 
     }
 

@@ -94,7 +94,10 @@ public class CatActivity extends BaseActivity {
         String title = getIntent().getStringExtra("cat_title");
 
         if (catSpec.equals("pers")) {
-            if (easy_mode) title = getResources().getString(R.string.persons_title);
+            if (easy_mode || !getResources().getBoolean(R.bool.wide))  {
+                if (!getResources().getBoolean(R.bool.tablet))
+                title = getResources().getString(R.string.persons_title);
+            }
         }
 
         setTitle(title);

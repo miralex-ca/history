@@ -376,6 +376,10 @@
     </style>
 
 
+    <style name="MenuDialog">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
     <style name="CardViewStyle.Widget">
         <item name="cardBackgroundColor">?attr/colorCardWidgetBg</item>
         <item name="android:layout_margin">@dimen/card_margin_default</item>

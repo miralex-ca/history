@@ -234,10 +234,10 @@
     <string name="set_btm_nav_summary">%s</string>
     <string name="set_btm_nav_dialog_title">Нижняя навигация</string>
 
-    <string name="set_btm_nav_1">Отображать, убрать пункты из меню</string>
-    <string name="set_btm_nav_2">Отображать, оставить пункты в меню</string>
+    <string name="set_btm_nav_1">Отображать, убрать элементы из меню</string>
+    <string name="set_btm_nav_2">Отображать, оставить все элементы в меню</string>
     <string name="set_btm_nav_3">Не отображать</string>
-    <string name="set_btm_nav_4">Отображать и убрать меню</string>
+    <string name="set_btm_nav_4">Отображать, убрать меню полностью</string>
 
     <string name="set_btm_nav_value_default">@string/set_btm_nav_value_3</string>
     <string name="set_btm_nav_value_1">bottom</string>
@@ -245,14 +245,12 @@
     <string name="set_btm_nav_value_3">never</string>
     <string name="set_btm_nav_value_4">bottom_only</string>
 
-
     <string name="set_data_control_title">Выбор данных раздела</string>
     <string name="set_data_control_summary">Учет в статистике: %s</string>
     <string name="set_data_control_dialog_title">Учитывать в разделе</string>
 
     <string name="set_data_control_dates">Только события</string>
     <string name="set_data_control_all">События, личности, термины</string>
-
 
     <string name="set_data_mode_title">Режим</string>
     <string name="set_data_mode_summary">Текущий: %s</string>

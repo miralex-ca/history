@@ -65,7 +65,7 @@ public class OpenActivity  {
 
     public void setOrientation() {
         if(context.getResources().getBoolean(R.bool.portrait_only)){
-           // ((Activity)context).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            ((Activity)context).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
 
