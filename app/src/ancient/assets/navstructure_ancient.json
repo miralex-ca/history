@@ -29,7 +29,7 @@
       "type": "simple",
       "categories":
       [
-        {"parent": "root", "type": "simple",  "spec": "pers", "id": "01020", "title": "Личности", "desc": ""}
+        {"parent": "root", "type": "simple",  "spec": "pers", "id": "01020", "title": "Личности", "desc": "", "param": "nosort" }
 
       ]
     },

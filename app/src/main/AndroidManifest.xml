@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
 
-
         <activity
             android:name=".AppStart"
             android:theme="@style/SplashTheme">

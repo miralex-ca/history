@@ -86,4 +86,11 @@
     <color name="colorContactIcon">#8e8d8d</color>
 
 
+    <style name="BottomNav.Inactive">
+    </style>
+
+    <style name="BottomNav.Active">
+    </style>
+
+
 </resources>

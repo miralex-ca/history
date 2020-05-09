@@ -361,7 +361,6 @@ public class MainActivity extends BaseActivity
                     findViewById(R.id.navigation1).setVisibility(View.GONE);
                     setDrawerState(true);
 
-
                 }
 
                 setToolbarTitle(menuActiveItem);
@@ -374,7 +373,8 @@ public class MainActivity extends BaseActivity
                     else bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
 
                 } else {
-                    bottomNav.inflateMenu(R.menu.bottom_nav);
+                    if (btmOnly) bottomNav.inflateMenu(R.menu.bottom_nav_more);
+                    else bottomNav.inflateMenu(R.menu.bottom_nav);
                 }
 
                 btmNavState = btmSetting;
@@ -595,6 +595,8 @@ public class MainActivity extends BaseActivity
                     if (activePosition < 3 ) bottomNav.getMenu().getItem(activePosition).setChecked(true);
                 }
 
+                //Toast.makeText(MainActivity.this, "Num: " + menuActiveItem + " : "+ activePosition, Toast.LENGTH_SHORT).show();
+
                 checkGalleryNavItem(navigationView);
 
                 //// enable drawer indicator
@@ -616,7 +618,6 @@ public class MainActivity extends BaseActivity
                 findViewById(R.id.nav_footer).setVisibility(View.VISIBLE);
             }
         }
-
 
     }
 
@@ -848,7 +849,9 @@ public class MainActivity extends BaseActivity
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            updateMenuList(menuActiveItem);
+           // updateMenuList(menuActiveItem);
+
+
 
             int id = item.getItemId();
             int position = 0;

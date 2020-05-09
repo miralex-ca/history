@@ -55,6 +55,7 @@ public class PrefsFragment extends PreferenceFragmentCompat {
         screen.removePreference(hidden);
 
         Preference controlTests = getPreferenceManager().findPreference("control_tests");
+        Preference sortPers = getPreferenceManager().findPreference("sort_pers");
 
         DataManager dataManager = new DataManager(getActivity(), true);
 
@@ -62,6 +63,7 @@ public class PrefsFragment extends PreferenceFragmentCompat {
             Preference data = getPreferenceManager().findPreference("data");
             screen.removePreference(data);
             controlTests.setVisible(false);
+            sortPers.setVisible(false);
         }
 
 

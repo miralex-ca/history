@@ -18,6 +18,7 @@ public class NavCategory implements Parcelable {
     public String spec;
     public String image;
     public String param = "";
+    public String sort;
 
     public ArrayList<Integer> tests = new ArrayList<>();
 

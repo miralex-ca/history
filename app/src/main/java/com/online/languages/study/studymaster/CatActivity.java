@@ -30,6 +30,7 @@ import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
+import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.Section;
 import com.online.languages.study.studymaster.fragments.CatTabFragment1;
 
@@ -67,6 +68,7 @@ public class CatActivity extends BaseActivity {
 
     MenuItem sortMenuItem;
 
+    DataManager dataManager;
 
 
 
@@ -84,6 +86,7 @@ public class CatActivity extends BaseActivity {
 
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new DataModeDialog(this);
+        dataManager = new DataManager(this, true);
 
         openActivity = new OpenActivity(this);
         openActivity.setOrientation();
@@ -265,10 +268,8 @@ public class CatActivity extends BaseActivity {
 
         if (catSpec.equals("pers")) {
             chekMenuItem();
-            sortMenuItem.setVisible(true);
+            if (!dataManager.simplified)  sortMenuItem.setVisible(true);
         }
-
-
 
         return true;
     }

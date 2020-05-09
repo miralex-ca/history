@@ -20,6 +20,7 @@ public class Constants {
     public static final String LIST_STUDIED = "studied";
 
     public static final int STARRED_LIMIT = 30;
+
     public static final int LIMIT_STARRED_EX = 1;
 
     public static final int RATE_INCLUDE = 4; // used for priority of unfamiliar dataItems in tests

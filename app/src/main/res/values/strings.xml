@@ -542,6 +542,7 @@
     <string name="menu_sort">Сортировка</string>
     <string name="sort_pers_dialog_title">Сортировка личностей</string>
     <string name="nav_more">Ещё</string>
+    <string name="nav_more_version">Другое</string>
 
 
 </resources>
