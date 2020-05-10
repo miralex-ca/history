@@ -31,7 +31,7 @@
     <string name="app_structure_file">navstructure_ancient.json</string>
     <string name="app_data_file">data_ancient.json</string>
     <string name="app_detail_file">details_ancient.json</string>
-    <string name="app_reference_file">reference_ancient</string>
+    <string name="app_reference_file">reference</string>
     <dimen name="nav_header_title_size">18sp</dimen>
 
     <integer name="section_id_length">5</integer>
