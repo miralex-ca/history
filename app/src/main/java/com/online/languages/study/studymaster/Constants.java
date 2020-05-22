@@ -91,7 +91,7 @@ public class Constants {
 
     public static final String MAPS_FOLDER= "pics/maps";
 
-    public static final String STARRED_TAB_ACTIVE = "starred_tab_active";
+    public static final String STARRED_TAB_ACTIVE = "starred_active_tab";
 
     public static final int GALLERY_REQUESTCODE = 100;
 
@@ -104,11 +104,6 @@ public class Constants {
         STUDIED,
         FAMILIAR,
         UNKNOWN
-    }
-
-    public enum TABS_STARRED {
-        NORMAL,
-        GALLERY
     }
 
     public static final String TAB_ITEMS = "normal";
