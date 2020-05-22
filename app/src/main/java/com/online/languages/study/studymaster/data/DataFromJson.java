@@ -74,17 +74,18 @@ public class DataFromJson {
             boolean simplified = false;
             boolean homecards = false;
             boolean gallery = false;
+            boolean stats = true;
 
 
             if (params.has("simplified")) simplified = params.getBoolean("simplified");
             if (params.has("homecards")) homecards = params.getBoolean("homecards");
             if (params.has("gallery")) gallery = params.getBoolean("gallery");
-
-
+            if (params.has("stats")) stats = params.getBoolean("stats");
 
             paramsList.put("simplified", simplified);
             paramsList.put("homecards", homecards);
             paramsList.put("gallery", gallery);
+            paramsList.put("stats", stats);
 
         } catch (JSONException e) {
             e.printStackTrace();

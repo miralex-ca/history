@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginBottom="18dp"
                 android:paddingLeft="@dimen/home_card_side"
                 android:paddingRight="@dimen/home_card_side"
                 >
@@ -87,7 +88,7 @@
                     tools:text="Desc"
                     android:gravity="start"
                     android:layout_marginTop="12dp"
-                    android:layout_marginBottom="18dp"
+
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     style="@style/homeCardDescStyle"

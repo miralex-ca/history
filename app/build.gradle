@@ -62,6 +62,7 @@ android {
             dimension "mode"
             resConfigs 'ru'
         }
+
         history {
             dimension "mode"
             applicationId 'com.online.languages.study.ruhistory'

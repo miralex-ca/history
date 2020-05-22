@@ -97,6 +97,8 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
+            if (section.desc.equals("") || section.desc.equals("none")) holder.desc.setVisibility(View.GONE);
+
             for (int i = 0; i < count; i++) {
 
                 View item = inflater.inflate(R.layout.home_card_image, holder.imageWrapper, false);

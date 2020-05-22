@@ -3,8 +3,8 @@ package com.online.languages.study.studymaster;
 
 public class Constants {
 
-    public static final boolean PRO = false;  // TODO change in PRO
-    public static final boolean DEBUG = false;  /// should be true to see ads in debug
+    public static final boolean PRO = true;  // TODO change in PRO
+    public static final boolean DEBUG = true;  /// should be true to see ads in debug
     public static final boolean SCREEN_SHOW = false;
 
     public static final String SET_VERSION_TXT = "full_version"; /// check text in settings
@@ -106,9 +106,23 @@ public class Constants {
         UNKNOWN
     }
 
+    public enum TABS_STARRED {
+        NORMAL,
+        GALLERY
+    }
+
+    public static final String TAB_ITEMS = "normal";
+    public static final String TAB_GALLERY = "gallery";
+    public static final String TABS_NORMAL = "normal";
+
+
+
     public static final String SET_SIMPLIFIED = "param_simplified";
     public static final String SET_HOMECARDS = "param_homecards";
     public static final String SET_GALLERY = "param_gallery";
+    public static final String SET_STATS = "param_stats";
+
+    public static final String STARRED_TABS = "gallery";
 
 
 }

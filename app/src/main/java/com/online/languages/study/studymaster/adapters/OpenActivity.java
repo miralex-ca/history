@@ -140,7 +140,7 @@ public class OpenActivity  {
     }
 
 
-    private void openImageList(NavStructure navStructure, String sectionID, String catID, String title) {
+    public void openImageList(NavStructure navStructure, String sectionID, String catID, String title) {
         Intent i = createIntent(context, ImageListActivity.class);
         i.putExtra("title", title);
         callSubActivity(i, navStructure, sectionID, catID);

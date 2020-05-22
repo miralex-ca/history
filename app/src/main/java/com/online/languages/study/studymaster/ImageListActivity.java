@@ -151,7 +151,6 @@ public class ImageListActivity extends BaseActivity {
         tSectionID = getIntent().getStringExtra(Constants.EXTRA_SECTION_ID);
         tCatID = getIntent().getStringExtra(Constants.EXTRA_CAT_ID);
 
-
         navSection = navStructure.getNavSectionByID(tSectionID);
         viewSection = new ViewSection(this, navSection, tCatID);
 

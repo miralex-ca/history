@@ -373,7 +373,14 @@ public class MainActivity extends BaseActivity
                     else bottomNav.inflateMenu(R.menu.bottom_nav_gallery);
 
                 } else {
-                    if (btmOnly) bottomNav.inflateMenu(R.menu.bottom_nav_more);
+                    if (btmOnly) {
+
+                        if (!dataManager.statsSection) {
+                            bottomNav.inflateMenu(R.menu.bottom_nav_base_more);
+                        } else {
+                            bottomNav.inflateMenu(R.menu.bottom_nav_more);
+                        }
+                    }
                     else bottomNav.inflateMenu(R.menu.bottom_nav);
                 }
 
@@ -446,6 +453,10 @@ public class MainActivity extends BaseActivity
             else {
                 navigation.getMenu().findItem(R.id.nav_gallery).setVisible(false);
             }
+
+            if (!dataManager.statsSection) navigation.getMenu().findItem(R.id.nav_statistic).setVisible(false);
+
+
         }
     }
 
@@ -688,8 +699,19 @@ public class MainActivity extends BaseActivity
         } else {
 
             if (navSection.type.equals("gallery")) {
-                openGallery(navSection);
-                return;
+
+                if (navSection.spec.equals("gallery_simple")) {
+
+                    NavCategory cat = navSection.navCategories.get(0);
+
+                    openActivity.openImageList(navStructure, navSection.id, cat.id, cat.title);
+
+                    return;
+
+                } else {
+                    openGallery(navSection);
+                    return;
+                }
             }
 
             Intent i = new Intent(MainActivity.this, SectionActivity.class);

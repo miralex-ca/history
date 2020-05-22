@@ -19,6 +19,7 @@ import static com.online.languages.study.studymaster.Constants.FILTER_CHRONO;
 import static com.online.languages.study.studymaster.Constants.SET_GALLERY;
 import static com.online.languages.study.studymaster.Constants.SET_HOMECARDS;
 import static com.online.languages.study.studymaster.Constants.SET_SIMPLIFIED;
+import static com.online.languages.study.studymaster.Constants.SET_STATS;
 
 
 public class DataManager {
@@ -253,6 +254,7 @@ public class DataManager {
     public boolean simplified = false;
     public boolean homecards = false;
     public boolean gallerySection = false;
+    public boolean statsSection = true;
 
     public void getParamsFromJSON() {
 
@@ -262,6 +264,7 @@ public class DataManager {
         simplified = paramsList.get("simplified");
         homecards = paramsList.get("homecards");
         gallerySection = paramsList.get("gallery");
+        statsSection = paramsList.get("stats");
     }
 
     private void saveParams() {
@@ -269,6 +272,7 @@ public class DataManager {
         editor.putBoolean(SET_SIMPLIFIED, simplified);
         editor.putBoolean(SET_HOMECARDS, homecards);
         editor.putBoolean(SET_GALLERY, gallerySection);
+        editor.putBoolean(SET_STATS, statsSection);
         editor.apply();
     }
 
@@ -276,6 +280,7 @@ public class DataManager {
         simplified = appSettings.getBoolean(SET_SIMPLIFIED, false);
         homecards = appSettings.getBoolean(SET_HOMECARDS, false);
         gallerySection = appSettings.getBoolean(SET_GALLERY, false);
+        statsSection = appSettings.getBoolean(SET_STATS, true);
     }
 
     public void getScreenSize() {

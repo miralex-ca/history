@@ -96,6 +96,10 @@ public class MenuListAdapter extends BaseAdapter {
            if (!dataManager.gallerySection) view = lInflater.inflate(R.layout.null_item, null);
         }
 
+        if ( position == 3)  {  // hide stats if false in params
+            if (!dataManager.statsSection) view = lInflater.inflate(R.layout.null_item, null);
+        }
+
         if (position==4 || position==7) {
             divider.setVisibility(View.VISIBLE);
         }

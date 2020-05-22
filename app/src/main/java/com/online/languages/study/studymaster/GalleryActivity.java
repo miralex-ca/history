@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.OpenActivity;
@@ -72,6 +73,16 @@ public class GalleryActivity extends BaseActivity {
         navStructure = getIntent().getParcelableExtra(Constants.EXTRA_NAV_STRUCTURE);
         tSectionID = getIntent().getStringExtra(EXTRA_SECTION_ID);
         tCatID = getIntent().getStringExtra(EXTRA_CAT_ID);
+
+        String title;
+
+        if (tCatID.equals("root")) {
+           title =  navStructure.getNavSectionByID(tSectionID).title;
+        } else {
+            title = navStructure.getNavCatFromSection(tSectionID, tCatID).title;
+        }
+
+        setTitle(title);
 
         galleryFragment = new GalleryFragment();
 

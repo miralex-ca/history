@@ -1,46 +1,32 @@
 package com.online.languages.study.studymaster.fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
-import android.text.Html;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
-import com.online.languages.study.studymaster.adapters.ContentAdapter;
-import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
-import com.online.languages.study.studymaster.adapters.ExRecycleAdapter;
-import com.online.languages.study.studymaster.adapters.StarredAdapter;
 import com.online.languages.study.studymaster.adapters.StarredTabsPagerAdapter;
-import com.online.languages.study.studymaster.data.DataFromJson;
+import com.online.languages.study.studymaster.adapters.WrapContentViewPager;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import static com.online.languages.study.studymaster.Constants.STARRED_TAB_ACTIVE;
+import static com.online.languages.study.studymaster.Constants.TABS_NORMAL;
+import static com.online.languages.study.studymaster.Constants.TAB_GALLERY;
+import static com.online.languages.study.studymaster.Constants.TAB_ITEMS;
 
 
 public class StarredFragment extends Fragment {
@@ -57,7 +43,7 @@ public class StarredFragment extends Fragment {
 
     LinearLayout previewList;
 
-    ViewPager tabsPager;
+    WrapContentViewPager tabsPager;
     TabLayout tabLayout;
     StarredTabsPagerAdapter tabsAdapter;
 
@@ -66,6 +52,9 @@ public class StarredFragment extends Fragment {
 
     SharedPreferences appSettings;
     int activeTab;
+
+    String tabs_starred;
+    View rootView;
 
 
     public StarredFragment() {
@@ -77,12 +66,14 @@ public class StarredFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_starred, container, false);
+        rootView = inflater.inflate(R.layout.fragment_starred, container, false);
 
 
         appSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        activeTab = appSettings.getInt(STARRED_TAB_ACTIVE, 0);
+
+        tabs_starred = getString(R.string.tabs_starred_order);
+        activeTab = getActiveTabNum();
 
         starredList = rootView.findViewById(R.id.starredList);
         starredTabs = rootView.findViewById(R.id.starredTabs);
@@ -100,33 +91,109 @@ public class StarredFragment extends Fragment {
         previewList = rootView.findViewById(R.id.starred_preview_list);
 
         words = updateTitle(words);
-        checkTabsDisplay();
 
         createPreviewList(words);
-
 
 
         return rootView;
     }
 
     private void checkTabsDisplay() {
-        ArrayList<DataItem> dataFromGallery = dataManager.getStarredWords(2,false);
+
+        ArrayList<DataItem> starredFromGallery = dataManager.getStarredWords(2,false);
+        ArrayList<DataItem> starredItems = dataManager.getStarredWords(1,false);
+
+        View tabs = rootView.findViewById(R.id.tab_layout);
+        String tabsDisplay = getString(R.string.tabs_starred_display);
+
+        starredList.setVisibility(View.GONE);
+        starredTabs.setVisibility(View.VISIBLE);
+
+
+        if (tabsDisplay.contains("always")) {
+            tabs.setVisibility(View.VISIBLE);
+
+        } else if (tabsDisplay.contains("never")) {
+            tabs.setVisibility(View.GONE);
+
+        } else if (tabsDisplay.contains("item_prior")) {
+
+            if (starredFromGallery.size() == 0) {
+
+                setStarredTab(getTabPositionByName(TAB_ITEMS));
+                tabs.setVisibility(View.GONE);
+                tabsPager.setPagingEnabled(false);
+
+            } else {
+                tabs.setVisibility(View.VISIBLE);
+                tabsPager.setPagingEnabled(true);
+            }
+
+        } else if (tabsDisplay.contains("gallery_prior")) {
+            if (starredItems.size() == 0) {
+
+                setStarredTab(getTabPositionByName(TAB_GALLERY));
+                tabs.setVisibility(View.GONE);
+                tabsPager.setPagingEnabled(false);
+
+            } else {
+                tabs.setVisibility(View.VISIBLE);
+                tabsPager.setPagingEnabled(true);
+            }
+        }
+
+
+
+        if (tabsDisplay.contains("unscroll")) {
+            tabsPager.setPagingEnabled(false);
+        }
+
+
+        /*
+
         if (dataFromGallery.size() > 0) {
             starredList.setVisibility(View.GONE);
             starredTabs.setVisibility(View.VISIBLE);
         }
+
+        */
+
     }
 
     private int getActiveTabNum() {
-        int act = appSettings.getInt(STARRED_TAB_ACTIVE, 0);
-        //Toast.makeText(getActivity(), "Active tab: "+ activeTab, Toast.LENGTH_SHORT).show();
-        return act;
+
+        String defaultTab = TAB_ITEMS;
+        if (!tabs_starred.equals(TABS_NORMAL)) defaultTab= TAB_GALLERY;
+
+        String savedTab = appSettings.getString(STARRED_TAB_ACTIVE, defaultTab);
+
+        return getTabPositionByName(savedTab);
     }
 
     private void setStarredTab(int tab) {
         SharedPreferences.Editor editor = appSettings.edit();
-        editor.putInt(STARRED_TAB_ACTIVE, tab);
+        editor.putString(STARRED_TAB_ACTIVE, getTabByPosition(tab));
         editor.apply();
+    }
+
+
+    private String getTabByPosition(int position) {
+        return tabs()[position];
+    }
+
+    private int getTabPositionByName(String name) {
+        String[] tabs = tabs(); int position = 0;
+        for ( int i = 0; i < tabs.length; i++) {
+            if (tabs[i].equals(name)) position = i;
+        }
+        return position;
+    }
+
+
+    private String[] tabs() {
+        String[] tabs = new String[] {TAB_ITEMS, TAB_GALLERY};
+        if (!tabs_starred.equals(TABS_NORMAL)) tabs = new String[] {TAB_GALLERY, TAB_ITEMS};
+        return tabs;
     }
 
 
@@ -140,12 +207,22 @@ public class StarredFragment extends Fragment {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.starred_tab_info));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.starred_tab_gallery));
+        String tab0 = getString(R.string.starred_tab_info);
+        String tab1 = getString(R.string.starred_tab_gallery);
 
+        if (!tabs_starred.equals(TABS_NORMAL)) {
+            tab1 = getString(R.string.starred_tab_info);
+            tab0 = getString(R.string.starred_tab_gallery);
+        }
+
+        tabLayout.addTab(tabLayout.newTab().setText(tab0));
+        tabLayout.addTab(tabLayout.newTab().setText(tab1));
 
         tabsPager = view.findViewById(R.id.tabContainer);
-        tabsAdapter = new StarredTabsPagerAdapter(getChildFragmentManager(), 2 );
+
+        tabsAdapter = new StarredTabsPagerAdapter(getChildFragmentManager(), 2, tabs_starred);
+
+        checkTabsDisplay();
 
         tabsPager.setAdapter(tabsAdapter);
 
@@ -172,14 +249,13 @@ public class StarredFragment extends Fragment {
             }
         });
 
+        activeTab = getActiveTabNum();
 
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
                 tabsPager.setCurrentItem(activeTab, false);
             }
-        }, 100);
-
-
+        }, 30);
 
 
     }
@@ -207,13 +283,17 @@ public class StarredFragment extends Fragment {
     }
 
     public void updateTabName(int tab, int count) {
-        if (tab == 1) {
-            tabLayout.getTabAt(0).setText(String.format(getString(R.string.starrd_tab_info_count), count));
+
+        int itemTab = 0;
+        int galleryTab = 1;
+
+        if (!tabs_starred.equals("normal")) {
+            itemTab = 1; galleryTab = 0;
         }
 
-        if (tab == 2) {
-            tabLayout.getTabAt(1).setText(String.format(getString(R.string.starrd_tab_gallery_count), count));
-        }
+        if (tab == 1)  tabLayout.getTabAt(itemTab).setText(String.format(getString(R.string.starrd_tab_info_count), count));
+        if (tab == 2)  tabLayout.getTabAt(galleryTab).setText(String.format(getString(R.string.starrd_tab_gallery_count), count));
+
     }
 
 
@@ -260,15 +340,13 @@ public class StarredFragment extends Fragment {
         super.onResume();
         words = updateTitle(words);
         createPreviewList(words);
-        checkTabsDisplay();
-
-
+        //checkTabsDisplay();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 10) {
-           if (tabsPager !=null) tabsPager.setCurrentItem(getActiveTabNum(), true);
+           if (tabsPager !=null) tabsPager.setCurrentItem(getActiveTabNum(), false);
         }
     }
 

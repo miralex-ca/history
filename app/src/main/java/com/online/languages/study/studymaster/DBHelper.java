@@ -35,6 +35,8 @@ import java.util.Map;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 import static com.online.languages.study.studymaster.Constants.STARRED_TAB_ACTIVE;
+import static com.online.languages.study.studymaster.Constants.TAB_GALLERY;
+import static com.online.languages.study.studymaster.Constants.TAB_ITEMS;
 
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -557,9 +559,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    private void setStarredTab(int tab) {
+    private void setStarredTab(int type) {
+
+        String tab = TAB_ITEMS;
+        if (type == 1) tab = TAB_GALLERY;
+
         SharedPreferences.Editor editor = appSettings.edit();
-        editor.putInt(STARRED_TAB_ACTIVE, tab);
+        editor.putString(STARRED_TAB_ACTIVE, tab);
         editor.apply();
 
     }

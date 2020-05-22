@@ -14,23 +14,49 @@ public class StarredTabsPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mNumOfTabs;
     private SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
+    private String tabs = "normal";
 
     public StarredTabsPagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
 
+    public StarredTabsPagerAdapter(FragmentManager fm, int NumOfTabs, String _tabs) {
+        super(fm);
+        this.mNumOfTabs = NumOfTabs;
+        tabs = _tabs;
+    }
+
+
+
     @Override
     public Fragment getItem(int position) {
 
-        switch (position) {
-            case 0:
-                return new StarredTabOne();
-            case 1:
-                return new StarredGalleryTab();
-            default:
-                return null;
+        if (!tabs.equals("normal")) {
+
+            switch (position) {
+                case 1:
+                    return new StarredTabOne();
+                case 0:
+                    return new StarredGalleryTab();
+                default:
+                    return null;
+            }
+
+        } else {
+
+            switch (position) {
+                case 0:
+                    return new StarredTabOne();
+                case 1:
+                    return new StarredGalleryTab();
+                default:
+                    return null;
+            }
+
         }
+
+
     }
 
     @Override

@@ -11,15 +11,15 @@
 
 
     <string name="app_name">История России</string>
-
     <string name="app_backup_activity">.BackupActivity</string>
 
     <string name="app_name_spec"> </string>
 
     <string name="app_data_file">data.json</string>
     <string name="app_detail_file">details.json</string>
-
     <string name="app_structure_file">navstructure.json</string>
+    <string name="tabs_starred_order" translatable="false">normal</string>
+    <string name="tabs_starred_display" translatable="false">item_prior</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

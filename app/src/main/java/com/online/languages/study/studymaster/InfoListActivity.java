@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
@@ -29,6 +31,8 @@ import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
 
 import java.util.ArrayList;
+
+import static com.online.languages.study.studymaster.Constants.INFO_TAG;
 
 public class InfoListActivity extends BaseActivity {
 
@@ -132,10 +136,39 @@ public class InfoListActivity extends BaseActivity {
             @Override
             public void onLongClick(View view, int position) {
 
+                if ( !dataItems.get(position).filter.contains(INFO_TAG) ) {
+
+                    //Toast.makeText(InfoListActivity.this, "Starrable", Toast.LENGTH_SHORT).show();
+                    changeStarred(position);
+                }
 
             }
         }));
     }
+
+
+    public void changeStarred(int position){   /// check just one item
+
+        String id = dataItems.get(position).id;
+        boolean starred = dataManager.checkStarStatusById(id );
+
+        int status = dataManager.dbHelper.setStarred(id, !starred); // id to id
+
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        int vibLen = 30;
+
+        if (status == 0) {
+            Toast.makeText(this, R.string.starred_limit, Toast.LENGTH_SHORT).show();
+            vibLen = 300;
+        }
+
+        checkStarred(position);
+
+        assert v != null;
+        v.vibrate(vibLen);
+    }
+
 
 
     private void openView(final View view) {

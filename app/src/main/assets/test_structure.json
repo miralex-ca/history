@@ -2,7 +2,8 @@
   "params": {
     "simplified": true,
     "homecards": true,
-    "gallery": true
+    "gallery": false,
+    "stats": false
   },
 
   "sections":
@@ -59,8 +60,24 @@
       ]
     },
 
+    {"tag": "section4", "title": "Страница изображений", "id": "10040",
+      "desc": "",
+      "title_short": "Раздел 3",
+      "desc_short": "Краткое описание раздела",
+      "image": "picto/shape_blue_l.png",
+      "type": "gallery",
+      "spec": "gallery_simple",
 
-    {"tag": "section4", "title": "Галерея навигации", "id": "10040",
+      "categories":
+      [
+
+        {"parent": "root", "type": "simple", "spec": "image_list", "id": "10030010", "title": "Тема: Синие фото", "desc": "Описание темы", "image":  "picto/flower_blue_l.png"}
+
+        ]
+    },
+
+
+    {"tag": "section10", "title": "Галерея навигации", "id": "10100",
       "desc": "Полное описание галереи из навигации",
       "title_short": "Галерея",
       "desc_short": "Краткое описание раздела",
