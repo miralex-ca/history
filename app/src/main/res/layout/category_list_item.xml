@@ -47,7 +47,6 @@
             style="@style/cat_list_item_title"
             />
 
-
         <TextView
             android:id="@+id/itemInfo"
             android:layout_width="wrap_content"

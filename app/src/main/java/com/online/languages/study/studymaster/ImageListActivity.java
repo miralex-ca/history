@@ -346,7 +346,6 @@ public class ImageListActivity extends BaseActivity {
                 removeFromList(wordList, recyclerView, itemListWrap, mAdapter);
                 cardsAdapter.notifyDataSetChanged();
                 imagesAdapter.notifyDataSetChanged();
-
                 setWrapContentHeight(cardsList);
                 setWrapContentHeight(imagesList);
             }
@@ -355,7 +354,6 @@ public class ImageListActivity extends BaseActivity {
                 removeFromList(wordList, recyclerViewCards, cardsList, cardsAdapter);
                 mAdapter.notifyDataSetChanged();
                 imagesAdapter.notifyDataSetChanged();
-
                 setWrapContentHeight(itemListWrap);
                 setWrapContentHeight(imagesList);
             }

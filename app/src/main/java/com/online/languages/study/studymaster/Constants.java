@@ -99,7 +99,6 @@ public class Constants {
 
     public static final String FILTER_CHRONO = "chrono";
 
-
     public enum Status {
         STUDIED,
         FAMILIAR,
