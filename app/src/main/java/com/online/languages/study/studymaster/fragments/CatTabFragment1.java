@@ -114,6 +114,11 @@ public class CatTabFragment1 extends Fragment {
         return rootView;
     }
 
+    public void updateDataList() {   /// check all items
+
+        updateList();
+    }
+
 
     private void updateList() {
 

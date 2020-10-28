@@ -223,6 +223,12 @@ public class CatTabFragment2 extends Fragment {
     public void onResume() {
         super.onResume();
 
+        updateResults();
+
+    }
+
+    public void updateResults() {
+
         fillData();
         exAdapter = new ExRecycleAdapter(getActivity(), exLinkTitles, exLinkDesc, exResults, true);
         recyclerView.setAdapter(exAdapter);

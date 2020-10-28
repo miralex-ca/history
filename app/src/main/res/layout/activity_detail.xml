@@ -88,11 +88,24 @@
 
     </RelativeLayout>
 
-    <View
-        android:background="?attr/colorDialogBackground"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="wrap_content">
+
+        <View
+            android:background="@drawable/screem_detail_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <View
+            android:background="?attr/colorDialogBackground"
+            android:layout_width="match_parent"
+            android:layout_height="4dp" />
+
+    </LinearLayout>
+
+
 
 
     <android.support.design.widget.FloatingActionButton

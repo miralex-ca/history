@@ -292,4 +292,11 @@ public class DataManager {
         Toast.makeText(context, "H: " + dpHeight + ": W"+ dpWidth, Toast.LENGTH_SHORT).show();
     }
 
+
+    public void removeCatData(String catId) {
+
+        dbHelper.deleteCatResult(catId);
+
+    }
+
 }

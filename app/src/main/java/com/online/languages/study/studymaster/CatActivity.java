@@ -33,6 +33,7 @@ import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.NavStructure;
 import com.online.languages.study.studymaster.data.Section;
 import com.online.languages.study.studymaster.fragments.CatTabFragment1;
+import com.online.languages.study.studymaster.fragments.CatTabFragment2;
 
 import java.util.ArrayList;
 
@@ -70,6 +71,7 @@ public class CatActivity extends BaseActivity {
 
     DataManager dataManager;
 
+    boolean showDelStats;
 
 
     @Override
@@ -86,10 +88,12 @@ public class CatActivity extends BaseActivity {
 
         easy_mode = appSettings.getString(Constants.SET_DATA_MODE, "2").equals("1");
         dataModeDialog = new DataModeDialog(this);
-        dataManager = new DataManager(this, true);
+        dataManager = new DataManager(this);
 
         openActivity = new OpenActivity(this);
         openActivity.setOrientation();
+
+        showDelStats = appSettings.getBoolean("set_del_stats_cat", false);
 
         categoryID = getIntent().getStringExtra(Constants.EXTRA_CAT_ID);
         catSpec = getIntent().getStringExtra(Constants.EXTRA_CAT_SPEC);
@@ -271,6 +275,10 @@ public class CatActivity extends BaseActivity {
             if (!dataManager.simplified)  sortMenuItem.setVisible(true);
         }
 
+        if (!showDelStats) {
+            menu.findItem(R.id.remove_stats_from_menu).setVisible(false);
+        }
+
         return true;
     }
 
@@ -289,12 +297,69 @@ public class CatActivity extends BaseActivity {
             case R.id.sort_from_menu:
                 sortDialog();
                 return true;
+
+            case R.id.remove_stats_from_menu:
+                deleteConfirmDialog();
+                return true;
             case R.id.info_from_menu:
                 infoMessage();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void deleteConfirmDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.confirmation_txt);
+
+        builder.setMessage(R.string.delete_stats_confirm_text);
+
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(R.string.continue_txt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                deleteCatResults();
+
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel_txt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
+
+    }
+
+
+    private void deleteCatResults() {
+        String catId = categoryID;
+
+        Toast.makeText(this, R.string.delete_stats_process, Toast.LENGTH_SHORT).show();
+
+
+
+        dataManager.removeCatData(catId);
+
+        CatTabFragment1 fragment1 = (CatTabFragment1) adapter.getFragmentOne();
+        if (fragment1 != null) {
+            fragment1.updateDataList();
+        }
+
+        CatTabFragment2 fragment2 = (CatTabFragment2) adapter.getFragmentTwo();
+        if (fragment2 != null) {
+            fragment2.updateResults();
+        }
+    }
+
 
 
     private void infoMessage() {

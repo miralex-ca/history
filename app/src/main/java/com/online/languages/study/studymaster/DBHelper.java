@@ -440,6 +440,63 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    public int deleteCatResult(String catId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int num = 0;
+
+        String idPrefix = catId+"_%";
+
+        db.delete(TABLE_TESTS_DATA, KEY_TEST_TAG +" LIKE ?", new String[]{idPrefix});
+
+        ContentValues catValues = new ContentValues();
+        catValues.put(KEY_CAT_PROGRESS, 0);
+        db.update(TABLE_CAT_DATA, catValues, KEY_CAT_ID+"=?", new String[] {catId});
+
+        // int num = db.delete(TABLE_USER_DATA, KEY_USER_ITEM_ID +" LIKE ?", new String[]{idPrefix});
+
+        ArrayList<String> ids = new ArrayList<>();
+
+        Cursor cursor = db.query(TABLE_USER_DATA,  null, KEY_USER_ITEM_ID +" LIKE ?",
+                    new String[]{idPrefix}, null, null, null);
+
+
+            while (cursor.moveToNext()) {
+                String id = cursor.getString( (cursor.getColumnIndex(KEY_USER_ITEM_ID)));
+                ids.add(id);
+            }
+
+        cursor.close();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ITEM_PROGRESS, 0);
+        values.put(KEY_ITEM_ERRORS, 0);
+        values.put(KEY_ITEM_SCORE, 0);
+        values.put(KEY_ITEM_TIME, "");
+        values.put(KEY_ITEM_TIME_ERROR, "");
+
+        db.beginTransaction();
+
+        try {
+
+            for (String id: ids) {
+                db.update(TABLE_USER_DATA, values, KEY_USER_ITEM_ID +" = ?", new String[]{id});
+            }
+
+            db.setTransactionSuccessful();
+
+        } finally {
+            db.endTransaction();
+        }
+
+
+        db.close();
+
+        return num;
+    }
+
+
+
 
     public int getTestResult(String exId) {
         int catResult = 0;

@@ -35,6 +35,8 @@ import java.util.Random;
 
 import static com.online.languages.study.studymaster.Constants.EX_IMG_TYPE;
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+import static com.online.languages.study.studymaster.Constants.TASK_DELAY_CORRECT;
+import static com.online.languages.study.studymaster.Constants.TASK_DELAY_INCORRECT;
 
 class ExercisePagerAdapter extends PagerAdapter {
 
@@ -61,6 +63,8 @@ class ExercisePagerAdapter extends PagerAdapter {
 
 
     private int textLongNum;
+
+    private int taskDelay = TASK_DELAY_INCORRECT;
 
 
     ExercisePagerAdapter(Context _context, ArrayList<ExerciseTask> _tasks) {
@@ -367,24 +371,32 @@ class ExercisePagerAdapter extends PagerAdapter {
 
 
 
-    private void checkItem(RadioGroup _radioGroup, int _position) {
-        final RadioGroup radioGroup = _radioGroup;
-        final int position = _position;
+    private void checkItem(final RadioGroup _radioGroup, final int _position) {
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
-                exCheckItem(radioGroup, position);
+                checkItemByRadio(_radioGroup, _position);
             }
         }, 300);
+
+    }
+
+    private void checkItemByRadio(RadioGroup _radioGroup, int _position) {
+
+        boolean correct = exCheckItem(_radioGroup, _position);
+
+        if (correct) taskDelay = TASK_DELAY_CORRECT;
+        else taskDelay = TASK_DELAY_INCORRECT;
 
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
                 ExerciseActivity.goToNextTask();
             }
-        }, 1700);
-
+        }, taskDelay);
     }
 
-    void exCheckItem(RadioGroup radioGroup, int position)  {
+    boolean exCheckItem(RadioGroup radioGroup, int position)  {
+        boolean correct_answer = false;
+
         Boolean addToCorrect = !ExerciseActivity.exCheckedStatus;
         ExerciseActivity.exCheckedStatus = true;
 
@@ -424,6 +436,8 @@ class ExercisePagerAdapter extends PagerAdapter {
                 if ( saveStats && !savedInfo.equals("") )  dbHelper.setWordResult(savedInfo);
                 saveCompleted(savedInfo, 0);
             }
+
+            correct_answer = true;
             showCorrect(radioGroup);
 
         }else{
@@ -448,6 +462,8 @@ class ExercisePagerAdapter extends PagerAdapter {
 
 
         }
+
+        return correct_answer;
     }
 
 

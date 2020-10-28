@@ -557,6 +557,7 @@
         <item name="windowFixedWidthMinor">@dimen/detail_card_width_min</item> <!-- portrait-->
 
         <item name="DetailTextTheme">@style/DetailTextTheme</item>
+
     </style>
 
 
@@ -578,6 +579,7 @@
         <item name="colorVeryGoodText">@color/colorVeryGoodText</item>
         <item name="colorGreatText">@color/colorGreatText</item>
         <item name="DetailTextTheme">@style/DetailTextThemeDark</item>
+
 
     </style>
 

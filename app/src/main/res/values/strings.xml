@@ -544,5 +544,12 @@
     <string name="nav_more">Ещё</string>
     <string name="nav_more_version">Другое</string>
 
+    <string name="delete_stats_from_menu">Удалить статистику</string>
+    <string name="delete_stats_confirm_text">\nБудут удалены результаты упражнений, а также статистика изучения записей данной темы. \n\nВы уверены, что хотите удалить эти данные?\n</string>
+    <string name="delete_stats_process">Удаление …</string>
+
+    <string name="set_del_cat_stats">Удаление статистики темы</string>
+    <string name="set_del_cat_stats_summary">Отображение удаления статистики в меню темы</string>
+
 
 </resources>
