@@ -77,28 +77,33 @@ public class NavigationDialog {
 
         View content = inflater.inflate(R.layout.nav_dialog, null);
 
-
+        View navNotes = content.findViewById(R.id.navNotes);
         View navItem1 = content.findViewById(R.id.navItem1);
         View navItem2 = content.findViewById(R.id.navItem2);
         View navItem3 = content.findViewById(R.id.navItem3);
 
-        navItem1.setOnClickListener(new View.OnClickListener() {
+
+        navNotes.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dismissDialog(4);
             }
         });
 
-
-        navItem2.setOnClickListener(new View.OnClickListener() {
+        navItem1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dismissDialog(5);
             }
         });
 
+        navItem2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dismissDialog(6);
+            }
+        });
 
         navItem3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                dismissDialog(6);
+                dismissDialog(7);
             }
         });
 

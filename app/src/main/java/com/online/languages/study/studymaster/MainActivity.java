@@ -19,6 +19,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -58,6 +59,7 @@ import com.online.languages.study.studymaster.fragments.ContactFragment;
 import com.online.languages.study.studymaster.fragments.GalleryFragment;
 import com.online.languages.study.studymaster.fragments.HomeFragment;
 import com.online.languages.study.studymaster.fragments.InfoFragment;
+import com.online.languages.study.studymaster.fragments.NotesFragment;
 import com.online.languages.study.studymaster.fragments.PrefsFragment;
 import com.online.languages.study.studymaster.fragments.SectionFragment;
 import com.online.languages.study.studymaster.fragments.StarredFragment;
@@ -106,6 +108,7 @@ public class MainActivity extends BaseActivity
     ContactFragment contactFragment;
     SectionFragment sectionFragment;
     GalleryFragment galleryFragment;
+    NotesFragment notesFragment;
 
     FragmentTransaction fPages;
     FragmentManager fragmentManager;
@@ -122,6 +125,8 @@ public class MainActivity extends BaseActivity
 
     String btmNavState = "";
     boolean btmOnly = false;
+
+    FloatingActionButton fab;
 
 
     public static ArrayList<DataItem> errorsList;
@@ -238,6 +243,10 @@ public class MainActivity extends BaseActivity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fab = findViewById(R.id.fab_add);
+
+
+
 
 
         if (multipane) {
@@ -270,6 +279,7 @@ public class MainActivity extends BaseActivity
         contactFragment = new ContactFragment();
         statsFragment = new StatsFragment();
         galleryFragment = new GalleryFragment();
+        notesFragment = new NotesFragment();
 
 
         if (savedInstanceState != null) {
@@ -303,6 +313,13 @@ public class MainActivity extends BaseActivity
         homeFragment.setArguments(bundle);
         statsFragment.setArguments(bundle);
         galleryFragment.setArguments(bundle);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noteFabClick();
+            }
+        });
 
 
     }
@@ -397,9 +414,13 @@ public class MainActivity extends BaseActivity
 
         if (Build.VERSION.SDK_INT < 21) display = false;
 
+        View fabPos = findViewById(R.id.fabPos);
+
         if (bottomNavBox != null) {
             bottomNavDisplay = display;
             if (display)  {
+
+                fabPos.setVisibility(View.VISIBLE);
                 bottomNavBox.setVisibility(View.VISIBLE);
 
                 if (navigationView != null) {
@@ -422,6 +443,7 @@ public class MainActivity extends BaseActivity
                             });
                 }
             }  else {
+                fabPos.setVisibility(View.GONE);
                 bottomNavBox.setVisibility(View.GONE);
                 if (navigationView != null) {
                     navigationView.getMenu().setGroupVisible(R.id.grp1, true);
@@ -516,7 +538,7 @@ public class MainActivity extends BaseActivity
 
     public void openPage(int position) {
 
-        String[] tags = {"home", "gallery", "starred", "stats", "prefs", "info", "contact"};
+        String[] tags = {"home", "gallery", "starred", "stats", "notes", "prefs", "desc", "contact"};
         String tag = tags[position];
 
         fPages = fragmentManager.beginTransaction();
@@ -546,10 +568,12 @@ public class MainActivity extends BaseActivity
         } else if (position == 3) {
             fPages.replace(R.id.content_fragment, statsFragment, tag);
         } else if (position == 4) {
-            fPages.replace(R.id.content_fragment, prefsFragment, tag);
+            fPages.replace(R.id.content_fragment, notesFragment, tag);
         } else if (position == 5) {
-            fPages.replace(R.id.content_fragment, infoFragment, tag);
+            fPages.replace(R.id.content_fragment, prefsFragment, tag);
         } else if (position == 6) {
+            fPages.replace(R.id.content_fragment, infoFragment, tag);
+        } else if (position == 7) {
             fPages.replace(R.id.content_fragment, contactFragment, tag);
         }
 
@@ -561,7 +585,7 @@ public class MainActivity extends BaseActivity
 
 
     public void updateMenuList(int activePosition) {
-        int[] menuItemsPosition = {0, 1, 2, 3, 4, 5, 6, 7};
+        int[] menuItemsPosition = {0, 1, 2, 3, 4, 5, 6, 7, 8};
         menuActiveItem = activePosition;
 
         if (multipane) {
@@ -629,6 +653,39 @@ public class MainActivity extends BaseActivity
                 findViewById(R.id.nav_footer).setVisibility(View.VISIBLE);
             }
         }
+
+
+        if (fab != null) {
+            manageNoteFab(activePosition);
+        }
+
+    }
+
+    private void manageNoteFab(int position) {
+
+        if (position == 4 ) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    fab.show();
+                }
+            }, 350);
+        }
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    fab.hide();
+                }
+            }, 100);
+        }
+
+    }
+
+    private void noteFabClick() {
+
+        NotesFragment fragment = (NotesFragment)fragmentManager.findFragmentByTag("notes");
+        if (fragment!=null) fragment.fabClick();
 
     }
 
@@ -850,12 +907,14 @@ public class MainActivity extends BaseActivity
             position  = 2;
         } else if (id == R.id.nav_statistic) {
             position  = 3;
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_notes) {
             position  = 4;
-        } else if (id == R.id.nav_info) {
+        } else if (id == R.id.nav_settings) {
             position  = 5;
-        } else if (id == R.id.nav_contact) {
+        } else if (id == R.id.nav_info) {
             position  = 6;
+        } else if (id == R.id.nav_contact) {
+            position  = 7;
         }
 
         onMenuItemClicker(position);

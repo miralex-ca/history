@@ -19,6 +19,7 @@ import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.DetailFromJson;
 import com.online.languages.study.studymaster.data.DetailItem;
 import com.online.languages.study.studymaster.data.NavCategory;
+import com.online.languages.study.studymaster.data.NoteData;
 import com.online.languages.study.studymaster.data.Section;
 import com.online.languages.study.studymaster.data.UserStats;
 import com.online.languages.study.studymaster.data.UserStatsData;
@@ -34,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
+import static com.online.languages.study.studymaster.Constants.NOTE_ARCHIVE;
 import static com.online.languages.study.studymaster.Constants.STARRED_TAB_ACTIVE;
 import static com.online.languages.study.studymaster.Constants.TAB_GALLERY;
 import static com.online.languages.study.studymaster.Constants.TAB_ITEMS;
@@ -52,6 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_TESTS_DATA = "tests_data";
     public static final String TABLE_ITEMS_DATA = "items_data";
     public static final String TABLE_DETAILS_DATA = "details_data";
+    public static final String TABLE_NOTES_DATA = "notes_data";
 
     // common
     private static final String KEY_PRIMARY_ID = "id";
@@ -98,6 +101,23 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_DETAIL_IMAGE = "detail_image";
     private static final String KEY_DETAIL_IMG_INFO = "detail_img_imfo";
 
+    //// notes table columns
+    private static final String KEY_NOTE_PRIMARY_ID = "note_primary_id";
+    private static final String KEY_NOTE_ID = "note_id";
+    private static final String KEY_NOTE_TITLE = "note_title";
+    private static final String KEY_NOTE_TEXT = "note_text";
+    private static final String KEY_NOTE_ICON = "note_icon";
+    private static final String KEY_NOTE_INFO = "note_info";
+    private static final String KEY_NOTE_STATUS = "note_status";
+    private static final String KEY_NOTE_TYPE = "note_type";
+    private static final String KEY_NOTE_PARAMS = "note_params";
+    private static final String KEY_NOTE_FILTER = "note_filter";
+    private static final String KEY_NOTE_PARENT = "note_parent";
+    private static final String KEY_NOTE_ORDER = "note_order";
+    private static final String KEY_NOTE_CREATED = "note_created";
+    private static final String KEY_NOTE_UPDATED = "note_updated";
+    private static final String KEY_NOTE_UPDATED_SORT = "note_updated_sort";
+
 
     private static final String TABLE_ITEM_STRUCTURE  = "("
             + KEY_PRIMARY_ID + " INTEGER PRIMARY KEY,"
@@ -140,6 +160,24 @@ public class DBHelper extends SQLiteOpenHelper {
             + KEY_TEST_TIME + " INTEGER"
             + ")";
 
+    private static final String TABLE_NOTES_STRUCTURE = "("
+            + KEY_NOTE_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+            + KEY_NOTE_ID + " TEXT,"
+            + KEY_NOTE_TITLE + " TEXT,"
+            + KEY_NOTE_TEXT + " TEXT,"
+            + KEY_NOTE_ICON+ " TEXT,"
+            + KEY_NOTE_INFO + " TEXT,"
+            + KEY_NOTE_STATUS + " TEXT,"
+            + KEY_NOTE_TYPE + " TEXT,"
+            + KEY_NOTE_PARAMS + " TEXT,"
+            + KEY_NOTE_FILTER + " TEXT,"
+            + KEY_NOTE_PARENT + " TEXT,"
+            + KEY_NOTE_ORDER + " INTEGER,"
+            + KEY_NOTE_CREATED + " INTEGER,"
+            + KEY_NOTE_UPDATED + " INTEGER,"
+            + KEY_NOTE_UPDATED_SORT + " INTEGER"
+            + ")";
+
 
     private static final String TABLE_ITEMS_STRUCTURE = TABLE_ITEMS_DATA + TABLE_ITEM_STRUCTURE;
 
@@ -168,7 +206,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     private static final String CREATE_TESTS_TABLE = "CREATE TABLE " + TABLE_TESTS_DATA + TABLE_TEST_STRUCTURE;
-
+    private static final String CREATE_NOTES_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NOTES_DATA + TABLE_NOTES_STRUCTURE;
 
     private int data_mode = 0;
 
@@ -190,6 +228,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_CATDATA_TABLE);
         db.execSQL(CREATE_USER_ITEMS_TABLE);
         db.execSQL(CREATE_TESTS_TABLE);
+        db.execSQL(CREATE_NOTES_TABLE);
     }
 
 
@@ -199,6 +238,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         populateDB(db);
         sanitizeDB(db);
+
+        if (newVersion > 2) {
+            db.execSQL(CREATE_NOTES_TABLE);
+        }
+
+
 
     }
 
@@ -1932,6 +1977,277 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return words;
     }
+
+
+
+    public void createNote(NoteData note) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        createNote(db, note);
+
+        db.close();
+    }
+
+    public void createNote(SQLiteDatabase db, NoteData note) {
+
+        long time = System.currentTimeMillis();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_NOTE_TITLE, note.title);
+        values.put(KEY_NOTE_TEXT, note.content);
+        values.put(KEY_NOTE_ICON, note.image);
+        values.put(KEY_NOTE_STATUS, note.status);
+        values.put(KEY_NOTE_PARAMS, note.params);
+        values.put(KEY_NOTE_CREATED, time );
+        values.put(KEY_NOTE_UPDATED, time );
+        values.put(KEY_NOTE_UPDATED_SORT, time );
+
+        long primary_id = db.insert(TABLE_NOTES_DATA, null, values);
+
+        Cursor cursor = db.query(TABLE_NOTES_DATA,  null,
+                KEY_NOTE_PRIMARY_ID +" = ? " ,
+
+                new String[] { String.valueOf(primary_id)  }, null, null, null);
+
+
+
+        if (cursor.moveToNext()) {
+
+            ContentValues newValues = new ContentValues();
+
+            newValues.put(KEY_NOTE_ID, "note_" + primary_id);
+
+            db.update(TABLE_NOTES_DATA, newValues,
+                    KEY_NOTE_PRIMARY_ID +" = ? ",
+                    new String[] { String.valueOf(primary_id) });
+
+        }
+
+        cursor.close();
+
+    }
+
+
+
+
+    public void updateNote(NoteData note) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        Cursor cursor = db.query(TABLE_NOTES_DATA,  null,
+                KEY_NOTE_ID +" = ?",
+                new String[] { note.id}, null, null, null);
+
+
+        if (cursor.moveToFirst() ) {
+
+            // Toast.makeText(cntx, "FOUND", Toast.LENGTH_SHORT).show();
+
+            ContentValues values = new ContentValues();
+
+            values.put(KEY_NOTE_TITLE, note.title);
+            values.put(KEY_NOTE_TEXT, note.content);
+            values.put(KEY_NOTE_ICON, note.image);
+            values.put(KEY_NOTE_UPDATED, System.currentTimeMillis());
+
+            db.update(TABLE_NOTES_DATA, values, KEY_NOTE_ID +" = ?", new String[] { note.id });
+        } else {
+            // Toast.makeText(cntx, "NOT FOUND: "+ note.id, Toast.LENGTH_SHORT).show();
+        }
+
+        cursor.close();
+
+
+        db.close();
+    }
+
+
+
+    public void deleteNote(NoteData note) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.query(TABLE_NOTES_DATA,  null,
+                KEY_NOTE_ID +" = ?",
+                new String[] { note.id}, null, null, null);
+
+
+        if (cursor.moveToFirst() ) {
+            db.delete(TABLE_NOTES_DATA, KEY_NOTE_ID + " = ?", new String[]{note.id});
+        }
+
+        cursor.close();
+
+        db.close();
+
+    }
+
+
+    public ArrayList<NoteData> getNotes() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ArrayList<NoteData> items = new ArrayList<>();
+
+        Cursor cursor = db.query(TABLE_NOTES_DATA,  null, null, null,
+                null, null, KEY_NOTE_UPDATED_SORT + " DESC");
+
+        try {
+            while (cursor.moveToNext()) {
+
+                NoteData note  = getNoteFromCursor(cursor);
+
+                if (!note.parent.contains(NOTE_ARCHIVE))
+
+                    items.add(note);
+            }
+
+        } finally {
+            cursor.close();
+        }
+
+        db.close();
+
+        return  items;
+    }
+
+    public NoteData getNote(String id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        NoteData note = new NoteData();
+        note.title = "";
+        note.status = "not_found";
+
+        //Toast.makeText(cntx, "ID: " + id, Toast.LENGTH_SHORT).show();
+
+        Cursor cursor = db.query(TABLE_NOTES_DATA,  null,
+                KEY_NOTE_ID +" = ?",
+                new String[] { id}, null, null, null);
+
+
+        if (cursor.moveToFirst() ) {
+            note.status = "";
+            note  = getNoteFromCursor(cursor);
+
+        }
+
+        cursor.close();
+
+        db.close();
+
+        return note;
+    }
+
+    private NoteData getNoteFromCursor(Cursor cursor) {
+
+        NoteData note  = new NoteData();
+
+        note.id = cursor.getString(cursor.getColumnIndex(KEY_NOTE_ID));
+        note.title = cursor.getString(cursor.getColumnIndex(KEY_NOTE_TITLE));
+        note.content = cursor.getString(cursor.getColumnIndex(KEY_NOTE_TEXT));
+        note.image = cursor.getString(cursor.getColumnIndex(KEY_NOTE_ICON));
+
+        note.time_updated = cursor.getLong(cursor.getColumnIndex(KEY_NOTE_UPDATED));
+        note.time_created = cursor.getLong(cursor.getColumnIndex(KEY_NOTE_CREATED));
+        note.time_updated_sort = cursor.getLong(cursor.getColumnIndex(KEY_NOTE_UPDATED_SORT));
+
+        note.parent = cursor.getString(cursor.getColumnIndex(KEY_NOTE_PARENT));
+
+        if (note.parent == null) note.parent = "";
+
+        return note;
+    }
+
+
+
+    public void updateNoteSortTime(NoteData dataObject) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        dataObject.time_updated = System.currentTimeMillis();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_NOTE_UPDATED_SORT, dataObject.time_updated );
+
+        Cursor cursor = db.query(TABLE_NOTES_DATA,  null,
+                KEY_NOTE_ID +" = ?",
+                new String[] { dataObject.id }, null, null, null);
+
+        if (cursor.moveToFirst() ) {
+
+            db.update(TABLE_NOTES_DATA, values,
+                    KEY_NOTE_ID +" = ?",
+                    new String[] { dataObject.id });
+
+            //Toast.makeText(cntx, "Time: " + dataObject.time_updated, Toast.LENGTH_SHORT).show();
+        }
+
+
+
+        cursor.close();
+        db.close();
+
+    }
+
+    public void parentNote(String noteId, String parent) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long time = System.currentTimeMillis();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NOTE_PARENT, parent);
+        // values.put(KEY_NOTE_UPDATED, dataObject.time_updated);
+        values.put(KEY_NOTE_UPDATED_SORT, time );
+
+
+        int n = db.update(TABLE_NOTES_DATA, values,
+                KEY_NOTE_ID +" = ?",
+                new String[] { noteId });
+
+
+        //Toast.makeText(cntx, "N " + n, Toast.LENGTH_SHORT).show();
+
+        db.close();
+
+
+    }
+
+
+    public ArrayList<NoteData> getNotesListForSet(String set_id) {
+
+
+        ArrayList<NoteData> notes = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.query(TABLE_NOTES_DATA,  null, KEY_NOTE_PARENT +" = ?", new String[]{set_id},
+                null, null, KEY_NOTE_UPDATED_SORT + " DESC");
+
+        try {
+            while (cursor.moveToNext()) {
+
+                NoteData note = getNoteFromCursor(cursor);
+
+                notes.add(note);
+            }
+
+        } finally {
+            cursor.close();
+        }
+
+        db.close();
+
+        return notes;
+    }
+
+
+
 
 
     public void sanitizeDB() {

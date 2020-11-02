@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.Map;
 
 import static com.online.languages.study.studymaster.Constants.FILTER_CHRONO;
+import static com.online.languages.study.studymaster.Constants.NOTE_ARCHIVE;
 import static com.online.languages.study.studymaster.Constants.SET_GALLERY;
 import static com.online.languages.study.studymaster.Constants.SET_HOMECARDS;
 import static com.online.languages.study.studymaster.Constants.SET_SIMPLIFIED;
@@ -297,6 +298,57 @@ public class DataManager {
 
         dbHelper.deleteCatResult(catId);
 
+    }
+
+
+    public ArrayList<NoteData> getNotes() {
+
+        ArrayList<NoteData> notes = dbHelper.getNotes();
+
+        //Collections.sort(notes, new TimeNoteComparator());
+
+        Collections.sort(notes, new TimeUpdateNoteComparator());
+
+        return notes;
+    }
+
+
+
+    public ArrayList<DataObject> getNotesForArchive() {
+
+        ArrayList<NoteData> notes = dbHelper.getNotesListForSet(NOTE_ARCHIVE);
+
+        //Collections.sort(notes, new TimeNoteComparator());
+
+        Collections.sort(notes, new TimeUpdateNoteComparator());
+
+        return convertNotesToObjects(notes);
+    }
+
+    private class TimeNoteComparator implements Comparator<NoteData> {
+        @Override
+        public int compare(NoteData o1, NoteData o2) {
+            return o1.time_created <= o2.time_created? 1 : -1;
+        }
+    }
+
+    private class TimeUpdateNoteComparator implements Comparator<NoteData> {
+        @Override
+        public int compare(NoteData o1, NoteData o2) {
+            return o1.time_updated_sort <= o2.time_updated_sort? 1 : -1;
+        }
+    }
+
+    public ArrayList<DataObject> convertNotesToObjects(ArrayList<NoteData> notesList) {
+
+        ArrayList<DataObject> list = new ArrayList<>();
+
+        for (NoteData noteData: notesList) {
+
+            list.add(new DataObject(noteData));
+        }
+
+        return list;
     }
 
 }

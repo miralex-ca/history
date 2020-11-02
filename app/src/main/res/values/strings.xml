@@ -52,6 +52,7 @@
         <item>@string/title_gallery_txt</item>
         <item>@string/title_starred_txt</item>
         <item>@string/title_stats_txt</item>
+        <item>@string/nav_notes_txt</item>
         <item>@string/title_settings_txt</item>
         <item>@string/title_info_txt</item>
         <item>@string/title_contact_txt</item>
@@ -550,6 +551,51 @@
 
     <string name="set_del_cat_stats">Удаление статистики темы</string>
     <string name="set_del_cat_stats_summary">Отображение удаления статистики в меню темы</string>
+
+
+    <string name="nav_notes_txt">Заметки</string>
+    <string name="note_img_edit">Изменить</string>
+    <string name="note_title_edit">Заголовок</string>
+    <string name="note_txt_edit">Текст заметки</string>
+    <string name="note_save">Сохранить</string>
+    <string name="savaing_note_title">Сохранение заметки</string>
+    <string name="empty_note_msg">\nПустая заметка. Введите текст.</string>
+    <string name="apply_btn">Применить</string>
+    <string name="pick_note_icon_title">Выбрать иконку</string>
+    <string name="note_title_txt">Заметка</string>
+    <string name="menu_delete_note">Удалить заметку</string>
+    <string name="menu_edit_note">Редактировать</string>
+
+    <string name="note_img_empty">Нет</string>
+
+    <string name="menu_open_archive">Открыть архив</string>
+    <string name="delete_note_confirm">\nУдалить заметку?\n</string>
+
+    <string name="popup_menu_move">Переместить</string>
+    <string name="popup_menu_edit">Редактировать</string>
+    <string name="popup_menu_unarchive">Извлечь</string>
+    <string name="popup_menu_delete">Удалить</string>
+    <string name="popup_menu_move_top">Наверх</string>
+    <string name="popup_menu_archive">Архив</string>
+    <string name="popup_menu_view">Просмотр</string>
+    <string name="load_more_items">Загрузить ещё %s</string>
+    <string name="open_more">Открыть больше</string>
+
+
+    <string name="info_notes_title">Справка</string>
+    <string name="info_notes_text">\nВ заметках можно хранить любую текстовую информацию, которая вам потребуется. Основной список заметок находится в разделе Заметки, кроме того, заметки можно находить с помощью поиска в приложении. Вы можете изменять название, иконку и текст заметки в любое время.
+        \n\nПри долгом нажатии на заметку в основном списке можно вызвать меню действий для данной заметки. Из этого меню заметку можно поместить в верх основного списка, редактировать, архивировать или удалить.
+        \n\nЧтобы убрать заметку из основного списка без удаления, ее можно поместить в архив. При извлечении из архива заметка помещается в верх основного списка.\n
+    </string>
+
+    <string name="notes_archive_title">Архив заметок</string>
+    <string name="info_note_archive">\nЧтобы убрать заметку из основного списка без удаления, ее можно поместить в архив. При извлечении из архива заметка помещается в верх основного списка. \n</string>
+
+    <string name="first_note_title">Раздел Заметки</string>
+    <string name="first_note_text">В заметках можно хранить любую текстовую информацию, которая вам потребуется. Основной список заметок находится в разделе Заметки, кроме того, заметки можно находить с помощью поиска в приложении. Вы можете изменять название, иконку и текст заметки в любое время.
+        \n\nПри долгом нажатии на заметку в основном списке можно вызвать меню действий для данной заметки. Из этого меню заметку можно поместить в верх основного списка, редактировать, архивировать или удалить.
+        \n\nЧтобы убрать заметку из основного списка без удаления, ее можно поместить в архив. При извлечении из архива заметка помещается в верх основного списка. \n\n\n
+    </string>
 
 
 </resources>

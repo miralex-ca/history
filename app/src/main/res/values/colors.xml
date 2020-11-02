@@ -233,5 +233,8 @@
     <color name="colorNavBgEnd_red_n">#740B0B</color>
     <color name="colorDialogBg_lite">#fff</color>
 
+    <color name="colorCreateFabBtn">#448AFF</color>
+    <color name="colorCreateFabIcon">#FFFFFF</color>
+
 
 </resources>

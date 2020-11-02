@@ -213,6 +213,9 @@
 
     <attr name="colorDetailBtmBg" format="reference" />
 
+    <attr name="colorCreateFabBtn" format="reference" />
+    <attr name="colorCreateFabIcon" format="reference" />
+
 
 
 </resources>

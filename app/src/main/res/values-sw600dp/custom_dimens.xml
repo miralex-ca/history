@@ -143,6 +143,9 @@
         <item name="android:layout_width">430dp</item>
     </style>
 
+    <integer name="img_picker_span">5</integer>
+    <integer name="popup_position">-180</integer>
+
 
 
 </resources>

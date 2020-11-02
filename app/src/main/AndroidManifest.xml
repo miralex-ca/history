@@ -193,6 +193,22 @@
             android:theme="@style/AppTheme"
             />
 
+        <activity android:name=".NoteActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/AppTheme"
+            />
+
+        <activity android:name=".NoteEditActivity"
+            android:theme="@style/AppTheme"
+            />
+
+        <activity android:name=".NotesArchiveActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/AppTheme"
+            />
+
+
+
 
     </application>
 

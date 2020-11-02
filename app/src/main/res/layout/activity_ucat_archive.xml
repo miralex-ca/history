@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="?attr/colorBaseBg"
+     >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="?attr/AppBarOverlayTheme">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:theme="?attr/ToolBarStyle"
+            app:popupTheme="?attr/PopupOverlayTheme"  />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+
+    <android.support.v4.widget.NestedScrollView
+
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        android:gravity="center_horizontal"
+
+        >
+
+
+        <RelativeLayout
+            android:focusableInTouchMode="true"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/main_card_top"
+            style="@style/CardWrapper.Width"
+
+            >
+
+
+            <RelativeLayout
+                android:gravity="center_horizontal"
+                android:paddingBottom="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/list_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

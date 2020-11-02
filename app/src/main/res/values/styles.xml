@@ -198,6 +198,10 @@
 
         <item name="CardViewBorder">@style/CardViewBorder</item>
         <item name="DetailTextTheme">@style/DetailTextTheme</item>
+
+        <item name="colorCreateFabBtn">@color/colorCreateFabBtn</item>
+        <item name="colorCreateFabIcon">@color/colorCreateFabIcon</item>
+
     </style>
 
 
@@ -991,6 +995,17 @@
 
         <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
 
+
+    <style name="NoteEditDialogItem" >
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">17dp</item>
+    </style>
+
+    <style name="fabStyle">
+        <item name="colorAccent">?attr/colorCreateFabBtn</item>
+    </style>
 
 
 </resources>

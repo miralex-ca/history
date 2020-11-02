@@ -123,4 +123,35 @@ public class Constants {
     public static final int TASK_DELAY_INCORRECT = 1800;
 
 
+    public static final String FOLDER_PICS = "file:///android_asset/pics/";
+
+    public static final String ACTION_NONE = "none";
+    public static final String ACTION_CREATE = "create";
+    public static final String ACTION_UPDATE = "update";
+    public static final String ACTION_DELETE = "delete";
+    public static final String ACTION_VIEW = "view";
+    public static final String ACTION_BOOKMARK = "bookmark";
+    public static final String ACTION_CHANGE_ORDER = "change_order";
+    public static final String ACTION_ARCHIVE = "archive";
+    public static final String ACTION_MOVE = "move";
+    public static final String ACTION_EDIT_GROUP = "edit_group";
+
+
+    public static final String STATUS_NEW = "new";
+    public static final String STATUS_NORM = "norm";
+    public static final String STATUS_DELETED = "deleted";
+    public static final String STATUS_UPDATED = "updated";
+    public static final String STATUS_UPDATED_SORT = "updated_sort";
+
+    public static final String EXTRA_NOTE_ID = "note_id";
+    public static final String EXTRA_NOTE_ACTION = "note_action";
+
+    public static final int NOTE_PIC_DEFAULT_INDEX = 1;
+
+    public static final int NOTES_LIST_LIMIT = 30;  // normal 30
+    public static final boolean NOTES_LIST_ANIMATION = true;
+
+    public static final String NOTE_ARCHIVE = "note_archive";
+
+
 }

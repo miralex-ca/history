@@ -177,4 +177,31 @@
         <item>gallery/paint/devochka_s_persikami.jpg</item>
     </string-array>
 
+
+    <string name="notes_pics_folder" translatable="false">notes/</string>
+
+
+    <string-array name="note_pics_list">
+        <item>empty.png</item>
+        <item>note.png</item>
+        <item>text.png</item>
+        <item>contacts.png</item>
+        <item>travel.png</item>
+        <item>city.png</item>
+        <item>shop.png</item>
+        <item>food.png</item>
+        <item>nature.png</item>
+        <item>health.png</item>
+        <item>house.png</item>
+        <item>basketball.png</item>
+        <item>school.png</item>
+        <item>info.png</item>
+        <item>check.png</item>
+        <item>minus.png</item>
+        <item>misc.png</item>
+        <item>pine-tree.png</item>
+        <item>calendar.png</item>
+        <item>laptop.png</item>
+    </string-array>
+
 </resources>

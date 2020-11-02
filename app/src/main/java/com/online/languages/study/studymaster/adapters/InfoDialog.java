@@ -165,7 +165,24 @@ public class InfoDialog {
 
 
 
+    public void simpleDialog(String title, String text) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setCancelable(true)
+                .setNegativeButton(R.string.dialog_close_txt,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+
+                .setMessage(text);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
 
 
 
