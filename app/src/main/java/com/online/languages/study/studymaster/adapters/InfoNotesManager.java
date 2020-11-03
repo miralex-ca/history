@@ -30,7 +30,7 @@ public class InfoNotesManager {
 
     public void postUpdateNotes(DBHelper dbHelper, SQLiteDatabase db, int version) {
 
-       if (version == 2) {
+       if (version == 63) {
 
            postNote(dbHelper, db,  // first note
                    context.getString(R.string.first_note_title),
