@@ -57,6 +57,9 @@
 
     <style name="SmokyTheme.TransparentStatus" />
 
+    <color name="colorCreateFabBtn_smoky">#80D8FF</color>
+    <color name="colorCreateFabIcon_smoky">#051E3A</color>
+
 
     <style name="SmokyTheme" parent="DarkTheme">
         <item name="colorPrimary">@color/colorPrimary_smoky</item>
@@ -115,6 +118,9 @@
         <item name="colorNavBgEnd">@color/colorNavBgEnd_smoky</item>
 
         <item name="colorNavHeaderTxt">@color/colorNavHeaderTxt_smoky</item>
+
+        <item name="colorCreateFabBtn">@color/colorCreateFabBtn_smoky</item>
+        <item name="colorCreateFabIcon">@color/colorCreateFabIcon_smoky</item>
 
     </style>
 

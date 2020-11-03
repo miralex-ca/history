@@ -88,6 +88,7 @@ public class Constants {
     public static final String INFO_TAG = "#info";
     public static final String GALLERY_TAG = "#gallery";
     public static final String NAV_GALLERY_SPEC = "nav_gallery";
+    public static final String NOTE_TAG = "#note";
 
     public static final String MAPS_FOLDER= "pics/maps";
 
@@ -152,6 +153,8 @@ public class Constants {
     public static final boolean NOTES_LIST_ANIMATION = true;
 
     public static final String NOTE_ARCHIVE = "note_archive";
+
+
 
 
 }

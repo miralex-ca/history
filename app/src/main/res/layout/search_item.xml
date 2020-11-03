@@ -10,6 +10,8 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
 
+    android:id="@+id/wrapper"
+
     android:focusable="true"
     android:clickable="true"
     android:background="?android:attr/selectableItemBackground">
@@ -51,6 +53,17 @@
             android:layout_marginRight="-10dp"
             android:layout_marginBottom="0dp"
             app:srcCompat="@drawable/ic_info_item" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/noteIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignRight="@+id/image"
+            android:layout_alignBottom="@+id/image"
+            android:layout_marginRight="-10dp"
+            android:layout_marginBottom="0dp"
+            app:srcCompat="@drawable/ic_note_search_tag" />
 
     </RelativeLayout>
 

@@ -15,6 +15,9 @@
 
     <color name="colorMenu_night">#303030</color>
 
+    <color name="colorCreateFabBtn_night">#8BCFFD</color>
+    <color name="colorCreateFabIcon_night">#000000</color>
+
 
     <style name="NightTheme" parent="DarkTheme">
 
@@ -38,6 +41,9 @@
         <item name="deviderStyle">@style/deviderStyle_night</item>
 
         <item name="PopupOverlayTheme">@style/PopupOverlayTheme_night</item>
+
+        <item name="colorCreateFabBtn">@color/colorCreateFabBtn_night</item>
+        <item name="colorCreateFabIcon">@color/colorCreateFabIcon_night</item>
 
     </style>
 

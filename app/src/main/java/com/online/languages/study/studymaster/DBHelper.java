@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import com.online.languages.study.studymaster.adapters.InfoNotesManager;
 import com.online.languages.study.studymaster.data.Category;
 import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
@@ -36,6 +37,7 @@ import java.util.Map;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 import static com.online.languages.study.studymaster.Constants.NOTE_ARCHIVE;
+import static com.online.languages.study.studymaster.Constants.NOTE_TAG;
 import static com.online.languages.study.studymaster.Constants.STARRED_TAB_ACTIVE;
 import static com.online.languages.study.studymaster.Constants.TAB_GALLERY;
 import static com.online.languages.study.studymaster.Constants.TAB_ITEMS;
@@ -229,6 +231,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_ITEMS_TABLE);
         db.execSQL(CREATE_TESTS_TABLE);
         db.execSQL(CREATE_NOTES_TABLE);
+
+        InfoNotesManager infoNotesManager = new InfoNotesManager(cntx);
+        infoNotesManager.postStartNotes(DBHelper.this, db);
+
     }
 
 
@@ -240,10 +246,12 @@ public class DBHelper extends SQLiteOpenHelper {
         sanitizeDB(db);
 
         if (newVersion > 2) {
-            db.execSQL(CREATE_NOTES_TABLE);
+            db.execSQL(CREATE_NOTES_TABLE); // creates tables if not exist
         }
 
 
+        InfoNotesManager infoNotesManager = new InfoNotesManager(cntx);
+        infoNotesManager.postUpdateNotes(DBHelper.this, db, newVersion);
 
     }
 
@@ -855,10 +863,43 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor.close();
         }
 
+
+        String notesQuery = "SELECT * FROM " +TABLE_NOTES_DATA
+                +" WHERE  ("+KEY_NOTE_TITLE+" LIKE '%"+searchTerm+"%' OR "+KEY_NOTE_TEXT+" LIKE '%" + searchTerm+"%')"
+                +"ORDER BY "+KEY_NOTE_UPDATED_SORT+ " DESC";
+
+
+        Cursor notesCursor = db.rawQuery(notesQuery, null);
+
+        try {
+            while (notesCursor.moveToNext()) {
+                items.add(getSimpleItemFromNoteCursor(notesCursor));
+            }
+        } finally {
+            notesCursor.close();
+        }
+
+
+
         db.close();
 
         return items;
 
+    }
+
+    private DataItem getSimpleItemFromNoteCursor(Cursor cursor) {
+
+        DataItem dataItem = new DataItem();
+
+        dataItem.id = cursor.getString(cursor.getColumnIndex(KEY_NOTE_ID));
+        dataItem.item = cursor.getString(cursor.getColumnIndex(KEY_NOTE_TITLE));
+        dataItem.info = cursor.getString(cursor.getColumnIndex(KEY_NOTE_TEXT));
+        dataItem.image = cursor.getString(cursor.getColumnIndex(KEY_NOTE_ICON));
+
+        dataItem.db_filter = NOTE_TAG;
+        dataItem.filter = NOTE_TAG;
+
+        return dataItem;
     }
 
 
@@ -2433,7 +2474,49 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_TESTS_DATA, null, values);
     }
 
+    public void importNotesData (SQLiteDatabase db, List<DBImport.NoteDataDB> list) {
 
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTES_DATA);
+        db.execSQL(CREATE_NOTES_TABLE);
+
+        db.beginTransaction();
+
+        try {
+
+            for (DBImport.NoteDataDB item: list) {
+                insertImportedNoteData(db, item);
+            }
+
+            db.setTransactionSuccessful();
+
+        } finally {
+            db.endTransaction();
+        }
+
+    }
+
+    private void insertImportedNoteData(SQLiteDatabase db, DBImport.NoteDataDB noteData) {
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_NOTE_PRIMARY_ID, noteData.notePrimaryKey);
+        values.put(KEY_NOTE_ID, noteData.noteId);
+        values.put(KEY_NOTE_TITLE, noteData.noteTitle);
+        values.put(KEY_NOTE_TEXT, noteData.noteContent);
+        values.put(KEY_NOTE_ICON, noteData.noteIcon);
+        values.put(KEY_NOTE_INFO, noteData.noteInfo);
+        values.put(KEY_NOTE_STATUS, noteData.noteStatus);
+        values.put(KEY_NOTE_TYPE, noteData.noteType);
+        values.put(KEY_NOTE_PARAMS, noteData.noteParams);
+        values.put(KEY_NOTE_FILTER, noteData.noteFilter);
+        values.put(KEY_NOTE_PARENT, noteData.noteParent);
+        values.put(KEY_NOTE_ORDER, noteData.noteOrder);
+        values.put(KEY_NOTE_CREATED, noteData.noteCreated);
+        values.put(KEY_NOTE_UPDATED, noteData.noteUpdated);
+        values.put(KEY_NOTE_UPDATED_SORT, noteData.noteUpdatedSort);
+
+        db.insert(TABLE_NOTES_DATA, null, values);
+    }
 
 
 

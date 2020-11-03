@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 import static com.online.languages.study.studymaster.Constants.INFO_TAG;
+import static com.online.languages.study.studymaster.Constants.NOTE_TAG;
 
 
 public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.MyViewHolder> {
@@ -28,9 +29,12 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
     Context context;
     private String theme;
 
+    private String picsNotesFolder = "";
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, desc;
-        ImageView image, star, gIcon, iIcon;
+        ImageView image, star, gIcon, iIcon, noteIcon;
+        View wrapper;
 
         public MyViewHolder(View view) {
             super(view);
@@ -41,6 +45,8 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
             star = view.findViewById(R.id.listStarIcon);
             gIcon = view.findViewById(R.id.gIcon);
             iIcon = view.findViewById(R.id.iIcon);
+            noteIcon = view.findViewById(R.id.noteIcon);
+            wrapper = view.findViewById(R.id.wrapper);
         }
     }
 
@@ -49,6 +55,7 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
         data = _data;
         context  = _context;
         theme = _theme;
+        picsNotesFolder = context.getString(R.string.notes_pics_folder);
     }
 
     @Override
@@ -69,12 +76,7 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
         String pic = dataItem.image;
 
 
-        Picasso.with(context )
-                .load("file:///android_asset/pics/"+ pic )
-                //.transform(new RoundedTransformation(0,0))
-                .fit()
-                .centerCrop()
-                .into(holder.image);
+
 
 
         if (dataItem.starred == 1) {
@@ -92,10 +94,29 @@ public class SearchDataAdapter extends RecyclerView.Adapter<SearchDataAdapter.My
             holder.gIcon.setVisibility(View.INVISIBLE);
         }
 
+        if (dataItem.filter.contains(NOTE_TAG)) {
+            holder.noteIcon.setVisibility(View.VISIBLE);
+            pic = picsNotesFolder + pic;
+        } else {
+            holder.noteIcon.setVisibility(View.GONE);
+        }
+
+
+        Picasso.with(context )
+                .load("file:///android_asset/pics/"+ pic )
+                //.transform(new RoundedTransformation(0,0))
+                .fit()
+                .centerCrop()
+                .into(holder.image);
 
 
         if (theme.equals("westworld")) {
             holder.image.setColorFilter(Color.argb(255, 50, 250, 240), PorterDuff.Mode.MULTIPLY);
+        }
+
+        if (dataItem.type.equals("missing")) {
+            holder.wrapper.setVisibility(View.GONE);
+            holder.wrapper.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
         }
 
 

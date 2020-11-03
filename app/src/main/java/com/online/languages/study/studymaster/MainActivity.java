@@ -1166,6 +1166,11 @@ public class MainActivity extends BaseActivity
             if (fragment != null) {
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
+
+            Fragment fragmentNote = fragmentManager.findFragmentByTag("notes");
+            if (fragmentNote != null) {
+                fragmentNote.onActivityResult(requestCode, resultCode, data);
+            }
         }
 
         if (requestCode == GALLERY_REQUESTCODE) {

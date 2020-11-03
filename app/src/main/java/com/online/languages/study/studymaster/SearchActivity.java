@@ -29,6 +29,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,11 +40,14 @@ import com.online.languages.study.studymaster.adapters.SearchDataAdapter;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.NavStructure;
+import com.online.languages.study.studymaster.data.NoteData;
 
 import java.util.ArrayList;
 
+import static com.online.languages.study.studymaster.Constants.EXTRA_NOTE_ID;
 import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 import static com.online.languages.study.studymaster.Constants.INFO_TAG;
+import static com.online.languages.study.studymaster.Constants.NOTE_TAG;
 
 
 public class SearchActivity extends BaseActivity implements SearchView.OnQueryTextListener {
@@ -71,6 +75,8 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
 
     NavStructure navStructure;
 
+    OpenActivity openActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -96,6 +102,9 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
         setTitle("");
 
         dbHelper = new DBHelper(this);
+
+        openActivity = new OpenActivity(this);
+        openActivity.setOrientation();
 
         card = findViewById(R.id.card);
         result = findViewById(R.id.searcTxt);
@@ -157,6 +166,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
         if (dataItem.filter.contains(GALLERY_TAG)) filter = GALLERY_TAG;
 
         if (dataItem.filter.contains(INFO_TAG)) return;
+        if (dataItem.filter.contains(NOTE_TAG)) return;
 
         Boolean starred = dbHelper.checkStarred(id );
 
@@ -212,13 +222,75 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
                 checkStarred(result);
             }
         }
+
+
+        if (requestCode == 2) {
+
+
+            if(resultCode ==  RESULT_OK){
+
+                int result = data.getIntExtra("position", -1);
+
+                //Toast.makeText(this, "Update note" + result, Toast.LENGTH_SHORT).show();
+
+                updateListItem(result);
+
+            }
+
+
+        }
+
+    }
+
+
+    private void updateListItem(int position) {
+
+        checkNoteFromSearch(displayData.get(position));
+
+        if (displayData.get(position).type.equals("missing")) {
+            recyclerView.setMinimumHeight(recyclerView.getHeight());
+        }
+
+        adapter.notifyItemChanged(position);
+
+
+    }
+
+    public DataItem checkNoteFromSearch(DataItem dataItem) {
+
+        NoteData note = dbHelper.getNote(dataItem.id);
+
+        if (note.status.equals("not_found")) dataItem.type = "missing";
+
+        dataItem.item = note.title;
+        dataItem.info = note.content;
+        dataItem.image = note.image;
+
+
+        return dataItem;
     }
 
 
     public void showAlertDialog(View view, int position) {
 
+        DataItem dataItem =  data.get(position);
+
+        if (dataItem.filter.contains(NOTE_TAG)) {
+
+
+
+            Intent i = new Intent(this, NoteActivity.class);
+            i.putExtra(EXTRA_NOTE_ID, dataItem.id );
+            i.putExtra("source", "search" );
+            i.putExtra("position", position);
+            startActivityForResult(i, 2);
+            openActivity.pageTransition();
+
+            return;
+        }
+
         Intent intent = new Intent(SearchActivity.this, ScrollingActivity.class);
-        intent.putExtra("id", data.get(position).id );
+        intent.putExtra("id", dataItem.id );
         intent.putExtra("position", position);
         intent.putExtra("item", data.get(position));
         intent.putExtra("source", 1);
@@ -292,7 +364,19 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
     }
 
 
+    private void setWrapContentHeight(View view) { //// should aply to the target view parent
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        view.setLayoutParams(params);
+
+    }
+
+
     public void results(String query) {
+
+        setWrapContentHeight(recyclerView);
 
         data = dbHelper.searchData(navStructure.categories, query);
         data = dbHelper.checkStarredList(data);

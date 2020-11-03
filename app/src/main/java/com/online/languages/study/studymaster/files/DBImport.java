@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.online.languages.study.studymaster.DBHelper.TABLE_CAT_DATA;
+import static com.online.languages.study.studymaster.DBHelper.TABLE_NOTES_DATA;
 import static com.online.languages.study.studymaster.DBHelper.TABLE_TESTS_DATA;
 import static com.online.languages.study.studymaster.DBHelper.TABLE_USER_DATA;
 
@@ -112,6 +113,8 @@ public class DBImport {
         updateCatDataTable(importedDB);
         updateTestsDataTable(importedDB);
         updateUserItemsDataTable(importedDB);
+        updateNotesDataTable(importedDB);
+
     }
 
 
@@ -208,6 +211,49 @@ public class DBImport {
 
 
 
+
+    private void updateNotesDataTable(ImportedDB importedDB) {
+
+        ImportedTable helpTable = new ImportedTable();
+
+        NoteDataTable noteDataTable = new NoteDataTable();
+
+        for (ImportedTable table: importedDB.tables) {
+            if (table.tableName.equals(TABLE_NOTES_DATA)) helpTable = table;
+        }
+
+        for (List<String> line: helpTable.lines) {
+            NoteDataDB noteData = new NoteDataDB();
+            noteData.notePrimaryKey = line.get(0);
+            noteData.noteId = line.get(1);
+            noteData.noteTitle = line.get(2);
+            noteData.noteContent = line.get(3);
+            noteData.noteIcon = line.get(4);
+            noteData.noteInfo = line.get(5);
+            noteData.noteStatus = line.get(6);
+            noteData.noteType = line.get(7);
+            noteData.noteParams = line.get(8);
+            noteData.noteFilter = line.get(9);
+            noteData.noteParent = line.get(10);
+            noteData.noteOrder = line.get(11);
+            noteData.noteCreated = line.get(12);
+            noteData.noteUpdated = line.get(13);
+            noteData.noteUpdatedSort = line.get(14);
+
+            noteDataTable.lines.add(noteData);
+        }
+
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        dbHelper.importNotesData(db, noteDataTable.lines);
+
+        db.close();
+
+    }
+
+
+
     public class CatDataTable {
         ArrayList<CatDataLine> lines = new ArrayList<>();
     }
@@ -244,6 +290,28 @@ public class DBImport {
         public String itemTime;
         public String itemTimeStarred;
         public String itemTimeError;
+    }
+
+    public class NoteDataTable {
+        ArrayList<NoteDataDB> lines = new ArrayList<>();
+    }
+
+    public class NoteDataDB {
+        public String notePrimaryKey;
+        public String noteId;
+        public String noteTitle;
+        public String noteContent;
+        public String noteIcon;
+        public String noteInfo;
+        public String noteStatus;
+        public String noteType;
+        public String noteParams;
+        public String noteFilter;
+        public String noteParent;
+        public String noteOrder;
+        public String noteCreated;
+        public String noteUpdated;
+        public String noteUpdatedSort;
     }
 
 

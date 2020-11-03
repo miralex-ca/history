@@ -2,7 +2,6 @@
 <resources>
 
 
-
     <string-array name="themes">
         <item>@string/set_theme_default_name</item>
         <item>@string/set_theme_dark_name</item>
@@ -23,9 +22,7 @@
     </string-array>
 
 
-
     <string name="set_theme_default">default</string>
-
 
     <string-array name="set_control_tests_list">
         <item>@string/set_control_tests_one</item>
@@ -184,24 +181,68 @@
     <string-array name="note_pics_list">
         <item>empty.png</item>
         <item>note.png</item>
+
+
+        <item>note_green.png</item>
+        <item>note_blue.png</item>
+        <item>note_red.png</item>
+        <item>note_orange.png</item>
         <item>text.png</item>
-        <item>contacts.png</item>
-        <item>travel.png</item>
-        <item>city.png</item>
-        <item>shop.png</item>
-        <item>food.png</item>
-        <item>nature.png</item>
-        <item>health.png</item>
-        <item>house.png</item>
-        <item>basketball.png</item>
-        <item>school.png</item>
+        <item>map.png</item>
+
+        <item>person.png</item>
+        <item>calendar.png</item>
+        <item>mountain.png</item>
+        <item>list.png</item>
+
         <item>info.png</item>
         <item>check.png</item>
         <item>minus.png</item>
         <item>misc.png</item>
-        <item>pine-tree.png</item>
-        <item>calendar.png</item>
+
+        <item>crown.png</item>
+        <item>swords.png</item>
+        <item>shield.png</item>
+        <item>people.png</item>
+
+
+        <item>pillar.png</item>
+        <item>temple.png</item>
+        <item>church.png</item>
+        <item>castle.png</item>
+
+        <item>handshake.png</item>
+        <item>fencing.png</item>
+        <item>ship_wheel.png</item>
+        <item>crown_king.png</item>
+
+        <item>book.png</item>
+        <item>ferry.png</item>
+
+
+        <item>flag_green.png</item>
+        <item>flag_teal.png</item>
+        <item>flag_red.png</item>
+        <item>flag_orange.png</item>
+        <item>flag_gray.png</item>
+        <item>flag_blue.png</item>
+
+        <item>contacts.png</item>
+
+        <item>school.png</item>
+        <item>city.png</item>
+        <item>house.png</item>
+        <item>health.png</item>
+        <item>food.png</item>
         <item>laptop.png</item>
+        <item>basketball.png</item>
+        <item>pine-tree.png</item>
+        <item>nature.png</item>
+        <item>halloween.png</item>
+        <item>travel.png</item>
+
+
+
     </string-array>
 
 </resources>
