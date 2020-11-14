@@ -5,10 +5,9 @@ package com.online.languages.study.studymaster.adapters;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 
-public class Typewriter extends android.support.v7.widget.AppCompatTextView {
+public class Typewriter extends androidx.appcompat.widget.AppCompatTextView {
 
 
     private CharSequence mText;

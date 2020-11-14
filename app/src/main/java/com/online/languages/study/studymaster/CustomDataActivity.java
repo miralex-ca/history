@@ -1,33 +1,22 @@
 package com.online.languages.study.studymaster;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
-import android.support.v7.widget.Toolbar;
-import android.view.GestureDetector;
+import com.google.android.material.tabs.TabLayout;
+import androidx.core.view.ViewCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
-import com.online.languages.study.studymaster.adapters.CatViewPagerAdapter;
-import com.online.languages.study.studymaster.adapters.CustomDataListAdapter;
 import com.online.languages.study.studymaster.adapters.CustomDataPagerAdapter;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
-import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.DataItem;
@@ -35,7 +24,6 @@ import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.NavCategory;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
-import com.online.languages.study.studymaster.fragments.CatTabFragment1;
 import com.online.languages.study.studymaster.fragments.CustomDataFragment;
 import com.online.languages.study.studymaster.fragments.CustomTabFragment2;
 import com.online.languages.study.studymaster.fragments.CustomTabFragment3;

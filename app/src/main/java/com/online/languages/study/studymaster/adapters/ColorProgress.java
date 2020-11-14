@@ -2,8 +2,8 @@ package com.online.languages.study.studymaster.adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.support.annotation.ColorInt;
+
+import androidx.annotation.ColorInt;
 import android.util.TypedValue;
 import android.widget.TextView;
 

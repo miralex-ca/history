@@ -10,8 +10,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,8 +29,6 @@ import com.online.languages.study.studymaster.data.DetailItem;
 import com.online.languages.study.studymaster.data.ImageData;
 import com.online.languages.study.studymaster.data.ImageMapsData;
 import com.squareup.picasso.Picasso;
-
-import static com.online.languages.study.studymaster.Constants.MAPS_FOLDER;
 
 public class MapActivity extends BaseActivity {
 

@@ -4,8 +4,8 @@ package com.online.languages.study.studymaster.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.data.DataItem;
-import com.online.languages.study.studymaster.data.ViewCategory;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -3,18 +3,14 @@ package com.online.languages.study.studymaster.adapters;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
-import android.text.Html;
+import androidx.appcompat.app.AlertDialog;
+
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 

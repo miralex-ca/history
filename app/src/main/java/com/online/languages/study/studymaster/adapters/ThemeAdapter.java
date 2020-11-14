@@ -1,24 +1,12 @@
 package com.online.languages.study.studymaster.adapters;
 
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.online.languages.study.studymaster.Constants;
-import com.online.languages.study.studymaster.LocaleChangedReceiver;
 import com.online.languages.study.studymaster.R;
-
-import static com.online.languages.study.studymaster.App.getAppContext;
 
 
 public class ThemeAdapter {

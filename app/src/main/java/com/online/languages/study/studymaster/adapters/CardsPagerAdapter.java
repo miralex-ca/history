@@ -2,7 +2,7 @@ package com.online.languages.study.studymaster.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.online.languages.study.studymaster.CardsActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.data.DataItem;
-import com.online.languages.study.studymaster.data.DetailItem;
 
 import java.util.ArrayList;
 

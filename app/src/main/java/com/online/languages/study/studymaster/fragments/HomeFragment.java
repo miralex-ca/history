@@ -5,11 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,11 +20,9 @@ import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.MainActivity;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.HomeCardRecycleAdapter;
-import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataManager;
 import com.online.languages.study.studymaster.data.NavSection;
 import com.online.languages.study.studymaster.data.NavStructure;
-import com.online.languages.study.studymaster.data.Section;
 
 import java.util.ArrayList;
 

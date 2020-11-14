@@ -2,17 +2,16 @@ package com.online.languages.study.studymaster.fragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.core.view.ViewCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,9 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
-import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.DBHelper;
 import com.online.languages.study.studymaster.R;
@@ -30,7 +27,6 @@ import com.online.languages.study.studymaster.UserListActivity;
 import com.online.languages.study.studymaster.adapters.ContentAdapter;
 import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.ResizeHeight;
-import com.online.languages.study.studymaster.data.DataFromJson;
 import com.online.languages.study.studymaster.data.DataItem;
 
 

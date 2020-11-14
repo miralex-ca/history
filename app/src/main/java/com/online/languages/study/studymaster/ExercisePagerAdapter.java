@@ -6,25 +6,21 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.PagerAdapter;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.online.languages.study.studymaster.adapters.RoundedCornersTransformation;
-import com.online.languages.study.studymaster.adapters.RoundedTransformation;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.data.ExerciseTask;
 import com.squareup.picasso.Picasso;
@@ -34,7 +30,6 @@ import java.util.Collections;
 import java.util.Random;
 
 import static com.online.languages.study.studymaster.Constants.EX_IMG_TYPE;
-import static com.online.languages.study.studymaster.Constants.GALLERY_TAG;
 import static com.online.languages.study.studymaster.Constants.TASK_DELAY_CORRECT;
 import static com.online.languages.study.studymaster.Constants.TASK_DELAY_INCORRECT;
 

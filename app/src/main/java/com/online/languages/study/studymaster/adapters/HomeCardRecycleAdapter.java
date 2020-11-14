@@ -3,22 +3,18 @@ package com.online.languages.study.studymaster.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.data.NavSection;
-import com.online.languages.study.studymaster.data.Section;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

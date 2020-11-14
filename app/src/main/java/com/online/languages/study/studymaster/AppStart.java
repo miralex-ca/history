@@ -6,8 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.online.languages.study.studymaster.data.DataManager;
 

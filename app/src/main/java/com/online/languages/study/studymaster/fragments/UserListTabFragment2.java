@@ -4,22 +4,20 @@ package com.online.languages.study.studymaster.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.online.languages.study.studymaster.CatActivity;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.DBHelper;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.UserListActivity;
-import com.online.languages.study.studymaster.adapters.DividerItemDecoration;
 import com.online.languages.study.studymaster.adapters.ExRecycleAdapter;
 
 import java.util.ArrayList;

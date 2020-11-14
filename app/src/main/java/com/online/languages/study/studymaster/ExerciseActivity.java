@@ -9,10 +9,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -26,7 +26,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.online.languages.study.studymaster.adapters.CustomViewPager;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
@@ -772,7 +771,7 @@ public class ExerciseActivity extends BaseActivity {
                 Snackbar.LENGTH_LONG).setAction("Action", null);
         View snackbarView = mSnackbar.getView();
         snackbarView.setBackgroundColor(background);
-        TextView snackTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        TextView snackTextView = snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
         snackTextView.setTextColor(textColor);
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {

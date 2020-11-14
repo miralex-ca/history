@@ -3,18 +3,13 @@ package com.online.languages.study.studymaster.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
+
+import androidx.fragment.app.Fragment;
+import androidx.core.view.ViewCompat;
+
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,7 +17,6 @@ import android.widget.TextView;
 import com.online.languages.study.studymaster.Constants;
 import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.RoundedCornersTransformation;
-import com.online.languages.study.studymaster.adapters.RoundedTransformation;
 import com.online.languages.study.studymaster.data.DataItem;
 import com.online.languages.study.studymaster.data.DataManager;
 import com.squareup.picasso.Picasso;

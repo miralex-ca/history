@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.appcompat.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,12 +17,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 
-import com.online.languages.study.studymaster.BaseActivity;
-import com.online.languages.study.studymaster.Constants;
-import com.online.languages.study.studymaster.DBHelper;
-import com.online.languages.study.studymaster.NoteActivity;
-import com.online.languages.study.studymaster.NoteEditActivity;
-import com.online.languages.study.studymaster.R;
 import com.online.languages.study.studymaster.adapters.DataModeDialog;
 import com.online.languages.study.studymaster.adapters.NotesArchiveAdapter;
 import com.online.languages.study.studymaster.adapters.OpenActivity;
