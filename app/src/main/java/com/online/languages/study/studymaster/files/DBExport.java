@@ -16,7 +16,9 @@ import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.online.languages.study.studymaster.DBHelper.TABLE_CAT_DATA;
@@ -53,10 +55,16 @@ public class DBExport {
 
         if (!exportDir.exists())  {
             exportDir.mkdirs();
-
         }
 
-        File file = new File(exportDir, context.getString(R.string.backup_file_name));
+        String fileTitle =  context.getString(R.string.backup_file_title);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+        String date = sdf.format(new Date());
+        String fileFormat =  context.getString(R.string.backup_file_post);
+        String fileName = fileTitle +date+fileFormat;
+
+        File file = new File(exportDir, fileName);
 
         // Saving data in Downloads folder
        // DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);

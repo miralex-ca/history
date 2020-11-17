@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,11 +16,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.provider.MediaStore;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
@@ -28,6 +32,7 @@ import com.online.languages.study.studymaster.adapters.OpenActivity;
 import com.online.languages.study.studymaster.adapters.ThemeAdapter;
 import com.online.languages.study.studymaster.files.DBExport;
 import com.online.languages.study.studymaster.files.DBImport;
+import com.online.languages.study.studymaster.files.UriUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -48,6 +53,8 @@ public class BackupActivity extends BaseActivity {
 
     final static int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 1;
     final static int MY_PERMISSIONS_REQUEST_READ_STORAGE = 2;
+
+    final static int FILE_RESULT_CODE = 15;
 
 
     @Override
@@ -134,6 +141,8 @@ public class BackupActivity extends BaseActivity {
 
         db.close();
 
+
+
     }
 
 
@@ -146,29 +155,68 @@ public class BackupActivity extends BaseActivity {
 
         Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
 
-
         String fileFormat = getString(R.string.backup_file_format);
+
 
         new MaterialFilePicker()
                 .withActivity(this)
                 .withCustomActivity(FinderDialogActivity.class)
                 .withRequestCode(10)
-                .withFilter(Pattern.compile("(.*\\."+fileFormat+"$)|(.*\\.csv$)"))
+                .withFilter(Pattern.compile("(.*\\."+fileFormat+"$)|(.*\\.csv$)|(.*\\.jpg$)"))
                 .withHiddenFiles(false)
                 .withPath(uri.getPath())
-                .start();
+                .start()
+        ;
+
+
+        //Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //intent.setDataAndType(uri, "*/*");
+       // startActivityForResult(intent, FILE_RESULT_CODE);
+       // startActivityForResult(Intent.createChooser(intent, "Open folder"), FILE_RESULT_CODE);
+
+
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == 10) {
-            if(resultCode == RESULT_OK){
-
+            if (resultCode == RESULT_OK) {
                 String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-                proImportCSV( Uri.fromFile(new File(filePath)) );
+                proImportCSV(Uri.fromFile(new File(filePath)));
 
+            }
+        }
+
+
+        /*
+        if (requestCode == FILE_RESULT_CODE) {
+            if (resultCode == RESULT_OK) {
+                String selectedFile = getRealPathFromURI(this, data.getData());
+                //Toast.makeText(this, "S: " + data.getData().getPath() , Toast.LENGTH_SHORT ).show();
+                proImportCSV(Uri.fromFile( new File( data.getData().getPath() )));
+            }
+        }
+
+         */
+
+    }
+
+
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = {MediaStore.Images.Media.DATA};
+            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
             }
         }
     }
@@ -200,6 +248,9 @@ public class BackupActivity extends BaseActivity {
 
     private void isExternalStorageWritable() {
 
+
+
+
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -209,6 +260,7 @@ public class BackupActivity extends BaseActivity {
                     MY_PERMISSIONS_REQUEST_WRITE_STORAGE);
 
         } else {
+
             // Permission has already been granted
             export();
 
