@@ -89,6 +89,8 @@ public class ImageDetailActivity extends BaseActivity {
         detailItem = dataManager.getDetailFromDB(tag);
 
 
+
+
         if (detailItem.title.equals("not found")) {
             DataItem dataItem =  dataManager.getDataItemFromDB(tag);
             detailItem  = new DetailItem(dataItem);
