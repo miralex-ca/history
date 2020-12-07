@@ -3,6 +3,9 @@ package com.online.languages.study.studymaster;
 
 import android.content.Context;
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.google.android.material.tabs.TabLayout;
 import com.online.languages.study.studymaster.data.DataManager;
 
 import org.hamcrest.Description;
@@ -35,6 +39,7 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -137,6 +142,8 @@ public class AppStartTest {
 
         /// swipe to exercises list
         waitTime(500);
+
+        /*
         ViewInteraction viewPager = onView(
                 allOf(withId(R.id.container),
                         childAtPosition(
@@ -146,10 +153,13 @@ public class AppStartTest {
                                 1),
                         isDisplayed()));
         viewPager.perform(swipeLeft());
+        */
+        onView(withId(R.id.tabs)).perform(selectTabAtPosition(1));
+
 
 
         // open flash cards page
-        waitTime(200);
+        waitTime(400);
         onView(ViewMatchers.withId(R.id.ex_recycler_list))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         waitTime(1000);
@@ -534,4 +544,35 @@ public class AppStartTest {
         onView(allOf(withId(RecyclerViewId),isDisplayed())).check(matches(matcher));
         return COUNT[0];
     }
+
+
+
+    @NonNull
+    private static ViewAction selectTabAtPosition(final int position) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return allOf(isDisplayed(), isAssignableFrom(TabLayout.class));
+            }
+
+            @Override
+            public String getDescription() {
+                return "with tab at index" + position;
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                if (view instanceof TabLayout) {
+                    TabLayout tabLayout = (TabLayout) view;
+                    TabLayout.Tab tab = tabLayout.getTabAt(position);
+
+                    if (tab != null) {
+                        tab.select();
+                    }
+                }
+            }
+        };
+    }
+
+
 }

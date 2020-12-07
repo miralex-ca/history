@@ -5,8 +5,8 @@
 
     <string name="title_main_txt">История России</string>
 
-    <string name="backup_file_name">RHDB_backup_[дата].jpg</string>
-    <string name="backup_file_title">RHDB_backup_</string>
+    <string name="backup_file_name">RHDB_backup_pers_[дата].jpg</string>
+    <string name="backup_file_title">RHDB_backup_pers_</string>
     <string name="backup_file_post">.jpg</string>
 
 
