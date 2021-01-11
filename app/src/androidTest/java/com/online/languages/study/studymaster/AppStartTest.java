@@ -184,7 +184,7 @@ public class AppStartTest {
 
         if (display) { // bottom navigation displayed
 
-            // open gallery
+
             waitTime(500);
             ViewInteraction bottomNavigationGalleryView = onView(
                     allOf(withId(R.id.nav_gallery),
