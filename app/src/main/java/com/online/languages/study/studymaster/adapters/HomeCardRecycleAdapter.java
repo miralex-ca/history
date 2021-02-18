@@ -78,6 +78,7 @@ public class HomeCardRecycleAdapter extends RecyclerView.Adapter<HomeCardRecycle
 
         Picasso.with( context )
                 .load("file:///android_asset/pics/"+ section.image )
+                .transform(new RoundedCornersTransformation(4,0))
                 .fit()
                 .centerCrop()
                 .into(holder.icon);

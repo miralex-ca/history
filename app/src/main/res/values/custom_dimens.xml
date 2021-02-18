@@ -80,7 +80,7 @@
 
 
 
-    <dimen name="_home_card_padding">2dp</dimen>
+    <dimen name="_home_card_padding">3dp</dimen>
     <dimen name="_home_card_title_left">18dp</dimen>
 
     <dimen name="_home_image_height">77dp</dimen>
@@ -271,7 +271,7 @@
 
     <dimen name="_cat_stat_data_padding">22dp</dimen>
 
-    <dimen name="cardCornerDefault">2dp</dimen>
+    <dimen name="cardCornerDefault">3dp</dimen>
     <dimen name="cardCornerSpec">2dp</dimen>
 
     <integer name="_ex_text_wrap_ex1">120</integer>

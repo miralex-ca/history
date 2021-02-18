@@ -14,7 +14,7 @@
     <dimen name="_detail_image_appbar_height">280dp</dimen>
 
     <dimen name="_detail_card_height">470dp</dimen>
-    <dimen name="_detail_appbar_height">250dp</dimen>
+    <dimen name="_detail_appbar_height">230dp</dimen>
 
     <integer name="_search_dialog_height">430</integer>
     <integer name="_search_dialog_img_height">260</integer>
